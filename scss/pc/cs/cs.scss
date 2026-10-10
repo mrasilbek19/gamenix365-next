@@ -1,4 +1,5 @@
-#pc-wrap {
+#pc-wrap,
+#mobile-wrap {
   .cs-page {
     position: relative;
     padding: 60px 0px 60px;
@@ -15,7 +16,7 @@
           flex-direction: column;
           align-items: center;
           span {
-            color: #000;
+            color: #ffffff;
             font-family: $font;
             font-size: 35px;
             font-style: normal;
@@ -24,7 +25,7 @@
             letter-spacing: 0.525px;
           }
           p {
-            color: #757575;
+            color: #a5a8bd;
             font-family: $font;
             font-size: 16px;
             font-style: normal;
@@ -49,9 +50,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #EEE;
+            border: 1px solid #292c46;
             cursor: pointer;
-            color: #BDBDBD;
+            color: #a5a8bd;
             font-family: $font;
             font-size: 14px;
             font-style: normal;
@@ -59,8 +60,8 @@
             line-height: normal;
             letter-spacing: 0.42px;
             &.active {
-              border: 1px solid #725CE8;
-              background: #EB6753;
+              border: 1px solid #9747ff;
+              background: #9747ff;
               color: #FFF;
             }
           }
@@ -72,7 +73,7 @@
         flex-direction: column;
         .title {
           margin-bottom: 25px;
-          color: #000;
+          color: #ffffff;
           font-family: $font;
           font-size: 27px;
           font-style: normal;
@@ -88,14 +89,14 @@
         }
         .notice-content {
           .main {
-            border: 1px solid #EEE;
+            border: 1px solid #292c46;
             .top {
               padding: 25px 33px;
               display: flex;
               flex-direction: row;
               justify-content: space-between;
               span {
-                color: #000;
+                color: #ffffff;
                 font-family: $font;
                 font-size: 14px;
                 font-style: normal;
@@ -112,15 +113,15 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                border: 1px solid #EEE;
+                border: 1px solid #292c46;
                 &.event {
                   background: #F6D79A;
                 }
                 div {
                   padding: 6px 9px;
                   border-radius: 12px;
-                  border: 1px solid #EB6753;
-                  color: #EB6753;
+                  border: 1px solid #9747ff;
+                  color: #9747ff;
                   font-family: $font;
                   font-size: 12px;
                   font-style: normal;
@@ -129,7 +130,7 @@
                 .notice-number {
                   margin-left: 18px;
                   width: 39px;
-                  color: #BDBDBD;
+                  color: #a5a8bd;
                   font-family: $font;
                   font-size: 14px;
                   font-style: normal;
@@ -137,8 +138,9 @@
                   line-height: normal;
                 }
                 .notice-title {
-                  width: 1060px;
-                  color: #000;
+                  flex: 1;
+                  min-width: 0;
+                  color: #ffffff;
                   font-family: $font;
                   font-size: 16px;
                   font-style: normal;
@@ -146,7 +148,7 @@
                   line-height: normal;
                 }
                 .notice-date {
-                  color: #BDBDBD;
+                  color: #a5a8bd;
                   font-family: $font;
                   font-size: 14px;
                   font-style: normal;
@@ -173,7 +175,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              color: #BDBDBD;
+              color: #a5a8bd;
               text-align: center;
               font-family: $font;
               font-size: 15px;
@@ -183,8 +185,8 @@
               letter-spacing: -0.225px;
               cursor: pointer;
               &.active {
-                border-bottom: 1px solid #EB6753;
-                color: #EB6753;
+                border-bottom: 1px solid #9747ff;
+                color: #9747ff;
               }
             }
           }
@@ -192,15 +194,15 @@
             margin-top: 50px;
             .MuiAccordionDetails-root {
               padding: 30px 20px;
-              background: #FAFAFA;
+              background: #15182b;
             }
             .badge {
               margin: 0 24px;
               display: inline-block;
               padding: 4px 10px;
-              border: 1px solid #725CE8;
+              border: 1px solid #9747ff;
               border-radius: 7px;
-              color: #725CE8;
+              color: #9747ff;
             }
             .question {
               .badge {
@@ -215,11 +217,57 @@
               align-items: center;
               flex-direction: row;
               .badge {
-                color: #EB6753;
-                border: 1px solid #EB6753;
+                color: #9747ff;
+                border: 1px solid #9747ff;
               }
             }
           }
+        }
+      }
+    }
+  }
+}
+
+#pc-wrap,
+#mobile-wrap {
+  .cs-page {
+    padding: 48px 0 64px;
+    .container {
+      .cs-main-info {
+        .info span {
+          font-size: clamp(28px, 4vw, 44px);
+          font-weight: 800;
+        }
+        .btns {
+          margin-top: 32px;
+          gap: 8px;
+          flex-wrap: wrap;
+          div {
+            width: auto;
+            min-width: 140px;
+            padding: 0 24px;
+            color: #a5a8bd;
+            background: #15182b;
+            border-radius: 24px;
+            &.active {
+              border-radius: 24px;
+              border-color: #9747ff;
+              background: #9747ff;
+              color: #fff;
+            }
+          }
+        }
+      }
+      .cs-content {
+        min-width: 0;
+        .MuiAccordion-root,
+        .inquiry-form {
+          background: #15182b;
+          border-radius: 16px;
+          box-shadow: none;
+        }
+        .MuiTableContainer-root {
+          overflow-x: auto;
         }
       }
     }
