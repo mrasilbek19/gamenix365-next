@@ -1,0 +1,25 @@
+#pc-wrap.admin #bunker .admin-inquiry-page {
+	.tit {
+		font-size: clamp(28px, 3vw, 40px);
+		font-weight: 800;
+	}
+
+	.table-wrap {
+		border: 1px solid #292c46;
+		border-radius: 20px;
+		background: #101426;
+		overflow: hidden;
+	}
+
+	.search-area {
+		padding: 20px;
+		gap: 16px;
+		flex-wrap: wrap;
+		border-radius: 14px;
+		background: #15182b;
+	}
+
+	.MuiTableHead-root .MuiTableCell-root {
+		color: #ffffff;
+	}
+}

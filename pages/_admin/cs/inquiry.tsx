@@ -21,7 +21,7 @@ const InquiryArticles: NextPage = (props: any) => {
 	/** HANDLERS **/
 
 	return (
-		<Box component={'div'} className={'content'}>
+		<Box component={'div'} className={'content admin-inquiry-page'}>
 			<Typography variant={'h2'} className={'tit'} sx={{ mb: '24px' }}>
 				1:1 Inquiry Management
 			</Typography>
