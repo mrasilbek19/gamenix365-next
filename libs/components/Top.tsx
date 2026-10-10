@@ -143,41 +143,48 @@ const Top = () => {
 
 	if (device == 'mobile') {
 		return (
-			<Stack className={'top'}>
-				<Link href={'/'}>
-					<div>{t('Home')}</div>
-				</Link>
-				<Link href={'/product'}>
-					<div>{t('Products')}</div>
-				</Link>
-				<Link href={'/shop'}>
-					<div> {t('Shops')} </div>
-				</Link>
-				{user?._id && (
-					<Link href={'/orders'}>
-						<div>{t('Orders')}</div>
+			<Stack className={'mobile-header'}>
+				<div className={'announcement-bar'}>Your setup. Your community. Gamenix365.</div>
+				<Box component={'div'} className={'mobile-brand'}>
+					<Link href={'/'} className={'brand-name'}>GAMENIX<span>365</span></Link>
+					<Basket light />
+				</Box>
+				<Stack className={'top'}>
+					<Link href={'/'}>
+						<div>{t('Home')}</div>
 					</Link>
-				)}
-				<Link href={'/events'}>
-					<div>{t('Events')}</div>
-				</Link>
-				<Link href={'/community?articleCategory=FREE'}>
-					<div> {t('Community')} </div>
-				</Link>
-				<Basket />
-				<Link href={'/cs'}>
-					<div> {t('CS')} </div>
-				</Link>
+					<Link href={'/product'}>
+						<div>{t('Products')}</div>
+					</Link>
+					<Link href={'/shop'}>
+						<div> {t('Shops')} </div>
+					</Link>
+					{user?._id && (
+						<Link href={'/orders'}>
+							<div>{t('Orders')}</div>
+						</Link>
+					)}
+					<Link href={'/events'}>
+						<div>{t('Events')}</div>
+					</Link>
+					<Link href={'/community?articleCategory=FREE'}>
+						<div> {t('Community')} </div>
+					</Link>
+					<Link href={'/cs'}>
+						<div> {t('CS')} </div>
+					</Link>
+				</Stack>
 			</Stack>
 		);
 	} else {
 		return (
 			<Stack className={'navbar'}>
+				<div className={'announcement-bar'}>Your setup. Your community. Gamenix365.</div>
 				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''}`}>
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'}>
-								<img src="/img/logo/logoWhite.svg" alt="" />
+								<span className={'brand-name'}>GAMENIX<span>365</span></span>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'router-box'}>

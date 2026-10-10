@@ -41,10 +41,9 @@ const PopularProductCard = (props: PopularProductCardProps) => {
 					) : (
 						''
 					)}
-
-					<div className={'price'}>${product.productPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
+					<Typography className={'product-price'}>${product.productPrice}</Typography>
 					<strong className={'title'}
 						onClick={() => { pushDetailHandler(product._id) }}>{product.productName}</strong>
 					<p className={'desc'}>{product.productDesc}</p>
@@ -81,10 +80,9 @@ const PopularProductCard = (props: PopularProductCardProps) => {
 					) : (
 						''
 					)}
-
-					<div className={'price'}>${product.productPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
+					<Typography className={'product-price'}>${product.productPrice}</Typography>
 					<strong className={'title'}
 						onClick={() => { pushDetailHandler(product._id) }}>{product.productName}</strong>
 					<p className={'desc'}>{product.productDesc}</p>

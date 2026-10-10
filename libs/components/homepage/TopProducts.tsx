@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Stack, Box } from '@mui/material';
+import Link from 'next/link';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
@@ -65,7 +66,11 @@ const TopProducts = (props: TopProductsProps) => {
 			<Stack className={'top-products'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Top products</span>
+						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>READY TO GAME</span>
+							<span>Top products</span>
+						</Box>
+						<Link href={'/product'} className={'view-all'}>View All Products →</Link>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper
@@ -93,10 +98,12 @@ const TopProducts = (props: TopProductsProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>READY TO GAME</span>
 							<span>Top products</span>
 							<p>Check out our Top Products</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
+							<Link href={'/product'} className={'view-all'}>View All Products →</Link>
 							<div className={'pagination-box'}>
 								<WestIcon className={'swiper-top-prev'} />
 								<div className={'swiper-top-pagination'}></div>

@@ -1,5 +1,44 @@
 # Completed tasks and evidence ledger
 
+## Frontend homepage visual redesign — 2026-10-10
+
+Implemented the user-approved NZXT-inspired design direction with Gamenix365 branding: white homepage, pale purple announcement strip, charcoal navigation/footer, rounded gaming hero, purple CTA and section labels, and light-gray product cards with larger contained images and clear prices. Reused the existing three homepage card components and Swiper instances. Desktop shows three cards, tablet shows two and mobile retains swipeable cards. The desktop category/advanced search filter remains below the hero. Mobile retains its navigation destinations with the basket next to the brand. The former decorative real-estate FiberContainer is replaced in the homepage layout only; its source is unchanged.
+
+The user specifically requested separate SCSS files and existing indentation. Desktop files retain tabs; mobile files retain two-space indentation. Header/footer styles were removed from main.scss into dedicated files; mobile homepage styles moved into their own file. Unrelated page styles remain in place. The footer now links to existing store, shop, community, events, support and about routes; the previous static Nestar placeholder columns and inactive subscription markup were replaced with Gamenix365 content.
+
+Files modified:
+
+- libs/components/layout/LayoutHome.tsx
+- libs/components/Top.tsx
+- libs/components/Footer.tsx
+- libs/components/homepage/TrendProducts.tsx
+- libs/components/homepage/PopularProducts.tsx
+- libs/components/homepage/TopProducts.tsx
+- libs/components/homepage/TrendProductCard.tsx
+- libs/components/homepage/PopularProductCard.tsx
+- libs/components/homepage/TopProductCard.tsx
+- scss/pc/main.scss
+- scss/pc/header.scss (new)
+- scss/pc/footer.scss (new)
+- scss/pc/homepage/homepage.scss
+- scss/mobile/main.scss
+- scss/mobile/header.scss (new)
+- scss/mobile/footer.scss (new)
+- scss/mobile/homepage.scss (new)
+- docs/ai/COMPLETED_TASKS.md
+
+Validation:
+
+- ./node_modules/.bin/tsc --noEmit --incremental false: PASS.
+- npm run build with installed Node 20.19.0: PASS, 92 static pages generated. Existing Browserslist/i18next warnings remain.
+- Temporary TypeScript AST comparison against HEAD: hooks, JSX event handlers and named product handlers unchanged in every edited component with business logic. GraphQL documents, authentication, basket state/components, hooks, models, enums and pages unchanged. No backend files or dependencies changed.
+- Production headless Chrome checks at 1440px, 900px and 390px: PASS for hero image loading, populated card layout, price/view displays and no document-level horizontal overflow. Desktop/mobile footer screenshots inspected.
+- Browser-only GraphQL fixtures verified card detail navigation, guest like authentication feedback, Add to Basket from the unchanged catalog, quantity increase, clear basket and mobile basket opening. Existing category dropdown/selection and filtered product routing verified. The homepage cards did not previously expose Add to Basket; no new purchase behavior was added there.
+- Existing public header/footer destinations /, /product, /shop, /events, /community?articleCategory=FREE, /cs, /account/join and /about returned HTTP 200.
+- git diff --check and change-scope review: PASS.
+
+Limits: the live homepage returned no product rows, so populated-card and basket verification used temporary browser-only fixtures, with no sample data in application source and no live mutations/orders submitted. Authenticated login/logout and authenticated like persistence were not exercised; their source handlers and GraphQL operations are unchanged. The hero uses an externally hosted Unsplash stock gaming photograph, verified in the browser, rather than NZXT assets. Separate redesigns of other pages and the basket panel remain deferred. No deployment was performed.
+
 ## Frontend marketplace Agent → Shop naming — 2026-10-10
 
 Renamed remaining marketplace identifiers in gamenix365-next: GET_SHOPS/GetShops, ShopsInquiry/ShopSearch, query consumers, product state, admin SHOP filter, component/style folders, CSS/Swiper selectors, image assets and references, FAQ category/copy, and English/Korean/Russian translations. Event organizer links now open /shop/detail?shopId=... . Moved ReviewCard to libs/components/shop, SCSS to scss/pc/shop, and assets to banner/shops.webp and profile/shop.png.

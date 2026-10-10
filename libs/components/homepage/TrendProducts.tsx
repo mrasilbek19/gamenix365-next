@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Stack, Box } from '@mui/material';
+import Link from 'next/link';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import WestIcon from '@mui/icons-material/West';
 import EastIcon from '@mui/icons-material/East';
@@ -67,7 +68,11 @@ const TrendProducts = (props: TrendProductsProps) => {
 			<Stack className={'trend-products'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Trending Products</span>
+						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>COMMUNITY FAVORITES</span>
+							<span>Trending Products</span>
+						</Box>
+						<Link href={'/product'} className={'view-all'}>View All Products →</Link>
 					</Stack>
 					<Stack className={'card-box'}>
 						{trendProducts.length === 0 ? (
@@ -101,10 +106,12 @@ const TrendProducts = (props: TrendProductsProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>COMMUNITY FAVORITES</span>
 							<span>Trending Products</span>
 							<p>Trend is based on likes</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
+							<Link href={'/product'} className={'view-all'}>View All Products →</Link>
 							<div className={'pagination-box'}>
 								<WestIcon className={'swiper-trend-prev'} />
 								<div className={'swiper-trend-pagination'}></div>

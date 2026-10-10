@@ -36,9 +36,9 @@ const TrendProductCard = (props: TrendProductCardProps) => {
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${product?.productImages[0]})` }}
 					onClick={() => { pushDetailHandler(product._id) }}
 				>
-					<div>${product.productPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
+					<Typography className={'product-price'}>${product.productPrice}</Typography>
 					<strong className={'title'}
 						onClick={() => { pushDetailHandler(product._id) }}>{product.productName}</strong>
 					<p className={'desc'}>{product.productDesc ?? 'no description'}</p>
@@ -75,9 +75,9 @@ const TrendProductCard = (props: TrendProductCardProps) => {
 					style={{ backgroundImage: `url(${REACT_APP_API_URL}/${product?.productImages[0]})` }}
 					onClick={() => { pushDetailHandler(product._id) }}
 				>
-					<div>${product.productPrice}</div>
 				</Box>
 				<Box component={'div'} className={'info'}>
+					<Typography className={'product-price'}>${product.productPrice}</Typography>
 					<strong
 						className={'title'}
 						onClick={() => { pushDetailHandler(product._id) }}

@@ -2,138 +2,48 @@ import FacebookOutlinedIcon from '@mui/icons-material/FacebookOutlined';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import TelegramIcon from '@mui/icons-material/Telegram';
 import TwitterIcon from '@mui/icons-material/Twitter';
-import useDeviceDetect from '../hooks/useDeviceDetect';
 import { Stack, Box } from '@mui/material';
+import Link from 'next/link';
 import moment from 'moment';
 
 const Footer = () => {
-	const device = useDeviceDetect();
-
-	if (device == 'mobile') {
-		return (
-			<Stack className={'footer-container'}>
-				<Stack className={'main'}>
-					<Stack className={'left'}>
-						<Box component={'div'} className={'footer-box'}>
-							<img src="/img/logo/logoWhite.svg" alt="" className={'logo'} />
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<span>total free customer care</span>
-							<p>+82 10 4867 2909</p>
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<span>nee live</span>
-							<p>+82 10 4867 2909</p>
-							<span>Support?</span>
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<p>follow us on social media</p>
-							<div className={'media-box'}>
-								<FacebookOutlinedIcon />
-								<TelegramIcon />
-								<InstagramIcon />
-								<TwitterIcon />
-							</div>
-						</Box>
-					</Stack>
-					<Stack className={'right'}>
-						<Box component={'div'} className={'bottom'}>
-							<div>
-								<strong>Popular Search</strong>
-								<span>Product for Rent</span>
-								<span>Product Low to hide</span>
-							</div>
-							<div>
-								<strong>Quick Links</strong>
-								<span>Terms of Use</span>
-								<span>Privacy Policy</span>
-								<span>Pricing Plans</span>
-								<span>Our Services</span>
-								<span>Contact Support</span>
-								<span>FAQs</span>
-							</div>
-							<div>
-								<strong>Discover</strong>
-								<span>Seoul</span>
-								<span>Gyeongido</span>
-								<span>Busan</span>
-								<span>Jejudo</span>
-							</div>
-						</Box>
-					</Stack>
-				</Stack>
-				<Stack className={'second'}>
-					<span>© Nestar - All rights reserved. Nestar {moment().year()}</span>
-				</Stack>
+	return (
+		<Stack className={'footer-container'}>
+			<Stack className={'main'}>
+				<Box component={'div'} className={'footer-column'}>
+					<strong>Explore the store</strong>
+					<Link href={'/product'}>Gaming equipment</Link>
+					<Link href={'/shop'}>Independent shops</Link>
+				</Box>
+				<Box component={'div'} className={'footer-column'}>
+					<strong>Gaming community</strong>
+					<Link href={'/community?articleCategory=FREE'}>Community boards</Link>
+					<Link href={'/events'}>Tournaments & giveaways</Link>
+				</Box>
+				<Box component={'div'} className={'footer-column'}>
+					<strong>Support</strong>
+					<Link href={'/cs'}>Customer support</Link>
+					<Link href={'/about'}>About Gamenix365</Link>
+					<a href="tel:+821048672909">+82 10 4867 2909</a>
+				</Box>
+				<Box component={'div'} className={'footer-brand'}>
+					<Link href={'/'} className={'brand-name'}>GAMENIX<span>365</span></Link>
+					<p>Great equipment. Independent shops. One gaming community.</p>
+					<p>Find your next setup and connect with people who share your passion for gaming.</p>
+					<div className={'media-box'}>
+						<FacebookOutlinedIcon />
+						<TelegramIcon />
+						<InstagramIcon />
+						<TwitterIcon />
+					</div>
+				</Box>
 			</Stack>
-		);
-	} else {
-		return (
-			<Stack className={'footer-container'}>
-				<Stack className={'main'}>
-					<Stack className={'left'}>
-						<Box component={'div'} className={'footer-box'}>
-							<img src="/img/logo/logoWhite.svg" alt="" className={'logo'} />
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<span>total free customer care</span>
-							<p>+82 10 4867 2909</p>
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<span>nee live</span>
-							<p>+82 10 4867 2909</p>
-							<span>Support?</span>
-						</Box>
-						<Box component={'div'} className={'footer-box'}>
-							<p>follow us on social media</p>
-							<div className={'media-box'}>
-								<FacebookOutlinedIcon />
-								<TelegramIcon />
-								<InstagramIcon />
-								<TwitterIcon />
-							</div>
-						</Box>
-					</Stack>
-					<Stack className={'right'}>
-						<Box component={'div'} className={'top'}>
-							<strong>keep yourself up to date</strong>
-							<div>
-								<input type="text" placeholder={'Your Email'} />
-								<span>Subscribe</span>
-							</div>
-						</Box>
-						<Box component={'div'} className={'bottom'}>
-							<div>
-								<strong>Popular Search</strong>
-								<span>Product for Rent</span>
-								<span>Product Low to hide</span>
-							</div>
-							<div>
-								<strong>Quick Links</strong>
-								<span>Terms of Use</span>
-								<span>Privacy Policy</span>
-								<span>Pricing Plans</span>
-								<span>Our Services</span>
-								<span>Contact Support</span>
-								<span>FAQs</span>
-							</div>
-							<div>
-								<strong>Discover</strong>
-								<span>Seoul</span>
-								<span>Gyeongido</span>
-								<span>Busan</span>
-								<span>Jejudo</span>
-							</div>
-						</Box>
-					</Stack>
-				</Stack>
-				<Stack className={'second'}>
-					<span>© Nestar - All rights reserved. Nestar {moment().year()}</span>
-					<span>Privacy · Terms · Sitemap</span>
-				</Stack>
+			<Stack className={'second'}>
+				<span>© {moment().year()} Gamenix365. All rights reserved.</span>
+				<span>Built for your next level.</span>
 			</Stack>
-		);
-	}
+		</Stack>
+	);
 };
 
 export default Footer;

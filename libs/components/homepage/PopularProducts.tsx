@@ -45,7 +45,11 @@ const PopularProducts = (props: PopularProductsProps) => {
 			<Stack className={'popular-products'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Popular products</span>
+						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>MOST EXPLORED</span>
+							<span>Popular products</span>
+						</Box>
+						<Link href={'/product'} className={'view-all'}>View All Products →</Link>
 					</Stack>
 					<Stack className={'card-box'}>
 						<Swiper
@@ -73,13 +77,14 @@ const PopularProducts = (props: PopularProductsProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
+							<span className={'section-label'}>MOST EXPLORED</span>
 							<span>Popular products</span>
 							<p>Popularity is based on views</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
 							<div className={'more-box'}>
 								<Link href={'/product'}>
-									<span>See All Categories</span>
+									<span>View All Products</span>
 								</Link>
 								<img src="/img/icons/rightup.svg" alt="" />
 							</div>
