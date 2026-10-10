@@ -100,7 +100,7 @@ export default function Basket({ light = false }: { light?: boolean }) {
 				anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
 				transformOrigin={{ vertical: 'top', horizontal: 'right' }}
 				PaperProps={{ sx: { width: 400, maxWidth: 'calc(100vw - 24px)', mt: 1 } }}
-				MenuListProps={{ role: 'presentation' }}
+				MenuListProps={{ role: 'presentation', className: 'basket-content' }}
 			>
 				<Stack role="dialog" aria-label="Shopping basket" spacing={2} sx={{ p: 2 }}>
 					<Stack direction="row" alignItems="center" justifyContent="space-between">
