@@ -1,0 +1,21 @@
+#pc-wrap.admin #bunker .admin-events-page {
+	width: 100%;
+
+	.event-board {
+		padding: 0;
+	}
+
+	.event-board > h4 {
+		padding-bottom: 24px;
+		border-bottom: 1px solid #292c46;
+	}
+
+	.event-card {
+		background: #101426;
+		transition: border-color 160ms ease;
+
+		&:hover {
+			border-color: #9747ff;
+		}
+	}
+}
