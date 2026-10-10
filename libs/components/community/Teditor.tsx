@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { T } from '../../types/common';
 import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useMutation } from '@apollo/client';
 import { CREATE_BOARD_ARTICLE } from '../../../apollo/user/mutation';
 import { sweetErrorHandling, sweetTopSuccessAlert } from '../../sweetAlert';
@@ -117,13 +118,13 @@ const TuiEditor = () => {
 	};
 
 	return (
-		<Stack>
-			<Stack direction="row" style={{ margin: '40px' }} justifyContent="space-evenly">
-				<Box component={'div'} className={'form_row'} style={{ width: '300px' }}>
-					<Typography style={{ color: '#7f838d', margin: '10px' }} variant="h3">
+		<Stack className={'article-editor'}>
+			<Stack className={'article-fields'}>
+				<Box component={'div'} className={'form_row'}>
+					<Typography style={{ color: '#a5a8bd', margin: '10px' }} variant="h3">
 						Category
 					</Typography>
-					<FormControl sx={{ width: '100%', background: 'white' }}>
+					<FormControl sx={{ width: '100%' }}>
 						<Select
 							value={articleCategory}
 							onChange={changeCategoryHandler}
@@ -139,20 +140,21 @@ const TuiEditor = () => {
 						</Select>
 					</FormControl>
 				</Box>
-				<Box component={'div'} style={{ width: '300px', flexDirection: 'column' }}>
-					<Typography style={{ color: '#7f838d', margin: '10px' }} variant="h3">
+				<Box component={'div'} className={'form_row'}>
+					<Typography style={{ color: '#a5a8bd', margin: '10px' }} variant="h3">
 						Title
 					</Typography>
 					<TextField
 						onChange={articleTitleHandler}
 						id="filled-basic"
 						label="Type Title"
-						style={{ width: '300px', background: 'white' }}
+						fullWidth
 					/>
 				</Box>
 			</Stack>
 
 			<Editor
+				theme={'dark'}
 				initialValue={'Type here'}
 				placeholder={'Type here'}
 				previewStyle={'vertical'}
