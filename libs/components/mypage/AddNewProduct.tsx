@@ -34,12 +34,14 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 	} = useQuery(GET_SHOP_PRODUCTS, {
 		fetchPolicy: 'network-only',
 		skip: !router.query.productId || user.memberType !== 'SHOP',
-		variables: { input: {
-			page: Math.max(1, Number(router.query.page) || 1),
-			limit: Math.max(1, Number(router.query.limit) || 5),
-			sort: 'createdAt',
-			search: { productStatus: editStatus },
-		} },
+		variables: {
+			input: {
+				page: Math.max(1, Number(router.query.page) || 1),
+				limit: Math.max(1, Number(router.query.limit) || 5),
+				sort: 'createdAt',
+				search: { productStatus: editStatus },
+			}
+		},
 	});
 	const product: Product | undefined = getProductData?.getShopProducts?.list?.find((item: Product) => item._id === router.query.productId);
 
@@ -137,7 +139,7 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 					<Stack className="config">
 						<Stack className="description-box">
 							<Stack className="config-column">
-								<Typography className="title">Title</Typography>
+								<Typography className="title">Product Name</Typography>
 								<input
 									type="text"
 									className="description-input"
@@ -167,7 +169,7 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 									<Typography className="title">Select Type</Typography>
 									<select
 										className={'select-description'}
-														value={insertProductData.productType || 'select'}
+										value={insertProductData.productType || 'select'}
 										onChange={({ target: { value } }) =>
 											setInsertProductData({ ...insertProductData, productType: value as ProductType })
 										}
@@ -189,7 +191,7 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 							</Stack>
 
 							<Stack className="config-column">
-								<Typography className="title">Stock</Typography>
+								<Typography className="title">ProductLeftCount</Typography>
 								<input type="number" min={0} step={1} className="description-input" value={insertProductData.productLeftCount}
 									onChange={({ target: { value } }) => setInsertProductData({ ...insertProductData, productLeftCount: Number(value) })} />
 							</Stack>
