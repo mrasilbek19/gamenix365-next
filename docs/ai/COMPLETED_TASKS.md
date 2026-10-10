@@ -1,5 +1,18 @@
 # Completed tasks and evidence ledger
 
+## Frontend header basket adapted from Perfumia — 2026-10-10
+
+Implemented in gamenix365-next only. Read Perfumia React's useBasket, header Basket and product add flow as the reference; Perfumia and backend files were not modified.
+
+- libs/cart.ts and libs/hooks/useBasket.ts: shared reactive basket, SSR-safe browser storage, restore validation, storage-event synchronization, quantity controls, delete/clear and single-shop checks.
+- libs/components/basket/Basket.tsx and AddToBasket.tsx: header badge/menu, product controls, delivery/pickup estimates, login/account/address checks and createOrder checkout. Failure retains the basket; success clears it and opens /orders. Numeric inventory remains hidden.
+- libs/components/Top.tsx, libs/components/product/ProductCard.tsx and pages/product/detail.tsx: connect the header and product add actions, with card height accommodating the new button.
+- apollo/user/query.ts and mutation.ts: restore GET_MY_ORDERS, CREATE_ORDER and UPDATE_ORDER using the actual backend OrderResolver/DTO contract, enabling the existing orders destination.
+- scripts/test-basket.cjs: offline state and checkout checks (node scripts/test-basket.cjs).
+
+Validation: offline basket/checkout checks PASS; all three order documents and delivery/pickup variables PASS against a schema generated from the actual backend resolver/DTOs. TypeScript has only the nine existing Events missing-file/export errors, with no basket/order errors. No live order, database or browser visual verification was performed.
+
+
 ## Events and EventParticipant operations — 2026-10-10
 
 COMPLETED after approval of the Events proposal and eventStart deadline clarification. Working tree was clean before this increment. Auth/guards, ProductService, OrderService, MemberService and community code are unchanged.

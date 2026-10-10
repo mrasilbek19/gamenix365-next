@@ -180,3 +180,12 @@ export const GET_COMMENTS = gql`
 		}
 	}
 `;
+
+export const GET_ALL_EVENTS_BY_ADMIN = gql`
+	query GetAllEventsByAdmin($input: AllEventsInquiry!) {
+		getAllEventsByAdmin(input: $input) {
+			list { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+			metaCounter { total }
+		}
+	}
+`;

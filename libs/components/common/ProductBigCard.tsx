@@ -50,7 +50,6 @@ const ProductBigCard = (props: ProductBigCardProps) => {
 					<p className={'desc'}>{product?.productDesc}</p>
 					<div className={'options'}>
 						<div><span>{product?.productType}</span></div>
-						<div><span>{product?.productLeftCount} in stock</span></div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>

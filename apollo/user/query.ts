@@ -544,3 +544,58 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 		}
 	}
 `;
+
+/**************************
+ *         ORDER          *
+ *************************/
+export const GET_MY_ORDERS = gql`
+	query GetMyOrders($input: OrdersInquiry!) {
+		getMyOrders(input: $input) {
+			_id orderTotal orderDelivery orderDeliveryType orderAddress orderStatus memberId shopId createdAt
+			orderItems { _id productId itemQuantity itemPrice }
+			productData { _id productName productImages }
+		}
+	}
+`;
+
+export const GET_EVENTS = gql`
+	query GetEvents($input: EventsInquiry!) {
+		getEvents(input: $input) {
+			list { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+			metaCounter { total }
+		}
+	}
+`;
+
+export const GET_MY_EVENTS = gql`
+	query GetMyEvents($input: ShopEventsInquiry!) {
+		getMyEvents(input: $input) {
+			list { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+			metaCounter { total }
+		}
+	}
+`;
+
+export const GET_EVENT = gql`
+	query GetEvent($input: String!) {
+		getEvent(eventId: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+	}
+`;
+
+export const GET_MY_REGISTRATIONS = gql`
+	query GetMyRegistrations($input: EventParticipantsInquiry!) {
+		getMyRegistrations(input: $input) {
+			list { _id eventId memberId participantStatus eventData { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt } }
+			metaCounter { total }
+		}
+	}
+`;
+
+export const GET_EVENT_PARTICIPANTS = gql`
+	query GetEventParticipants($eventId: String!, $input: EventParticipantsInquiry!) {
+		getEventParticipants(eventId: $eventId, input: $input) {
+			list { _id eventId memberId participantStatus memberData { _id memberNick memberImage memberStatus } }
+			metaCounter { total }
+		}
+	}
+`;

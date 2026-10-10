@@ -313,3 +313,64 @@ export const UNSUBSCRIBE = gql`
 		}
 	}
 `;
+
+/**************************
+ *         ORDER          *
+ *************************/
+export const CREATE_ORDER = gql`
+	mutation CreateOrder($input: OrderInput!) {
+		createOrder(input: $input) {
+			_id orderTotal orderDelivery orderDeliveryType orderAddress orderStatus memberId shopId createdAt
+		}
+	}
+`;
+
+export const UPDATE_ORDER = gql`
+	mutation UpdateOrder($input: OrderUpdate!) {
+		updateOrder(input: $input) {
+			_id orderTotal orderDelivery orderDeliveryType orderAddress orderStatus memberId shopId createdAt
+		}
+	}
+`;
+
+export const CREATE_EVENT = gql`
+	mutation CreateEvent($input: EventInput!) {
+		createEvent(input: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+	}
+`;
+
+export const UPDATE_EVENT = gql`
+	mutation UpdateEvent($input: EventUpdate!) {
+		updateEvent(input: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+	}
+`;
+
+export const FINISH_EVENT = gql`
+	mutation FinishEvent($input: String!) {
+		finishEvent(eventId: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+	}
+`;
+
+export const REMOVE_EVENT = gql`
+	mutation RemoveEvent($input: String!) {
+		removeEvent(eventId: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+	}
+`;
+
+export const CANCEL_EVENT_REGISTRATION = gql`
+	mutation CancelEventRegistration($input: String!) {
+		cancelEventRegistration(eventId: $input) { _id eventId memberId participantStatus }
+	}
+`;
+
+export const REGISTER_EVENT = gql`
+	mutation RegisterEvent($input: EventParticipantInput!) {
+		registerEvent(input: $input) { _id eventId memberId participantStatus }
+	}
+`;
+
+export const UPDATE_EVENT_PARTICIPANT = gql`
+	mutation UpdateEventParticipant($input: EventParticipantUpdate!) {
+		updateEventParticipant(input: $input) { _id eventId memberId participantStatus }
+	}
+`;

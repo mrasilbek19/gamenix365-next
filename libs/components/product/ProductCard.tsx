@@ -11,6 +11,8 @@ import { userVar } from '../../../apollo/store';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 
+import AddToBasket from '../basket/AddToBasket';
+
 interface ProductCardType {
 	product: Product;
 	likeProductHandler?: any;
@@ -30,7 +32,7 @@ const ProductCard = (props: ProductCardType) => {
 		return <div>PRODUCT CARD</div>;
 	} else {
 		return (
-			<Stack className="card-config">
+			<Stack className="card-config" style={{ height: 'auto', minHeight: 413 }}>
 				<Stack className="top">
 					<Link
 						href={{
@@ -50,7 +52,7 @@ const ProductCard = (props: ProductCardType) => {
 						<Typography>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Typography>
 					</Box>
 				</Stack>
-				<Stack className="bottom">
+				<Stack className="bottom" style={{ height: 'auto' }}>
 					<Stack className="name-address">
 						<Stack className="name">
 							<Link
@@ -64,7 +66,7 @@ const ProductCard = (props: ProductCardType) => {
 						</Stack>
 						<Stack className="address"><Typography>{product.productType}</Typography></Stack>
 					</Stack>
-					<Stack className="options"><Stack className="option"><Typography>{product.productLeftCount} in stock</Typography></Stack></Stack>
+					<AddToBasket product={product} />
 					<Stack className="divider"></Stack>
 					<Stack className="type-buttons">
 						<Stack className="type"><Typography sx={{ fontWeight: 500, fontSize: '13px' }}>{product.productStatus}</Typography></Stack>

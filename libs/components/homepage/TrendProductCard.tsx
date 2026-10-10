@@ -44,7 +44,6 @@ const TrendProductCard = (props: TrendProductCardProps) => {
 					<p className={'desc'}>{product.productDesc ?? 'no description'}</p>
 					<div className={'options'}>
 						<div><span>{product?.productType}</span></div>
-						<div><span>{product?.productLeftCount} in stock</span></div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>
@@ -88,7 +87,6 @@ const TrendProductCard = (props: TrendProductCardProps) => {
 					<p className={'desc'}>{product.productDesc ?? 'no description'}</p>
 					<div className={'options'}>
 						<div><span>{product?.productType}</span></div>
-						<div><span>{product?.productLeftCount} in stock</span></div>
 					</div>
 					<Divider sx={{ mt: '15px', mb: '17px' }} />
 					<div className={'bott'}>

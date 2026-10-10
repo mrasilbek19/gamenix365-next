@@ -32,6 +32,8 @@ import { Direction, Message } from '../../libs/enums/common.enum';
 import { CREATE_COMMENT, LIKE_TARGET_PRODUCT } from '../../apollo/user/mutation';
 import { sweetErrorHandling, sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
 
+import AddToBasket from '../../libs/components/basket/AddToBasket';
+
 SwiperCore.use([Autoplay, Navigation, Pagination]);
 
 export const getStaticProps = async ({ locale }: any) => ({
@@ -237,7 +239,6 @@ const ProductDetail: NextPage = ({ initialComment, ...props }: any) => {
 										</svg>
 										<Typography className={'date'}>{moment().diff(product?.createdAt, 'days')} days ago</Typography>
 									</Stack>
-									<Stack className={'bottom-box'}><Stack className="option"><Typography>{product?.productLeftCount} in stock</Typography></Stack></Stack>
 								</Stack>
 								<Stack className={'right-box'}>
 									<Stack className="buttons">
@@ -280,16 +281,13 @@ const ProductDetail: NextPage = ({ initialComment, ...props }: any) => {
 								</Stack>
 							</Stack>
 						</Stack>
+						{product && <AddToBasket product={product} />}
 						<Stack className={'product-desc-config'}>
 							<Stack className={'left-config'}>
 								<Stack className={'options-config'}>
 									<Stack className={'option'}><Stack className={'option-includes'}>
 										<Typography className={'title'}>Category</Typography>
 										<Typography className={'option-data'}>{product?.productType}</Typography>
-									</Stack></Stack>
-									<Stack className={'option'}><Stack className={'option-includes'}>
-										<Typography className={'title'}>Stock</Typography>
-										<Typography className={'option-data'}>{product?.productLeftCount}</Typography>
 									</Stack></Stack>
 								</Stack>
 								<Stack className={'prop-desc-config'}>
@@ -305,7 +303,6 @@ const ProductDetail: NextPage = ({ initialComment, ...props }: any) => {
 													<Typography className={'title'}>Price</Typography>
 													<Typography className={'data'}>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Typography>
 												</Box>
-												<Box component={'div'} className={'info'}><Typography className={'title'}>Stock</Typography><Typography className={'data'}>{product?.productLeftCount}</Typography></Box>
 
 											</Stack>
 											<Stack className={'right'}>

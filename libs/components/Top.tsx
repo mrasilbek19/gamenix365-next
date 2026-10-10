@@ -18,6 +18,8 @@ import { userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
 
+import Basket from './basket/Basket';
+
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
@@ -151,9 +153,18 @@ const Top = () => {
 				<Link href={'/agent'}>
 					<div> {t('Agents')} </div>
 				</Link>
+				{user?._id && (
+					<Link href={'/orders'}>
+						<div>{t('Orders')}</div>
+					</Link>
+				)}
+				<Link href={'/events'}>
+					<div>{t('Events')}</div>
+				</Link>
 				<Link href={'/community?articleCategory=FREE'}>
 					<div> {t('Community')} </div>
 				</Link>
+				<Basket />
 				<Link href={'/cs'}>
 					<div> {t('CS')} </div>
 				</Link>
@@ -179,6 +190,14 @@ const Top = () => {
 							<Link href={'/agent'}>
 								<div> {t('Agents')} </div>
 							</Link>
+							{user?._id && (
+								<Link href={'/orders'}>
+									<div>{t('Orders')}</div>
+								</Link>
+							)}
+							<Link href={'/events'}>
+								<div>{t('Events')}</div>
+							</Link>
 							<Link href={'/community?articleCategory=FREE'}>
 								<div> {t('Community')} </div>
 							</Link>
@@ -192,6 +211,7 @@ const Top = () => {
 							</Link>
 						</Box>
 						<Box component={'div'} className={'user-box'}>
+							<Basket light />
 							{user?._id ? (
 								<>
 									<div className={'login-user'} onClick={(event: any) => setLogoutAnchor(event.currentTarget)}>
