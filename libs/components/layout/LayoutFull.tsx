@@ -27,53 +27,29 @@ const withLayoutFull = (Component: any) => {
 
 		/** HANDLERS **/
 
-		if (device == 'mobile') {
-			return (
-				<>
-					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
-					</Head>
-					<Stack id="mobile-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
-
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Stack id={'footer'}>
-							<Footer />
-						</Stack>
+		return (
+			<>
+				<Head>
+					<title>Gamenix365</title>
+					<meta name={'title'} content={`Gamenix365`} />
+				</Head>
+				<Stack id={device === 'mobile' ? 'mobile-wrap' : 'pc-wrap'} className={'public-layout full-layout'}>
+					<Stack id={'top'}>
+						<Top />
 					</Stack>
-				</>
-			);
-		} else {
-			return (
-				<>
-					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
-					</Head>
-					<Stack id="pc-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
 
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Chat />
-
-						<Stack id={'footer'}>
-							<Footer />
-						</Stack>
+					<Stack id={'main'}>
+						<Component {...props} />
 					</Stack>
-				</>
-			);
-		}
+
+					{device !== 'mobile' && <Chat />}
+
+					<Stack id={'footer'}>
+						<Footer />
+					</Stack>
+				</Stack>
+			</>
+		);
 	};
 };
 

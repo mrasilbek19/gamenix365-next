@@ -3,12 +3,12 @@
     position: sticky;
     top: 0;
     z-index: 99;
-    background: #1d1d1d;
+    background: #090d19;
 
     .announcement-bar {
       padding: 11px 16px;
-      background: #eee7f8;
-      color: #242027;
+      background: linear-gradient(90deg, #7138ff 0%, #29b6f6 100%);
+      color: #ffffff;
       text-align: center;
       font-size: 11px;
       font-weight: 600;
@@ -66,7 +66,7 @@
 
   .header-main {
     padding: 16px;
-    background: #fff;
+    background: #15182b;
 
     .hero-banner {
       position: relative;
@@ -117,7 +117,7 @@
         p {
           max-width: 300px;
           margin: 0;
-          color: #d1cbd8;
+          color: #a5a8bd;
           font-size: 15px;
           line-height: 1.6;
         }
@@ -129,7 +129,7 @@
           margin-top: 28px;
           padding: 14px 20px;
           border-radius: 30px;
-          background: #8b3dff;
+          background: #9747ff;
           color: #fff;
           font-size: 14px;
           font-weight: 700;
@@ -137,4 +137,9 @@
       }
     }
   }
+}
+
+#mobile-wrap #top .top a[aria-current='page'] {
+  color: #c7a2ff;
+  box-shadow: 0 2px 0 #9747ff;
 }

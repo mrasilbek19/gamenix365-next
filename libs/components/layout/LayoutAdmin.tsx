@@ -62,17 +62,18 @@ const withAdminLayout = (Component: ComponentType) => {
 
 		return (
 			<main id="pc-wrap" className="admin">
-				<Box component={'div'} sx={{ display: 'flex' }}>
+				<Box component={'div'} className={'admin-shell'} sx={{ display: 'flex' }}>
 					<AppBar
 						position="fixed"
 						sx={{
 							width: `calc(100% - ${drawerWidth}px)`,
 							ml: `${drawerWidth}px`,
 							boxShadow: 'rgb(100 116 139 / 12%) 0px 1px 4px',
-							background: 'none',
+							background: '#090d19',
 						}}
 					>
 						<Toolbar>
+							<Typography className={'admin-toolbar-title'}>Gamenix365 / Administration</Typography>
 							<Tooltip title="Open settings">
 								<IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
 									<Avatar
@@ -142,7 +143,7 @@ const withAdminLayout = (Component: ComponentType) => {
 					>
 						<Toolbar sx={{ flexDirection: 'column', alignItems: 'flexStart' }}>
 							<Stack className={'logo-box'}>
-								<img src={'/img/logo/logoText.svg'} alt={'logo'} />
+								<Typography className={'admin-brand'}>GAMENIX<span>365</span></Typography>
 							</Stack>
 
 							<Stack

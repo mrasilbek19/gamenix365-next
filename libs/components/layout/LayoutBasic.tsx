@@ -29,7 +29,7 @@ const withLayoutBasic = (Component: any) => {
 
 			switch (router.pathname) {
 				case '/product':
-					title = 'Product Search';
+					title = 'Gaming equipment';
 					desc = 'We are glad to see you again!';
 					bgImage = '/img/banner/products.png';
 					break;
@@ -49,22 +49,22 @@ const withLayoutBasic = (Component: any) => {
 					bgImage = '/img/banner/header1.svg';
 					break;
 				case '/mypage':
-					title = 'my page';
-					desc = 'Home / For Rent';
+					title = 'My account';
+					desc = 'Your gaming community';
 					bgImage = '/img/banner/header1.svg';
 					break;
 				case '/community':
 					title = 'Community';
-					desc = 'Home / For Rent';
+					desc = 'Stories, setups and conversations';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/community/detail':
 					title = 'Community Detail';
-					desc = 'Home / For Rent';
+					desc = 'Connect with the gaming community';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/cs':
-					title = 'CS';
+					title = 'Support';
 					desc = 'We are glad to see you again!';
 					bgImage = '/img/banner/header2.svg';
 					break;
@@ -76,8 +76,19 @@ const withLayoutBasic = (Component: any) => {
 					break;
 				case '/member':
 					title = 'Member Page';
-					desc = 'Home / For Rent';
+					desc = 'Connect with the gaming community';
 					bgImage = '/img/banner/header1.svg';
+					break;
+				case '/about':
+					title = 'About Gamenix365';
+					desc = 'Equipment, independent shops and a shared passion for gaming';
+					break;
+				case '/events':
+				case '/events/detail':
+				case '/events/manage':
+				case '/events/registrations':
+					title = 'Gaming events';
+					desc = 'Tournaments, giveaways and your gaming community';
 					break;
 				default:
 					break;
@@ -94,67 +105,38 @@ const withLayoutBasic = (Component: any) => {
 
 		/** HANDLERS **/
 
-		if (device == 'mobile') {
-			return (
-				<>
-					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
-					</Head>
-					<Stack id="mobile-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
+		return (
+			<>
+				<Head>
+					<title>Gamenix365</title>
+					<meta name={'title'} content={`Gamenix365`} />
+				</Head>
+				<Stack id={device === 'mobile' ? 'mobile-wrap' : 'pc-wrap'} className={'public-layout basic-layout'}>
+					<Stack id={'top'}>
+						<Top />
+					</Stack>
 
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Stack id={'footer'}>
-							<Footer />
+					<Stack
+						className={`header-basic ${authHeader && 'auth'}`}
+					>
+						<Stack className={'container'}>
+							<strong>{t(memoizedValues.title)}</strong>
+							<span>{t(memoizedValues.desc)}</span>
 						</Stack>
 					</Stack>
-				</>
-			);
-		} else {
-			return (
-				<>
-					<Head>
-						<title>Nestar</title>
-						<meta name={'title'} content={`Nestar`} />
-					</Head>
-					<Stack id="pc-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
 
-						<Stack
-							className={`header-basic ${authHeader && 'auth'}`}
-							style={{
-								backgroundImage: `url(${memoizedValues.bgImage})`,
-								backgroundSize: 'cover',
-								boxShadow: 'inset 10px 40px 150px 40px rgb(24 22 36)',
-							}}
-						>
-							<Stack className={'container'}>
-								<strong>{t(memoizedValues.title)}</strong>
-								<span>{t(memoizedValues.desc)}</span>
-							</Stack>
-						</Stack>
-
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Chat />
-
-						<Stack id={'footer'}>
-							<Footer />
-						</Stack>
+					<Stack id={'main'}>
+						<Component {...props} />
 					</Stack>
-				</>
-			);
-		}
+
+					{device !== 'mobile' && <Chat />}
+
+					<Stack id={'footer'}>
+						<Footer />
+					</Stack>
+				</Stack>
+			</>
+		);
 	};
 };
 

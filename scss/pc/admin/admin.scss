@@ -8,11 +8,11 @@
     position: fixed;
     left: auto;
     box-shadow: none;
-    background: #fff;
+    background: #15182b;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     .settings-icon-admin {
       margin-right: 15px;
-      color: #7b809a;
+      color: #a5a8bd;
       cursor: pointer;
     }
   }
@@ -27,7 +27,7 @@
       }
     }
     .user {
-      background: #f5f5f5;
+      background: #15182b;
     }
     hr {
       margin: 24px 0;
@@ -37,7 +37,7 @@
     }
   }
   .user {
-    background: #f5f5f5;
+    background: #15182b;
   }
   .menu-list {
     padding: 8px 24px 8px 32px;
@@ -48,10 +48,10 @@
     }
     li.on {
       font-weight: 600;
-      background: #FDF4F4;
-      color: #F54D56;
+      background: #15182b;
+      color: #9747ff;
       span {
-        color: #212121;
+        color: #ffffff;
       }
     }
   }
@@ -117,7 +117,7 @@
     }
     .delete-txt {
       font-size: 14px;
-      color: #757575;
+      color: #a5a8bd;
     }
     .up {
       color: rgba(45, 153, 255);
@@ -212,14 +212,14 @@
           height: 80%;
           padding: 10px;
           font-size: 14px;
-          border: 1px solid #eee;
+          border: 1px solid #292c46;
           border-radius: 4px;
           resize: none;
         }
       }
       .desc {
         span {
-          color: #757575;
+          color: #a5a8bd;
           margin-right: 4px;
         }
       }
@@ -227,7 +227,7 @@
     .user-area {
       margin-bottom: 24px;
       .user-id {
-        background: #f5f5f5;
+        background: #15182b;
         border-radius: 30px;
         padding: 0 8px;
         margin-top: 8px;
@@ -286,15 +286,15 @@
       box-shadow: rgb(255 48 48 / 24%) 0px 8px 16px 0px;
     }
     .btn-cancel {
-      color: #757575;
-      border: 1px solid #eee;
+      color: #a5a8bd;
+      border: 1px solid #292c46;
     }
     .btn-upload {
-      border: 1px dashed #eee;
+      border: 1px dashed #292c46;
     }
     .btn-text { color: #e92c28; }
     .btn-window {
-      color: #757575;
+      color: #a5a8bd;
       margin-left: 8px;
       svg {
         font-size: 20px;
@@ -307,7 +307,7 @@
     }
 
     .table-wrap {
-      background: #fff;
+      background: #15182b;
       border-radius: 4px;
       box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px;
       .tab-menu {
@@ -319,13 +319,13 @@
           height: 48px;
           cursor: pointer;
           padding: 12px 16px;
-          color: #bdbdbd;
+          color: #a5a8bd;
           font-size: 14px;
         }
         li.on {
           font-weight: 500;
-          color: #e92c28;
-          border-bottom: 2px solid #e92c28;
+          color: #9747ff;
+          border-bottom: 2px solid #9747ff;
         }
       }
       &.check-table-wrap {
@@ -336,13 +336,13 @@
       }
       thead {
         tr {
-          background: #fafafa;
+          background: #15182b;
         }
         th {
           font-weight: bold;
           color: #374151;
           font-size: 14px;
-          border-bottom: 1px solid #eee;
+          border-bottom: 1px solid #292c46;
         }
         th:last-child {
           padding-right: 24px;
@@ -352,9 +352,9 @@
         }
       }
       tbody {
-        color: #616161;
+        color: #a5a8bd;
         tr {
-          border-bottom: 1px solid #eee;
+          border-bottom: 1px solid #292c46;
         }
         tr:last-child {
           border-bottom: 0;
@@ -366,7 +366,7 @@
           padding: 12px 16px;
           border-bottom: 0;
           font-size: 14px;
-          color: #616161;
+          color: #a5a8bd;
           &.info {
             display: flex;
             flex-direction: row;
@@ -377,7 +377,7 @@
             flex-direction: row;
             align-items: center;
             a:visited {
-              color: #959595;
+              color: #a5a8bd;
             }
           }
           .img-box {
@@ -420,13 +420,13 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 8px;
-            background: #f5f5f5;
+            background: #15182b;
             border-radius: 4px;
             padding: 2px 16px;
           }
           .notice {
             margin: 6px 0 0 30px;
-            color: #bdbdbd;
+            color: #a5a8bd;
           }
         }
         .option {
@@ -435,7 +435,7 @@
             width:301px;
             height: 48px;
             padding-right: 8px;
-            color: #616161;
+            color: #a5a8bd;
             span { font-size: 14px; }
           }
         }
@@ -459,12 +459,12 @@
       }
       .MuiOutlinedInput-root {
         height: 48px;
-        background: #fff;
+        background: #15182b;
         font-size: 14px;
       }
       .MuiTableCell-root {
         padding: 12px 20px;
-        border-bottom: 1px solid #eee;
+        border-bottom: 1px solid #292c46;
       }
       .MuiToolbar-root {
         align-items: center;
@@ -475,9 +475,9 @@
       flex-direction: row;
       button {
         height: 44px;
-        background: #fff;
-        border: 1px solid #eee;
-        color: #757575;
+        background: #15182b;
+        border: 1px solid #292c46;
+        color: #a5a8bd;
         margin-right: 8px;
       }
       thead { font-weight: 600; }
@@ -511,7 +511,7 @@
       font-family: $font;
     }
     p {
-      color: #344767;
+      color: #ffffff;
       font-family: $font;
     }
     .close-icon {
@@ -541,6 +541,119 @@
         font-family: $font ;
         font-weight: 600;
       }
+    }
+  }
+}
+
+#pc-wrap.admin {
+  background: #15182b;
+  .MuiAppBar-root {
+    background: #090d19;
+    color: #fff;
+    border: 0;
+    .MuiToolbar-root {
+      width: 100%;
+      justify-content: space-between;
+    }
+    .admin-toolbar-title {
+      font-weight: 600;
+    }
+  }
+  .MuiDrawer-paper {
+    background: #090d19;
+    color: #fff;
+    border: 0;
+    .admin-brand {
+      padding: 12px 24px;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      span {
+        color: #b689ff;
+      }
+    }
+    .MuiListItemIcon-root,
+    .MuiTypography-root {
+      color: inherit;
+    }
+    .user {
+      background: #090d19;
+    }
+    hr {
+      border-color: #292c46;
+    }
+  }
+  .menu-list {
+    padding: 8px 16px;
+    li {
+      border-radius: 12px;
+    }
+    li.on {
+      color: #fff;
+      background: #9747ff;
+      span {
+        color: inherit;
+      }
+    }
+  }
+  #bunker {
+    min-width: 0;
+    padding: 104px 32px 48px;
+    .MuiPaper-root {
+      border-radius: 20px;
+      box-shadow: none;
+      border: 1px solid #292c46;
+    }
+    .MuiTableHead-root {
+      background: #15182b;
+      .MuiTableCell-root {
+        font-weight: 700;
+      }
+    }
+    .title {
+      font-weight: 800;
+      font-size: 32px;
+    }
+    .flex-space {
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #pc-wrap.admin {
+    .admin-shell {
+      flex-direction: column;
+    }
+    .MuiAppBar-root {
+      position: static;
+      width: 100%;
+      margin-left: 0;
+      padding: 0;
+    }
+    .MuiDrawer-root {
+      width: 100%;
+      .MuiDrawer-paper {
+        position: static;
+        width: 100%;
+        height: auto;
+        .logo-box {
+          padding: 8px 0;
+        }
+      }
+    }
+    .menu-list {
+      display: flex;
+      flex-wrap: wrap;
+      li {
+        width: auto;
+      }
+    }
+    #bunker {
+      width: 100%;
+      margin: 0;
+      padding: 32px 16px;
     }
   }
 }

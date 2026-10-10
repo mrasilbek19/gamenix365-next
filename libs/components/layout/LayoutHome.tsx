@@ -28,92 +28,52 @@ const withLayoutMain = (Component: any) => {
 
 		/** HANDLERS **/
 
-		if (device == 'mobile') {
-			return (
-				<>
-					<Head>
-						<title>Gamenix365 | Gaming Equipment & Community</title>
-						<meta name={'title'} content={`Gamenix365`} />
-					</Head>
-					<Stack id="mobile-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
-
-						<Stack className={'header-main'}>
-							<Stack className={'hero-banner'}>
-								<Stack className={'hero-content'}>
-									<span className={'hero-label'}>YOUR NEXT LEVEL STARTS HERE</span>
-									<h1>Level up your<br />gaming setup.</h1>
-									<p>Discover gaming equipment from trusted shops.</p>
-									<Link href={'/product'} className={'hero-button'}>
-										Explore Products <ArrowForwardIcon />
-									</Link>
-								</Stack>
-								<img
-									className={'hero-image'}
-									src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1800&q=85"
-									alt="Gaming setup with a monitor and controllers in purple lighting"
-								/>
-							</Stack>
-						</Stack>
-
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Stack id={'footer'}>
-							<Footer />
-						</Stack>
+		return (
+			<>
+				<Head>
+					<title>Gamenix365 | Gaming Equipment & Community</title>
+					<meta name={'title'} content={`Gamenix365`} />
+				</Head>
+				<Stack id={device === 'mobile' ? 'mobile-wrap' : 'pc-wrap'} className={'public-layout home-layout'}>
+					<Stack id={'top'}>
+						<Top />
 					</Stack>
-				</>
-			);
-		} else {
-			return (
-				<>
-					<Head>
-						<title>Gamenix365 | Gaming Equipment & Community</title>
-						<meta name={'title'} content={`Gamenix365`} />
-					</Head>
-					<Stack id="pc-wrap">
-						<Stack id={'top'}>
-							<Top />
-						</Stack>
 
-						<Stack className={'header-main'}>
-							<Stack className={'hero-banner'}>
-								<Stack className={'hero-content'}>
-									<span className={'hero-label'}>YOUR NEXT LEVEL STARTS HERE</span>
-									<h1>Level up your<br />gaming setup.</h1>
-									<p>Discover gaming equipment from trusted shops.</p>
-									<Link href={'/product'} className={'hero-button'}>
-										Explore Products <ArrowForwardIcon />
-									</Link>
-								</Stack>
-								<img
-									className={'hero-image'}
-									src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1800&q=85"
-									alt="Gaming setup with a monitor and controllers in purple lighting"
-								/>
+					<Stack className={'header-main'}>
+						<Stack className={'hero-banner'}>
+							<Stack className={'hero-content'}>
+								<span className={'hero-label'}>YOUR NEXT LEVEL STARTS HERE</span>
+								<h1>Level up your<br />gaming setup.</h1>
+								<p>Discover gaming equipment from trusted shops.</p>
+								<Link href={'/product'} className={'hero-button'}>
+									Explore Products <ArrowForwardIcon />
+								</Link>
 							</Stack>
+							<img
+								className={'hero-image'}
+								src="https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1800&q=85"
+								alt="Gaming setup with a monitor and controllers in purple lighting"
+							/>
+						</Stack>
+						{device !== 'mobile' && (
 							<Stack className={'container'}>
 								<HeaderFilter />
 							</Stack>
-						</Stack>
-
-						<Stack id={'main'}>
-							<Component {...props} />
-						</Stack>
-
-						<Chat />
-
-						<Stack id={'footer'}>
-							<Footer />
-						</Stack>
+						)}
 					</Stack>
-				</>
-			);
-		}
+
+					<Stack id={'main'}>
+						<Component {...props} />
+					</Stack>
+
+					{device !== 'mobile' && <Chat />}
+
+					<Stack id={'footer'}>
+						<Footer />
+					</Stack>
+				</Stack>
+			</>
+		);
 	};
 };
 

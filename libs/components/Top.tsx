@@ -150,27 +150,27 @@ const Top = () => {
 					<Basket light />
 				</Box>
 				<Stack className={'top'}>
-					<Link href={'/'}>
+					<Link href={'/'} aria-current={router.pathname === '/' ? 'page' : undefined}>
 						<div>{t('Home')}</div>
 					</Link>
-					<Link href={'/product'}>
+					<Link href={'/product'} aria-current={router.pathname === '/product' ? 'page' : undefined}>
 						<div>{t('Products')}</div>
 					</Link>
-					<Link href={'/shop'}>
+					<Link href={'/shop'} aria-current={router.pathname === '/shop' ? 'page' : undefined}>
 						<div> {t('Shops')} </div>
 					</Link>
 					{user?._id && (
-						<Link href={'/orders'}>
+						<Link href={'/orders'} aria-current={router.pathname === '/orders' ? 'page' : undefined}>
 							<div>{t('Orders')}</div>
 						</Link>
 					)}
-					<Link href={'/events'}>
+					<Link href={'/events'} aria-current={router.pathname === '/events' ? 'page' : undefined}>
 						<div>{t('Events')}</div>
 					</Link>
-					<Link href={'/community?articleCategory=FREE'}>
+					<Link href={'/community?articleCategory=FREE'} aria-current={router.pathname === '/community' ? 'page' : undefined}>
 						<div> {t('Community')} </div>
 					</Link>
-					<Link href={'/cs'}>
+					<Link href={'/cs'} aria-current={router.pathname === '/cs' ? 'page' : undefined}>
 						<div> {t('CS')} </div>
 					</Link>
 				</Stack>
@@ -183,37 +183,37 @@ const Top = () => {
 				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''}`}>
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
-							<Link href={'/'}>
+							<Link href={'/'} aria-current={router.pathname === '/' ? 'page' : undefined}>
 								<span className={'brand-name'}>GAMENIX<span>365</span></span>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'router-box'}>
-							<Link href={'/'}>
+							<Link href={'/'} aria-current={router.pathname === '/' ? 'page' : undefined}>
 								<div>{t('Home')}</div>
 							</Link>
-							<Link href={'/product'}>
+							<Link href={'/product'} aria-current={router.pathname === '/product' ? 'page' : undefined}>
 								<div>{t('Products')}</div>
 							</Link>
-							<Link href={'/shop'}>
+							<Link href={'/shop'} aria-current={router.pathname === '/shop' ? 'page' : undefined}>
 								<div> {t('Shops')} </div>
 							</Link>
 							{user?._id && (
-								<Link href={'/orders'}>
+								<Link href={'/orders'} aria-current={router.pathname === '/orders' ? 'page' : undefined}>
 									<div>{t('Orders')}</div>
 								</Link>
 							)}
-							<Link href={'/events'}>
+							<Link href={'/events'} aria-current={router.pathname === '/events' ? 'page' : undefined}>
 								<div>{t('Events')}</div>
 							</Link>
-							<Link href={'/community?articleCategory=FREE'}>
+							<Link href={'/community?articleCategory=FREE'} aria-current={router.pathname === '/community' ? 'page' : undefined}>
 								<div> {t('Community')} </div>
 							</Link>
 							{user?._id && (
-								<Link href={'/mypage'}>
+								<Link href={'/mypage'} aria-current={router.pathname === '/mypage' ? 'page' : undefined}>
 									<div> {t('My Page')} </div>
 								</Link>
 							)}
-							<Link href={'/cs'}>
+							<Link href={'/cs'} aria-current={router.pathname === '/cs' ? 'page' : undefined}>
 								<div> {t('CS')} </div>
 							</Link>
 						</Box>
@@ -246,7 +246,7 @@ const Top = () => {
 									</Menu>
 								</>
 							) : (
-								<Link href={'/account/join'}>
+								<Link href={'/account/join'} aria-current={router.pathname === '/account/join' ? 'page' : undefined}>
 									<div className={'join-box'}>
 										<AccountCircleOutlinedIcon />
 										<span>
