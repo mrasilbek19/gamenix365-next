@@ -68,59 +68,56 @@ const MyArticles: NextPage = ({ initialInput, ...props }: T) => {
 		}
 	};
 
-	if (device === 'mobile') {
-		return <>ARTICLE PAGE MOBILE</>;
-	} else
-		return (
-			<div id="my-articles-page">
-				<Stack className="main-title-box">
-					<Stack className="right-box">
-						<Typography className="main-title">Article</Typography>
-						<Typography className="sub-title">We are glad to see you again!</Typography>
-					</Stack>
+	return (
+		<div id="my-articles-page">
+			<Stack className="main-title-box">
+				<Stack className="right-box">
+					<Typography className="main-title">Article</Typography>
+					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
-				<Stack className="article-list-box">
-					{boardArticles?.length > 0 ? (
-						boardArticles?.map((boardArticle: BoardArticle) => {
-							return <CommunityCard boardArticle={boardArticle} key={boardArticle?._id} size={'small'}
-								likeArticleHandler={likeBoArticleHandler} />;
-						})
-					) : (
-						<div className={'no-data'}>
-							<img src="/img/icons/icoAlert.svg" alt="" />
-							<p>No Articles found!</p>
-						</div>
-					)}
-				</Stack>
-
-				{boardArticles?.length > 0 && (
-					<Stack className="pagination-conf">
-						<Stack className="pagination-box">
-							<Pagination
-								count={Math.ceil(totalCount / searchCommunity.limit)}
-								page={searchCommunity.page}
-								shape="circular"
-								color="primary"
-								onChange={paginationHandler}
-							/>
-						</Stack>
-						<Stack className="total">
-							<Typography>Total {totalCount ?? 0} article(s) available</Typography>
-						</Stack>
-					</Stack>
+			</Stack>
+			<Stack className="article-list-box">
+				{boardArticles?.length > 0 ? (
+					boardArticles?.map((boardArticle: BoardArticle) => {
+						return <CommunityCard boardArticle={boardArticle} key={boardArticle?._id} size={'small'}
+							likeArticleHandler={likeBoArticleHandler} />;
+					})
+				) : (
+					<div className={'no-data'}>
+						<img src="/img/icons/icoAlert.svg" alt="" />
+						<p>No Articles found!</p>
+					</div>
 				)}
-			</div>
-		);
+			</Stack>
+
+			{boardArticles?.length > 0 && (
+				<Stack className="pagination-conf">
+					<Stack className="pagination-box">
+						<Pagination
+							count={Math.ceil(totalCount / searchCommunity.limit)}
+							page={searchCommunity.page}
+							shape="circular"
+							color="primary"
+							onChange={paginationHandler}
+						/>
+					</Stack>
+					<Stack className="total">
+						<Typography>Total {totalCount ?? 0} article(s) available</Typography>
+					</Stack>
+				</Stack>
+			)}
+		</div>
+	);
 };
 
 MyArticles.defaultProps = {
-	initialInput: {
-		page: 1,
-		limit: 6,
-		sort: 'createdAt',
-		direction: 'DESC',
-		search: {},
-	},
+initialInput: {
+	page: 1,
+	limit: 6,
+	sort: 'createdAt',
+	direction: 'DESC',
+	search: {},
+},
 };
 
 export default MyArticles;
