@@ -315,7 +315,8 @@
 	}
 }
 
-.public-layout {
+#pc-wrap.public-layout,
+#mobile-wrap.public-layout {
 	min-height: 100vh;
 	background: #080b16;
 	color: #ffffff;
@@ -391,7 +392,8 @@
 }
 
 @media (max-width: 700px) {
-	.public-layout {
+	#pc-wrap.public-layout,
+	#mobile-wrap.public-layout {
 		&.basic-layout,
 		&.full-layout {
 			.container {
