@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Stack, Tab, Tabs } from '@mui/material';
+import { Button, Checkbox, FormControlLabel, Stack, Tab, Tabs } from '@mui/material';
 import KeyboardOutlined from '@mui/icons-material/KeyboardOutlined';
 import MonitorOutlined from '@mui/icons-material/MonitorOutlined';
 import MouseOutlined from '@mui/icons-material/MouseOutlined';
@@ -30,20 +30,27 @@ export default function ProductCategories({ types = [], onChange, layout = 'hori
 }) {
     const group = getProductGroup(types);
     const displayedTypes = group?.types ?? PRODUCT_GROUPS.flatMap(item => item.types);
+    const toggleTypes = (toggled: ProductType[], checked: boolean) => {
+        onChange(checked ? Array.from(new Set([...types, ...toggled])) : types.filter(type => !toggled.includes(type)));
+    };
     if (layout === 'sidebar') return <nav className="product-category-sidebar" aria-label="Product categories">
         <h2>Categories</h2>
-        <Button className="category-option" aria-pressed={!group} onClick={() => onChange([])}>All products</Button>
-        {PRODUCT_GROUPS.map(item => <div className="category-section" key={item.id}>
-            <Button className={`category-option ${group?.id === item.id ? 'selected' : ''}`}
-                aria-pressed={group?.id === item.id} onClick={() => onChange(item.types)}>{item.label}</Button>
-            {group?.id === item.id && <div className="subcategory-list" role="group" aria-label={`${item.label} subcategories`}>
-                <Button className={`subcategory-option ${types.length === group.types.length ? 'selected' : ''}`}
-                    aria-pressed={types.length === group.types.length} onClick={() => onChange(group.types)}>All in this category</Button>
-                {displayedTypes.map(type => <Button key={type}
-                    className={`subcategory-option ${types.length === 1 && types[0] === type ? 'selected' : ''}`}
-                    aria-pressed={types.length === 1 && types[0] === type} onClick={() => onChange([type])}>{PRODUCT_TYPE_LABELS[type]}</Button>)}
-            </div>}
-        </div>)}
+        <Button className="category-option" aria-pressed={types.length === 0} onClick={() => onChange([])}>All products</Button>
+        {PRODUCT_GROUPS.map(item => {
+            const checked = item.types.every(type => types.includes(type));
+            const partiallyChecked = !checked && item.types.some(type => types.includes(type));
+            return <div className="category-section" key={item.id}>
+                <FormControlLabel label={item.label} labelPlacement="start"
+                    className={`category-option category-toggle ${checked || partiallyChecked ? 'selected' : ''}`}
+                    control={<Checkbox checked={checked} indeterminate={partiallyChecked}
+                        onChange={(_, selected) => toggleTypes(item.types, selected)} />} />
+                {(checked || partiallyChecked) && <div className="subcategory-list" role="group" aria-label={`${item.label} subcategories`}>
+                    {item.types.map(type => <FormControlLabel key={type} label={PRODUCT_TYPE_LABELS[type]} labelPlacement="start"
+                        className={`subcategory-option category-toggle ${types.includes(type) ? 'selected' : ''}`}
+                        control={<Checkbox checked={types.includes(type)} onChange={(_, selected) => toggleTypes([type], selected)} />} />)}
+                </div>}
+            </div>;
+        })}
     </nav>;
     return <div className="product-categories" style={{ width: '100%', minWidth: 0, boxSizing: 'border-box', marginBottom: 24,
         padding: 16, background: '#101426', border: '1px solid #282d45', borderRadius: 12 }}>
