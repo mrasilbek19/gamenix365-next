@@ -384,7 +384,7 @@
 		}
 
 		span {
-			color: #71717a;
+			color: #a5a8bd;
 			font-size: 15px;
 			line-height: 1.6;
 		}
@@ -498,4 +498,21 @@
 	select {
 		color-scheme: dark;
 	}
+}
+
+.public-layout #main {
+	input:not([type='checkbox']):not([type='radio']):not([type='file']):not(.MuiInputBase-input),
+	textarea:not(.MuiInputBase-input),
+	select {
+		background-color: #101426;
+		border-color: #292c46;
+		color: #ffffff;
+	}
+}
+
+.swal2-popup {
+	border: 1px solid #292c46;
+	border-radius: 20px;
+	background: #15182b;
+	color: #ffffff;
 }

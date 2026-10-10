@@ -1,5 +1,38 @@
 # Completed tasks and evidence ledger
 
+## Frontend redesign through existing layouts — 2026-10-10
+
+Completed the user's full Gamenix365 frontend redesign with the latest pasted brief's dark gaming palette: #080B16/#101426 backgrounds, #15182B cards, #090D19 navigation, #9747FF/#29B6F6 accents, white primary text and #A5A8BD secondary text. This revised brief supersedes the earlier white NZXT palette. The supplied NZXT screenshots informed spacing, card hierarchy and shared navigation structure.
+
+Preserved the original Nestar layout architecture across all 25 route components:
+
+- LayoutHome / withLayoutMain: homepage.
+- LayoutFull / withLayoutFull: product details.
+- LayoutBasic / withLayoutBasic: products; shops/details; community/details; member profile; My Page and its existing user/shop sections; login/signup; basket checkout through the existing menu and orders page; events/details/management/registrations; support; About.
+- LayoutAdmin / withAdminLayout: admin index redirect, members, products, community, events, FAQ, notices and inquiries.
+
+Each public layout renders exactly one existing Top, one page-content slot and one existing Footer. Pages do not independently render shared navigation/footer. Admin keeps its existing AppBar, Drawer, MenuList and ADMIN guard. No new layout/header/footer files were added. There are no separate user/shop layouts in this repository; their existing LayoutBasic + MyMenu structures are retained.
+
+Styled every existing page and active member/My Page view through separate feature SCSS files. Mobile placeholder branches now render the existing page content responsively. Existing wide management tables scroll within their panels. Homepage retains its data-backed Swipers, shows five cards at large desktop widths, and displays the existing search text field alongside category, advanced search and search action. The same search filter now renders on phones. Added a phone account shortcut to the existing login/My Page destinations. The article editor uses its installed dark theme; upload and publish hooks are unchanged. Static About branding/copy now describes gaming rather than real estate.
+
+Followed the user's page-by-page commit workflow: TypeScript check, source-logic comparison, responsive browser verification, diff review and explicit-file staging before each individual page commit. Shared layouts and product cards have separate commits. No amendments, squashes, bulk staging or mixed-page commits were used. Final checks corrected FAQ answer wrapping and My Page follow-view pagination in additional isolated commits.
+
+Validation:
+
+- ./node_modules/.bin/tsc --noEmit --incremental false: PASS after every page and at completion.
+- yarn build with Node 20.19.0 in an isolated preview copy: PASS; all 92 localized static pages generated. The workspace development server/cache was left intact. Existing Browserslist/i18next diagnostic messages remain.
+- Layout ownership audit: PASS for all 25 routes; one Top/Footer in each public layout, no shared UI imported by pages. The admin entry still redirects to /_admin/users.
+- TypeScript AST comparison against starting commit c75cd50: PASS for all 53 edited TSX files with logic-bearing checks (Footer is static presentation and excluded). useQuery/useMutation/useEffect/useCallback/useState/useReactiveVar calls, JSX event callbacks and named *Handler declarations are unchanged.
+- Protected source comparison against c75cd50: GraphQL documents, Apollo configuration, auth helpers, cart state/hooks, models/enums, Next configuration, dependencies and lockfiles unchanged.
+- Headless Chrome with temporary intercepted GraphQL data: public routes, every active member/My Page section, all seven admin management pages and the admin entry redirect passed at 1440px, 900px and 390px. Populated fixtures covered products, shops, articles, events, registrations, follows, orders and admin tables. Final checks included expanded FAQ answers, user event applications, organizer participant panels and shop product editing. No document-level horizontal overflow or client-navigation exceptions in the final checks.
+- Homepage advanced search opens/closes and fits desktop/phone viewports. Mobile account shortcut opens the existing login page.
+- Basket opens with a selected product, quantity increases, and clear works; empty login stays disabled; signup exposes Phone and USER/SHOP choices; login/signup toggle works; guest admin navigation redirects to home. Rechecked these interactions against the production build.
+- git diff --check and scope review: PASS. No backend or dependency changes; no deployment.
+
+Verification limits: browser role checks use decoded-token fixtures rather than real credentials, and all GraphQL requests are intercepted. No live login/logout, backend persistence, uploads, order placement or admin mutations were submitted. Existing admin FAQ/notice/inquiry controls contain placeholder handlers; these were preserved and their presentation checked. Earlier direct-load testing observed community-detail hydration warnings and an auth-initialization redirect on My Page; their existing routing/auth patterns were retained, and baseline reproduction was not performed. Client navigation after role initialization passed. The basket remains its existing MUI menu rather than a new cart interaction.
+
+Concurrent user edits to AGENTS.md, SKILLS.md and skills/ were excluded from redesign commits.
+
 ## Frontend homepage visual redesign — 2026-10-10
 
 Implemented the user-approved NZXT-inspired design direction with Gamenix365 branding: white homepage, pale purple announcement strip, charcoal navigation/footer, rounded gaming hero, purple CTA and section labels, and light-gray product cards with larger contained images and clear prices. Reused the existing three homepage card components and Swiper instances. Desktop shows three cards, tablet shows two and mobile retains swipeable cards. The desktop category/advanced search filter remains below the hero. Mobile retains its navigation destinations with the basket next to the brand. The former decorative real-estate FiberContainer is replaced in the homepage layout only; its source is unchanged.

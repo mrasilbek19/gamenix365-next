@@ -147,7 +147,12 @@ const Top = () => {
 				<div className={'announcement-bar'}>Your setup. Your community. Gamenix365.</div>
 				<Box component={'div'} className={'mobile-brand'}>
 					<Link href={'/'} className={'brand-name'}>GAMENIX<span>365</span></Link>
-					<Basket light />
+					<Stack className={'mobile-actions'}>
+						<Link href={user?._id ? '/mypage' : '/account/join'} aria-label={user?._id ? 'My account' : 'Login / Register'}>
+							<AccountCircleOutlinedIcon />
+						</Link>
+						<Basket light />
+					</Stack>
 				</Box>
 				<Stack className={'top'}>
 					<Link href={'/'} aria-current={router.pathname === '/' ? 'page' : undefined}>
