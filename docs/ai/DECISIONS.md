@@ -1,5 +1,10 @@
 # Architectural decisions
 
+## Frontend shop terminology — 2026-10-10
+
+The user explicitly authorized renaming marketplace Agent references to Shop throughout this frontend. Use GET_SHOPS, GetShops, ShopsInquiry and getShops in frontend code. The current backend still requires getAgents/AgentsInquiry, so retain those wire names in the GraphQL document and alias the response to getShops. Keep old /agent redirects and agentId fallback for existing links. This supersedes earlier instructions to preserve agent names within frontend identifiers; backend operation renaming remains a separate compatibility change.
+
+
 ## Approved Events lifecycle and consistency — 2026-10-10
 
 - Keep participant operations in the existing Event module/service/resolver, and schemas in src/schemas. Register existing Member/EventParticipant models and AuthModule. Do not edit guards/JWT, orders, catalog or community.

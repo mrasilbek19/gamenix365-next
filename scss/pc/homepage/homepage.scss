@@ -644,7 +644,7 @@
 				}
 			}
 		}
-		.top-agents {
+		.top-shops {
 			position: relative;
 			padding: 153px 0px 135px;
 			width: 100%;
@@ -677,7 +677,7 @@
 							width: 14px;
 							height: 14px;
 						}
-						&.swiper-agents-next {
+						&.swiper-shops-next {
 							transform: rotate(180deg);
 						}
 					}
@@ -686,18 +686,18 @@
 						height: 280px;
 						display: flex;
 						flex-direction: row;
-						.top-agents-swiper {
+						.top-shops-swiper {
 							width: 99.7%;
 							height: 280px;
 							display: flex;
 							flex-direction: row;
-							.top-agents-slide {
+							.top-shops-slide {
 								width: auto;
 								height: auto;
 								display: flex;
 							}
 						}
-						.top-agent-card {
+						.top-shop-card {
 							width: 205px;
 							height: 280px;
 							display: flex;

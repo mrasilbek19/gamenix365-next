@@ -17,7 +17,7 @@ import { sweetConfirmAlert, sweetErrorHandling } from '../../sweetAlert';
 const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const [searchFilter, setSearchFilter] = useState<ShopProductsInquiry>(initialInput);
-	const [agentProducts, setAgentProducts] = useState<Product[]>([]);
+	const [shopProducts, setShopProducts] = useState<Product[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const user = useReactiveVar(userVar);
 	const router = useRouter();
@@ -36,7 +36,7 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 		skip: user.memberType !== 'SHOP',
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentProducts(data?.getShopProducts?.list ?? []);
+			setShopProducts(data?.getShopProducts?.list ?? []);
 			setTotal(data?.getShopProducts?.metaCounter?.[0]?.total ?? 0);
 		},
 	});
@@ -127,13 +127,13 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 							{searchFilter.search.productStatus !== 'FINISHED' && <Typography className="title-text">Action</Typography>}
 						</Stack>
 
-						{agentProducts?.length === 0 ? (
+						{shopProducts?.length === 0 ? (
 							<div className={'no-data'}>
 								<img src="/img/icons/icoAlert.svg" alt="" />
 								<p>No Product found!</p>
 							</div>
 						) : (
-							agentProducts.map((product: Product) => {
+							shopProducts.map((product: Product) => {
 								return (
 									<ProductCard
 										product={product}
@@ -146,7 +146,7 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 							})
 						)}
 
-						{agentProducts.length !== 0 && (
+						{shopProducts.length !== 0 && (
 							<Stack className="pagination-config">
 								<Stack className="pagination-box">
 									<Pagination

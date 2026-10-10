@@ -1,5 +1,14 @@
 # Completed tasks and evidence ledger
 
+## Frontend marketplace Agent → Shop naming — 2026-10-10
+
+Renamed remaining marketplace identifiers in gamenix365-next: GET_SHOPS/GetShops, ShopsInquiry/ShopSearch, query consumers, product state, admin SHOP filter, component/style folders, CSS/Swiper selectors, image assets and references, FAQ category/copy, and English/Korean/Russian translations. Event organizer links now open /shop/detail?shopId=... . Moved ReviewCard to libs/components/shop, SCSS to scss/pc/shop, and assets to banner/shops.webp and profile/shop.png.
+
+The sibling backend MemberResolver was inspected read-only and still exposes getAgents with AgentsInquiry. GET_SHOPS preserves these wire names and aliases the result as getShops. Existing /agent redirects and agentId fallback remain for old links. Browser navigator.userAgent, AI instructions and historical changelogs/docs retain their distinct meaning. No backend, database, dependency or history changes were made.
+
+Validation: ./node_modules/.bin/tsc --noEmit --incremental false PASS; production npm run build with installed Node 20.19.0 PASS (default shell Node 16 is unsupported by Next.js); offline GraphQL execution/validation of the shop response projection PASS, including legacy input, aliased list and pagination; git diff --check PASS. Existing node scripts/test-basket.cjs FAILS because syncBasketStorage is not exported by libs/cart.ts; neither basket source nor test was changed. No live API or visual browser checks ran.
+
+
 ## Frontend header basket adapted from Perfumia — 2026-10-10
 
 Implemented in gamenix365-next only. Read Perfumia React's useBasket, header Basket and product add flow as the reference; Perfumia and backend files were not modified.

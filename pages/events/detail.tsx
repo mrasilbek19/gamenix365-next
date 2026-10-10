@@ -31,7 +31,7 @@ function EventDetail() {
 		<Typography variant="h4">{event.eventTitle}</Typography><img src={imageUrl(event.eventImage)} alt={event.eventTitle} style={{ maxHeight: 360, width: '100%', objectFit: 'contain' }} />
 		<Typography>{event.eventDesc}</Typography><Typography>{event.eventType} · {event.eventGame} · {event.eventStatus}</Typography>
 		<Typography>Scheduled: {new Date(event.eventDate).toLocaleString()}</Typography><Typography>Starts: {new Date(event.eventStart).toLocaleString()} · Ends: {new Date(event.eventEnd).toLocaleString()}</Typography>
-		<Typography>Prize: {event.eventPrize} · Capacity: {event.eventMaxParticipants} approved participants</Typography><Link href={`/agent/detail?agentId=${event.eventOrganizer}`}>Organizer shop</Link>
+		<Typography>Prize: {event.eventPrize} · Capacity: {event.eventMaxParticipants} approved participants</Typography><Link href={`/shop/detail?shopId=${event.eventOrganizer}`}>Organizer shop</Link>
 		{message && <Alert severity="error">{message}</Alert>}{registrations.error && <Alert severity="error">{registrations.error.message}</Alert>}
 		{enabled && <><Typography>My application: {application?.participantStatus ?? 'Not applied'}</Typography>
 			{(!application || application.participantStatus === 'CANCELLED') && <Button variant="contained" disabled={registering || registrations.loading || closed || event.eventStatus !== 'PROCESS'} onClick={async () => { try { setMessage(''); await register({ variables: { input: { eventId: event._id } } }); await registrations.refetch(); } catch (err: any) { setMessage(err.message); } }}>Apply for approval</Button>}

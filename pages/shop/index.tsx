@@ -11,7 +11,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Member } from '../../libs/types/member/member';
 import { useMutation, useQuery } from '@apollo/client';
 import { LIKE_TARGET_MEMBER } from '../../apollo/user/mutation';
-import { GET_AGENTS } from '../../apollo/user/query';
+import { GET_SHOPS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import { Messages } from '../../libs/config';
 import { sweetMixinErrorAlert, sweetTopSmallSuccessAlert } from '../../libs/sweetAlert';
@@ -41,17 +41,17 @@ const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 	const [likeTargetMember] = useMutation(LIKE_TARGET_MEMBER);
 
 	const {
-		loading: getAgentsLoading,
-		data: getAgentsData,
-		error: getAgentsError,
-		refetch: getAgentsRefetch,
-	} = useQuery(GET_AGENTS, {
+		loading: getShopsLoading,
+		data: getShopsData,
+		error: getShopsError,
+		refetch: getShopsRefetch,
+	} = useQuery(GET_SHOPS, {
 		fetchPolicy: 'network-only',
 		variables: { input: searchFilter },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setShops(data?.getAgents?.list);
-			setTotal(data?.getAgents?.metaCounter[0]?.total);
+			setShops(data?.getShops?.list);
+			setTotal(data?.getShops?.metaCounter[0]?.total);
 		},
 	});
 	/** LIFECYCLES **/
@@ -119,7 +119,7 @@ const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 				},
 			});
 
-			await getAgentsRefetch({ input: searchFilter });
+			await getShopsRefetch({ input: searchFilter });
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
 			console.log('ERROR, likeProductHandler:', err.message);
@@ -131,7 +131,7 @@ const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 		return <h1>SHOPS PAGE MOBILE</h1>;
 	} else {
 		return (
-			<Stack className={'agent-list-page'}>
+			<Stack className={'shop-list-page'}>
 				<Stack className={'container'}>
 					<Stack className={'filter'}>
 						<Box component={'div'} className={'left'}>

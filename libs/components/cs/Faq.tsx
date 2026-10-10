@@ -105,7 +105,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a02',
 				subject: 'How can I make the payment?',
-				content: 'you make the payment through an agent!',
+				content: 'you make the payment through a shop!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a91',
@@ -168,7 +168,7 @@ const Faq = () => {
 				id: '00f5a45ed8897f8090116a85',
 				subject: 'How can I determine if a product is within my budget?',
 				content:
-					'Calculate your budget by considering your income, down payment, and potential mortgage payments. Our agents can assist you within your budget.',
+					'Calculate your budget by considering your income, down payment, and potential mortgage payments. Our shops can assist you within your budget.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a84',
@@ -186,7 +186,7 @@ const Faq = () => {
 				id: '00f5a45ed8897f8090116a82',
 				subject: 'Can I negotiate the price of a product?',
 				content:
-					'Yes, you can negotiate the price of a product. Our agents will assist you in making competitive offers and negotiating terms with the seller.',
+					'Yes, you can negotiate the price of a product. Our shops will assist you in making competitive offers and negotiating terms with the seller.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a81',
@@ -204,13 +204,13 @@ const Faq = () => {
 				id: '00f5a45ed8897f8090116a79',
 				subject: 'How long does it typically take to find the right product?',
 				content:
-					'The timeframe varies depending on your preferences and market conditions. Our agents will work diligently to find the right product as quickly as possible.',
+					'The timeframe varies depending on your preferences and market conditions. Our shops will work diligently to find the right product as quickly as possible.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a78',
-				subject: 'What are the advantages of using a real estate agent when buying a product?',
+				subject: 'What are the advantages of using a gaming equipment shop when buying a product?',
 				content:
-					'Real estate agents provide expertise, negotiation skills, and guidance throughout the buying process, ultimately saving you time and hassle.',
+					'Gaming equipment shops provide expertise, negotiation skills, and guidance throughout the buying process, ultimately saving you time and hassle.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a77',
@@ -220,22 +220,22 @@ const Faq = () => {
 			},
 		],
 
-		agents: [
+		shops: [
 			{
 				id: '00f5a45ed8897f8090116a04',
-				subject: 'What do I need to do if I want to become an agent?',
+				subject: 'What do I need to do if I want to open a shop?',
 				content:
-					'If you really decide to become an agent, you should read our terms and conditions and contact the admin!',
+					'If you really decide to open a shop, you should read our terms and conditions and contact the admin!',
 			},
 			{
 				id: '00f5a45ed8897f8090116a62',
-				subject: 'What qualifications do I need to become a real estate agent?',
-				content: 'Complete pre-licensing course, pass licensing exam, meet state requirements.',
+				subject: 'What do I need to open a gaming equipment shop?',
+				content: 'Read our shop terms and contact an admin to apply for a shop account.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a63',
-				subject: 'How do I find clients as a new real estate agent?',
-				content: 'Build network, use online/offline marketing, join reputable brokerage.',
+				subject: 'How do I find clients as a new gaming equipment shop?',
+				content: 'Build your shop profile, list gaming equipment, and connect with the gaming community.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a64',
@@ -250,7 +250,7 @@ const Faq = () => {
 			{
 				id: '00f5a45ed8897f8090116a66',
 				subject: 'What should I do to stay updated with market trends and changes?',
-				content: 'Attend industry events, follow real estate news, participate in training.',
+				content: 'Attend gaming events, follow hardware news, and learn about new equipment.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a67',
@@ -260,8 +260,8 @@ const Faq = () => {
 			},
 			{
 				id: '00f5a45ed8897f8090116a68',
-				subject: 'What tools and technologies should I utilize as a real estate agent?',
-				content: 'Use CRM software, virtual tours, digital marketing tools, and mobile apps.',
+				subject: 'What tools can I use to manage my gaming equipment shop?',
+				content: 'Use your shop dashboard, product listings, digital marketing tools, and community events.',
 			},
 			{
 				id: '00f5a45ed8897f8090116a69',
@@ -464,12 +464,12 @@ const Faq = () => {
 						Foy Buyers
 					</div>
 					<div
-						className={category === 'agents' ? 'active' : ''}
+						className={category === 'shops' ? 'active' : ''}
 						onClick={() => {
-							changeCategoryHandler('agents');
+							changeCategoryHandler('shops');
 						}}
 					>
-						For Agents
+						For Shops
 					</div>
 					<div
 						className={category === 'membership' ? 'active' : ''}

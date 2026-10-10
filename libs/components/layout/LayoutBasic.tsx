@@ -36,7 +36,7 @@ const withLayoutBasic = (Component: any) => {
 				case '/shop':
 					title = 'Shops';
 					desc = 'Browse gaming shops';
-					bgImage = '/img/banner/agents.webp';
+					bgImage = '/img/banner/shops.webp';
 					break;
 				case '/shop/detail':
 					title = 'Shop Profile';

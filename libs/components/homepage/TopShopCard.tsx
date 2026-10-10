@@ -19,7 +19,7 @@ const TopShopCard = (props: TopShopProps) => {
 
 	if (device === 'mobile') {
 		return (
-			<Stack className="top-agent-card" onClick={() => router.push(`/shop/detail?shopId=${shop._id}`)}>
+			<Stack className="top-shop-card" onClick={() => router.push(`/shop/detail?shopId=${shop._id}`)}>
 				<img src={shopImage} alt="" />
 
 				<strong>{shop?.memberNick}</strong>
@@ -28,7 +28,7 @@ const TopShopCard = (props: TopShopProps) => {
 		);
 	} else {
 		return (
-			<Stack className="top-agent-card" onClick={() => router.push(`/shop/detail?shopId=${shop._id}`)}>
+			<Stack className="top-shop-card" onClick={() => router.push(`/shop/detail?shopId=${shop._id}`)}>
 				<img src={shopImage} alt="" />
 
 				<strong>{shop?.memberNick}</strong>

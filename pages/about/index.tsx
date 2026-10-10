@@ -68,13 +68,13 @@ const About: NextPage = () => {
 						</Stack>
 					</Stack>
 				</Stack>
-				<Stack className={'agents'}>
+				<Stack className={'shops'}>
 					<Stack className={'container'}>
 						<span className={'title'}>Our Exclusive Agetns</span>
 						<p className={'desc'}>Aliquam lacinia diam quis lacus euismod</p>
 						<Stack className={'wrap'}>
 							{/*{[1, 2, 3, 4, 5].map(() => {*/}
-							{/*	return <AgentCard />;*/}
+							{/*	return <ShopCard />;*/}
 							{/*})}*/}
 						</Stack>
 					</Stack>

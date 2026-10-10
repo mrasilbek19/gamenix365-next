@@ -4,9 +4,10 @@ import { gql } from '@apollo/client';
  *         MEMBER         *
  *************************/
 
-export const GET_AGENTS = gql`
-	query GetAgents($input: AgentsInquiry!) {
-		getAgents(input: $input) {
+// Keep the current backend contract; expose shop terminology to frontend consumers.
+export const GET_SHOPS = gql`
+	query GetShops($input: AgentsInquiry!) {
+		getShops: getAgents(input: $input) {
 			list {
 				_id
 				memberType

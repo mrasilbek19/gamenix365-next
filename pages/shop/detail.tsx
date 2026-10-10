@@ -3,7 +3,7 @@ import { NextPage } from 'next';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import ProductBigCard from '../../libs/components/common/ProductBigCard';
-import ReviewCard from '../../libs/components/agent/ReviewCard';
+import ReviewCard from '../../libs/components/shop/ReviewCard';
 import { Box, Button, Pagination, Stack, Typography } from '@mui/material';
 import StarIcon from '@mui/icons-material/Star';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
@@ -203,9 +203,9 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 		return <div>SHOP DETAIL PAGE MOBILE</div>;
 	} else {
 		return (
-			<Stack className={'agent-detail-page'}>
+			<Stack className={'shop-detail-page'}>
 				<Stack className={'container'}>
-					<Stack className={'agent-info'}>
+					<Stack className={'shop-info'}>
 						<img
 							src={shop?.memberImage ? `${REACT_APP_API_URL}/${shop?.memberImage}` : '/img/profile/defaultUser.svg'}
 							alt=""
@@ -225,7 +225,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 							</div>
 						</Box>
 					</Stack>
-					<Stack className={'agent-home-list'}>
+					<Stack className={'shop-home-list'}>
 						<Stack className={'card-wrap'}>
 							{shopProducts.map((product: Product) => {
 								return (

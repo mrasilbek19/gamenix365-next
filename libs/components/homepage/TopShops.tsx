@@ -7,13 +7,13 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
 import TopShopCard from './TopShopCard';
 import { Member } from '../../types/member/member';
-import { AgentsInquiry } from '../../types/member/member.input';
-import { GET_AGENTS } from '../../../apollo/user/query';
+import { ShopsInquiry } from '../../types/member/member.input';
+import { GET_SHOPS } from '../../../apollo/user/query';
 import { useQuery } from '@apollo/client';
 import { T } from '../../types/common';
 
 interface TopShopsProps {
-	initialInput: AgentsInquiry;
+	initialInput: ShopsInquiry;
 }
 
 const TopShops = (props: TopShopsProps) => {
@@ -24,30 +24,30 @@ const TopShops = (props: TopShopsProps) => {
 
 	/** APOLLO REQUESTS **/
 	const {
-		loading: getAgentsLoading,
-		data: getAgentsData,
-		error: getAgentsError,
-		refetch: getAgentsRefetch,
-	} = useQuery(GET_AGENTS, {
+		loading: getShopsLoading,
+		data: getShopsData,
+		error: getShopsError,
+		refetch: getShopsRefetch,
+	} = useQuery(GET_SHOPS, {
 		fetchPolicy: "cache-and-network",
 		variables: { input: initialInput },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setTopShops(data?.getAgents?.list);
+			setTopShops(data?.getShops?.list);
 		},
 	});
 	/** HANDLERS **/
 
 	if (device === 'mobile') {
 		return (
-			<Stack className={'top-agents'}>
+			<Stack className={'top-shops'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<span>Top Shops</span>
 					</Stack>
 					<Stack className={'wrapper'}>
 						<Swiper
-							className={'top-agents-swiper'}
+							className={'top-shops-swiper'}
 							slidesPerView={'auto'}
 							centeredSlides={true}
 							spaceBetween={29}
@@ -55,7 +55,7 @@ const TopShops = (props: TopShopsProps) => {
 						>
 							{topShops.map((shop: Member) => {
 								return (
-									<SwiperSlide className={'top-agents-slide'} key={shop?._id}>
+									<SwiperSlide className={'top-shops-slide'} key={shop?._id}>
 										<TopShopCard shop={shop} key={shop?.memberNick} />
 									</SwiperSlide>
 								);
@@ -67,7 +67,7 @@ const TopShops = (props: TopShopsProps) => {
 		);
 	} else {
 		return (
-			<Stack className={'top-agents'}>
+			<Stack className={'top-shops'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
@@ -82,30 +82,30 @@ const TopShops = (props: TopShopsProps) => {
 						</Box>
 					</Stack>
 					<Stack className={'wrapper'}>
-						<Box component={'div'} className={'switch-btn swiper-agents-prev'}>
+						<Box component={'div'} className={'switch-btn swiper-shops-prev'}>
 							<ArrowBackIosNewIcon />
 						</Box>
 						<Box component={'div'} className={'card-wrapper'}>
 							<Swiper
-								className={'top-agents-swiper'}
+								className={'top-shops-swiper'}
 								slidesPerView={'auto'}
 								spaceBetween={29}
 								modules={[Autoplay, Navigation, Pagination]}
 								navigation={{
-									nextEl: '.swiper-agents-next',
-									prevEl: '.swiper-agents-prev',
+									nextEl: '.swiper-shops-next',
+									prevEl: '.swiper-shops-prev',
 								}}
 							>
 								{topShops.map((shop: Member) => {
 									return (
-										<SwiperSlide className={'top-agents-slide'} key={shop?._id}>
+										<SwiperSlide className={'top-shops-slide'} key={shop?._id}>
 											<TopShopCard shop={shop} key={shop?.memberNick} />
 										</SwiperSlide>
 									);
 								})}
 							</Swiper>
 						</Box>
-						<Box component={'div'} className={'switch-btn swiper-agents-next'}>
+						<Box component={'div'} className={'switch-btn swiper-shops-next'}>
 							<ArrowBackIosNewIcon />
 						</Box>
 					</Stack>

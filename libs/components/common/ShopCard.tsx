@@ -28,7 +28,7 @@ const ShopCard = (props: ShopCardProps) => {
 		return <div>SHOP CARD</div>;
 	} else {
 		return (
-			<Stack className="agent-general-card">
+			<Stack className="shop-general-card">
 				<Link
 					href={{
 						pathname: '/shop/detail',
@@ -37,7 +37,7 @@ const ShopCard = (props: ShopCardProps) => {
 				>
 					<Box
 						component={'div'}
-						className={'agent-img'}
+						className={'shop-img'}
 						style={{
 							backgroundImage: `url(${imagePath})`,
 							backgroundSize: 'cover',
@@ -49,8 +49,8 @@ const ShopCard = (props: ShopCardProps) => {
 					</Box>
 				</Link>
 
-				<Stack className={'agent-desc'}>
-					<Box component={'div'} className={'agent-info'}>
+				<Stack className={'shop-desc'}>
+					<Box component={'div'} className={'shop-info'}>
 						<Link
 							href={{
 								pathname: '/shop/detail',
