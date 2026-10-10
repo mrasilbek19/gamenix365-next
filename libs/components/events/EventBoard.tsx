@@ -141,7 +141,7 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 		);
 
 	return (
-		<Stack spacing={3} sx={{ p: { xs: 2, md: 4 }, width: '100%', maxWidth: 1200, mx: 'auto' }}>
+		<Stack className={'event-board'} spacing={3} sx={{ p: { xs: 2, md: 4 }, width: '100%', maxWidth: 1200, mx: 'auto' }}>
 			<Typography variant="h4">
 				{mode === 'public' ? 'Gaming Events' : mode === 'shop' ? 'My Events' : 'Manage Events'}
 			</Typography>
@@ -302,7 +302,7 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 			{!loading && !error && !events.length && <Typography>No events found.</Typography>}
 			<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 24 }}>
 				{events.map((event) => (
-					<Card key={event._id} sx={{ p: 2 }}>
+					<Card className={'event-card'} key={event._id} sx={{ p: 2 }}>
 						<Stack spacing={2}>
 							<img
 								src={imageUrl(event.eventImage)}
