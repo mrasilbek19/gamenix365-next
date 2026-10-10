@@ -18,7 +18,7 @@ import { Comment } from '../../libs/types/comment/comment';
 import { CommentGroup } from '../../libs/enums/comment.enum';
 import { Messages, REACT_APP_API_URL } from '../../libs/config';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { CREATE_COMMENT, LIKE_TARGET_PRODUCT } from '../../apollo/user/mutation';
+import { CREATE_COMMENT, LIKE_TARGET_PRODUCT, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
 import { GET_COMMENTS, GET_MEMBER, GET_PRODUCTS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 
@@ -28,17 +28,17 @@ export const getStaticProps = async ({ locale }: any) => ({
 	},
 });
 
-const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) => {
+const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const user = useReactiveVar(userVar);
-	const [agentId, setAgentId] = useState<string | null>(null);
-	const [agent, setAgent] = useState<Member | null>(null);
+	const [shopId, setShopId] = useState<string | null>(null);
+	const [shop, setShop] = useState<Member | null>(null);
 	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>(initialInput);
-	const [agentProducts, setAgentProducts] = useState<Product[]>([]);
+	const [shopProducts, setShopProducts] = useState<Product[]>([]);
 	const [productTotal, setProductTotal] = useState<number>(0);
 	const [commentInquiry, setCommentInquiry] = useState<CommentsInquiry>(initialComment);
-	const [agentComments, setAgentComments] = useState<Comment[]>([]);
+	const [shopComments, setShopComments] = useState<Comment[]>([]);
 	const [commentTotal, setCommentTotal] = useState<number>(0);
 	const [insertCommentData, setInsertCommentData] = useState<CommentInput>({
 		commentGroup: CommentGroup.MEMBER,
@@ -49,6 +49,8 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 	/** APOLLO REQUESTS **/
 	const [createComment] = useMutation(CREATE_COMMENT);
 	const [likeTargetProduct] = useMutation(LIKE_TARGET_PRODUCT);
+	const [subscribe, { loading: subscribeLoading }] = useMutation(SUBSCRIBE);
+	const [unsubscribe, { loading: unsubscribeLoading }] = useMutation(UNSUBSCRIBE);
 
 	const {
 		loading: getMemberLoading,
@@ -57,10 +59,11 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		refetch: getMemberRefetch,
 	} = useQuery(GET_MEMBER, {
 		fetchPolicy: 'network-only',
-		variables: { input: agentId },
-		skip: !agentId,
+		variables: { input: shopId },
+		skip: !shopId,
 		onCompleted: (data: T) => {
-			setAgent(data?.getMember);
+			setShop(data?.getMember);
+			if (data?.getMember?.memberType !== 'SHOP') return;
 
 			setSearchFilter({
 				...searchFilter,
@@ -94,7 +97,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		skip: !searchFilter.search.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentProducts(data?.getProducts?.list ?? []);
+			setShopProducts(data?.getProducts?.list ?? []);
 			setProductTotal(data?.getProducts?.metaCounter?.[0]?.total ?? 0);
 		},
 	});
@@ -110,7 +113,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		skip: !commentInquiry.search.commentRefId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgentComments(data?.getComments?.list);
+			setShopComments(data?.getComments?.list);
 			setCommentTotal(data?.getComments?.metaCounter[0]?.total ?? 0);
 		},
 	});
@@ -118,7 +121,8 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		if (router.query.agentId) setAgentId(router.query.agentId as string);
+		const id = router.query.shopId ?? router.query.agentId;
+		if (id) setShopId(id as string);
 	}, [router]);
 
 	useEffect(() => {
@@ -134,12 +138,15 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 	}, [commentInquiry]);
 
 	/** HANDLERS **/
-	const redirectToMemberPageHandler = async (memberId: string) => {
+	const followShopHandler = async () => {
 		try {
-			if (memberId === user?._id) await router.push(`/mypage?memberId=${memberId}`);
-			else await router.push(`/member?memberId=${memberId}`);
-		} catch (error) {
-			await sweetErrorHandling(error);
+			if (user.memberType !== 'USER' || !shop || user._id === shop._id) return;
+			if (shop.meFollowed?.[0]?.myFollowing) await unsubscribe({ variables: { input: shop._id } });
+			else await subscribe({ variables: { input: shop._id } });
+			const { data } = await getMemberRefetch();
+			setShop(data.getMember);
+		} catch (err: any) {
+			sweetErrorHandling(err).then();
 		}
 	};
 
@@ -156,7 +163,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 	const createCommentHandler = async () => {
 		try {
 			if (!user._id) throw new Error(Messages.error2);
-			if (user._id === agentId) throw new Error('Cannot write a review for yourself');
+			if (user._id === shopId) throw new Error('Cannot write a review for yourself');
 
 			await createComment({
 				variables: {
@@ -190,28 +197,37 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 		}
 	};
 
+	if (getMemberError || (shop && shop.memberType !== 'SHOP')) return <Typography>Shop unavailable.</Typography>;
+
 	if (device === 'mobile') {
-		return <div>AGENT DETAIL PAGE MOBILE</div>;
+		return <div>SHOP DETAIL PAGE MOBILE</div>;
 	} else {
 		return (
 			<Stack className={'agent-detail-page'}>
 				<Stack className={'container'}>
 					<Stack className={'agent-info'}>
 						<img
-							src={agent?.memberImage ? `${REACT_APP_API_URL}/${agent?.memberImage}` : '/img/profile/defaultUser.svg'}
+							src={shop?.memberImage ? `${REACT_APP_API_URL}/${shop?.memberImage}` : '/img/profile/defaultUser.svg'}
 							alt=""
 						/>
-						<Box component={'div'} className={'info'} onClick={() => redirectToMemberPageHandler(agent?._id as string)}>
-							<strong>{agent?.memberFullName ?? agent?.memberNick}</strong>
+						<Box component={'div'} className={'info'}>
+							<strong>{shop?.memberFullName ?? shop?.memberNick}</strong>
+							<Typography sx={{ whiteSpace: 'pre-wrap', maxWidth: 750 }}>{shop?.memberDesc}</Typography>
+							<Typography>{shop?.memberFollowers ?? 0} followers</Typography>
+							{user.memberType === 'USER' && shop && user._id !== shop._id && (
+								<Button variant="outlined" disabled={subscribeLoading || unsubscribeLoading} onClick={followShopHandler}>
+									{shop.meFollowed?.[0]?.myFollowing ? 'Unfollow' : 'Follow'}
+								</Button>
+							)}
 							<div>
 								<img src="/img/icons/call.svg" alt="" />
-								<span>{agent?.memberPhone}</span>
+								<span>{shop?.memberPhone}</span>
 							</div>
 						</Box>
 					</Stack>
 					<Stack className={'agent-home-list'}>
 						<Stack className={'card-wrap'}>
-							{agentProducts.map((product: Product) => {
+							{shopProducts.map((product: Product) => {
 								return (
 									<div className={'wrap-main'} key={product?._id}>
 										<ProductBigCard product={product} likeProductHandler={likeProductHandler} key={product?._id} />
@@ -256,7 +272,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 										{commentTotal} review{commentTotal > 1 ? 's' : ''}
 									</span>
 								</Box>
-								{agentComments?.map((comment: Comment) => {
+								{shopComments?.map((comment: Comment) => {
 									return <ReviewCard comment={comment} key={comment?._id} />;
 								})}
 								<Box component={'div'} className={'pagination-box'}>
@@ -310,7 +326,7 @@ const AgentDetail: NextPage = ({ initialInput, initialComment, ...props }: any) 
 	}
 };
 
-AgentDetail.defaultProps = {
+ShopDetail.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 9,
@@ -329,4 +345,4 @@ AgentDetail.defaultProps = {
 	},
 };
 
-export default withLayoutBasic(AgentDetail);
+export default withLayoutBasic(ShopDetail);

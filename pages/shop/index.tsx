@@ -5,7 +5,7 @@ import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import { Stack, Box, Button, Pagination } from '@mui/material';
 import { Menu, MenuItem } from '@mui/material';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
-import AgentCard from '../../libs/components/common/AgentCard';
+import ShopCard from '../../libs/components/common/ShopCard';
 import { useRouter } from 'next/router';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { Member } from '../../libs/types/member/member';
@@ -22,7 +22,7 @@ export const getStaticProps = async ({ locale }: any) => ({
 	},
 });
 
-const AgentList: NextPage = ({ initialInput, ...props }: any) => {
+const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
@@ -32,7 +32,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	const [searchFilter, setSearchFilter] = useState<any>(
 		router?.query?.input ? JSON.parse(router?.query?.input as string) : initialInput,
 	);
-	const [agents, setAgents] = useState<Member[]>([]);
+	const [shops, setShops] = useState<Member[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [searchText, setSearchText] = useState<string>('');
@@ -50,7 +50,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 		variables: { input: searchFilter },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setAgents(data?.getAgents?.list);
+			setShops(data?.getAgents?.list);
 			setTotal(data?.getAgents?.metaCounter[0]?.total);
 		},
 	});
@@ -60,7 +60,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 			const input_obj = JSON.parse(router?.query?.input as string);
 			setSearchFilter(input_obj);
 		} else
-			router.replace(`/agent?input=${JSON.stringify(searchFilter)}`, `/agent?input=${JSON.stringify(searchFilter)}`);
+			router.replace(`/shop?input=${JSON.stringify(searchFilter)}`, `/shop?input=${JSON.stringify(searchFilter)}`);
 
 		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
 	}, [router]);
@@ -79,29 +79,30 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	const sortingHandler = (e: React.MouseEvent<HTMLLIElement>) => {
 		switch (e.currentTarget.id) {
 			case 'recent':
-				setSearchFilter({ ...searchFilter, sort: 'createdAt', direction: 'DESC' });
+				setSearchFilter({ ...searchFilter, page: 1, sort: 'createdAt', direction: 'DESC' });
 				setFilterSortName('Recent');
 				break;
 			case 'old':
-				setSearchFilter({ ...searchFilter, sort: 'createdAt', direction: 'ASC' });
+				setSearchFilter({ ...searchFilter, page: 1, sort: 'createdAt', direction: 'ASC' });
 				setFilterSortName('Oldest order');
 				break;
 			case 'likes':
-				setSearchFilter({ ...searchFilter, sort: 'memberLikes', direction: 'DESC' });
+				setSearchFilter({ ...searchFilter, page: 1, sort: 'memberLikes', direction: 'DESC' });
 				setFilterSortName('Likes');
 				break;
 			case 'views':
-				setSearchFilter({ ...searchFilter, sort: 'memberViews', direction: 'DESC' });
+				setSearchFilter({ ...searchFilter, page: 1, sort: 'memberViews', direction: 'DESC' });
 				setFilterSortName('Views');
 				break;
 		}
+		setCurrentPage(1);
 		setSortingOpen(false);
 		setAnchorEl2(null);
 	};
 
 	const paginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
 		searchFilter.page = value;
-		await router.push(`/agent?input=${JSON.stringify(searchFilter)}`, `/agent?input=${JSON.stringify(searchFilter)}`, {
+		await router.push(`/shop?input=${JSON.stringify(searchFilter)}`, `/shop?input=${JSON.stringify(searchFilter)}`, {
 			scroll: false,
 		});
 		setCurrentPage(value);
@@ -127,7 +128,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	};
 
 	if (device === 'mobile') {
-		return <h1>AGENTS PAGE MOBILE</h1>;
+		return <h1>SHOPS PAGE MOBILE</h1>;
 	} else {
 		return (
 			<Stack className={'agent-list-page'}>
@@ -136,15 +137,17 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 						<Box component={'div'} className={'left'}>
 							<input
 								type="text"
-								placeholder={'Search for an agent'}
+								placeholder={'Search for an shop'}
 								value={searchText}
 								onChange={(e: any) => setSearchText(e.target.value)}
 								onKeyDown={(event: any) => {
 									if (event.key == 'Enter') {
 										setSearchFilter({
 											...searchFilter,
+											page: 1,
 											search: { ...searchFilter.search, text: searchText },
 										});
+										setCurrentPage(1);
 									}
 								}}
 							/>
@@ -173,20 +176,20 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 						</Box>
 					</Stack>
 					<Stack className={'card-wrap'}>
-						{agents?.length === 0 ? (
+						{shops?.length === 0 ? (
 							<div className={'no-data'}>
 								<img src="/img/icons/icoAlert.svg" alt="" />
-								<p>No Agents found!</p>
+								<p>No Shops found!</p>
 							</div>
 						) : (
-							agents.map((agent: Member) => {
-								return <AgentCard agent={agent} key={agent._id} likeMemberHandler={likeMemberHandler} />;
+							shops.map((shop: Member) => {
+								return <ShopCard shop={shop} key={shop._id} likeMemberHandler={likeMemberHandler} />;
 							})
 						)}
 					</Stack>
 					<Stack className={'pagination'}>
 						<Stack className="pagination-box">
-							{agents.length !== 0 && Math.ceil(total / searchFilter.limit) > 1 && (
+							{shops.length !== 0 && Math.ceil(total / searchFilter.limit) > 1 && (
 								<Stack className="pagination-box">
 									<Pagination
 										page={currentPage}
@@ -199,9 +202,9 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 							)}
 						</Stack>
 
-						{agents.length !== 0 && (
+						{shops.length !== 0 && (
 							<span>
-								Total {total} agent{total > 1 ? 's' : ''} available
+								Total {total} shop{total > 1 ? 's' : ''} available
 							</span>
 						)}
 					</Stack>
@@ -211,7 +214,7 @@ const AgentList: NextPage = ({ initialInput, ...props }: any) => {
 	}
 };
 
-AgentList.defaultProps = {
+ShopList.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 10,
@@ -221,4 +224,4 @@ AgentList.defaultProps = {
 	},
 };
 
-export default withLayoutBasic(AgentList);
+export default withLayoutBasic(ShopList);

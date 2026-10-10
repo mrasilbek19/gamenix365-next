@@ -33,14 +33,14 @@ const withLayoutBasic = (Component: any) => {
 					desc = 'We are glad to see you again!';
 					bgImage = '/img/banner/products.png';
 					break;
-				case '/agent':
-					title = 'Agents';
-					desc = 'Home / For Rent';
+				case '/shop':
+					title = 'Shops';
+					desc = 'Browse gaming shops';
 					bgImage = '/img/banner/agents.webp';
 					break;
-				case '/agent/detail':
-					title = 'Agent Page';
-					desc = 'Home / For Rent';
+				case '/shop/detail':
+					title = 'Shop Profile';
+					desc = 'Explore this shop and its products';
 					bgImage = '/img/banner/header2.svg';
 					break;
 				case '/orders':

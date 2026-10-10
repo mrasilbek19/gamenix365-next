@@ -150,8 +150,8 @@ const Top = () => {
 				<Link href={'/product'}>
 					<div>{t('Products')}</div>
 				</Link>
-				<Link href={'/agent'}>
-					<div> {t('Agents')} </div>
+				<Link href={'/shop'}>
+					<div> {t('Shops')} </div>
 				</Link>
 				{user?._id && (
 					<Link href={'/orders'}>
@@ -187,8 +187,8 @@ const Top = () => {
 							<Link href={'/product'}>
 								<div>{t('Products')}</div>
 							</Link>
-							<Link href={'/agent'}>
-								<div> {t('Agents')} </div>
+							<Link href={'/shop'}>
+								<div> {t('Shops')} </div>
 							</Link>
 							{user?._id && (
 								<Link href={'/orders'}>

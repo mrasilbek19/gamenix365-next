@@ -54,6 +54,7 @@ const MemberPage: NextPage = () => {
 			console.log('id: ', id);
 			if (!id) throw new Error(Messages.error1);
 			if (!user._id) throw new Error(Messages.error2);
+			if (user.memberType !== 'USER' || user._id === id) return;
 
 			await subscribe({
 				variables: {
@@ -61,8 +62,8 @@ const MemberPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Followed!', 800);
 			await refetch({ input: query });
+			await sweetTopSmallSuccessAlert('Followed!', 800);
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}
@@ -72,6 +73,7 @@ const MemberPage: NextPage = () => {
 		try {
 			if (!id) throw new Error(Messages.error1);
 			if (!user._id) throw new Error(Messages.error2);
+			if (user.memberType !== 'USER' || user._id === id) return;
 
 			await unsubscribe({
 				variables: {
@@ -79,8 +81,8 @@ const MemberPage: NextPage = () => {
 				},
 			});
 
-			await sweetTopSmallSuccessAlert('Unfollowed!', 800);
 			await refetch({ input: query });
+			await sweetTopSmallSuccessAlert('Unfollowed!', 800);
 		} catch (err: any) {
 			sweetErrorHandling(err).then();
 		}

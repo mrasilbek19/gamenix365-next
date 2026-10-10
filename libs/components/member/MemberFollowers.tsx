@@ -105,10 +105,12 @@ const MemberFollowers = (props: MemberFollowsProps) => {
 										<p>Followers</p>
 										<span>({follower?.followerData?.memberFollowers})</span>
 									</Box>
-									<Box className={'info-box'} component={'div'}>
-										<p>Followings</p>
-										<span>({follower?.followerData?.memberFollowings})</span>
-									</Box>
+									{follower?.followerData?.memberType !== 'SHOP' && (
+										<Box className={'info-box'} component={'div'}>
+											<p>Followings</p>
+											<span>({follower?.followerData?.memberFollowings})</span>
+										</Box>
+									)}
 									<Box className={'info-box'} component={'div'}>
 										{follower?.meLiked && follower?.meLiked[0]?.myFavorite ? (
 											<FavoriteIcon color="primary"
@@ -120,7 +122,7 @@ const MemberFollowers = (props: MemberFollowsProps) => {
 										<span>({follower?.followerData?.memberLikes})</span>
 									</Box>
 								</Stack>
-								{user?._id !== follower?.followerId && (
+								{user.memberType === 'USER' && user?._id !== follower?.followerId && (
 									<Stack className="action-box">
 										{follower.meFollowed && follower.meFollowed[0]?.myFollowing ? (
 											<>

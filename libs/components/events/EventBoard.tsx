@@ -47,7 +47,10 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 			input: {
 				page,
 				limit: 6,
-				search: { ...(type ? { eventType: type } : {}), ...(status ? { eventStatus: status } : {}) },
+				search: {
+					...(type ? { eventType: type } : {}),
+					...(mode === 'public' ? { eventStatus: EventStatus.PROCESS } : status ? { eventStatus: status } : {}),
+				},
 			},
 		},
 		skip: !allowed,
@@ -256,7 +259,7 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 					</Stack>
 				</Stack>
 			)}
-			<Stack direction="row" spacing={2}>
+			<Stack direction="row" spacing={2} justifyContent="flex-end">
 				<TextField
 					select
 					label="Type"
@@ -274,23 +277,25 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 						</MenuItem>
 					))}
 				</TextField>
-				<TextField
-					select
-					label="Status"
-					value={status}
-					onChange={(e) => {
-						setStatus(e.target.value);
-						setPage(1);
-					}}
-					sx={{ minWidth: 160 }}
-				>
-					<MenuItem value="">All statuses</MenuItem>
-					{Object.values(EventStatus).map((value) => (
-						<MenuItem key={value} value={value}>
-							{value}
-						</MenuItem>
-					))}
-				</TextField>
+				{mode !== 'public' && (
+					<TextField
+						select
+						label="Status"
+						value={status}
+						onChange={(e) => {
+							setStatus(e.target.value);
+							setPage(1);
+						}}
+						sx={{ minWidth: 160 }}
+					>
+						<MenuItem value="">All statuses</MenuItem>
+						{Object.values(EventStatus).map((value) => (
+							<MenuItem key={value} value={value}>
+								{value}
+							</MenuItem>
+						))}
+					</TextField>
+				)}
 			</Stack>
 			{loading && <Typography>Loading events...</Typography>}
 			{error && <Alert severity="error">{error.message}</Alert>}

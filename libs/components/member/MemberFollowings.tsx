@@ -9,7 +9,7 @@ import { REACT_APP_API_URL } from '../../config';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { userVar } from '../../../apollo/store';
-import { GET_MEMBER_FOLLOWINGS } from '../../../apollo/user/query';
+import { GET_MEMBER, GET_MEMBER_FOLLOWINGS } from '../../../apollo/user/query';
 import { T } from '../../types/common';
 
 interface MemberFollowingsProps {
@@ -31,6 +31,12 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
+	const { data: memberData } = useQuery(GET_MEMBER, {
+		variables: { input: router.query.memberId },
+		skip: !router.query.memberId,
+	});
+	const memberType = router.query.memberId ? memberData?.getMember?.memberType : user.memberType;
+	const showFollowings = !!memberType && memberType !== 'SHOP';
 	const {
 		loading: getMemberFollowingsLoading,
 		data: getMemberFollowingsData,
@@ -39,7 +45,7 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 	} = useQuery(GET_MEMBER_FOLLOWINGS, {
 		fetchPolicy: 'network-only',
 		variables: { input: followInquiry },
-		skip: !followInquiry?.search?.followerId,
+		skip: !showFollowings || !followInquiry?.search?.followerId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setMemberFollowings(data?.getMemberFollowings?.list);
@@ -55,14 +61,16 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 	}, [router]);
 
 	useEffect(() => {
-		getMemberFollowingsRefetch({ input: followInquiry }).then();
-	}, [followInquiry]);
+		if (showFollowings && followInquiry.search.followerId) getMemberFollowingsRefetch({ input: followInquiry }).then();
+	}, [followInquiry, showFollowings]);
 
 	/** HANDLERS **/
 	const paginationHandler = async (event: ChangeEvent<unknown>, value: number) => {
 		followInquiry.page = value;
 		setFollowInquiry({ ...followInquiry });
 	};
+
+	if (!showFollowings) return null;
 
 	if (device === 'mobile') {
 		return <div>NESTAR FOLLOWS MOBILE</div>;
@@ -105,10 +113,12 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 										<p>Followers</p>
 										<span>({follower?.followingData?.memberFollowers})</span>
 									</Box>
-									<Box className={'info-box'} component={'div'}>
-										<p>Followings</p>
-										<span>({follower?.followingData?.memberFollowings})</span>
-									</Box>
+									{follower?.followingData?.memberType !== 'SHOP' && (
+										<Box className={'info-box'} component={'div'}>
+											<p>Followings</p>
+											<span>({follower?.followingData?.memberFollowings})</span>
+										</Box>
+									)}
 									<Box className={'info-box'} component={'div'}>
 										{follower?.meLiked && follower?.meLiked[0]?.myFavorite ? (
 											<FavoriteIcon color="primary"
@@ -120,7 +130,7 @@ const MemberFollowings = (props: MemberFollowingsProps) => {
 										<span>({follower?.followingData?.memberLikes})</span>
 									</Box>
 								</Stack>
-								{user?._id !== follower?.followingId && (
+								{user.memberType === 'USER' && user?._id !== follower?.followingId && (
 									<Stack className="action-box">
 										{follower.meFollowed && follower.meFollowed[0]?.myFollowing ? (
 											<>

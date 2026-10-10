@@ -5,22 +5,22 @@ import useDeviceDetect from '../../hooks/useDeviceDetect';
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Navigation, Pagination } from 'swiper';
-import TopAgentCard from './TopAgentCard';
+import TopShopCard from './TopShopCard';
 import { Member } from '../../types/member/member';
 import { AgentsInquiry } from '../../types/member/member.input';
 import { GET_AGENTS } from '../../../apollo/user/query';
 import { useQuery } from '@apollo/client';
 import { T } from '../../types/common';
 
-interface TopAgentsProps {
+interface TopShopsProps {
 	initialInput: AgentsInquiry;
 }
 
-const TopAgents = (props: TopAgentsProps) => {
+const TopShops = (props: TopShopsProps) => {
 	const { initialInput } = props;
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [topAgents, setTopAgents] = useState<Member[]>([]);
+	const [topShops, setTopShops] = useState<Member[]>([]);
 
 	/** APOLLO REQUESTS **/
 	const {
@@ -33,7 +33,7 @@ const TopAgents = (props: TopAgentsProps) => {
 		variables: { input: initialInput },
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
-			setTopAgents(data?.getAgents?.list);
+			setTopShops(data?.getAgents?.list);
 		},
 	});
 	/** HANDLERS **/
@@ -43,7 +43,7 @@ const TopAgents = (props: TopAgentsProps) => {
 			<Stack className={'top-agents'}>
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
-						<span>Top Agents</span>
+						<span>Top Shops</span>
 					</Stack>
 					<Stack className={'wrapper'}>
 						<Swiper
@@ -53,10 +53,10 @@ const TopAgents = (props: TopAgentsProps) => {
 							spaceBetween={29}
 							modules={[Autoplay]}
 						>
-							{topAgents.map((agent: Member) => {
+							{topShops.map((shop: Member) => {
 								return (
-									<SwiperSlide className={'top-agents-slide'} key={agent?._id}>
-										<TopAgentCard agent={agent} key={agent?.memberNick} />
+									<SwiperSlide className={'top-agents-slide'} key={shop?._id}>
+										<TopShopCard shop={shop} key={shop?.memberNick} />
 									</SwiperSlide>
 								);
 							})}
@@ -71,12 +71,12 @@ const TopAgents = (props: TopAgentsProps) => {
 				<Stack className={'container'}>
 					<Stack className={'info-box'}>
 						<Box component={'div'} className={'left'}>
-							<span>Top Agents</span>
-							<p>Our Top Agents always ready to serve you</p>
+							<span>Top Shops</span>
+							<p>Our Top Shops always ready to serve you</p>
 						</Box>
 						<Box component={'div'} className={'right'}>
-							<div className={'more-box'}>
-								<span>See All Agents</span>
+							<div className={'more-box'} onClick={() => router.push('/shop')}>
+								<span>See All Shops</span>
 								<img src="/img/icons/rightup.svg" alt="" />
 							</div>
 						</Box>
@@ -96,10 +96,10 @@ const TopAgents = (props: TopAgentsProps) => {
 									prevEl: '.swiper-agents-prev',
 								}}
 							>
-								{topAgents.map((agent: Member) => {
+								{topShops.map((shop: Member) => {
 									return (
-										<SwiperSlide className={'top-agents-slide'} key={agent?._id}>
-											<TopAgentCard agent={agent} key={agent?.memberNick} />
+										<SwiperSlide className={'top-agents-slide'} key={shop?._id}>
+											<TopShopCard shop={shop} key={shop?.memberNick} />
 										</SwiperSlide>
 									);
 								})}
@@ -115,7 +115,7 @@ const TopAgents = (props: TopAgentsProps) => {
 	}
 };
 
-TopAgents.defaultProps = {
+TopShops.defaultProps = {
 	initialInput: {
 		page: 1,
 		limit: 10,
@@ -125,4 +125,4 @@ TopAgents.defaultProps = {
 	},
 };
 
-export default TopAgents;
+export default TopShops;

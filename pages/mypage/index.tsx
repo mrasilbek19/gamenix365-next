@@ -49,6 +49,7 @@ const MyPage: NextPage = () => {
 			console.log('id: ', id);
 			if (!id) throw new Error(Messages.error1);
 			if (!user._id) throw new Error(Messages.error2);
+			if (user.memberType !== 'USER' || user._id === id) return;
 
 			await subscribe({
 				variables: {
@@ -67,6 +68,7 @@ const MyPage: NextPage = () => {
 		try {
 			if (!id) throw new Error(Messages.error1);
 			if (!user._id) throw new Error(Messages.error2);
+			if (user.memberType !== 'USER' || user._id === id) return;
 
 			await unsubscribe({
 				variables: {

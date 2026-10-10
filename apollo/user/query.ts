@@ -18,6 +18,7 @@ export const GET_AGENTS = gql`
 				memberImage
 				memberAddress
 				memberDesc
+				memberFollowers
 				memberWarnings
 				memberBlocks
 				memberProducts

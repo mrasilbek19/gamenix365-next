@@ -3,7 +3,7 @@ import useDeviceDetect from '../libs/hooks/useDeviceDetect';
 import withLayoutMain from '../libs/components/layout/LayoutHome';
 import CommunityBoards from '../libs/components/homepage/CommunityBoards';
 import PopularProducts from '../libs/components/homepage/PopularProducts';
-import TopAgents from '../libs/components/homepage/TopAgents';
+import TopShops from '../libs/components/homepage/TopShops';
 import Events from '../libs/components/homepage/Events';
 import TrendProducts from '../libs/components/homepage/TrendProducts';
 import TopProducts from '../libs/components/homepage/TopProducts';
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
 				<PopularProducts />
 				<Advertisement />
 				<TopProducts />
-				<TopAgents />
+				<TopShops />
 			</Stack>
 		);
 	} else {
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
 				<PopularProducts />
 				<Advertisement />
 				<TopProducts />
-				<TopAgents />
+				<TopShops />
 				<Events />
 				<CommunityBoards />
 			</Stack>
