@@ -50,57 +50,53 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 		setSearchFilter({ ...searchFilter, page: value });
 	};
 
-	if (device === 'mobile') {
-		return <div>PRODUCTS MOBILE</div>;
-	} else {
-		return (
-			<div id="member-products-page">
-				<Stack className="main-title-box">
-					<Stack className="right-box">
-						<Typography className="main-title">Products</Typography>
-					</Stack>
+	return (
+		<div id="member-products-page">
+			<Stack className="main-title-box">
+				<Stack className="right-box">
+					<Typography className="main-title">Products</Typography>
 				</Stack>
-				<Stack className="products-list-box">
-					<Stack className="list-box">
-						{shopProducts?.length > 0 && (
-							<Stack className="listing-title-box">
-								<Typography className="title-text">Listing title</Typography>
-								<Typography className="title-text">Date Published</Typography>
-								<Typography className="title-text">Status</Typography>
-								<Typography className="title-text">View</Typography>
-							</Stack>
-						)}
-						{shopProducts?.length === 0 && (
-							<div className={'no-data'}>
-								<img src="/img/icons/icoAlert.svg" alt="" />
-								<p>No Product found!</p>
-							</div>
-						)}
-						{shopProducts?.map((product: Product) => {
-							return <ProductCard product={product} memberPage={true} key={product?._id} />;
-						})}
+			</Stack>
+			<Stack className="products-list-box">
+				<Stack className="list-box">
+					{shopProducts?.length > 0 && (
+						<Stack className="listing-title-box">
+							<Typography className="title-text">Listing title</Typography>
+							<Typography className="title-text">Date Published</Typography>
+							<Typography className="title-text">Status</Typography>
+							<Typography className="title-text">View</Typography>
+						</Stack>
+					)}
+					{shopProducts?.length === 0 && (
+						<div className={'no-data'}>
+							<img src="/img/icons/icoAlert.svg" alt="" />
+							<p>No Product found!</p>
+						</div>
+					)}
+					{shopProducts?.map((product: Product) => {
+						return <ProductCard product={product} memberPage={true} key={product?._id} />;
+					})}
 
-						{shopProducts.length !== 0 && (
-							<Stack className="pagination-config">
-								<Stack className="pagination-box">
-									<Pagination
-										count={Math.ceil(total / searchFilter.limit)}
-										page={searchFilter.page}
-										shape="circular"
-										color="primary"
-										onChange={paginationHandler}
-									/>
-								</Stack>
-								<Stack className="total-result">
-									<Typography>{total} products available</Typography>
-								</Stack>
+					{shopProducts.length !== 0 && (
+						<Stack className="pagination-config">
+							<Stack className="pagination-box">
+								<Pagination
+									count={Math.ceil(total / searchFilter.limit)}
+									page={searchFilter.page}
+									shape="circular"
+									color="primary"
+									onChange={paginationHandler}
+								/>
 							</Stack>
-						)}
-					</Stack>
+							<Stack className="total-result">
+								<Typography>{total} products available</Typography>
+							</Stack>
+						</Stack>
+					)}
 				</Stack>
-			</div>
-		);
-	}
+			</Stack>
+		</div>
+	);
 };
 
 MyProducts.defaultProps = {
