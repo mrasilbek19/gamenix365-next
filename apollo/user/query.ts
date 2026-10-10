@@ -44,39 +44,39 @@ export const GET_AGENTS = gql`
 `;
 
 export const GET_MEMBER = gql(`
-   query GetMember($input: String!) {
-    getMember(memberId: $input) {
-        _id
-        memberType
-        memberStatus
-        memberAuthType
-        memberPhone
-        memberNick
-        memberFullName
-        memberImage
-        memberAddress
-        memberDesc
-        memberProducts
-        memberArticles
-        memberPoints
-        memberLikes
-        memberViews
-        memberFollowings
-				memberFollowers
-        memberRank
-        memberWarnings
-        memberBlocks
-        deletedAt
-        createdAt
-        updatedAt
-        accessToken
-        meFollowed {
-					followingId
-					followerId
-					myFollowing
-				}
-    }
-}
+	query GetMember($input: String!) {
+		getMember(memberId: $input) {
+			_id
+			memberType
+			memberStatus
+			memberAuthType
+			memberPhone
+			memberNick
+			memberFullName
+			memberImage
+			memberAddress
+			memberDesc
+			memberProducts
+			memberArticles
+			memberPoints
+			memberLikes
+			memberViews
+			memberFollowings
+			memberFollowers
+			memberRank
+			memberWarnings
+			memberBlocks
+			deletedAt
+			createdAt
+			updatedAt
+			accessToken
+			meFollowed {
+				followingId
+				followerId
+				myFollowing
+			}
+		}
+	}
 `);
 
 /**************************
@@ -552,9 +552,26 @@ export const GET_MEMBER_FOLLOWINGS = gql`
 export const GET_MY_ORDERS = gql`
 	query GetMyOrders($input: OrdersInquiry!) {
 		getMyOrders(input: $input) {
-			_id orderTotal orderDelivery orderDeliveryType orderAddress orderStatus memberId shopId createdAt
-			orderItems { _id productId itemQuantity itemPrice }
-			productData { _id productName productImages }
+			_id
+			orderTotal
+			orderDelivery
+			orderDeliveryType
+			orderAddress
+			orderStatus
+			memberId
+			shopId
+			createdAt
+			orderItems {
+				_id
+				productId
+				itemQuantity
+				itemPrice
+			}
+			productData {
+				_id
+				productName
+				productImages
+			}
 		}
 	}
 `;
@@ -562,8 +579,25 @@ export const GET_MY_ORDERS = gql`
 export const GET_EVENTS = gql`
 	query GetEvents($input: EventsInquiry!) {
 		getEvents(input: $input) {
-			list { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
-			metaCounter { total }
+			list {
+				_id
+				eventType
+				eventStatus
+				eventTitle
+				eventDesc
+				eventGame
+				eventImage
+				eventDate
+				eventMaxParticipants
+				eventOrganizer
+				eventStart
+				eventEnd
+				eventPrize
+				deletedAt
+			}
+			metaCounter {
+				total
+			}
 		}
 	}
 `;
@@ -571,23 +605,78 @@ export const GET_EVENTS = gql`
 export const GET_MY_EVENTS = gql`
 	query GetMyEvents($input: ShopEventsInquiry!) {
 		getMyEvents(input: $input) {
-			list { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
-			metaCounter { total }
+			list {
+				_id
+				eventType
+				eventStatus
+				eventTitle
+				eventDesc
+				eventGame
+				eventImage
+				eventDate
+				eventMaxParticipants
+				eventOrganizer
+				eventStart
+				eventEnd
+				eventPrize
+				deletedAt
+			}
+			metaCounter {
+				total
+			}
 		}
 	}
 `;
 
 export const GET_EVENT = gql`
 	query GetEvent($input: String!) {
-		getEvent(eventId: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+		getEvent(eventId: $input) {
+			_id
+			eventType
+			eventStatus
+			eventTitle
+			eventDesc
+			eventGame
+			eventImage
+			eventDate
+			eventMaxParticipants
+			eventOrganizer
+			eventStart
+			eventEnd
+			eventPrize
+			deletedAt
+		}
 	}
 `;
 
 export const GET_MY_REGISTRATIONS = gql`
 	query GetMyRegistrations($input: EventParticipantsInquiry!) {
 		getMyRegistrations(input: $input) {
-			list { _id eventId memberId participantStatus eventData { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt } }
-			metaCounter { total }
+			list {
+				_id
+				eventId
+				memberId
+				participantStatus
+				eventData {
+					_id
+					eventType
+					eventStatus
+					eventTitle
+					eventDesc
+					eventGame
+					eventImage
+					eventDate
+					eventMaxParticipants
+					eventOrganizer
+					eventStart
+					eventEnd
+					eventPrize
+					deletedAt
+				}
+			}
+			metaCounter {
+				total
+			}
 		}
 	}
 `;
@@ -595,8 +684,21 @@ export const GET_MY_REGISTRATIONS = gql`
 export const GET_EVENT_PARTICIPANTS = gql`
 	query GetEventParticipants($eventId: String!, $input: EventParticipantsInquiry!) {
 		getEventParticipants(eventId: $eventId, input: $input) {
-			list { _id eventId memberId participantStatus memberData { _id memberNick memberImage memberStatus } }
-			metaCounter { total }
+			list {
+				_id
+				eventId
+				memberId
+				participantStatus
+				memberData {
+					_id
+					memberNick
+					memberImage
+					memberStatus
+				}
+			}
+			metaCounter {
+				total
+			}
 		}
 	}
 `;

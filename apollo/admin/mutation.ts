@@ -146,12 +146,42 @@ export const REMOVE_COMMENT_BY_ADMIN = gql`
 
 export const UPDATE_EVENT_BY_ADMIN = gql`
 	mutation UpdateEventByAdmin($input: EventUpdate!) {
-		updateEventByAdmin(input: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+		updateEventByAdmin(input: $input) {
+			_id
+			eventType
+			eventStatus
+			eventTitle
+			eventDesc
+			eventGame
+			eventImage
+			eventDate
+			eventMaxParticipants
+			eventOrganizer
+			eventStart
+			eventEnd
+			eventPrize
+			deletedAt
+		}
 	}
 `;
 
 export const REMOVE_EVENT_BY_ADMIN = gql`
 	mutation RemoveEventByAdmin($input: String!) {
-		removeEventByAdmin(eventId: $input) { _id eventType eventStatus eventTitle eventDesc eventGame eventImage eventDate eventMaxParticipants eventOrganizer eventStart eventEnd eventPrize deletedAt }
+		removeEventByAdmin(eventId: $input) {
+			_id
+			eventType
+			eventStatus
+			eventTitle
+			eventDesc
+			eventGame
+			eventImage
+			eventDate
+			eventMaxParticipants
+			eventOrganizer
+			eventStart
+			eventEnd
+			eventPrize
+			deletedAt
+		}
 	}
 `;
