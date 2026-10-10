@@ -1,4 +1,5 @@
-#pc-wrap {
+#pc-wrap,
+#mobile-wrap {
   .about-page {
     position: relative;
     padding: 120px 0px 60px;
@@ -14,7 +15,7 @@
         .left {
           width: 40%;
           strong {
-            color: #181A20;
+            color: #ffffff;
             font-family: $font;
             font-size: 30px;
             font-style: normal;
@@ -29,7 +30,7 @@
           display: flex;
           flex-direction: column;
           p {
-            color: #181A20;
+            color: #ffffff;
             font-family: $font;
             font-size: 14px;
             font-style: normal;
@@ -53,7 +54,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #F6F6F6;
+                background: #15182b;
                 img {
                   width: 36px;
                   height: 36px;
@@ -61,7 +62,7 @@
               }
               span {
                 margin: 20px 0px 10px;
-                color:  #181A20;
+                color:  #ffffff;
                 font-family: $font;
                 font-size: 20px;
                 font-style: normal;
@@ -69,7 +70,7 @@
                 line-height: normal;
               }
               p {
-                color:  #181A20;
+                color:  #ffffff;
                 font-family: $font;
                 font-size: 14px;
                 font-style: normal;
@@ -106,7 +107,7 @@
             flex-direction: column;
             align-items: center;
             strong {
-              color: #181A20;
+              color: #ffffff;
               font-family: $font;
               font-size: 42px;
               font-style: normal;
@@ -115,7 +116,7 @@
             }
             p {
               margin-top: 4px;
-              color:  #181A20;
+              color:  #ffffff;
               font-family: $font;
               font-size: 14px;
               font-style: normal;
@@ -134,7 +135,7 @@
       .container {
         flex-direction: column;
         .title {
-          color: #181A20;
+          color: #ffffff;
           text-align: center;
           font-family: $font;
           font-size: 30px;
@@ -145,7 +146,7 @@
           text-transform: capitalize;
         }
         .desc {
-          color: #181A20;
+          color: #ffffff;
           text-align: center;
           font-family: $font;
           font-size: 14px;
@@ -170,7 +171,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 24px;
-      background: #FEF4F3;
+      background: #15182b;
       .about-banner {
         position: absolute;
         right: 0%;
@@ -182,7 +183,7 @@
         flex-direction: column;
         strong {
           width: 445px;
-          color:  #181A20;
+          color:  #ffffff;
           font-family: $font;
           font-size: 30px;
           font-style: normal;
@@ -203,14 +204,14 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: #FDEAE8;
+            background: #15182b;
           }
           .text-box {
             margin-left: 24px;
             display: flex;
             flex-direction: column;
             span {
-              color:  #181A20;
+              color:  #ffffff;
               font-family: $font;
               font-size: 15px;
               font-style: normal;
@@ -220,7 +221,7 @@
             p {
               width: 445px;
               margin-top: 5px;
-              color: #181A20;
+              color: #ffffff;
               font-family: $font;
               font-size: 14px;
               font-style: normal;
@@ -239,7 +240,7 @@
           align-items: center;
           border-radius: 12px;
           box-sizing: border-box;
-          background: #181A20;
+          background: #090d19;
           justify-content: center;
           color: #FFFFFF;
           font-family: $font;
@@ -265,7 +266,7 @@
       .container {
         flex-direction: column;
         span {
-          color:#181A20;
+          color:#ffffff;
           text-align: center;
           font-family: $font;
           font-size: 15px;
@@ -291,12 +292,12 @@
         flex-direction: row;
         justify-content: space-between;
         border-radius: 12px;
-        background:  #F6F6F6;
+        background:  #15182b;
         .left {
           display: flex;
           flex-direction: column;
           strong {
-            color: #181A20;
+            color: #ffffff;
             font-family: $font;
             font-size: 30px;
             font-style: normal;
@@ -307,7 +308,7 @@
           }
           p {
             margin-top: 10px;
-            color:  #181A20;
+            color:  #ffffff;
             font-family: $font;
             font-size: 15px;
             font-style: normal;
@@ -337,7 +338,7 @@
               height: 16px;
             }
             &.white {
-              color: #181A20;
+              color: #ffffff;
               border: 1px solid  #181A20;
               img {
                 margin-left: 10px;
@@ -346,7 +347,7 @@
             &.black {
               margin-left: 30px;
               color: #FFFFFF;
-              background:  #181A20;
+              background:  #090d19;
               img {
                 margin-right: 10px;
                 filter: brightness(0) invert(1);
@@ -354,6 +355,138 @@
             }
           }
         }
+      }
+    }
+  }
+}
+
+#pc-wrap,
+#mobile-wrap {
+  .about-page {
+    padding: 48px 0 64px;
+    .intro .container {
+      gap: 48px;
+      .left strong {
+        font-size: clamp(32px, 4vw, 52px);
+        font-weight: 800;
+        letter-spacing: -1px;
+      }
+      .right .boxes {
+        margin-top: 32px;
+        gap: 24px;
+        .box {
+          margin: 0;
+          padding: 20px;
+          width: 50%;
+          background: #15182b;
+          border-radius: 20px;
+        }
+      }
+    }
+    .statistics,
+    .shops,
+    .options,
+    .partners,
+    .help {
+      margin-top: 64px;
+    }
+    .statistics .container {
+      .banner {
+        height: 440px;
+        img {
+          height: 100%;
+          object-fit: cover;
+          border-radius: 24px;
+        }
+      }
+      .info {
+        margin-top: 40px;
+        gap: 24px;
+        flex-wrap: wrap;
+        strong {
+          color: #9747ff;
+        }
+      }
+    }
+    .options {
+      height: auto;
+      padding: 48px 0;
+      background: #15182b;
+      .about-banner {
+        position: static;
+        width: 45%;
+        height: 480px;
+        object-fit: cover;
+        border-radius: 24px;
+      }
+      .container {
+        width: 45%;
+        margin: 0;
+        padding: 0 32px;
+        gap: 24px;
+        strong {
+          width: 100%;
+          font-weight: 800;
+        }
+        .btn {
+          background: #9747ff;
+          border-radius: 28px;
+        }
+      }
+    }
+    .partners .container .wrap {
+      margin-top: 32px;
+      flex-wrap: wrap;
+      gap: 24px;
+    }
+    .help .container {
+      padding: 40px;
+      gap: 32px;
+      border-radius: 24px;
+      background: #15182b;
+      .right {
+        flex-wrap: wrap;
+        gap: 12px;
+        div.black {
+          margin-left: 0;
+          background: #9747ff;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #pc-wrap,
+  #mobile-wrap {
+    .about-page {
+      .intro .container,
+      .help .container,
+      .options {
+        flex-direction: column;
+      }
+      .intro .container {
+        .left,
+        .right {
+          width: 100%;
+        }
+      }
+      .statistics .container .banner {
+        height: 280px;
+      }
+      .options {
+        gap: 32px;
+        .about-banner {
+          width: calc(100% - 32px);
+          height: 280px;
+        }
+        .container {
+          width: 100%;
+          padding: 0 24px;
+        }
+      }
+      .help .container {
+        padding: 24px;
       }
     }
   }
