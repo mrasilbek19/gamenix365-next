@@ -53,7 +53,7 @@ const Participants = ({ event }: { event: GamingEvent }) => {
 
 	if (!allowed) return null;
 	return (
-		<Stack spacing={2}>
+		<Stack className={'event-participants'} spacing={2}>
 			<Typography variant="h5">Participants</Typography>
 			<TextField
 				select

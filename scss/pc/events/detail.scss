@@ -1,0 +1,42 @@
+.public-layout #main .event-detail {
+	padding: 48px 24px;
+	color: #ffffff;
+
+	> h4 {
+		font-size: clamp(28px, 3vw, 40px);
+		font-weight: 800;
+	}
+
+	> img {
+		padding: 16px;
+		border: 1px solid #292c46;
+		border-radius: 20px;
+		background: #15182b;
+	}
+
+	> p {
+		line-height: 1.7;
+		color: #a5a8bd;
+	}
+
+	.event-participants {
+		padding: 24px;
+		border: 1px solid #292c46;
+		border-radius: 20px;
+		background: #101426;
+
+		.MuiTableHead-root {
+			background: #15182b;
+		}
+	}
+}
+
+@media (max-width: 700px) {
+	.public-layout #main .event-detail {
+		padding: 32px 16px;
+
+		.event-participants {
+			padding: 16px;
+		}
+	}
+}

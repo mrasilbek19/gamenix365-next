@@ -27,7 +27,7 @@ function EventDetail() {
 	if (error) return <Alert severity="error">{error.message}</Alert>;
 	if (!event) return <Alert severity="info">Event unavailable.</Alert>;
 	const closed = !!event.deletedAt || event.eventStatus === 'FINISHED' || new Date(event.eventStart).getTime() <= Date.now();
-	return <Stack spacing={2} sx={{ p: { xs: 2, md: 4 }, maxWidth: 1000, mx: 'auto', width: '100%' }}>
+	return <Stack className={'event-detail'} spacing={2} sx={{ p: { xs: 2, md: 4 }, maxWidth: 1000, mx: 'auto', width: '100%' }}>
 		<Typography variant="h4">{event.eventTitle}</Typography><img src={imageUrl(event.eventImage)} alt={event.eventTitle} style={{ maxHeight: 360, width: '100%', objectFit: 'contain' }} />
 		<Typography>{event.eventDesc}</Typography><Typography>{event.eventType} · {event.eventGame} · {event.eventStatus}</Typography>
 		<Typography>Scheduled: {new Date(event.eventDate).toLocaleString()}</Typography><Typography>Starts: {new Date(event.eventStart).toLocaleString()} · Ends: {new Date(event.eventEnd).toLocaleString()}</Typography>
