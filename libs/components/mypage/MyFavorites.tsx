@@ -60,50 +60,46 @@ const MyFavorites: NextPage = () => {
 		}
 	};
 
-	if (device === 'mobile') {
-		return <div>NESTAR MY FAVORITES MOBILE</div>;
-	} else {
-		return (
-			<div id="my-favorites-page">
-				<Stack className="main-title-box">
-					<Stack className="right-box">
-						<Typography className="main-title">My Favorites</Typography>
-						<Typography className="sub-title">We are glad to see you again!</Typography>
-					</Stack>
+	return (
+		<div id="my-favorites-page">
+			<Stack className="main-title-box">
+				<Stack className="right-box">
+					<Typography className="main-title">My Favorites</Typography>
+					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
-				<Stack className="favorites-list-box">
-					{myFavorites?.length ? (
-						myFavorites?.map((product: Product) => {
-							return <ProductCard key={product._id} product={product} likeProductHandler={likeProductHandler} myFavorites={true} />;
-						})
-					) : (
-						<div className={'no-data'}>
-							<img src="/img/icons/icoAlert.svg" alt="" />
-							<p>No Favorites found!</p>
-						</div>
-					)}
-				</Stack>
+			</Stack>
+			<Stack className="favorites-list-box">
 				{myFavorites?.length ? (
-					<Stack className="pagination-config">
-						<Stack className="pagination-box">
-							<Pagination
-								count={Math.ceil(total / searchFavorites.limit)}
-								page={searchFavorites.page}
-								shape="circular"
-								color="primary"
-								onChange={paginationHandler}
-							/>
-						</Stack>
-						<Stack className="total-result">
-							<Typography>
-								Total {total} favorite product{total > 1 ? 's' : ''}
-							</Typography>
-						</Stack>
+					myFavorites?.map((product: Product) => {
+						return <ProductCard key={product._id} product={product} likeProductHandler={likeProductHandler} myFavorites={true} />;
+					})
+				) : (
+					<div className={'no-data'}>
+						<img src="/img/icons/icoAlert.svg" alt="" />
+						<p>No Favorites found!</p>
+					</div>
+				)}
+			</Stack>
+			{myFavorites?.length ? (
+				<Stack className="pagination-config">
+					<Stack className="pagination-box">
+						<Pagination
+							count={Math.ceil(total / searchFavorites.limit)}
+							page={searchFavorites.page}
+							shape="circular"
+							color="primary"
+							onChange={paginationHandler}
+						/>
 					</Stack>
-				) : null}
-			</div>
-		);
-	}
+					<Stack className="total-result">
+						<Typography>
+							Total {total} favorite product{total > 1 ? 's' : ''}
+						</Typography>
+					</Stack>
+				</Stack>
+			) : null}
+		</div>
+	);
 };
 
 export default MyFavorites;
