@@ -1,0 +1,29 @@
+#pc-wrap.admin #bunker .admin-users-page {
+	.tit {
+		font-size: clamp(28px, 3vw, 40px);
+		font-weight: 800;
+	}
+
+	.table-wrap {
+		overflow: hidden;
+		border: 1px solid #292c46;
+		border-radius: 20px;
+		background: #101426;
+	}
+
+	.search-area {
+		padding: 20px;
+		border-radius: 14px;
+		background: #15182b;
+		gap: 16px;
+		flex-wrap: wrap;
+	}
+
+	.MuiTableHead-root .MuiTableCell-root {
+		color: #ffffff;
+	}
+
+	.MuiTableRow-root:hover {
+		background: rgba(151, 71, 255, 0.05);
+	}
+}
