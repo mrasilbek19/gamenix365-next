@@ -1,0 +1,31 @@
+#pc-wrap,
+#mobile-wrap {
+	.cs-page .container .cs-content .faq-content .wrap {
+		.question {
+			min-width: 0;
+
+			.MuiAccordionSummary-content {
+				min-width: 0;
+			}
+
+			.badge {
+				flex-shrink: 0;
+			}
+			padding-right: 16px;
+			overflow-wrap: anywhere;
+		}
+
+		.answer {
+			margin-left: 0;
+			white-space: normal;
+			align-items: flex-start;
+			gap: 16px;
+			overflow-wrap: anywhere;
+
+			.badge {
+				flex-shrink: 0;
+				margin: 0;
+			}
+		}
+	}
+}
