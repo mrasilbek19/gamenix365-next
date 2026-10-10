@@ -1,4 +1,5 @@
-#pc-wrap {
+#pc-wrap,
+#mobile-wrap {
   .join-page {
     position: relative;
     padding: 90px 0px;
@@ -12,7 +13,7 @@
        display: flex;
        flex-direction: row;
        border-radius: 12px 0px 0px 12px;
-       background: #FFF;
+       background: #15182b;
        box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
        .left {
          width: 50%;
@@ -37,7 +38,7 @@
              font-weight: 600;
              line-height: normal;
              letter-spacing: 0.44px;
-             color:#181A20;
+             color:#ffffff;
            }
          }
          .info {
@@ -52,7 +53,7 @@
              font-weight: 600;
              line-height: normal;
              text-transform: uppercase;
-             color:  #181A20;
+             color:  #ffffff;
            }
            p {
              margin-top: 5px;
@@ -61,7 +62,7 @@
              font-style: normal;
              font-weight: 400;
              line-height: 26px;
-             color: #181A20;
+             color: #ffffff;
 
            }
          }
@@ -85,21 +86,21 @@
               font-style: normal;
               font-weight: 600;
               line-height: normal;
-              color:  #181A20;
+              color:  #ffffff;
             }
             input {
               padding: 0px 15px;
               width: 100%;
               height: 55px;
               border-radius: 8px;
-              border: 1px solid #DDD;
-              background:  #FFF;
+              border: 1px solid #292c46;
+              background:  #15182b;
               font-family: $font;
               font-size: 14px;
               font-style: normal;
               font-weight: 400;
               line-height: 26px;
-              color: #717171;
+              color: #a5a8bd;
             }
           }
          }
@@ -119,7 +120,7 @@
                font-style: normal;
                font-weight: 600;
                line-height: normal;
-               color:  #181A20;
+               color:  #ffffff;
              }
              div {
                margin-left: 20px;
@@ -143,7 +144,7 @@
                font-weight: 400;
                line-height: 26px;
                cursor: pointer;
-               color:  #181A20;
+               color:  #ffffff;
              }
            }
            button {
@@ -151,7 +152,7 @@
              width: 100%;
              height: 55px;
              border-radius: 12px;
-             background:  #EB6753;
+             background:  #9747ff;
              font-family: $font;
              font-size: 15px;
              font-style: normal;
@@ -171,7 +172,7 @@
              font-style: normal;
              line-height: normal;
              font-weight: 400;
-             color:  #181A20;
+             color:  #ffffff;
              b {
                margin-left: 10px;
                font-weight: 600;
@@ -190,5 +191,75 @@
        }
      }
    }
+  }
+}
+
+#pc-wrap,
+#mobile-wrap {
+  .join-page {
+    padding: 48px 0 64px;
+    .container .main {
+      width: 100%;
+      max-width: 1080px;
+      height: auto;
+      min-height: 680px;
+      border-radius: 24px;
+      background: #15182b;
+      box-shadow: none;
+      overflow: hidden;
+      .left {
+        padding: 48px;
+        .input-wrap,
+        .register {
+          margin-top: 32px;
+        }
+        .register button {
+          border-radius: 28px;
+        }
+        .ask-info {
+          margin-top: 24px;
+          p {
+            font-size: 14px;
+            b {
+              font-size: 14px;
+              color: #9747ff;
+            }
+          }
+        }
+        .logo span {
+          margin-left: 0;
+          font-weight: 800;
+          letter-spacing: -1px;
+        }
+        .input-wrap,
+        .register {
+          width: 100%;
+        }
+      }
+      .right {
+        width: 50%;
+        height: auto;
+        background: #121019 url('https://images.unsplash.com/photo-1593305841991-05c297ba4575?auto=format&fit=crop&w=1000&q=85') center / cover;
+      }
+    }
+  }
+}
+
+@media (max-width: 800px) {
+  #pc-wrap,
+  #mobile-wrap {
+    .join-page .container .main {
+      min-height: 0;
+      .left {
+        width: 100%;
+        padding: 32px 24px;
+        .register .type-option {
+          flex-wrap: wrap;
+        }
+      }
+      .right {
+        display: none;
+      }
+    }
   }
 }
