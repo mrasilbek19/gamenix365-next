@@ -12,7 +12,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #181a20;
+					color: #ffffff;
 					font-family: $font;
 					font-size: 34px;
 					font-style: normal;
@@ -25,7 +25,7 @@
 					}
 				}
 				p {
-					color: #181a20;
+					color: #ffffff;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -45,7 +45,7 @@
 					flex-direction: row;
 					align-items: center;
 					.swiper-pagination-bullet.swiper-pagination-bullet-active {
-						background: #000000;
+						background: #090d19;
 					}
 					.swiper-trend-next {
 						margin-left: 20px;
@@ -70,7 +70,7 @@
 					cursor: pointer;
 					align-items: center;
 					span {
-						color: #181a20;
+						color: #ffffff;
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -102,8 +102,8 @@
 						}
 						&.active {
 							border: 1px solid #181a20;
-							background: #fff;
-							color: #181a20;
+							background: #15182b;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -122,7 +122,7 @@
 			height: 722px;
 			display: flex;
 			flex-direction: row;
-			background: #f6f6f6;
+			background: #15182b;
 			.container {
 				position: relative;
 				flex-direction: column;
@@ -141,7 +141,7 @@
 						align-items: center;
 						justify-content: center;
 						border-radius: 50%;
-						background: #ffffff;
+						background: #15182b;
 						filter: drop-shadow(0px 10px 35px rgba(5, 16, 54, 0.1));
 						cursor: pointer;
 						svg {
@@ -182,7 +182,7 @@
 							}
 							strong {
 								margin-top: 20px;
-								color: #181a20;
+								color: #ffffff;
 								text-align: center;
 								font-family: $font;
 								font-size: 15px;
@@ -193,7 +193,7 @@
 								cursor: pointer;
 							}
 							span {
-								color: #181a20;
+								color: #ffffff;
 								text-align: center;
 								font-family: $font;
 								font-size: 15px;
@@ -213,7 +213,7 @@
 			height: 810px;
 			display: flex;
 			flex-direction: row;
-			background: #181a20;
+			background: #090d19;
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -279,7 +279,7 @@
 							span {
 								padding: 0px 5px;
 								border-radius: 5px;
-								background: #fffdfdc4;
+								background: #15182b;
 								color: #9c67f6;
 								font-family: $font;
 								font-size: 16px;
@@ -328,7 +328,7 @@
 							font-weight: 500;
 							font-size: 16px;
 							line-height: 36px;
-							color: #616161;
+							color: #a5a8bd;
 							cursor: pointer;
 						}
 						img {
@@ -373,7 +373,7 @@
 										font-size: 19px;
 										line-height: 36px;
 										letter-spacing: -0.015em;
-										color: #bdbdbd;
+										color: #a5a8bd;
 									}
 								}
 								strong {
@@ -384,7 +384,7 @@
 									font-size: 18px;
 									line-height: 36px;
 									letter-spacing: 0.105em;
-									color: #000000;
+									color: #ffffff;
 								}
 								span {
 									font-family: $font;
@@ -424,7 +424,7 @@
 									font-weight: 500;
 									font-size: 13px;
 									letter-spacing: 0.105em;
-									color: #212121;
+									color: #ffffff;
 								}
 								span {
 									font-family: $font;
@@ -433,7 +433,7 @@
 									font-size: 13px;
 									line-height: 36px;
 									letter-spacing: 0.105em;
-									color: #bdbdbd;
+									color: #a5a8bd;
 								}
 							}
 						}
@@ -445,14 +445,14 @@
 }
 
 #pc-wrap .home-page {
-	background: #fff;
+	background: #15182b;
 
 	> .trend-products,
 	> .popular-products,
 	> .top-products {
 		padding: 64px 0 24px;
 		height: auto;
-		background: #fff;
+		background: #15182b;
 
 		> .container {
 			width: calc(100% - 120px);
@@ -469,7 +469,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #111;
+					color: #ffffff;
 					font-size: clamp(30px, 3.3vw, 48px);
 					font-weight: 800;
 					line-height: 1.15;
@@ -478,7 +478,7 @@
 
 				.section-label {
 					margin-bottom: 14px;
-					color: #8b3dff;
+					color: #9747ff;
 					font-size: 11px;
 					font-weight: 700;
 					letter-spacing: 2px;
@@ -498,7 +498,7 @@
 
 			.view-all,
 			.more-box span {
-				color: #18181b;
+				color: #ffffff;
 				font-size: 14px;
 				font-weight: 700;
 			}
@@ -533,7 +533,7 @@
 				min-height: 480px;
 				border-radius: 22px;
 				overflow: hidden;
-				background: #f5f5f7;
+				background: #15182b;
 				box-shadow: none;
 				transition: transform 0.2s ease;
 
@@ -548,7 +548,7 @@
 					height: 280px;
 					flex-shrink: 0;
 					border-radius: 0;
-					background-color: #f5f5f7;
+					background-color: #15182b;
 					background-size: contain;
 					background-position: center;
 					background-repeat: no-repeat;
@@ -563,10 +563,10 @@
 						left: 16px;
 						border-radius: 30px;
 						background: #eae0fb;
-						color: #8b3dff;
+						color: #9747ff;
 
 						span {
-							color: #8b3dff;
+							color: #9747ff;
 						}
 					}
 				}
@@ -578,13 +578,13 @@
 					padding: 24px;
 					border: 0;
 					border-radius: 0;
-					background: #f5f5f7;
+					background: #15182b;
 					box-shadow: none;
 
 					.title {
 						cursor: pointer;
 						order: -2;
-						color: #111;
+						color: #ffffff;
 						font-size: 23px;
 						font-weight: 800;
 						line-height: 1.25;
@@ -594,7 +594,7 @@
 
 					.product-price {
 						margin-top: 20px;
-						color: #111;
+						color: #ffffff;
 						font-size: 21px;
 						font-weight: 800;
 					}
@@ -661,7 +661,7 @@
 	.top-shops,
 	.events,
 	.community-board {
-		background: #fff;
+		background: #15182b;
 
 		.container {
 			width: calc(100% - 120px);
@@ -719,6 +719,141 @@
 		.events .container,
 		.community-board .container {
 			width: calc(100% - 32px);
+		}
+	}
+}
+
+#pc-wrap.home-layout,
+#mobile-wrap.home-layout {
+	.header-main {
+		background: radial-gradient(ellipse at 80% 0%, rgba(113, 56, 255, 0.13), transparent 65%), #080b16;
+		.hero-banner {
+			border: 1px solid #292c46;
+			.hero-content {
+				h1 span {
+					background: linear-gradient(90deg, #b588ff 0%, #29b6f6 100%);
+					background-clip: text;
+					-webkit-text-fill-color: transparent;
+				}
+				.hero-button {
+					background: linear-gradient(90deg, #7138ff 0%, #29b6f6 100%);
+				}
+			}
+		}
+		> .container .search-box {
+			border: 1px solid #292c46;
+			background: #101426;
+			.search-box-other {
+				.advanced-filter img {
+					filter: brightness(0) invert(1);
+				}
+				.search-btn {
+					background: linear-gradient(90deg, #7138ff 0%, #29b6f6 100%);
+				}
+			}
+		}
+	}
+}
+
+#pc-wrap .home-page {
+	background: #080b16;
+	> .trend-products,
+	> .popular-products,
+	> .top-products {
+		background: transparent;
+		.card-box {
+			.trend-card-box,
+			.popular-card-box,
+			.top-card-box {
+				min-height: 400px;
+				.card-img {
+					height: 220px;
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: 1440px) {
+	#pc-wrap .home-page {
+		.trend-products,
+		.top-products {
+			.card-box .swiper-slide {
+				width: calc((100% - 60px) / 5);
+			}
+		}
+		.popular-products .card-box .swiper-slide {
+			width: calc((100% - 100px) / 5);
+		}
+	}
+}
+
+#pc-wrap.home-layout,
+#mobile-wrap.home-layout {
+	.header-main > .container .search-input-box {
+		flex: 1;
+		min-width: 0;
+		display: flex;
+		align-items: center;
+		gap: 12px;
+		padding: 0 20px;
+		img {
+			width: 20px;
+			filter: brightness(0) invert(1);
+		}
+		input {
+			width: 100%;
+			padding: 12px 0;
+			background: transparent;
+			border: 0;
+			color: #fff;
+			font: inherit;
+		}
+	}
+}
+
+.filter-modal-shell {
+	width: calc(100% - 32px);
+	max-width: 662px;
+	max-height: calc(100vh - 48px);
+	overflow-y: auto;
+	border: 1px solid #292c46;
+	color: #fff;
+	.advanced-filter-modal {
+		width: 100%;
+		padding: 32px 24px;
+		gap: 16px;
+		.top,
+		.middle,
+		.bottom {
+			width: 100%;
+		}
+		.top span,
+		.middle .row-box .box span,
+		.bottom div span {
+			color: #fff;
+		}
+		.close {
+			background: #15182b;
+		}
+		.middle .row-box .box .inside {
+			flex-wrap: wrap;
+			gap: 16px;
+			input {
+				width: calc(50% - 8px);
+				min-width: 0;
+				background: #15182b;
+				color: #fff;
+				border-color: #292c46;
+			}
+		}
+		.bottom {
+			flex-wrap: wrap;
+			gap: 16px;
+			.search-btn {
+				background: linear-gradient(90deg, #7138ff 0%, #29b6f6 100%);
+				color: #fff;
+			}
 		}
 	}
 }

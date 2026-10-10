@@ -43,7 +43,10 @@ const withLayoutMain = (Component: any) => {
 						<Stack className={'hero-banner'}>
 							<Stack className={'hero-content'}>
 								<span className={'hero-label'}>YOUR NEXT LEVEL STARTS HERE</span>
-								<h1>Level up your<br />gaming setup.</h1>
+								<h1>
+									Level up your<br />
+									<span>gaming setup.</span>
+								</h1>
 								<p>Discover gaming equipment from trusted shops.</p>
 								<Link href={'/product'} className={'hero-button'}>
 									Explore Products <ArrowForwardIcon />
@@ -55,11 +58,9 @@ const withLayoutMain = (Component: any) => {
 								alt="Gaming setup with a monitor and controllers in purple lighting"
 							/>
 						</Stack>
-						{device !== 'mobile' && (
-							<Stack className={'container'}>
-								<HeaderFilter />
-							</Stack>
-						)}
+						<Stack className={'container'}>
+							<HeaderFilter />
+						</Stack>
 					</Stack>
 
 					<Stack id={'main'}>

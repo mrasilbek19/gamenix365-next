@@ -12,8 +12,8 @@ const style = {
 	top: '50%',
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
-	width: 'auto',
-	backgroundColor: '#fff',
+	width: 'min(662px, calc(100vw - 32px))',
+	backgroundColor: '#101426',
 	borderRadius: '12px',
 	outline: 'none',
 	boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',
@@ -57,6 +57,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						<ExpandMoreIcon />
 					</div>
 				</Stack>
+				<div className={'search-input-box'}>
+					<img src="/img/icons/search.svg" alt="" />
+					<input type="text" value={searchFilter.search.text ?? ''} placeholder="What are you looking for?"
+						onChange={e => setSearchFilter({ ...searchFilter, search: { ...searchFilter.search, text: e.target.value } })} />
+				</div>
 				<Stack className={'search-box-other'}>
 					<div className={'advanced-filter'} onClick={() => { setOpenType(false); setOpenAdvancedFilter(true); }}>
 						<img src="/img/icons/tune.svg" alt="" />
@@ -73,16 +78,11 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 				</div>
 			</Stack>
 			<Modal open={openAdvancedFilter} onClose={() => setOpenAdvancedFilter(false)}>
-				<div style={style}>
+				<div className={'filter-modal-shell'} style={style}>
 					<div className={'advanced-filter-modal'}>
 						<div className={'close'} onClick={() => setOpenAdvancedFilter(false)}><CloseIcon /></div>
 						<div className={'top'}>
 							<span>Find your equipment</span>
-							<div className={'search-input-box'}>
-								<img src="/img/icons/search.svg" alt="" />
-								<input type="text" value={searchFilter.search.text ?? ''} placeholder="What are you looking for?"
-									onChange={e => setSearchFilter({ ...searchFilter, search: { ...searchFilter.search, text: e.target.value } })} />
-							</div>
 						</div>
 						<Divider sx={{ mt: '30px', mb: '35px' }} />
 						<div className={'middle'}>
