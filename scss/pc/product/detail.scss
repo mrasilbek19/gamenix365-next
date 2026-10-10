@@ -1,7 +1,8 @@
-#pc-wrap {
+#pc-wrap,
+#mobile-wrap {
 	#product-detail-page {
 		position: relative;
-		background: #fff;
+		background: #080b16;
 		padding-top: 87px;
 		padding-bottom: 200px;
 		.product-detail-config {
@@ -22,7 +23,7 @@
 						width: 50%;
 						height: auto;
 						.title-main {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 30px;
 							font-style: normal;
@@ -39,7 +40,7 @@
 							gap: 10px;
 							margin-bottom: 17px;
 							.city {
-								color: #717171;
+								color: #a5a8bd;
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -56,7 +57,7 @@
 								align-items: center;
 								gap: 7px;
 								.buy-rent {
-									color: #eb6753;
+									color: #9747ff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -65,7 +66,7 @@
 								}
 							}
 							.date {
-								color: #181a20;
+								color: #ffffff;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -84,7 +85,7 @@
 								flex-direction: row;
 								gap: 8px;
 								p {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -106,7 +107,7 @@
 							gap: 11px;
 							margin: 0 10px 27px 0;
 							p {
-								color: #181a20;
+								color: #ffffff;
 								text-align: right;
 								font-family: $font;
 								font-size: 18px;
@@ -132,7 +133,7 @@
 							cursor: pointer;
 						}
 						p {
-							color: #181a20;
+							color: #ffffff;
 							text-align: right;
 							font-family: $font;
 							font-size: 26px;
@@ -143,7 +144,7 @@
 							text-transform: capitalize;
 						}
 						span {
-							color: #181a20;
+							color: #ffffff;
 							text-align: right;
 							font-family: $font;
 							font-size: 15px;
@@ -213,7 +214,7 @@
 								align-items: center;
 								justify-content: center;
 								border-radius: 12px;
-								border: 1px solid #ddd;
+								border: 1px solid #292c46;
 								img {
 									width: 35px;
 									height: auto;
@@ -223,7 +224,7 @@
 								width: auto;
 								height: auto;
 								.title {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -231,7 +232,7 @@
 									line-height: normal;
 								}
 								.option-data {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -247,13 +248,13 @@
 						gap: 50px;
 						padding: 29px 38px 50px 38px;
 						border-radius: 12px;
-						border: 1px solid #c4c4c4;
+						border: 1px solid #292c46;
 						.top {
 							width: 100%;
 							height: auto;
 							gap: 30px;
 							.title {
-								color: #181a20;
+								color: #ffffff;
 								font-family: $font;
 								font-size: 17px;
 								font-style: normal;
@@ -261,7 +262,7 @@
 								line-height: normal;
 							}
 							.desc {
-								color: #181a20;
+								color: #ffffff;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -275,7 +276,7 @@
 							height: auto;
 							gap: 30px;
 							.title {
-								color: #181a20;
+								color: #ffffff;
 								font-family: $font;
 								font-size: 17px;
 								font-style: normal;
@@ -286,7 +287,8 @@
 								width: 100%;
 								height: auto;
 								flex-direction: row;
-								gap: 230px;
+								gap: 32px;
+								flex-wrap: wrap;
 								.left,
 								.right {
 									.info {
@@ -297,7 +299,7 @@
 										gap: 38px;
 										.title {
 											width: 121px;
-											color: #181a20;
+											color: #ffffff;
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
@@ -306,7 +308,7 @@
 										}
 										.data {
 											width: 88px;
-											color: #181a20;
+											color: #ffffff;
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
@@ -324,9 +326,9 @@
 						gap: 30px;
 						padding: 30px 38px;
 						border-radius: 12px;
-						border: 1px solid #c4c4c4;
+						border: 1px solid #292c46;
 						.title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -336,7 +338,7 @@
 						.image-box {
 							width: 100%;
 							height: 510px;
-							border: 1px solid #c4c4c4;
+							border: 1px solid #292c46;
 							img {
 								width: 100%;
 								height: 100%;
@@ -350,9 +352,9 @@
 						gap: 30px;
 						padding: 30px 38px;
 						border-radius: 12px;
-						border: 1px solid #c4c4c4;
+						border: 1px solid #292c46;
 						.title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -372,7 +374,7 @@
 						height: auto;
 						padding: 30px 38px 45px 38px;
 						border-radius: 12px;
-						border: 1px solid #c4c4c4;
+						border: 1px solid #292c46;
 						.filter-box {
 							width: 100%;
 							height: auto;
@@ -387,7 +389,7 @@
 								gap: 12px;
 								.reviews {
 									width: 153.6px;
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 17px;
 									font-style: normal;
@@ -401,7 +403,7 @@
 								flex-direction: row;
 								gap: 10px;
 								.sort-title {
-									color: #717171;
+									color: #a5a8bd;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -412,7 +414,7 @@
 									width: 140px;
 									border: none;
 									outline: none;
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -429,7 +431,7 @@
 								width: 100%;
 								height: auto;
 								padding-bottom: 10px;
-								border-bottom: 1px solid #c4c4c4;
+								border-bottom: 1px solid #292c46;
 								.review-mb-info {
 									width: 100%;
 									height: auto;
@@ -446,13 +448,13 @@
 											align-items: center;
 											justify-content: center;
 											border-radius: 50%;
-											background: #f6f6f6;
+											background: #15182b;
 											border: 1px solid #b9b9b9;
 											object-fit: cover;
 										}
 										.name {
 											width: 100%;
-											color: #181a20;
+											color: #ffffff;
 											font-family: $font;
 											font-size: 15px;
 											font-style: normal;
@@ -462,7 +464,7 @@
 										}
 										.date {
 											width: 100%;
-											color: #181a20;
+											color: #ffffff;
 											font-family: $font;
 											font-size: 13px;
 											font-style: normal;
@@ -479,7 +481,7 @@
 									height: auto;
 									margin-top: 15px;
 									.description {
-										color: #181a20;
+										color: #ffffff;
 										font-family: $font;
 										font-size: 14px;
 										font-style: normal;
@@ -499,12 +501,12 @@
 					}
 					.leave-review-config {
 						border-radius: 12px;
-						border: 1px solid #c4c4c4;
-						background: #fff;
+						border: 1px solid #292c46;
+						background: #15182b;
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 						padding: 30px 38px;
 						.main-title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -513,7 +515,7 @@
 						}
 						.review-title {
 							margin-top: 20px;
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -526,8 +528,8 @@
 							margin-top: 8px;
 							padding: 20px;
 							border-radius: 8px;
-							border: 1px solid #ddd;
-							color: #717171;
+							border: 1px solid #292c46;
+							color: #a5a8bd;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -539,7 +541,7 @@
 							display: flex;
 							justify-content: flex-end;
 							button:disabled {
-								background: #dfdfdf;
+								background: #292c46;
 							}
 							.submit-review {
 								display: flex;
@@ -550,10 +552,10 @@
 								align-items: center;
 								gap: 10px;
 								border-radius: 12px;
-								border: 1px solid #c4c4c4;
+								border: 1px solid #292c46;
 								cursor: pointer;
 								.title {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -571,14 +573,14 @@
 					gap: 20px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #fff;
+					background: #15182b;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.info-box {
 						position: relative;
 						width: 100%;
 						gap: 8px;
 						.main-title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -599,7 +601,7 @@
 							.name-phone-listings {
 								gap: 5px;
 								.name {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -612,7 +614,7 @@
 									align-items: center;
 									gap: 10px;
 									.number {
-										color: #181a20;
+										color: #ffffff;
 										font-family: $font;
 										font-size: 15px;
 										font-style: normal;
@@ -621,7 +623,7 @@
 									}
 								}
 								.listings {
-									color: #181a20;
+									color: #ffffff;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -632,7 +634,7 @@
 							}
 						}
 						.sub-title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -644,11 +646,11 @@
 							height: 55px;
 							padding: 15px;
 							border-radius: 8px;
-							border: 1px solid #ddd;
-							background: #fff;
+							border: 1px solid #292c46;
+							background: #15182b;
 							outline: none;
 							&::placeholder {
-								color: #717171;
+								color: #a5a8bd;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -656,7 +658,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #292c46;
 							}
 						}
 						textarea {
@@ -664,14 +666,14 @@
 							height: 120px;
 							padding: 20px;
 							border-radius: 8px;
-							border: 1px solid #ddd;
+							border: 1px solid #292c46;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
 							font-weight: 400;
 							line-height: 26px;
 							&::placeholder {
-								color: #717171;
+								color: #a5a8bd;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -679,7 +681,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid black;
+								border: 1px solid #292c46;
 							}
 						}
 						.send-message {
@@ -690,7 +692,7 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #eb6753;
+							background: #9747ff;
 							.title {
 								color: #fff;
 								font-family: $font;
@@ -716,7 +718,7 @@
 					.title-box {
 						width: 30%;
 						.main-title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 30px;
 							font-style: normal;
@@ -726,7 +728,7 @@
 							text-transform: capitalize;
 						}
 						.sub-title {
-							color: #181a20;
+							color: #ffffff;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -749,6 +751,131 @@
 							width: 411px;
 						}
 					}
+				}
+			}
+		}
+	}
+}
+
+#pc-wrap,
+#mobile-wrap {
+	#product-detail-page {
+		padding: 40px 0 64px;
+		.product-detail-config {
+			padding-top: 0;
+			.product-info-config {
+				.info .left-box .title-main {
+					font-size: clamp(28px, 3vw, 44px);
+					font-weight: 800;
+				}
+				.images {
+					gap: 20px;
+					.main-image {
+						width: 100%;
+						background: #15182b;
+						border-radius: 24px;
+						img {
+							object-fit: contain;
+							border-radius: 24px;
+						}
+					}
+					.sub-images {
+						width: 100%;
+						.sub-img-box {
+							width: 100%;
+						}
+					}
+				}
+			}
+			.product-desc-config {
+				gap: 32px;
+				.left-config {
+					flex: 1;
+					min-width: 0;
+				}
+				.right-config {
+					width: 300px;
+					background: #15182b;
+					border-radius: 20px;
+					box-shadow: none;
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	#pc-wrap,
+	#mobile-wrap {
+		#product-detail-page .product-detail-config {
+			.product-info-config {
+				.info {
+					flex-direction: column;
+					gap: 24px;
+					.left-box,
+					.right-box {
+						width: 100%;
+						align-items: flex-start;
+						.top-box,
+						.bottom-box,
+						.buttons {
+							flex-wrap: wrap;
+							gap: 12px;
+						}
+					}
+				}
+				.images {
+					flex-direction: column;
+					.main-image {
+						width: 100%;
+						height: 340px;
+					}
+					.sub-images {
+						width: 100%;
+						flex-direction: row;
+						overflow-x: auto;
+						.sub-img-box {
+							min-width: 100px;
+							height: 100px;
+						}
+					}
+				}
+			}
+			.product-desc-config {
+				flex-direction: column;
+				.left-config,
+				.right-config {
+					width: 100%;
+				}
+				.left-config {
+					.options-config {
+						flex-wrap: wrap;
+						gap: 20px;
+					}
+					.prop-desc-config .bottom {
+						flex-wrap: wrap;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 800px) {
+	#pc-wrap,
+	#mobile-wrap {
+		#product-detail-page .product-detail-config .product-desc-config .left-config {
+			.reviews-config {
+				padding: 24px;
+				.filter-box {
+					flex-wrap: wrap;
+					gap: 16px;
+				}
+			}
+			.leave-review-config {
+				padding: 24px;
+				.submit-btn .submit-review {
+					width: 100%;
 				}
 			}
 		}

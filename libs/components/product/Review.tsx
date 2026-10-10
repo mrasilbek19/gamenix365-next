@@ -27,30 +27,26 @@ const Review = (props: ReviewProps) => {
 		if (id === user?._id) router.push('/mypage');
 		else router.push(`/member?memberId=${id}`);
 	};
-	if (device === 'mobile') {
-		return <div>REVIEW</div>;
-	} else {
-		return (
-			<Stack className={'review-config'}>
-				<Stack className={'review-mb-info'}>
-					<Stack className={'img-name-box'}>
-						<img src={imagePath} alt="" className={'img-box'} />
-						<Stack>
-							<Typography className={'name'} onClick={() => goMemberPage(comment?.memberData?._id as string)}>
-								{comment.memberData?.memberNick}
-							</Typography>
-							<Typography className={'date'}>
-								<Moment format={'DD MMMM, YYYY'}>{comment.createdAt}</Moment>
-							</Typography>
-						</Stack>
+	return (
+		<Stack className={'review-config'}>
+			<Stack className={'review-mb-info'}>
+				<Stack className={'img-name-box'}>
+					<img src={imagePath} alt="" className={'img-box'} />
+					<Stack>
+						<Typography className={'name'} onClick={() => goMemberPage(comment?.memberData?._id as string)}>
+							{comment.memberData?.memberNick}
+						</Typography>
+						<Typography className={'date'}>
+							<Moment format={'DD MMMM, YYYY'}>{comment.createdAt}</Moment>
+						</Typography>
 					</Stack>
 				</Stack>
-				<Stack className={'desc-box'}>
-					<Typography className={'description'}>{comment.commentContent}</Typography>
-				</Stack>
 			</Stack>
-		);
-	}
+			<Stack className={'desc-box'}>
+				<Typography className={'description'}>{comment.commentContent}</Typography>
+			</Stack>
+		</Stack>
+	);
 };
 
 export default Review;
