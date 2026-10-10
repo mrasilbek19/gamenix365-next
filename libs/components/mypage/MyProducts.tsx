@@ -89,84 +89,80 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 
 	if (user?.memberType !== 'SHOP') return null;
 
-	if (device === 'mobile') {
-		return <div>PRODUCTS MOBILE</div>;
-	} else {
-		return (
-			<div id="my-product-page">
-				<Stack className="main-title-box">
-					<Stack className="right-box">
-						<Typography className="main-title">My Products</Typography>
-						<Typography className="sub-title">We are glad to see you again!</Typography>
-					</Stack>
+	return (
+		<div id="my-product-page">
+			<Stack className="main-title-box">
+				<Stack className="right-box">
+					<Typography className="main-title">My Products</Typography>
+					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
-				<Stack className="product-list-box">
-					<Stack className="tab-name-box">
-						<Typography onClick={() => changeStatusHandler(ProductStatus.PAUSE)} className={searchFilter.search.productStatus === 'PAUSE' ? 'active-tab-name' : 'tab-name'}>
-							Paused
-						</Typography>
-						<Typography
-							onClick={() => changeStatusHandler(ProductStatus.PROCESS)}
-							className={searchFilter.search.productStatus === 'PROCESS' ? 'active-tab-name' : 'tab-name'}
-						>
-							On Sale
-						</Typography>
-						<Typography
-							onClick={() => changeStatusHandler(ProductStatus.FINISHED)}
-							className={searchFilter.search.productStatus === 'FINISHED' ? 'active-tab-name' : 'tab-name'}
-						>
-							On Sold
-						</Typography>
+			</Stack>
+			<Stack className="product-list-box">
+				<Stack className="tab-name-box">
+					<Typography onClick={() => changeStatusHandler(ProductStatus.PAUSE)} className={searchFilter.search.productStatus === 'PAUSE' ? 'active-tab-name' : 'tab-name'}>
+						Paused
+					</Typography>
+					<Typography
+						onClick={() => changeStatusHandler(ProductStatus.PROCESS)}
+						className={searchFilter.search.productStatus === 'PROCESS' ? 'active-tab-name' : 'tab-name'}
+					>
+						On Sale
+					</Typography>
+					<Typography
+						onClick={() => changeStatusHandler(ProductStatus.FINISHED)}
+						className={searchFilter.search.productStatus === 'FINISHED' ? 'active-tab-name' : 'tab-name'}
+					>
+						On Sold
+					</Typography>
+				</Stack>
+				<Stack className="list-box">
+					<Stack className="listing-title-box">
+						<Typography className="title-text">Listing title</Typography>
+						<Typography className="title-text">Date Published</Typography>
+						<Typography className="title-text">Status</Typography>
+						<Typography className="title-text">View</Typography>
+						{searchFilter.search.productStatus !== 'FINISHED' && <Typography className="title-text">Action</Typography>}
 					</Stack>
-					<Stack className="list-box">
-						<Stack className="listing-title-box">
-							<Typography className="title-text">Listing title</Typography>
-							<Typography className="title-text">Date Published</Typography>
-							<Typography className="title-text">Status</Typography>
-							<Typography className="title-text">View</Typography>
-							{searchFilter.search.productStatus !== 'FINISHED' && <Typography className="title-text">Action</Typography>}
-						</Stack>
 
-						{shopProducts?.length === 0 ? (
-							<div className={'no-data'}>
-								<img src="/img/icons/icoAlert.svg" alt="" />
-								<p>No Product found!</p>
-							</div>
-						) : (
-							shopProducts.map((product: Product) => {
-								return (
-									<ProductCard
-										product={product}
-										inquiry={searchFilter}
-										key={product._id}
-										deleteProductHandler={deleteProductHandler}
-										updateProductHandler={updateProductHandler}
-									/>
-								);
-							})
-						)}
+					{shopProducts?.length === 0 ? (
+						<div className={'no-data'}>
+							<img src="/img/icons/icoAlert.svg" alt="" />
+							<p>No Product found!</p>
+						</div>
+					) : (
+						shopProducts.map((product: Product) => {
+							return (
+								<ProductCard
+									product={product}
+									inquiry={searchFilter}
+									key={product._id}
+									deleteProductHandler={deleteProductHandler}
+									updateProductHandler={updateProductHandler}
+								/>
+							);
+						})
+					)}
 
-						{shopProducts.length !== 0 && (
-							<Stack className="pagination-config">
-								<Stack className="pagination-box">
-									<Pagination
-										count={Math.ceil(total / searchFilter.limit)}
-										page={searchFilter.page}
-										shape="circular"
-										color="primary"
-										onChange={paginationHandler}
-									/>
-								</Stack>
-								<Stack className="total-result">
-									<Typography>{total} products available</Typography>
-								</Stack>
+					{shopProducts.length !== 0 && (
+						<Stack className="pagination-config">
+							<Stack className="pagination-box">
+								<Pagination
+									count={Math.ceil(total / searchFilter.limit)}
+									page={searchFilter.page}
+									shape="circular"
+									color="primary"
+									onChange={paginationHandler}
+								/>
 							</Stack>
-						)}
-					</Stack>
+							<Stack className="total-result">
+								<Typography>{total} products available</Typography>
+							</Stack>
+						</Stack>
+					)}
 				</Stack>
-			</div>
-		);
-	}
+			</Stack>
+		</div>
+	);
 };
 
 MyProducts.defaultProps = {
