@@ -7,7 +7,9 @@ import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import Filter from '../../libs/components/product/Filter';
 import { useRouter } from 'next/router';
 import { ProductsInquiry } from '../../libs/types/product/product';
-import { ProductType } from '../../libs/enums/product.enum';
+import ProductCategories from '../../libs/components/product/ProductCategories';
+import useProductBrowse from '../../libs/hooks/useProductBrowse';
+import { selectProductTypes } from '../../libs/productCategories';
 import { Product } from '../../libs/types/product/product';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -27,13 +29,13 @@ export const getStaticProps = async ({ locale }: any) => ({
 const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>(initialInput);
+	const [searchFilter, setSearchFilter] = useProductBrowse(initialInput);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [total, setTotal] = useState<number>(0);
-	const [currentPage, setCurrentPage] = useState<number>(1);
+	const currentPage = searchFilter.page;
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [sortingOpen, setSortingOpen] = useState(false);
-	const [filterSortName, setFilterSortName] = useState('New');
+	const filterSortName = searchFilter.sort === 'productPrice' ? (searchFilter.direction === Direction.ASC ? 'Lowest Price' : 'Highest Price') : 'New';
 
 	/** APOLLO REQUESTS **/
 	const [likeTargetProduct] = useMutation(LIKE_TARGET_PRODUCT)
@@ -53,35 +55,9 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 		},
 	});
 
-	/** LIFECYCLES **/
-	useEffect(() => {
-		if (!router.isReady) return;
-		try {
-			const input = router.query.input ? JSON.parse(router.query.input as string) : initialInput;
-			const { memberId, pricesRange, text, periodsRange } = input.search ?? {};
-			const typeList = input.search?.typeList?.filter((type: ProductType) => Object.values(ProductType).includes(type));
-			const sort = ['createdAt', 'updatedAt', 'productPrice', 'productLikes', 'productViews', 'productRank'].includes(input.sort) ? input.sort : 'createdAt';
-			setSearchFilter({ page: input.page ?? 1, limit: input.limit ?? 9, sort, direction: input.direction ?? Direction.DESC,
-				search: { ...(memberId ? { memberId } : {}), ...(pricesRange ? { pricesRange } : {}), ...(text ? { text } : {}), ...(periodsRange ? { periodsRange } : {}), ...(typeList?.length ? { typeList } : {}) } });
-			setCurrentPage(input.page ?? 1);
-		} catch {
-			setSearchFilter(initialInput);
-			setCurrentPage(1);
-		}
-	}, [router.isReady, router.query.input]);
-
-
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
-		searchFilter.page = value;
-		await router.push(
-			`/product?input=${JSON.stringify(searchFilter)}`,
-			`/product?input=${JSON.stringify(searchFilter)}`,
-			{
-				scroll: false,
-			},
-		);
-		setCurrentPage(value);
+		setSearchFilter({ ...searchFilter, page: value });
 	};
 
 	const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
@@ -97,19 +73,13 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	const sortingHandler = (e: React.MouseEvent<HTMLLIElement>) => {
 		switch (e.currentTarget.id) {
 			case 'new':
-				setCurrentPage(1);
 				setSearchFilter({ ...searchFilter, page: 1, sort: 'createdAt', direction: Direction.DESC });
-				setFilterSortName('New');
 				break;
 			case 'lowest':
-				setCurrentPage(1);
 				setSearchFilter({ ...searchFilter, page: 1, sort: 'productPrice', direction: Direction.ASC });
-				setFilterSortName('Lowest Price');
 				break;
 			case 'highest':
-				setCurrentPage(1);
 				setSearchFilter({ ...searchFilter, page: 1, sort: 'productPrice', direction: Direction.DESC });
-				setFilterSortName('Highest Price');
 		}
 		setSortingOpen(false);
 		setAnchorEl(null);
@@ -174,7 +144,9 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 				<Stack className={'product-page'}>
 					<Stack className={'filter-config'}>
 						{/* @ts-ignore */}
-						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} />
+						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} updateUrl={false}>
+							<ProductCategories layout="sidebar" types={searchFilter.search.typeList} onChange={types => setSearchFilter(selectProductTypes(searchFilter, types))} />
+						</Filter>
 					</Stack>
 					<Stack className="main-config" mb={'76px'}>
 						<Stack className={'list-config'}>

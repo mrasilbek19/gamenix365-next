@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Stack, Typography, Checkbox, OutlinedInput, Tooltip, IconButton } from '@mui/material';
-import { ProductType } from '../../enums/product.enum';
+import { Stack, Typography, OutlinedInput, Tooltip, IconButton, Button } from '@mui/material';
 import { ProductsInquiry } from '../../types/product/product';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -11,12 +10,12 @@ interface FilterType {
 	setSearchFilter: (input: ProductsInquiry) => void;
 	initialInput: ProductsInquiry;
 	updateUrl?: boolean;
+	children?: React.ReactNode;
 }
 
 const Filter = (props: FilterType) => {
-	const { searchFilter, setSearchFilter, initialInput, updateUrl = true } = props;
+	const { searchFilter, setSearchFilter, initialInput, updateUrl = true, children } = props;
 	const router = useRouter();
-	const productType = Object.values(ProductType);
 	const [searchText, setSearchText] = useState<string>(searchFilter.search.text ?? '');
 
 	/** LIFECYCLES **/
@@ -30,14 +29,6 @@ const Filter = (props: FilterType) => {
 		if (updateUrl) await router.push({ pathname: '/product', query: { input: JSON.stringify(input) } }, undefined, { scroll: false });
 	};
 
-	const productTypeSelectHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
-		const value = event.target.value as ProductType;
-		const typeList = searchFilter.search.typeList ?? [];
-		changeFilterHandler({
-			...searchFilter, page: 1,
-			search: { ...searchFilter.search, typeList: event.target.checked ? [...typeList, value] : typeList.filter(type => type !== value) },
-		});
-	};
 
 	const productPriceHandler = (value: number, type: string) => {
 		if (!Number.isInteger(Number(value)) || Number(value) < 0) return;
@@ -79,32 +70,14 @@ const Filter = (props: FilterType) => {
 							}
 						/>
 						<img src={'/img/icons/search_icon.png'} alt={''} />
-						<Tooltip title="Reset">
+						{!children && <Tooltip title="Reset">
 							<IconButton onClick={refreshHandler}>
 								<RefreshIcon />
 							</IconButton>
-						</Tooltip>
+						</Tooltip>}
 					</Stack>
 				</Stack>
-				<Stack className={'find-your-home'} mb={'30px'}>
-					<Typography className={'title'}>Category</Typography>
-					{productType.map((type: string) => (
-						<Stack className={'input-box'} key={type}>
-							<Checkbox
-								id={type}
-								className="product-checkbox"
-								color="default"
-								size="small"
-								value={type}
-								onChange={productTypeSelectHandler}
-								checked={(searchFilter?.search?.typeList || []).includes(type as ProductType)}
-							/>
-							<label htmlFor={type} style={{ cursor: 'pointer' }}>
-								<Typography className="product_type">{type}</Typography>
-							</label>
-						</Stack>
-					))}
-				</Stack>
+				{children}
 				<Stack className={'find-your-home'}>
 					<Typography className={'title'}>Price Range</Typography>
 					<Stack className="square-year-input">
@@ -132,6 +105,7 @@ const Filter = (props: FilterType) => {
 						/>
 					</Stack>
 				</Stack>
+			{children && <Button className="reset-product-filters" onClick={refreshHandler}>Reset filters</Button>}
 		</Stack>
 	);
 };

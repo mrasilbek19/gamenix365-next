@@ -420,50 +420,75 @@
 			}
 			.product-page {
 				padding-top: 0;
-				gap: 32px;
+				gap: 28px;
 				align-items: flex-start;
 				.filter-config {
-					width: 260px;
+					width: 250px;
 					flex-shrink: 0;
 					.filter-main {
 						background: #15182b;
-						border-radius: 20px;
+						border-radius: 14px;
 						box-shadow: none;
+						padding: 22px 18px;
+						border: 1px solid #282d45;
 					}
 				}
 				.main-config {
 					flex: 1;
 					min-width: 0;
-					gap: 40px;
+					gap: 28px;
 					.list-config {
 						display: grid;
-						grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-						gap: 24px;
+						grid-template-columns: repeat(auto-fill, minmax(min(100%, 220px), 1fr));
+						align-items: start;
+						gap: 20px;
 						.card-config {
 							width: 100%;
 							height: auto;
+							min-height: 0 !important;
+							margin-bottom: 0;
+							border: 1px solid #252a40;
 							background: #15182b;
-							border-radius: 20px;
+							border-radius: 14px;
 							box-shadow: none;
 							overflow: hidden;
-							.top img {
-								object-fit: contain;
-								padding: 16px;
+							.top {
+								height: 164px;
+								flex-shrink: 0;
+								background: #101426;
+								> a { display: block; width: 100%; }
+								> a > img { object-fit: contain; padding: 12px; border-radius: 0; }
+								.price-box { bottom: 10px; left: 12px; padding: 5px 9px; }
+								.price-box p { font-size: 14px; }
+								.top-badge { top: 10px; left: 12px; }
 							}
 							.bottom {
 								height: auto;
-								padding: 24px;
+								padding: 14px;
 								.name-address {
 									height: auto;
+									margin-bottom: 4px;
+									gap: 5px;
 									.name {
 										height: auto;
 										p {
-											font-size: 20px;
-											font-weight: 700;
+											font-size: 15px;
+											font-weight: 600;
+											line-height: 1.4;
+											min-height: 42px;
+											display: -webkit-box;
+											-webkit-line-clamp: 2;
+											-webkit-box-orient: vertical;
+											overflow: hidden;
 										}
 									}
 								}
+								.divider { background: #2a2e44; margin: 8px 0; }
 								.type-buttons {
+									.buttons { gap: 3px; }
+									.buttons button { padding: 4px; }
+									.buttons svg { font-size: 18px; }
+									.view-cnt { font-size: 12px; }
 									flex-wrap: wrap;
 									gap: 8px;
 								}
@@ -491,4 +516,47 @@
 			}
 		}
 	}
+}
+
+// Products-page presentation only; shared homepage/shop category controls are unchanged.
+#pc-wrap #product-list-page,
+#mobile-wrap #product-list-page {
+	.filter-main {
+		> .find-your-home:first-child { margin-bottom: 24px; }
+		.input-box .search-input { min-width: 0; }
+		.search-input input { padding: 12px 10px; font-size: 13px; }
+		.square-year-input { gap: 8px; }
+		.square-year-input input { min-width: 0; width: calc(50% - 12px); padding: 10px; }
+		.reset-product-filters { margin-top: 22px; padding: 10px; color: #c8b5f8; border: 1px solid #443260; border-radius: 8px; text-transform: none; }
+	}
+	.product-category-sidebar {
+		margin: 0 0 24px;
+		padding-bottom: 22px;
+		border-bottom: 1px solid #2a2e44;
+		h2 { margin: 0 0 12px; font-size: 14px; font-weight: 600; color: #fff; }
+		.category-section { margin-top: 3px; }
+		.category-option,
+		.subcategory-option {
+			width: 100%;
+			min-height: 38px;
+			justify-content: flex-start;
+			padding: 8px 12px;
+			border: 1px solid transparent;
+			border-radius: 7px;
+			text-align: left;
+			text-transform: none;
+			font-size: 14px;
+			line-height: 1.4;
+			font-weight: 400;
+			color: #a5a8bd;
+			&:hover { background: #201b32; color: #fff; }
+			&.Mui-focusVisible { outline: 2px solid #aa7bea; outline-offset: 2px; }
+		}
+		.category-option.selected { background: #251b3b; border-color: #493267; color: #eee5ff; font-weight: 600; }
+		.subcategory-list { margin: 6px 0 12px 12px; padding-left: 8px; border-left: 1px solid #3b2d53; }
+		.subcategory-option { min-height: 34px; padding: 7px 10px; font-size: 13px; }
+		.subcategory-option.selected { color: #d5baff; background: #201a30; }
+	}
+	.list-config > .no-data { grid-column: 1 / -1; }
+	.main-config .pagination-config .total-result p { font-size: 14px; color: #a5a8bd; }
 }
