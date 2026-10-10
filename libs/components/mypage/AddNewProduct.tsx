@@ -1,30 +1,30 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Stack, Typography } from '@mui/material';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { ProductStatus, ProductType } from '../../enums/product.enum';
 import { REACT_APP_API_URL } from '../../config';
-import { ProductInput } from '../../types/product/product';
-import axios from 'axios';
-import { getJwtToken } from '../../auth';
+import { Product, ProductInput } from '../../types/product/product';
+import { uploadImages as uploadProductImages } from '../../uploads';
 import { sweetErrorHandling, sweetMixinErrorAlert, sweetMixinSuccessAlert } from '../../sweetAlert';
 import { useMutation, useReactiveVar, useQuery } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from '../../../apollo/user/mutation';
 import { GET_SHOP_PRODUCTS } from '../../../apollo/user/query';
 
-const AddProduct = ({ initialValues, ...props }: any) => {
+const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const inputRef = useRef<any>(null);
+	const inputRef = useRef<HTMLInputElement>(null);
 	const [insertProductData, setInsertProductData] = useState<ProductInput>(initialValues);
-	const [productType, setProductType] = useState<ProductType[]>(Object.values(ProductType));
-	const token = getJwtToken();
+	const productTypes = Object.values(ProductType);
+	const [uploading, setUploading] = useState(false);
+	const busyRef = useRef(false);
 	const user = useReactiveVar(userVar);
 
 	/** APOLLO REQUESTS **/
-	const [createProduct] = useMutation(CREATE_PRODUCT);
-	const [updateProduct] = useMutation(UPDATE_PRODUCT);
+	const [createProduct, { loading: creating }] = useMutation(CREATE_PRODUCT);
+	const [updateProduct, { loading: updating }] = useMutation(UPDATE_PRODUCT);
 
 	const editStatus = Object.values(ProductStatus).includes(router.query.status as ProductStatus) ? router.query.status as ProductStatus : ProductStatus.PROCESS;
 	const {
@@ -41,7 +41,7 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 			search: { productStatus: editStatus },
 		} },
 	});
-	const product = getProductData?.getShopProducts?.list?.find((item: { _id: string }) => item._id === router.query.productId);
+	const product: Product | undefined = getProductData?.getShopProducts?.list?.find((item: Product) => item._id === router.query.productId);
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -58,110 +58,70 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 			productDesc: product.productDesc ?? '',
 			productImages: product.productImages,
 		});
-	}, [product, router.query.productId]);
+	}, [product, router.query.productId, initialValues]);
 
 	/** HANDLERS **/
 	async function uploadImages() {
+		if (busyRef.current || user.memberType !== 'SHOP') return;
+		const files = Array.from(inputRef.current?.files ?? []);
+		if (!files.length) return;
+		busyRef.current = true;
+		setUploading(true);
 		try {
-			const formData = new FormData();
-			const selectedFiles = inputRef.current.files;
-
-			if (selectedFiles.length == 0) return false;
-			if (selectedFiles.length > 5) throw new Error('Cannot upload more than 5 images!');
-
-			formData.append(
-				'operations',
-				JSON.stringify({
-					query: `mutation ImagesUploader($files: [Upload!]!, $target: String!) { 
-						imagesUploader(files: $files, target: $target)
-				  }`,
-					variables: {
-						files: Array.from(selectedFiles).map(() => null),
-						target: 'product',
-					},
-				}),
-			);
-			formData.append(
-				'map',
-				JSON.stringify(Object.fromEntries(Array.from(selectedFiles).map((_, index) => [index, [`variables.files.${index}`]]))),
-			);
-			for (const key in selectedFiles) {
-				if (/^\d+$/.test(key)) formData.append(`${key}`, selectedFiles[key]);
-			}
-
-			const response = await axios.post(`${process.env.REACT_APP_API_GRAPHQL_URL}`, formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data',
-					'apollo-require-preflight': true,
-					Authorization: `Bearer ${token}`,
-				},
-			});
-
-			if (response.data.errors?.length) throw new Error(response.data.errors[0].message);
-			const responseImages = response.data.data.imagesUploader;
-
-			console.log('+responseImages: ', responseImages);
-			setInsertProductData({ ...insertProductData, productImages: responseImages });
+			if (files.length > 5) throw new Error('Cannot upload more than 5 images!');
+			const productImages = await uploadProductImages(files, 'product');
+			setInsertProductData((current) => ({ ...current, productImages }));
 		} catch (err: any) {
-			console.log('err: ', err.message);
 			await sweetMixinErrorAlert(err.message);
+		} finally {
+			busyRef.current = false;
+			setUploading(false);
+			if (inputRef.current) inputRef.current.value = '';
 		}
 	}
 
 	const doDisabledCheck = () => {
-		return insertProductData.productName.trim().length < 3 ||
-			insertProductData.productName.length > 100 ||
+		return user.memberType !== 'SHOP' || uploading || creating || updating ||
+			insertProductData.productName.trim().length < 3 ||
+			insertProductData.productName.trim().length > 100 ||
 			!Object.values(ProductType).includes(insertProductData.productType) ||
 			!Number.isFinite(insertProductData.productPrice) || insertProductData.productPrice < 0 ||
-			!Number.isInteger(insertProductData.productLeftCount) || insertProductData.productLeftCount < 0 ||
+			!Number.isInteger(insertProductData.productLeftCount) || insertProductData.productLeftCount < 0 || insertProductData.productLeftCount > 2147483647 ||
 			(!!insertProductData.productDesc && (insertProductData.productDesc.length < 5 || insertProductData.productDesc.length > 500)) ||
-			insertProductData.productImages.length === 0;
+			insertProductData.productImages.length === 0 || insertProductData.productImages.some((image) => !image);
 	};
 
-	const insertProductHandler = useCallback(async () => {
+	const saveProduct = async () => {
+		if (busyRef.current || doDisabledCheck()) return;
+		if (router.query.productId && (!product || product.productStatus === ProductStatus.FINISHED)) return;
+		busyRef.current = true;
 		try {
-			const result = await createProduct({
-				variables: {
-					input: { ...insertProductData, productDesc: insertProductData.productDesc || undefined },
-				},
-			});
-
-			await sweetMixinSuccessAlert('This product has been created successfully.');
-			await router.push({
-				pathname: '/mypage',
-				query: {
-					category: 'myProducts',
-				},
-			});
+			const input: ProductInput = {
+				productName: insertProductData.productName.trim(),
+				productType: insertProductData.productType,
+				productPrice: insertProductData.productPrice,
+				productLeftCount: insertProductData.productLeftCount,
+				productImages: insertProductData.productImages,
+				productDesc: insertProductData.productDesc || undefined,
+			};
+			if (product && router.query.productId) {
+				await updateProduct({ variables: { input: { ...input, _id: product._id } } });
+			} else {
+				await createProduct({ variables: { input } });
+			}
+			await sweetMixinSuccessAlert(`This product has been ${router.query.productId ? 'updated' : 'created'} successfully.`);
+			await router.push({ pathname: '/mypage', query: { category: 'myProducts' } });
 		} catch (err: any) {
-			sweetErrorHandling(err).then();
+			await sweetErrorHandling(err);
+		} finally {
+			busyRef.current = false;
 		}
-	}, [insertProductData]);
-
-	const updateProductHandler = useCallback(async () => {
-		try {
-			const result = await updateProduct({
-				variables: {
-					input: { ...insertProductData, _id: product?._id, productDesc: insertProductData.productDesc || undefined },
-				},
-			});
-
-			await sweetMixinSuccessAlert('This product has been updated successfully.');
-			await router.push({
-				pathname: '/mypage',
-				query: {
-					category: 'myProducts',
-				},
-			});
-		} catch (err: any) {
-			sweetErrorHandling(err).then();
-		}
-	}, [insertProductData, product]);
+	};
 
 	if (user?.memberType !== 'SHOP') return null;
 	if (router.query.productId && (getProductLoading || !product)) return <Typography>{getProductError?.message ?? (getProductLoading ? 'Loading product...' : 'Product unavailable on this page. Return to My Products and select it again.')}</Typography>;
 
-	console.log('+insertProductData', insertProductData);
+	if (product?.productStatus === ProductStatus.FINISHED) return <Typography>Finished products cannot be edited.</Typography>;
 
 	if (device === 'mobile') {
 		return <div>ADD NEW PRODUCT MOBILE PAGE</div>;
@@ -169,7 +129,7 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 		return (
 			<div id="add-product-page">
 				<Stack className="main-title-box">
-					<Typography className="main-title">Add New Product</Typography>
+					<Typography className="main-title">{router.query.productId ? 'Edit Product' : 'Add New Product'}</Typography>
 					<Typography className="sub-title">We are glad to see you again!</Typography>
 				</Stack>
 
@@ -181,6 +141,7 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 								<input
 									type="text"
 									className="description-input"
+									maxLength={100}
 									placeholder={'Title'}
 									value={insertProductData.productName}
 									onChange={({ target: { value } }) =>
@@ -215,7 +176,7 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 											<option disabled={true} value={'select'}>
 												Select
 											</option>
-											{productType.map((type: any) => (
+											{productTypes.map((type) => (
 												<option value={`${type}`} key={type}>
 													{type}
 												</option>
@@ -293,16 +254,17 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 									</defs>
 								</svg>
 								<Stack className="text-box">
-									<Typography className="drag-title">Drag and drop images here</Typography>
-									<Typography className="format-title">Photos must be JPEG or PNG format and least 2048x768</Typography>
+									<Typography className="drag-title">Choose up to 5 product images</Typography>
+									<Typography className="format-title">JPEG or PNG, up to 15 MB per image</Typography>
 								</Stack>
 								<Button
 									className="browse-button"
+									disabled={uploading || creating || updating}
 									onClick={() => {
-										inputRef.current.click();
+										inputRef.current?.click();
 									}}
 								>
-									<Typography className="browse-button-text">Browse Files</Typography>
+									<Typography className="browse-button-text">{uploading ? 'Uploading...' : 'Browse Files'}</Typography>
 									<input
 										ref={inputRef}
 										type="file"
@@ -330,7 +292,7 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 								{insertProductData?.productImages.map((image: string) => {
 									const imagePath: string = `${REACT_APP_API_URL}/${image}`;
 									return (
-										<Stack className="image-box">
+										<Stack className="image-box" key={image}>
 											<img src={imagePath} alt="" />
 										</Stack>
 									);
@@ -339,15 +301,9 @@ const AddProduct = ({ initialValues, ...props }: any) => {
 						</Stack>
 
 						<Stack className="buttons-row">
-							{router.query.productId ? (
-								<Button className="next-button" disabled={doDisabledCheck()} onClick={updateProductHandler}>
-									<Typography className="next-button-text">Save</Typography>
-								</Button>
-							) : (
-								<Button className="next-button" disabled={doDisabledCheck()} onClick={insertProductHandler}>
-									<Typography className="next-button-text">Save</Typography>
-								</Button>
-							)}
+							<Button className="next-button" disabled={doDisabledCheck()} onClick={saveProduct}>
+								<Typography className="next-button-text">{creating || updating ? 'Saving...' : 'Save'}</Typography>
+							</Button>
 						</Stack>
 					</Stack>
 				</div>
