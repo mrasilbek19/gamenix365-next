@@ -1,0 +1,26 @@
+.public-layout #main .event-registrations {
+	padding: 48px 24px;
+
+	> h4 {
+		font-size: clamp(28px, 3vw, 40px);
+		font-weight: 800;
+	}
+
+	> .MuiCard-root {
+		padding: 24px;
+		border: 1px solid #292c46;
+		border-radius: 20px;
+		background: #15182b;
+		box-shadow: none;
+
+		p {
+			color: #a5a8bd;
+		}
+	}
+}
+
+@media (max-width: 700px) {
+	.public-layout #main .event-registrations {
+		padding: 32px 16px;
+	}
+}

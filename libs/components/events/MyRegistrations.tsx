@@ -39,7 +39,7 @@ const MyRegistrations = () => {
 
 	if (!allowed) return <Alert severity="info">Log in with an active user account to view your registrations.</Alert>;
 	return (
-		<Stack spacing={3} sx={{ p: { xs: 2, md: 4 }, maxWidth: 1000, mx: 'auto', width: '100%' }}>
+		<Stack className={'event-registrations'} spacing={3} sx={{ p: { xs: 2, md: 4 }, maxWidth: 1000, mx: 'auto', width: '100%' }}>
 			<Typography variant="h4">My Registrations</Typography>
 			<Link href="/events">Browse events</Link>
 			<TextField
