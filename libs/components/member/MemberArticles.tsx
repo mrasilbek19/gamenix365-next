@@ -65,7 +65,7 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 			await boardArticlesRefetch({ input: searchFilter });
 			await sweetTopSmallSuccessAlert('success', 800);
 		} catch (err: any) {
-			console.log('ERROR, likePropertyHandler:', err.message);
+			console.log('ERROR, likeProductHandler:', err.message);
 			sweetMixinErrorAlert(err.message).then();
 		}
 	};
@@ -103,7 +103,7 @@ const MemberArticles: NextPage = ({ initialInput, ...props }: any) => {
 							/>
 						</Stack>
 						<Stack className="total-result">
-							<Typography>{total} property available</Typography>
+							<Typography>{total} product available</Typography>
 						</Stack>
 					</Stack>
 				)}

@@ -1,0 +1,3 @@
+export enum EventType { TOURNAMENT = 'TOURNAMENT', GIVEAWAY = 'GIVEAWAY' }
+export enum EventStatus { PAUSED = 'PAUSED', PROCESS = 'PROCESS', FINISHED = 'FINISHED' }
+export enum ParticipantStatus { PENDING = 'PENDING', REGISTERED = 'REGISTERED', REJECTED = 'REJECTED', CANCELLED = 'CANCELLED' }

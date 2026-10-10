@@ -77,7 +77,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 		}
 	};
 
-	const updatePropertyHandler = useCallback(async () => {
+	const updateProductHandler = useCallback(async () => {
 		try {
 			if (!user._id) throw new Error(Messages.error2);
 
@@ -183,7 +183,7 @@ const MyProfile: NextPage = ({ initialValues, ...props }: any) => {
 						/>
 					</Stack>
 					<Stack className="about-me-box">
-						<Button className="update-button" onClick={updatePropertyHandler} disabled={doDisabledCheck()}>
+						<Button className="update-button" onClick={updateProductHandler} disabled={doDisabledCheck()}>
 							<Typography>Update Profile</Typography>
 							<svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 13 13" fill="none">
 								<g clipPath="url(#clip0_7065_6985)">
