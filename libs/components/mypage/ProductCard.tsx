@@ -51,80 +51,77 @@ export const ProductCard = (props: ProductCardProps) => {
 		setAnchorEl(null);
 	};
 
-	if (device === 'mobile') {
-		return <div>MOBILE PRODUCT CARD</div>;
-	} else
-		return (
-			<Stack className="product-card-box">
-				<Stack className="image-box" onClick={() => pushProductDetail(product?._id)}>
-					<img src={`${process.env.REACT_APP_API_URL}/${product.productImages[0]}`} alt="" />
-				</Stack>
-				<Stack className="information-box" onClick={() => pushProductDetail(product?._id)}>
-					<Typography className="name">{product.productName}</Typography>
-					<Typography className="address">{product.productType}</Typography>
-					<Typography className="price">
-						<strong>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
-					</Typography>
-				</Stack>
-				<Stack className="date-box">
-					<Typography className="date">
-						<Moment format="DD MMMM, YYYY">{product.createdAt}</Moment>
-					</Typography>
-				</Stack>
-				<Stack className="status-box">
-					<Stack className="coloured-box" sx={{ background: '#E5F0FD' }} onClick={handleClick}>
-						<Typography className="status" sx={{ color: '#3554d1' }}>
-							{product.productStatus}
-						</Typography>
-					</Stack>
-				</Stack>
-				{!memberPage && !product.deletedAt && product.productStatus !== 'FINISHED' && (
-					<Menu
-						anchorEl={anchorEl}
-						open={open}
-						onClose={handleClose}
-						PaperProps={{
-							elevation: 0,
-							sx: {
-								width: '110px',
-								mt: 1,
-								ml: '10px',
-								overflow: 'visible',
-								filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-							},
-							style: {
-								padding: 0,
-								display: 'flex',
-								justifyContent: 'center',
-							},
-						}}
-					>
-								<MenuItem
-									disableRipple
-									onClick={() => {
-										handleClose();
-										updateProductHandler(product.productStatus === ProductStatus.PROCESS ? ProductStatus.PAUSE : ProductStatus.PROCESS, product?._id);
-									}}
-								>
-									{product.productStatus === ProductStatus.PROCESS ? 'Pause' : 'Activate'}
-								</MenuItem>
-								<MenuItem onClick={() => { handleClose(); updateProductHandler(ProductStatus.FINISHED, product._id); }}>Finished</MenuItem>
-					</Menu>
-				)}
-
-				<Stack className="views-box">
-					<Typography className="views">{product.productViews.toLocaleString()}</Typography>
-				</Stack>
-				{!memberPage && !product.deletedAt && product.productStatus !== ProductStatus.FINISHED && (
-					<Stack className="action-box">
-						<IconButton className="icon-button" onClick={() => pushEditProduct(product._id)}>
-							<ModeIcon className="buttons" />
-						</IconButton>
-						<IconButton className="icon-button" onClick={() => deleteProductHandler(product._id)}>
-							<DeleteIcon className="buttons" />
-						</IconButton>
-					</Stack>
-				)}
+	return (
+		<Stack className="product-card-box">
+			<Stack className="image-box" onClick={() => pushProductDetail(product?._id)}>
+				<img src={`${process.env.REACT_APP_API_URL}/${product.productImages[0]}`} alt="" />
 			</Stack>
-		);
+			<Stack className="information-box" onClick={() => pushProductDetail(product?._id)}>
+				<Typography className="name">{product.productName}</Typography>
+				<Typography className="address">{product.productType}</Typography>
+				<Typography className="price">
+					<strong>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</strong>
+				</Typography>
+			</Stack>
+			<Stack className="date-box">
+				<Typography className="date">
+					<Moment format="DD MMMM, YYYY">{product.createdAt}</Moment>
+				</Typography>
+			</Stack>
+			<Stack className="status-box">
+				<Stack className="coloured-box" sx={{ background: '#E5F0FD' }} onClick={handleClick}>
+					<Typography className="status" sx={{ color: '#3554d1' }}>
+						{product.productStatus}
+					</Typography>
+				</Stack>
+			</Stack>
+			{!memberPage && !product.deletedAt && product.productStatus !== 'FINISHED' && (
+				<Menu
+					anchorEl={anchorEl}
+					open={open}
+					onClose={handleClose}
+					PaperProps={{
+						elevation: 0,
+						sx: {
+							width: '110px',
+							mt: 1,
+							ml: '10px',
+							overflow: 'visible',
+							filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
+						},
+						style: {
+							padding: 0,
+							display: 'flex',
+							justifyContent: 'center',
+						},
+					}}
+				>
+							<MenuItem
+								disableRipple
+								onClick={() => {
+									handleClose();
+									updateProductHandler(product.productStatus === ProductStatus.PROCESS ? ProductStatus.PAUSE : ProductStatus.PROCESS, product?._id);
+								}}
+							>
+								{product.productStatus === ProductStatus.PROCESS ? 'Pause' : 'Activate'}
+							</MenuItem>
+							<MenuItem onClick={() => { handleClose(); updateProductHandler(ProductStatus.FINISHED, product._id); }}>Finished</MenuItem>
+				</Menu>
+			)}
+
+			<Stack className="views-box">
+				<Typography className="views">{product.productViews.toLocaleString()}</Typography>
+			</Stack>
+			{!memberPage && !product.deletedAt && product.productStatus !== ProductStatus.FINISHED && (
+				<Stack className="action-box">
+					<IconButton className="icon-button" onClick={() => pushEditProduct(product._id)}>
+						<ModeIcon className="buttons" />
+					</IconButton>
+					<IconButton className="icon-button" onClick={() => deleteProductHandler(product._id)}>
+						<DeleteIcon className="buttons" />
+					</IconButton>
+				</Stack>
+			)}
+		</Stack>
+	);
 };

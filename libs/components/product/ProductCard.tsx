@@ -28,71 +28,67 @@ const ProductCard = (props: ProductCardType) => {
 		? `${REACT_APP_API_URL}/${product?.productImages[0]}`
 		: '/img/banner/header1.svg';
 
-	if (device === 'mobile') {
-		return <div>PRODUCT CARD</div>;
-	} else {
-		return (
-			<Stack className="card-config" style={{ height: 'auto', minHeight: 413 }}>
-				<Stack className="top">
-					<Link
-						href={{
-							pathname: '/product/detail',
-							query: { id: product?._id },
-						}}
-					>
-						<img src={imagePath} alt="" />
-					</Link>
-					{product && product?.productRank > topProductRank && (
-						<Box component={'div'} className={'top-badge'}>
-							<img src="/img/icons/electricity.svg" alt="" />
-							<Typography>TOP</Typography>
-						</Box>
-					)}
-					<Box component={'div'} className={'price-box'}>
-						<Typography>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Typography>
+	return (
+		<Stack className="card-config" style={{ height: 'auto', minHeight: 413 }}>
+			<Stack className="top">
+				<Link
+					href={{
+						pathname: '/product/detail',
+						query: { id: product?._id },
+					}}
+				>
+					<img src={imagePath} alt="" />
+				</Link>
+				{product && product?.productRank > topProductRank && (
+					<Box component={'div'} className={'top-badge'}>
+						<img src="/img/icons/electricity.svg" alt="" />
+						<Typography>TOP</Typography>
 					</Box>
+				)}
+				<Box component={'div'} className={'price-box'}>
+					<Typography>${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}</Typography>
+				</Box>
+			</Stack>
+			<Stack className="bottom" style={{ height: 'auto' }}>
+				<Stack className="name-address">
+					<Stack className="name">
+						<Link
+							href={{
+								pathname: '/product/detail',
+								query: { id: product?._id },
+							}}
+						>
+							<Typography>{product.productName}</Typography>
+						</Link>
+					</Stack>
+					<Stack className="address"><Typography>{product.productType}</Typography></Stack>
 				</Stack>
-				<Stack className="bottom" style={{ height: 'auto' }}>
-					<Stack className="name-address">
-						<Stack className="name">
-							<Link
-								href={{
-									pathname: '/product/detail',
-									query: { id: product?._id },
-								}}
-							>
-								<Typography>{product.productName}</Typography>
-							</Link>
+				<AddToBasket product={product} />
+				<Stack className="divider"></Stack>
+				<Stack className="type-buttons">
+					<Stack className="type"><Typography sx={{ fontWeight: 500, fontSize: '13px' }}>{product.productStatus}</Typography></Stack>
+					{!recentlyVisited && (
+						<Stack className="buttons">
+							<IconButton color={'default'}>
+								<RemoveRedEyeIcon />
+							</IconButton>
+							<Typography className="view-cnt">{product?.productViews}</Typography>
+							<IconButton color={'default'} onClick={() => likeProductHandler(user, product?._id)}>
+								{myFavorites ? (
+									<FavoriteIcon color="primary" />
+								) : product?.meLiked && product?.meLiked[0]?.myFavorite ? (
+									<FavoriteIcon color="primary" />
+								) : (
+									<FavoriteBorderIcon />
+								)}
+							</IconButton>
+							<Typography className="view-cnt">{product?.productLikes}</Typography>
 						</Stack>
-						<Stack className="address"><Typography>{product.productType}</Typography></Stack>
-					</Stack>
-					<AddToBasket product={product} />
-					<Stack className="divider"></Stack>
-					<Stack className="type-buttons">
-						<Stack className="type"><Typography sx={{ fontWeight: 500, fontSize: '13px' }}>{product.productStatus}</Typography></Stack>
-						{!recentlyVisited && (
-							<Stack className="buttons">
-								<IconButton color={'default'}>
-									<RemoveRedEyeIcon />
-								</IconButton>
-								<Typography className="view-cnt">{product?.productViews}</Typography>
-								<IconButton color={'default'} onClick={() => likeProductHandler(user, product?._id)}>
-									{myFavorites ? (
-										<FavoriteIcon color="primary" />
-									) : product?.meLiked && product?.meLiked[0]?.myFavorite ? (
-										<FavoriteIcon color="primary" />
-									) : (
-										<FavoriteBorderIcon />
-									)}
-								</IconButton>
-								<Typography className="view-cnt">{product?.productLikes}</Typography>
-							</Stack>
-						)}
-					</Stack>
+					)}
 				</Stack>
 			</Stack>
-		);
-	}
+		</Stack>
+	);
 };
 
 export default ProductCard;
