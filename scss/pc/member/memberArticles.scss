@@ -1,4 +1,5 @@
-#pc-wrap {
+#pc-wrap,
+#mobile-wrap {
 	#member-articles-page {
 		width: 100%;
 		display: flex;
@@ -13,7 +14,7 @@
 			.right-box {
 				width: 315px;
 				.main-title {
-					color: #181a20;
+					color: #ffffff;
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -29,8 +30,8 @@
 			height: auto;
 			flex-direction: row;
 			flex-wrap: wrap;
-			gap: 35px;
-			margin-top: 85px;
+			gap: 24px;
+			margin-top: 32px;
 			.no-data {
 				width: 100%;
 			}
@@ -43,7 +44,7 @@
 			margin-top: 30px;
 			.total-result {
 				p {
-					color: #181a20;
+					color: #ffffff;
 					text-align: center;
 					font-family: $font;
 					font-size: 14px;
