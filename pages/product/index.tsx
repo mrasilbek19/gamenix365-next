@@ -9,6 +9,7 @@ import { ProductsInquiry } from '../../libs/types/product/product';
 import { Product } from '../../libs/types/product/product';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
+import TuneRoundedIcon from '@mui/icons-material/TuneRounded';
 import { Direction, Message } from '../../libs/enums/common.enum';
 import { useMutation, useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '../../apollo/user/query';
@@ -33,6 +34,7 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [sortingOpen, setSortingOpen] = useState(false);
 	const [filterSortName, setFilterSortName] = useState('New');
+	const [showFilters, setShowFilters] = useState(false);
 
 	/** APOLLO REQUESTS **/
 	const [likeTargetProduct] = useMutation(LIKE_TARGET_PRODUCT);
@@ -127,9 +129,17 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 		<div id="product-list-page" style={{ position: 'relative' }}>
 			<div className="container">
 				<Box component={'div'} className={'right'}>
-					<span>Sort by</span>
+					<Button
+						className={'all-filters-button'}
+						startIcon={<TuneRoundedIcon />}
+						aria-expanded={showFilters}
+						aria-controls={'product-filters'}
+						onClick={() => setShowFilters(!showFilters)}
+					>
+						All filters
+					</Button>
 					<div>
-						<Button onClick={sortingClickHandler} endIcon={<KeyboardArrowDownRoundedIcon />}>
+						<Button className={'sort-button'} onClick={sortingClickHandler} endIcon={<KeyboardArrowDownRoundedIcon />}>
 							{filterSortName}
 						</Button>
 						<Menu anchorEl={anchorEl} open={sortingOpen} onClose={sortingCloseHandler} sx={{ paddingTop: '5px' }}>
@@ -137,7 +147,6 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 								onClick={sortingHandler}
 								id={'new'}
 								disableRipple
-								sx={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}
 							>
 								New
 							</MenuItem>
@@ -145,7 +154,6 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 								onClick={sortingHandler}
 								id={'lowest'}
 								disableRipple
-								sx={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}
 							>
 								Lowest Price
 							</MenuItem>
@@ -153,15 +161,15 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 								onClick={sortingHandler}
 								id={'highest'}
 								disableRipple
-								sx={{ boxShadow: 'rgba(149, 157, 165, 0.2) 0px 8px 24px' }}
 							>
 								Highest Price
 							</MenuItem>
 						</Menu>
 					</div>
 				</Box>
-				<Stack className={'product-page'}>
-					<Stack className={'filter-config'}>
+				<Typography className={'catalog-count'}>Showing {products.length} of {total} products</Typography>
+				<Stack className={`product-page ${showFilters ? 'filters-open' : ''}`}>
+					<Stack className={'filter-config'} id={'product-filters'}>
 						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} />
 					</Stack>
 					<Stack className="main-config" mb={'76px'}>

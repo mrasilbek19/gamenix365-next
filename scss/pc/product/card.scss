@@ -3,16 +3,16 @@
 	.popular-card-box,
 	.top-card-box,
 	.product-big-card-box {
-		border: 1px solid #292c46;
+		border: 1px solid #d4d7da;
 		transition: border-color 180ms ease, box-shadow 180ms ease;
 
 		&:hover {
-			border-color: #9747ff;
-			box-shadow: 0 8px 28px rgba(113, 56, 255, 0.12);
+			border-color: #00b8ee;
+			box-shadow: 0 8px 28px rgba(0, 184, 238, 0.12);
 		}
 	}
 
 	.product-big-card-box .info {
-		color: #fff;
+		color: #202124;
 	}
 }

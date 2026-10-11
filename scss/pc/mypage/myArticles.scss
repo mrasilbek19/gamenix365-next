@@ -11,7 +11,7 @@
 			.right-box {
 				width: 315px;
 				.main-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -21,7 +21,7 @@
 					text-transform: capitalize;
 				}
 				.sub-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -47,7 +47,7 @@
 			margin-top: 30px;
 			.total {
 				p {
-					color: #ffffff;
+					color: #202124;
 					font-size: 14px;
 					text-align: center;
 					font-family: $font;
@@ -68,8 +68,8 @@
 			font-weight: 700;
 		}
 		.list-box {
-			border-radius: 20px;
-			background: #15182b;
+			border-radius: 10px;
+			background: #eceeef;
 			overflow-x: auto;
 		}
 	}

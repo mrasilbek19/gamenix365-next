@@ -10,7 +10,7 @@
 			.main-title-box {
 				margin-bottom: 21px;
 				.main-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -20,7 +20,7 @@
 					text-transform: capitalize;
 				}
 				.sub-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -34,15 +34,15 @@
 				flex-direction: row;
 				gap: 59px;
 				padding: 18px 0px 0px 35px;
-				border-bottom: 1px solid #292c46;
+				border-bottom: 1px solid #d4d7da;
 				border-radius: 12px 12px 0px 0px;
 				border: 1px solid rgba(196, 196, 196, 0.79);
-				background: #15182b;
+				background: #eceeef;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.active {
 					height: 30px;
 					border-bottom: 2px solid #181a20;
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -50,7 +50,7 @@
 					line-height: normal;
 				}
 				.not-active {
-					color: #a5a8bd;
+					color: #62666b;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -64,7 +64,7 @@
 				padding: 38px 33px 35px 33px;
 				border-radius: 12px;
 				border: 1px solid rgba(196, 196, 196, 0.79);
-				background: #15182b;
+				background: #eceeef;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.description-box {
 					width: 100%;
@@ -73,7 +73,7 @@
 						margin-top: 15px;
 						width: 100%;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -86,7 +86,7 @@
 							outline: none;
 							border-radius: 8px;
 							padding: 0px 15px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 						}
 						.description-text {
 							margin-top: 15px;
@@ -95,10 +95,10 @@
 							border-radius: 8px;
 							padding: 8px 15px;
 							appearance: none;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							resize: none;
-							background: #15182b;
-							color: #a5a8bd;
+							background: #eceeef;
+							color: #62666b;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -123,7 +123,7 @@
 							border-radius: 12px;
 							border: 1px solid #181a20;
 							.prev-button-text {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -139,9 +139,9 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #090d19;
+							background: #f4f5f6;
 							.next-button-text {
-								color: #fff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -152,7 +152,7 @@
 					}
 					.product-title {
 						margin-top: 30px;
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 17px;
 						font-style: normal;
@@ -169,7 +169,7 @@
 							width: 100%;
 							gap: 20px;
 							.title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -182,19 +182,19 @@
 								outline: none;
 								border-radius: 8px;
 								padding: 0px 15px;
-								border: 1px solid #292c46;
+								border: 1px solid #d4d7da;
 							}
 							.select-description {
 								width: 100%;
 								height: 47px;
 								border-radius: 8px;
-								border: 1px solid #292c46;
-								background: #15182b;
+								border: 1px solid #d4d7da;
+								background: #eceeef;
 								outline: none;
 								padding-left: 15px;
 								appearance: none;
 								cursor: pointer;
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -204,7 +204,7 @@
 							.divider {
 								position: absolute;
 								height: 46px;
-								border-left: 1px solid #292c46;
+								border-left: 1px solid #d4d7da;
 								right: 52px;
 								top: 42px;
 							}
@@ -222,7 +222,7 @@
 				.upload-title {
 					margin-top: 30px;
 					margin-bottom: 30px;
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 17px;
 					font-style: normal;
@@ -241,7 +241,7 @@
 						justify-content: center;
 						gap: 30px;
 						border-radius: 12px;
-						border: 1px dashed #9747ff;
+						border: 1px dashed #00b8ee;
 						.text-box {
 							width: 100%;
 							height: auto;
@@ -249,7 +249,7 @@
 							justify-content: center;
 							gap: 5px;
 							.drag-title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 17px;
 								font-style: normal;
@@ -257,7 +257,7 @@
 								line-height: normal;
 							}
 							.format-title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -274,7 +274,7 @@
 							border-radius: 12px;
 							border: 1px solid #181a20;
 							.browse-button-text {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -309,7 +309,7 @@
 								top: 7px;
 								left: 7px;
 								border-radius: 12px;
-								background: #15182b;
+								background: #eceeef;
 							}
 						}
 					}
@@ -332,7 +332,7 @@
 						border-radius: 12px;
 						border: 1px solid #181a20;
 						.prev-button-text {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -348,9 +348,9 @@
 						align-items: center;
 						gap: 10px;
 						border-radius: 12px;
-						background: #090d19;
+						background: #f4f5f6;
 						.next-button-text {
-							color: #fff;
+							color: #202124;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -367,9 +367,9 @@
 						align-items: center;
 						gap: 10px;
 						border-radius: 12px;
-						background: #9747ff;
+						background: #00b8ee;
 						.next-button-text {
-							color: #fff;
+							color: #202124;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -384,7 +384,7 @@
 					outline: none;
 					border-radius: 8px;
 					padding: 0px 15px;
-					border: 1px solid #292c46;
+					border: 1px solid #d4d7da;
 				}
 				.config-row {
 					width: 100%;
@@ -397,7 +397,7 @@
 						width: 100%;
 						gap: 20px;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -410,19 +410,19 @@
 							outline: none;
 							border-radius: 8px;
 							padding: 0px 15px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 						}
 						.select-description {
 							width: 100%;
 							height: 47px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
-							background: #15182b;
+							border: 1px solid #d4d7da;
+							background: #eceeef;
 							outline: none;
 							padding-left: 15px;
 							appearance: none;
 							cursor: pointer;
-							color: #a5a8bd;
+							color: #62666b;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -432,7 +432,7 @@
 						.divider {
 							position: absolute;
 							height: 46px;
-							border-left: 1px solid #292c46;
+							border-left: 1px solid #d4d7da;
 							right: 52px;
 							top: 42px;
 						}
@@ -448,7 +448,7 @@
 				}
 				.map-title {
 					margin-top: 39px;
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 17px;
 					font-style: normal;
@@ -474,7 +474,7 @@
 						gap: 20px;
 						margin-bottom: 24px;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -487,19 +487,19 @@
 							outline: none;
 							border-radius: 8px;
 							padding: 0px 15px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 						}
 						.select-description {
 							width: 100%;
 							height: 47px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
-							background: #15182b;
+							border: 1px solid #d4d7da;
+							background: #eceeef;
 							outline: none;
 							padding-left: 15px;
 							appearance: none;
 							cursor: pointer;
-							color: #a5a8bd;
+							color: #62666b;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -509,7 +509,7 @@
 						.divider {
 							position: absolute;
 							height: 46px;
-							border-left: 1px solid #292c46;
+							border-left: 1px solid #d4d7da;
 							right: 52px;
 							top: 42px;
 						}
@@ -525,12 +525,12 @@
 							width: 270px;
 							height: 47.352px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 						}
 					}
 				}
 				.owner-shop-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -543,10 +543,10 @@
 					margin-top: 20px;
 					margin-bottom: 41px;
 					border-radius: 8px;
-					border: 1px solid #292c46;
+					border: 1px solid #d4d7da;
 					padding: 8px 15px;
 					resize: none;
-					color: #a5a8bd;
+					color: #62666b;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -575,7 +575,7 @@
 						.amenity-text {
 							width: 130.856px;
 							height: auto;
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -597,8 +597,8 @@
 			font-weight: 700;
 		}
 		.list-box {
-			border-radius: 20px;
-			background: #15182b;
+			border-radius: 10px;
+			background: #eceeef;
 			overflow-x: auto;
 		}
 	}
@@ -630,8 +630,8 @@
 	#my-page #add-product-page .config {
 		width: 100%;
 		padding: 24px;
-		background: #15182b;
-		border-radius: 20px;
+		background: #eceeef;
+		border-radius: 10px;
 		box-shadow: none;
 		.description-box {
 			height: auto;
@@ -671,9 +671,9 @@
 		input,
 		textarea,
 		select {
-			background: #101426;
-			color: #ffffff;
-			border-color: #292c46;
+			background: #f7f7f8;
+			color: #202124;
+			border-color: #d4d7da;
 		}
 	}
 }

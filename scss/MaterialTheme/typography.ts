@@ -1,4 +1,5 @@
 export default {
+	fontFamily: "'Poppins', sans-serif",
 	h1: {
 		fontSize: 36,
 		fontWeight: 700,

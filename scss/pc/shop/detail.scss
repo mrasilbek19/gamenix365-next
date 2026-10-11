@@ -35,7 +35,7 @@
 					flex-direction: column;
 
 					strong {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 24px;
 						font-style: normal;
@@ -58,7 +58,7 @@
 						}
 
 						span {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 20px;
 							font-style: normal;
@@ -77,7 +77,7 @@
 				display: flex;
 				flex-direction: column;
 				border-radius: 12px;
-				background: #15182b;
+				background: #eceeef;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 
 				.card-wrap {
@@ -117,8 +117,8 @@
 								top: 12px;
 								left: 12px;
 								border-radius: 6px;
-								background: #9747ff;
-								color: #fff;
+								background: #00b8ee;
+								color: #202124;
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -133,7 +133,7 @@
 							flex-direction: column;
 
 							strong {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -143,7 +143,7 @@
 							}
 
 							span {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -161,7 +161,7 @@
 
 					span {
 						margin-top: 20px;
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -177,15 +177,15 @@
 				padding: 58px 19px;
 				width: 95%;
 				height: auto;
-				border-radius: 24px;
-				background: #15182b;
+				border-radius: 10px;
+				background: #eceeef;
 
 				.main-intro {
 					display: flex;
 					flex-direction: column;
 
 					span {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -196,7 +196,7 @@
 					}
 
 					p {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -211,7 +211,7 @@
 					display: flex;
 					flex-direction: column;
 					border-radius: 12px;
-					background: #15182b;
+					background: #eceeef;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 
 					.title-box {
@@ -222,7 +222,7 @@
 
 						span {
 							margin-left: 8px;
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -236,7 +236,7 @@
 						display: flex;
 						flex-direction: column;
 						padding-bottom: 10px;
-						border-bottom: 1px solid #292c46;
+						border-bottom: 1px solid #d4d7da;
 
 						.info {
 							display: flex;
@@ -260,7 +260,7 @@
 									flex-direction: column;
 
 									strong {
-										color: #ffffff;
+										color: #202124;
 										font-family: $font;
 										font-size: 15px;
 										font-style: normal;
@@ -270,7 +270,7 @@
 
 									span {
 										margin-top: 4px;
-										color: #ffffff;
+										color: #202124;
 										font-family: $font;
 										font-size: 13px;
 										font-style: normal;
@@ -292,7 +292,7 @@
 
 						p {
 							margin-top: 10px;
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -313,12 +313,12 @@
 				.leave-review-config {
 					margin-top: 15px;
 					border-radius: 12px;
-					background: #15182b;
+					background: #eceeef;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					padding: 30px 38px;
 
 					.main-title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 17px;
 						font-style: normal;
@@ -328,7 +328,7 @@
 
 					.review-title {
 						margin-top: 20px;
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -342,8 +342,8 @@
 						margin-top: 8px;
 						padding: 20px;
 						border-radius: 8px;
-						border: 1px solid #292c46;
-						color: #a5a8bd;
+						border: 1px solid #d4d7da;
+						color: #62666b;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -357,7 +357,7 @@
 						justify-content: flex-end;
 
 						button:disabled {
-							background: #292c46;
+							background: #d4d7da;
 						}
 
 						.submit-review {
@@ -369,11 +369,11 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							cursor: pointer;
 
 							.title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -392,7 +392,7 @@
 #mobile-wrap {
 	.shop-detail-page {
 		padding: 48px 0 64px;
-		background: #080b16;
+		background: #ffffff;
 		.container {
 			gap: 32px;
 			.filter {
@@ -412,14 +412,14 @@
 				width: 100%;
 				height: auto;
 				padding: 24px;
-				border-radius: 20px;
-				background: #15182b;
+				border-radius: 10px;
+				background: #eceeef;
 			}
 			.review-box {
 				width: 100%;
 				padding: 24px;
-				border-radius: 20px;
-				background: #15182b;
+				border-radius: 10px;
+				background: #eceeef;
 			}
 		}
 	}

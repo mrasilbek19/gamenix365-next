@@ -3,13 +3,13 @@
 	max-width: 1200px;
 	margin: 0 auto;
 	padding: 60px 24px 90px;
-	color: #ffffff;
+	color: #202124;
 	.orders-heading {
 		gap: 12px;
 		margin-bottom: 32px;
 	}
 	.eyebrow {
-		color: #a5a8bd;
+		color: #62666b;
 		font-size: 12px;
 		font-weight: 600;
 		letter-spacing: 1px;
@@ -23,30 +23,30 @@
 	.order-left { min-width: 0; }
 	.order-tabs {
 		display: flex;
-		border-bottom: 1px solid #292c46;
+		border-bottom: 1px solid #d4d7da;
 		button {
 			flex: 1;
 			padding: 16px 8px;
 			border: 0;
 			border-bottom: 2px solid transparent;
 			background: transparent;
-			color: #a5a8bd;
+			color: #62666b;
 			font: inherit;
 			cursor: pointer;
-			&.active { color: #9747ff; border-bottom-color: #9747ff; }
+			&.active { color: #007e9e; border-bottom-color: #00b8ee; }
 		}
 	}
 	.order-card, .order-account, .order-checkout {
 		padding: 24px;
-		border: 1px solid #292c46;
+		border: 1px solid #d4d7da;
 		border-radius: 12px;
-		background: #15182b;
+		background: #eceeef;
 		box-shadow: 0 4px 16px rgba(24, 26, 32, 0.04);
 	}
 	.order-summary { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
 	.order-status {
 		padding: 6px 12px;
-		border-radius: 20px;
+		border-radius: 10px;
 		font-size: 12px;
 		background: #fff3e0;
 		color: #9a6300;
@@ -60,27 +60,27 @@
 		gap: 16px;
 		align-items: center;
 		padding: 16px 0;
-		border-bottom: 1px solid #292c46;
+		border-bottom: 1px solid #d4d7da;
 		img { width: 64px; height: 64px; object-fit: cover; border-radius: 8px; }
 		a { font-weight: 600; overflow-wrap: anywhere; }
 	}
-	.order-line-price { text-align: right; font-size: 14px; p { color: #a5a8bd; font-size: 13px; } }
-	.order-delivery { color: #a5a8bd; }
+	.order-line-price { text-align: right; font-size: 14px; p { color: #62666b; font-size: 13px; } }
+	.order-delivery { color: #62666b; }
 	.order-totals {
 		max-width: 280px;
 		margin: 20px 0 20px auto;
 		div { display: flex; justify-content: space-between; padding: 6px 0; }
-		.order-total { margin-top: 8px; padding-top: 14px; border-top: 1px solid #292c46; font-size: 18px; }
+		.order-total { margin-top: 8px; padding-top: 14px; border-top: 1px solid #d4d7da; font-size: 18px; }
 	}
-	.order-actions { display: flex; justify-content: flex-end; button { background: #9747ff; text-transform: none; } }
+	.order-actions { display: flex; justify-content: flex-end; button { background: #00b8ee; text-transform: none; } }
 	.order-account {
 		text-align: center;
 		img { width: 88px; height: 88px; margin-bottom: 16px; border-radius: 50%; object-fit: cover; }
-		.member-role { margin-top: 6px; color: #a5a8bd; font-size: 13px; }
-		.account-details { margin: 24px 0; padding: 20px 0; border-top: 1px solid #292c46; border-bottom: 1px solid #292c46; p + p { margin-top: 12px; } }
-		a { color: #9747ff; font-weight: 600; }
+		.member-role { margin-top: 6px; color: #62666b; font-size: 13px; }
+		.account-details { margin: 24px 0; padding: 20px 0; border-top: 1px solid #d4d7da; border-bottom: 1px solid #d4d7da; p + p { margin-top: 12px; } }
+		a { color: #007e9e; font-weight: 600; }
 	}
-	.order-empty { padding: 48px 16px; text-align: center; p { margin-bottom: 12px; } a { color: #9747ff; } }
+	.order-empty { padding: 48px 16px; text-align: center; p { margin-bottom: 12px; } a { color: #007e9e; } }
 	.order-pagination { display: flex; align-items: center; justify-content: center; gap: 16px; }
 	.order-checkout { summary { cursor: pointer; font-weight: 600; } form { margin-top: 24px; } }
 	@media (max-width: 800px) {
@@ -97,8 +97,8 @@
 #orders-page {
 	.order-card,
 	.order-summary {
-		background: #15182b;
-		border-radius: 20px;
+		background: #eceeef;
+		border-radius: 10px;
 		box-shadow: none;
 	}
 	.orders-heading h4 {

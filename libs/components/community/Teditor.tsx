@@ -8,7 +8,6 @@ import { useRouter } from 'next/router';
 import axios from 'axios';
 import { T } from '../../types/common';
 import '@toast-ui/editor/dist/toastui-editor.css';
-import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
 import { useMutation } from '@apollo/client';
 import { CREATE_BOARD_ARTICLE } from '../../../apollo/user/mutation';
 import { sweetErrorHandling, sweetTopSuccessAlert } from '../../sweetAlert';
@@ -121,7 +120,7 @@ const TuiEditor = () => {
 		<Stack className={'article-editor'}>
 			<Stack className={'article-fields'}>
 				<Box component={'div'} className={'form_row'}>
-					<Typography style={{ color: '#a5a8bd', margin: '10px' }} variant="h3">
+					<Typography style={{ color: '#62666b', margin: '10px' }} variant="h3">
 						Category
 					</Typography>
 					<FormControl sx={{ width: '100%' }}>
@@ -141,7 +140,7 @@ const TuiEditor = () => {
 					</FormControl>
 				</Box>
 				<Box component={'div'} className={'form_row'}>
-					<Typography style={{ color: '#a5a8bd', margin: '10px' }} variant="h3">
+					<Typography style={{ color: '#62666b', margin: '10px' }} variant="h3">
 						Title
 					</Typography>
 					<TextField
@@ -154,7 +153,7 @@ const TuiEditor = () => {
 			</Stack>
 
 			<Editor
-				theme={'dark'}
+				theme={'light'}
 				initialValue={'Type here'}
 				placeholder={'Type here'}
 				previewStyle={'vertical'}

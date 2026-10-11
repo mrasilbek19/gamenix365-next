@@ -13,7 +13,7 @@
        display: flex;
        flex-direction: row;
        border-radius: 12px 0px 0px 12px;
-       background: #15182b;
+       background: #eceeef;
        box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
        .left {
          width: 50%;
@@ -38,7 +38,7 @@
              font-weight: 600;
              line-height: normal;
              letter-spacing: 0.44px;
-             color:#ffffff;
+             color: #202124;
            }
          }
          .info {
@@ -53,7 +53,7 @@
              font-weight: 600;
              line-height: normal;
              text-transform: uppercase;
-             color:  #ffffff;
+             color: #202124;
            }
            p {
              margin-top: 5px;
@@ -62,7 +62,7 @@
              font-style: normal;
              font-weight: 400;
              line-height: 26px;
-             color: #ffffff;
+             color: #202124;
 
            }
          }
@@ -86,21 +86,21 @@
               font-style: normal;
               font-weight: 600;
               line-height: normal;
-              color:  #ffffff;
+              color: #202124;
             }
             input {
               padding: 0px 15px;
               width: 100%;
               height: 55px;
               border-radius: 8px;
-              border: 1px solid #292c46;
-              background:  #15182b;
+              border: 1px solid #d4d7da;
+              background:  #eceeef;
               font-family: $font;
               font-size: 14px;
               font-style: normal;
               font-weight: 400;
               line-height: 26px;
-              color: #a5a8bd;
+              color: #62666b;
             }
           }
          }
@@ -120,7 +120,7 @@
                font-style: normal;
                font-weight: 600;
                line-height: normal;
-               color:  #ffffff;
+               color: #202124;
              }
              div {
                margin-left: 20px;
@@ -144,7 +144,7 @@
                font-weight: 400;
                line-height: 26px;
                cursor: pointer;
-               color:  #ffffff;
+               color: #202124;
              }
            }
            button {
@@ -152,15 +152,15 @@
              width: 100%;
              height: 55px;
              border-radius: 12px;
-             background:  #9747ff;
+             background:  #00b8ee;
              font-family: $font;
              font-size: 15px;
              font-style: normal;
              font-weight: 600;
              line-height: normal;
-             color:  #FFF;
+             color: #202124;
              img {
-               filter: brightness(0) invert(1);
+               filter: brightness(0);
              }
            }
          }
@@ -172,7 +172,7 @@
              font-style: normal;
              line-height: normal;
              font-weight: 400;
-             color:  #ffffff;
+             color: #202124;
              b {
                margin-left: 10px;
                font-weight: 600;
@@ -203,8 +203,8 @@
       max-width: 1080px;
       height: auto;
       min-height: 680px;
-      border-radius: 24px;
-      background: #15182b;
+      border-radius: 10px;
+      background: #eceeef;
       box-shadow: none;
       overflow: hidden;
       .left {
@@ -222,7 +222,7 @@
             font-size: 14px;
             b {
               font-size: 14px;
-              color: #9747ff;
+              color: #007e9e;
             }
           }
         }

@@ -160,7 +160,7 @@ const MyMenu = () => {
 								<div className={'flex-box'}>
 									<svg
 										className={'com-icon'}
-										fill={category === 'followers' ? 'white' : 'black'}
+										fill={category === 'followers' ? '#202124' : 'black'}
 										height="16px"
 										width="16px"
 										version="1.1"
@@ -208,7 +208,7 @@ const MyMenu = () => {
 									<div className={'flex-box'}>
 										<svg
 											className={'com-icon'}
-											fill={category === 'followings' ? 'white' : 'black'}
+											fill={category === 'followings' ? '#202124' : 'black'}
 											height="16px"
 											width="16px"
 											version="1.1"

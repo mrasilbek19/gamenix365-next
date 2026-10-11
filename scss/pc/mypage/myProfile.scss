@@ -15,7 +15,7 @@
 				.right-box {
 					width: 315px;
 					.main-title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -25,7 +25,7 @@
 						text-transform: capitalize;
 					}
 					.sub-title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -40,13 +40,13 @@
 				margin-top: 35px;
 				gap: 25px;
 				border-radius: 12px;
-				border: 1px solid #292c46;
-				background: #15182b;
+				border: 1px solid #d4d7da;
+				background: #eceeef;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.photo-box {
 					gap: 23px;
 					.title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 17px;
 						font-style: normal;
@@ -73,7 +73,7 @@
 								left: 10px;
 								width: 36px;
 								height: 32px;
-								background-color: #15182b;
+								background-color: #eceeef;
 								align-items: center;
 								justify-content: center;
 								border-radius: 12px;
@@ -92,7 +92,7 @@
 								border-radius: 12px;
 								border: 1px solid #181a20;
 								p {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 13px;
 									font-style: normal;
@@ -101,7 +101,7 @@
 								}
 							}
 							.upload-text {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -121,7 +121,7 @@
 						width: 48%;
 						gap: 10px;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -133,9 +133,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							::placeholder {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -148,7 +148,7 @@
 				.address-box {
 					gap: 10px;
 					.title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -160,9 +160,9 @@
 						outline: none;
 						padding: 0px 15px;
 						border-radius: 8px;
-						border: 1px solid #292c46;
+						border: 1px solid #d4d7da;
 						::placeholder {
-							color: #a5a8bd;
+							color: #62666b;
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -174,7 +174,7 @@
 				.about-me-box {
 					gap: 10px;
 					.title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -185,8 +185,8 @@
 						height: 170px;
 						padding: 20px 15px;
 						border-radius: 8px;
-						border: 1px solid #292c46;
-						color: #a5a8bd;
+						border: 1px solid #d4d7da;
+						color: #62666b;
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -203,9 +203,9 @@
 						align-self: flex-end;
 						margin-top: 30px;
 						border-radius: 12px;
-						background-color: #090d19;
+						background-color: #f4f5f6;
 						p {
-							color: #fff;
+							color: #202124;
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;
@@ -223,13 +223,13 @@
 				padding: 30px;
 				gap: 25px;
 				border-radius: 12px;
-				border: 1px solid #292c46;
-				background: #15182b;
+				border: 1px solid #d4d7da;
+				background: #eceeef;
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.top-inner-box {
 					gap: 20px;
 					.title {
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -239,7 +239,7 @@
 					.old-password-box {
 						gap: 10px;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -252,9 +252,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							::placeholder {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -272,7 +272,7 @@
 						width: 100%;
 						gap: 10px;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -284,9 +284,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							::placeholder {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -306,9 +306,9 @@
 					align-self: flex-end;
 					margin-top: 18px;
 					border-radius: 12px;
-					background-color: #090d19;
+					background-color: #f4f5f6;
 					p {
-						color: #fff;
+						color: #202124;
 						font-family: $font;
 						font-size: 13px;
 						font-style: normal;
@@ -327,9 +327,9 @@
 		.top-box,
 		.bottom-box {
 			margin-top: 0;
-			background: #15182b;
+			background: #eceeef;
 			border: 0;
-			border-radius: 20px;
+			border-radius: 10px;
 			box-shadow: none;
 		}
 		.top-box .small-input-box {
@@ -373,8 +373,8 @@
 	#my-page #my-profile-page {
 		input,
 		textarea {
-			background: #101426;
-			color: #ffffff;
+			background: #f7f7f8;
+			color: #202124;
 		}
 	}
 }

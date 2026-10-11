@@ -1,21 +1,21 @@
 .public-layout #main .event-management-page {
-	background: #080b16;
+	background: #ffffff;
 
 	.event-board > h4 {
 		padding-bottom: 24px;
-		border-bottom: 1px solid #292c46;
+		border-bottom: 1px solid #d4d7da;
 	}
 
 	form {
-		background: #101426;
-		border-top: 3px solid #9747ff;
+		background: #f7f7f8;
+		border-top: 3px solid #00b8ee;
 	}
 
 	.event-card {
 		transition: border-color 160ms ease;
 
 		&:hover {
-			border-color: #9747ff;
+			border-color: #00b8ee;
 		}
 	}
 }

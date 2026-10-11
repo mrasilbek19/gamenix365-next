@@ -1,7 +1,7 @@
 #pc-wrap,
 #mobile-wrap {
 	#my-page {
-		background: #15182b;
+		background: #eceeef;
 		.container {
 			.my-page {
 				position: relative;
@@ -16,8 +16,8 @@
 					flex-direction: row;
 					margin: 100px 0 200px 0;
 					border-radius: 12px;
-					border: 1px solid #292c46;
-					background: #15182b;
+					border: 1px solid #d4d7da;
+					background: #eceeef;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.left-config {
 						position: relative;
@@ -25,7 +25,7 @@
 						width: 266px;
 						height: 700px;
 						border-radius: 12px;
-						background: #15182b;
+						background: #eceeef;
 						border: 1px solid rgba(196, 196, 196, 0.79);
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 						margin: 180px 20px 40px 20px;
@@ -49,7 +49,7 @@
 								display: flex;
 								flex-direction: column;
 								.user-name {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -68,7 +68,7 @@
 								}
 								.view-list {
 									font-weight: bold;
-									color: #9747ff;
+									color: #007e9e;
 								}
 							}
 						}
@@ -100,11 +100,11 @@
 									}
 									.focus {
 										height: 50px;
-										background: #9747ff;
+										background: #00b8ee;
 										border-radius: 10px;
 										p {
 											font-size: 14px;
-											color: #ffffff;
+											color: #202124;
 										}
 									}
 									.flex-box {
@@ -127,7 +127,7 @@
 								}
 								.sub-title {
 									margin-left: 12px;
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -155,7 +155,7 @@
 								height: 413px;
 								margin-bottom: 7px;
 								border-radius: 12px;
-								background: #15182b;
+								background: #eceeef;
 								box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 								.top {
 									position: relative;
@@ -178,8 +178,8 @@
 										align-items: center;
 										border-radius: 6px;
 										padding: 6px 20px;
-										background: #9747ff;
-										color: #fff;
+										background: #00b8ee;
+										color: #202124;
 										text-align: center;
 										text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 										font-family: $font;
@@ -199,9 +199,9 @@
 										align-items: center;
 										border-radius: 6px;
 										border: 1px solid rgba(255, 255, 255, 0.5);
-										background: #15182b;
+										background: #eceeef;
 										p {
-											color: #ffffff;
+											color: #202124;
 											font-family: $font;
 											font-size: 15px;
 											font-style: normal;
@@ -224,7 +224,7 @@
 											height: 23px;
 											overflow: hidden;
 											p {
-												color: #ffffff;
+												color: #202124;
 												font-family: $font;
 												font-size: 15px;
 												font-style: normal;
@@ -237,7 +237,7 @@
 											width: 100%;
 											overflow: hidden;
 											p {
-												color: #a5a8bd;
+												color: #62666b;
 												font-family: $font;
 												font-size: 13px;
 												font-style: normal;
@@ -257,7 +257,7 @@
 											gap: 5px;
 											align-items: center;
 											p {
-												color: #ffffff;
+												color: #202124;
 												font-family: $font;
 												font-size: 13px;
 												font-style: normal;
@@ -282,7 +282,7 @@
 											align-items: center;
 											gap: 7px;
 											p {
-												color: #ffffff;
+												color: #202124;
 												font-family: $font;
 												font-style: normal;
 												line-height: normal;
@@ -317,7 +317,7 @@
 							}
 							.total-result {
 								p {
-									color: #ffffff;
+									color: #202124;
 									text-align: center;
 									font-family: $font;
 									font-size: 24px;
@@ -344,7 +344,7 @@
 			gap: 32px;
 			border: 0;
 			box-shadow: none;
-			background: #080b16;
+			background: #ffffff;
 			align-items: flex-start;
 			.left-config {
 				width: 240px;
@@ -352,8 +352,8 @@
 				height: auto;
 				margin: 0;
 				padding: 24px 20px;
-				background: #15182b;
-				border-radius: 20px;
+				background: #eceeef;
+				border-radius: 10px;
 				border: 0;
 				.profile {
 					flex-wrap: wrap;
@@ -389,8 +389,8 @@
 					.card-config {
 						width: 100%;
 						height: auto;
-						background: #15182b;
-						border-radius: 20px;
+						background: #eceeef;
+						border-radius: 10px;
 						box-shadow: none;
 						.bottom {
 							height: auto;
@@ -421,6 +421,6 @@
 #pc-wrap,
 #mobile-wrap {
 	#my-page .left-config .sub-section li img {
-		filter: brightness(0) invert(1);
+		filter: brightness(0);
 	}
 }

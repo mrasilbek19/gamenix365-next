@@ -69,7 +69,7 @@ const withAdminLayout = (Component: ComponentType) => {
 							width: `calc(100% - ${drawerWidth}px)`,
 							ml: `${drawerWidth}px`,
 							boxShadow: 'rgb(100 116 139 / 12%) 0px 1px 4px',
-							background: '#090d19',
+							background: '#000000',
 						}}
 					>
 						<Toolbar>

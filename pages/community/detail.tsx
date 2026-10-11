@@ -368,7 +368,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 							</Stack>
 							<Stack
 								className="second-box-config"
-								sx={{ borderBottom: total > 0 ? 'none' : '1px solid #292c46', border: '1px solid #292c46' }}
+								sx={{ borderBottom: total > 0 ? 'none' : '1px solid #d4d7da', border: '1px solid #d4d7da' }}
 							>
 								<Typography className="title-text">Comments ({total})</Typography>
 								<Stack className="leave-comment">
@@ -440,7 +440,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																width: '1000px',
 																height: 'fit-content',
 																borderRadius: '10px',
-																color: '#ffffff',
+																color: '#202124',
 																zIndex: 999,
 															}}
 															open={openBackdrop}
@@ -457,7 +457,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																	boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
 																}}
 															>
-																<Typography variant="h4" color={'#b9b9b9'}>
+																<Typography variant="h4" color={'#62666b'}>
 																	Update comment
 																</Typography>
 																<Stack gap={'20px'}>
@@ -475,7 +475,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																		}}
 																	/>
 																	<Stack width={'100%'} flexDirection={'row'} justifyContent={'space-between'}>
-																		<Typography variant="subtitle1" color={'#b9b9b9'}>
+																		<Typography variant="subtitle1" color={'#62666b'}>
 																			{updatedCommentWordsCnt}/100
 																		</Typography>
 																		<Stack sx={{ flexDirection: 'row', alignSelf: 'flex-end', gap: '10px' }}>

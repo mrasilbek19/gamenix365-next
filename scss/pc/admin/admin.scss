@@ -8,11 +8,11 @@
     position: fixed;
     left: auto;
     box-shadow: none;
-    background: #15182b;
+    background: #eceeef;
     border-bottom: 1px solid rgba(0, 0, 0, 0.12);
     .settings-icon-admin {
       margin-right: 15px;
-      color: #a5a8bd;
+      color: #62666b;
       cursor: pointer;
     }
   }
@@ -27,7 +27,7 @@
       }
     }
     .user {
-      background: #15182b;
+      background: #eceeef;
     }
     hr {
       margin: 24px 0;
@@ -37,7 +37,7 @@
     }
   }
   .user {
-    background: #15182b;
+    background: #eceeef;
   }
   .menu-list {
     padding: 8px 24px 8px 32px;
@@ -48,10 +48,10 @@
     }
     li.on {
       font-weight: 600;
-      background: #15182b;
-      color: #9747ff;
+      background: #eceeef;
+      color: #007e9e;
       span {
-        color: #ffffff;
+        color: #202124;
       }
     }
   }
@@ -96,7 +96,7 @@
     }
     .delete {
       background: #757575;
-      color: #fff;
+      color: #202124;
       border-radius: 4px;
     }
     .success-txt {
@@ -117,7 +117,7 @@
     }
     .delete-txt {
       font-size: 14px;
-      color: #a5a8bd;
+      color: #62666b;
     }
     .up {
       color: rgba(45, 153, 255);
@@ -212,14 +212,14 @@
           height: 80%;
           padding: 10px;
           font-size: 14px;
-          border: 1px solid #292c46;
+          border: 1px solid #d4d7da;
           border-radius: 4px;
           resize: none;
         }
       }
       .desc {
         span {
-          color: #a5a8bd;
+          color: #62666b;
           margin-right: 4px;
         }
       }
@@ -227,7 +227,7 @@
     .user-area {
       margin-bottom: 24px;
       .user-id {
-        background: #15182b;
+        background: #eceeef;
         border-radius: 30px;
         padding: 0 8px;
         margin-top: 8px;
@@ -266,35 +266,35 @@
         font-weight: 500;
       }
       button:nth-child(2) {
-        color:#fff;
+        color: #202124;
         box-shadow: rgb(255 48 48 / 24%) 0px 8px 16px 0px;
       }
     }
     .btn-complete {
-      color:#fff;
+      color: #202124;
       box-shadow: rgb(255 48 48 / 24%) 0px 8px 16px 0px;
     }
     .btn-action {
       position: static;
       font-weight: 500;
-      color: #fff;
+      color: #202124;
       border-radius: 8px;
     }
     .btn-add {
-      color: #fff;
+      color: #202124;
       font-weight: 500;
       box-shadow: rgb(255 48 48 / 24%) 0px 8px 16px 0px;
     }
     .btn-cancel {
-      color: #a5a8bd;
-      border: 1px solid #292c46;
+      color: #62666b;
+      border: 1px solid #d4d7da;
     }
     .btn-upload {
-      border: 1px dashed #292c46;
+      border: 1px dashed #d4d7da;
     }
     .btn-text { color: #e92c28; }
     .btn-window {
-      color: #a5a8bd;
+      color: #62666b;
       margin-left: 8px;
       svg {
         font-size: 20px;
@@ -307,7 +307,7 @@
     }
 
     .table-wrap {
-      background: #15182b;
+      background: #eceeef;
       border-radius: 4px;
       box-shadow: rgb(145 158 171 / 20%) 0px 0px 2px 0px, rgb(145 158 171 / 12%) 0px 12px 24px -4px;
       .tab-menu {
@@ -319,13 +319,13 @@
           height: 48px;
           cursor: pointer;
           padding: 12px 16px;
-          color: #a5a8bd;
+          color: #62666b;
           font-size: 14px;
         }
         li.on {
           font-weight: 500;
-          color: #9747ff;
-          border-bottom: 2px solid #9747ff;
+          color: #007e9e;
+          border-bottom: 2px solid #00b8ee;
         }
       }
       &.check-table-wrap {
@@ -336,13 +336,13 @@
       }
       thead {
         tr {
-          background: #15182b;
+          background: #eceeef;
         }
         th {
           font-weight: bold;
           color: #374151;
           font-size: 14px;
-          border-bottom: 1px solid #292c46;
+          border-bottom: 1px solid #d4d7da;
         }
         th:last-child {
           padding-right: 24px;
@@ -352,9 +352,9 @@
         }
       }
       tbody {
-        color: #a5a8bd;
+        color: #62666b;
         tr {
-          border-bottom: 1px solid #292c46;
+          border-bottom: 1px solid #d4d7da;
         }
         tr:last-child {
           border-bottom: 0;
@@ -366,7 +366,7 @@
           padding: 12px 16px;
           border-bottom: 0;
           font-size: 14px;
-          color: #a5a8bd;
+          color: #62666b;
           &.info {
             display: flex;
             flex-direction: row;
@@ -377,7 +377,7 @@
             flex-direction: row;
             align-items: center;
             a:visited {
-              color: #a5a8bd;
+              color: #62666b;
             }
           }
           .img-box {
@@ -420,13 +420,13 @@
             align-items: center;
             justify-content: space-between;
             margin-bottom: 8px;
-            background: #15182b;
+            background: #eceeef;
             border-radius: 4px;
             padding: 2px 16px;
           }
           .notice {
             margin: 6px 0 0 30px;
-            color: #a5a8bd;
+            color: #62666b;
           }
         }
         .option {
@@ -435,7 +435,7 @@
             width:301px;
             height: 48px;
             padding-right: 8px;
-            color: #a5a8bd;
+            color: #62666b;
             span { font-size: 14px; }
           }
         }
@@ -459,12 +459,12 @@
       }
       .MuiOutlinedInput-root {
         height: 48px;
-        background: #15182b;
+        background: #eceeef;
         font-size: 14px;
       }
       .MuiTableCell-root {
         padding: 12px 20px;
-        border-bottom: 1px solid #292c46;
+        border-bottom: 1px solid #d4d7da;
       }
       .MuiToolbar-root {
         align-items: center;
@@ -475,9 +475,9 @@
       flex-direction: row;
       button {
         height: 44px;
-        background: #15182b;
-        border: 1px solid #292c46;
-        color: #a5a8bd;
+        background: #eceeef;
+        border: 1px solid #d4d7da;
+        color: #62666b;
         margin-right: 8px;
       }
       thead { font-weight: 600; }
@@ -511,7 +511,7 @@
       font-family: $font;
     }
     p {
-      color: #ffffff;
+      color: #202124;
       font-family: $font;
     }
     .close-icon {
@@ -546,10 +546,10 @@
 }
 
 #pc-wrap.admin {
-  background: #15182b;
+  background: #ffffff;
   .MuiAppBar-root {
-    background: #090d19;
-    color: #fff;
+    background: #000000;
+    color: #ffffff;
     border: 0;
     .MuiToolbar-root {
       width: 100%;
@@ -560,8 +560,8 @@
     }
   }
   .MuiDrawer-paper {
-    background: #090d19;
-    color: #fff;
+    background: #202020;
+    color: #ffffff;
     border: 0;
     .admin-brand {
       padding: 12px 24px;
@@ -569,7 +569,7 @@
       font-weight: 800;
       letter-spacing: -1px;
       span {
-        color: #b689ff;
+        color: #00b8ee;
       }
     }
     .MuiListItemIcon-root,
@@ -577,10 +577,10 @@
       color: inherit;
     }
     .user {
-      background: #090d19;
+      background: #202020;
     }
     hr {
-      border-color: #292c46;
+      border-color: #d4d7da;
     }
   }
   .menu-list {
@@ -589,8 +589,8 @@
       border-radius: 12px;
     }
     li.on {
-      color: #fff;
-      background: #9747ff;
+      color: #202124;
+      background: #00b8ee;
       span {
         color: inherit;
       }
@@ -600,12 +600,12 @@
     min-width: 0;
     padding: 104px 32px 48px;
     .MuiPaper-root {
-      border-radius: 20px;
+      border-radius: 10px;
       box-shadow: none;
-      border: 1px solid #292c46;
+      border: 1px solid #d4d7da;
     }
     .MuiTableHead-root {
-      background: #15182b;
+      background: #eceeef;
       .MuiTableCell-root {
         font-weight: 700;
       }
@@ -654,6 +654,26 @@
       width: 100%;
       margin: 0;
       padding: 32px 16px;
+      .MuiTablePagination-toolbar {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 4px;
+        padding: 8px;
+      }
+      .MuiTablePagination-spacer {
+        display: none;
+      }
+      .MuiTablePagination-actions {
+        margin-left: 8px;
+      }
+      .table-wrap .tab-menu {
+        flex-wrap: wrap;
+        padding: 0 8px;
+        li {
+          padding: 12px 10px;
+          font-size: 12px;
+        }
+      }
     }
   }
 }

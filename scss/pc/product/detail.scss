@@ -2,7 +2,7 @@
 #mobile-wrap {
 	#product-detail-page {
 		position: relative;
-		background: #080b16;
+		background: #ffffff;
 		padding-top: 87px;
 		padding-bottom: 200px;
 		.product-detail-config {
@@ -23,7 +23,7 @@
 						width: 50%;
 						height: auto;
 						.title-main {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 30px;
 							font-style: normal;
@@ -40,7 +40,7 @@
 							gap: 10px;
 							margin-bottom: 17px;
 							.city {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -57,7 +57,7 @@
 								align-items: center;
 								gap: 7px;
 								.buy-rent {
-									color: #9747ff;
+									color: #007e9e;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -66,7 +66,7 @@
 								}
 							}
 							.date {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -85,7 +85,7 @@
 								flex-direction: row;
 								gap: 8px;
 								p {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -107,7 +107,7 @@
 							gap: 11px;
 							margin: 0 10px 27px 0;
 							p {
-								color: #ffffff;
+								color: #202124;
 								text-align: right;
 								font-family: $font;
 								font-size: 18px;
@@ -133,7 +133,7 @@
 							cursor: pointer;
 						}
 						p {
-							color: #ffffff;
+							color: #202124;
 							text-align: right;
 							font-family: $font;
 							font-size: 26px;
@@ -144,7 +144,7 @@
 							text-transform: capitalize;
 						}
 						span {
-							color: #ffffff;
+							color: #202124;
 							text-align: right;
 							font-family: $font;
 							font-size: 15px;
@@ -214,7 +214,7 @@
 								align-items: center;
 								justify-content: center;
 								border-radius: 12px;
-								border: 1px solid #292c46;
+								border: 1px solid #d4d7da;
 								img {
 									width: 35px;
 									height: auto;
@@ -224,7 +224,7 @@
 								width: auto;
 								height: auto;
 								.title {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -232,7 +232,7 @@
 									line-height: normal;
 								}
 								.option-data {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -248,13 +248,13 @@
 						gap: 50px;
 						padding: 29px 38px 50px 38px;
 						border-radius: 12px;
-						border: 1px solid #292c46;
+						border: 1px solid #d4d7da;
 						.top {
 							width: 100%;
 							height: auto;
 							gap: 30px;
 							.title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 17px;
 								font-style: normal;
@@ -262,7 +262,7 @@
 								line-height: normal;
 							}
 							.desc {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -276,7 +276,7 @@
 							height: auto;
 							gap: 30px;
 							.title {
-								color: #ffffff;
+								color: #202124;
 								font-family: $font;
 								font-size: 17px;
 								font-style: normal;
@@ -299,7 +299,7 @@
 										gap: 38px;
 										.title {
 											width: 121px;
-											color: #ffffff;
+											color: #202124;
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
@@ -308,7 +308,7 @@
 										}
 										.data {
 											width: 88px;
-											color: #ffffff;
+											color: #202124;
 											font-family: $font;
 											font-size: 14px;
 											font-style: normal;
@@ -326,9 +326,9 @@
 						gap: 30px;
 						padding: 30px 38px;
 						border-radius: 12px;
-						border: 1px solid #292c46;
+						border: 1px solid #d4d7da;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -338,7 +338,7 @@
 						.image-box {
 							width: 100%;
 							height: 510px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							img {
 								width: 100%;
 								height: 100%;
@@ -352,9 +352,9 @@
 						gap: 30px;
 						padding: 30px 38px;
 						border-radius: 12px;
-						border: 1px solid #292c46;
+						border: 1px solid #d4d7da;
 						.title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -374,7 +374,7 @@
 						height: auto;
 						padding: 30px 38px 45px 38px;
 						border-radius: 12px;
-						border: 1px solid #292c46;
+						border: 1px solid #d4d7da;
 						.filter-box {
 							width: 100%;
 							height: auto;
@@ -389,7 +389,7 @@
 								gap: 12px;
 								.reviews {
 									width: 153.6px;
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 17px;
 									font-style: normal;
@@ -403,7 +403,7 @@
 								flex-direction: row;
 								gap: 10px;
 								.sort-title {
-									color: #a5a8bd;
+									color: #62666b;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -414,7 +414,7 @@
 									width: 140px;
 									border: none;
 									outline: none;
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -431,7 +431,7 @@
 								width: 100%;
 								height: auto;
 								padding-bottom: 10px;
-								border-bottom: 1px solid #292c46;
+								border-bottom: 1px solid #d4d7da;
 								.review-mb-info {
 									width: 100%;
 									height: auto;
@@ -448,13 +448,13 @@
 											align-items: center;
 											justify-content: center;
 											border-radius: 50%;
-											background: #15182b;
+											background: #eceeef;
 											border: 1px solid #b9b9b9;
 											object-fit: cover;
 										}
 										.name {
 											width: 100%;
-											color: #ffffff;
+											color: #202124;
 											font-family: $font;
 											font-size: 15px;
 											font-style: normal;
@@ -464,7 +464,7 @@
 										}
 										.date {
 											width: 100%;
-											color: #ffffff;
+											color: #202124;
 											font-family: $font;
 											font-size: 13px;
 											font-style: normal;
@@ -481,7 +481,7 @@
 									height: auto;
 									margin-top: 15px;
 									.description {
-										color: #ffffff;
+										color: #202124;
 										font-family: $font;
 										font-size: 14px;
 										font-style: normal;
@@ -501,12 +501,12 @@
 					}
 					.leave-review-config {
 						border-radius: 12px;
-						border: 1px solid #292c46;
-						background: #15182b;
+						border: 1px solid #d4d7da;
+						background: #eceeef;
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 						padding: 30px 38px;
 						.main-title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -515,7 +515,7 @@
 						}
 						.review-title {
 							margin-top: 20px;
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -528,8 +528,8 @@
 							margin-top: 8px;
 							padding: 20px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
-							color: #a5a8bd;
+							border: 1px solid #d4d7da;
+							color: #62666b;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -541,7 +541,7 @@
 							display: flex;
 							justify-content: flex-end;
 							button:disabled {
-								background: #292c46;
+								background: #d4d7da;
 							}
 							.submit-review {
 								display: flex;
@@ -552,10 +552,10 @@
 								align-items: center;
 								gap: 10px;
 								border-radius: 12px;
-								border: 1px solid #292c46;
+								border: 1px solid #d4d7da;
 								cursor: pointer;
 								.title {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -573,14 +573,14 @@
 					gap: 20px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #15182b;
+					background: #eceeef;
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.info-box {
 						position: relative;
 						width: 100%;
 						gap: 8px;
 						.main-title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 17px;
 							font-style: normal;
@@ -601,7 +601,7 @@
 							.name-phone-listings {
 								gap: 5px;
 								.name {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -614,7 +614,7 @@
 									align-items: center;
 									gap: 10px;
 									.number {
-										color: #ffffff;
+										color: #202124;
 										font-family: $font;
 										font-size: 15px;
 										font-style: normal;
@@ -623,7 +623,7 @@
 									}
 								}
 								.listings {
-									color: #ffffff;
+									color: #202124;
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -634,7 +634,7 @@
 							}
 						}
 						.sub-title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -646,11 +646,11 @@
 							height: 55px;
 							padding: 15px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
-							background: #15182b;
+							border: 1px solid #d4d7da;
+							background: #eceeef;
 							outline: none;
 							&::placeholder {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -658,7 +658,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid #292c46;
+								border: 1px solid #d4d7da;
 							}
 						}
 						textarea {
@@ -666,14 +666,14 @@
 							height: 120px;
 							padding: 20px;
 							border-radius: 8px;
-							border: 1px solid #292c46;
+							border: 1px solid #d4d7da;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
 							font-weight: 400;
 							line-height: 26px;
 							&::placeholder {
-								color: #a5a8bd;
+								color: #62666b;
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -681,7 +681,7 @@
 								line-height: 26px;
 							}
 							&:focus {
-								border: 1px solid #292c46;
+								border: 1px solid #d4d7da;
 							}
 						}
 						.send-message {
@@ -692,9 +692,9 @@
 							align-items: center;
 							gap: 10px;
 							border-radius: 12px;
-							background: #9747ff;
+							background: #00b8ee;
 							.title {
-								color: #fff;
+								color: #202124;
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -718,7 +718,7 @@
 					.title-box {
 						width: 30%;
 						.main-title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 30px;
 							font-style: normal;
@@ -728,7 +728,7 @@
 							text-transform: capitalize;
 						}
 						.sub-title {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -772,11 +772,11 @@
 					gap: 20px;
 					.main-image {
 						width: 100%;
-						background: #15182b;
-						border-radius: 24px;
+						background: #eceeef;
+						border-radius: 10px;
 						img {
 							object-fit: contain;
-							border-radius: 24px;
+							border-radius: 10px;
 						}
 					}
 					.sub-images {
@@ -795,8 +795,8 @@
 				}
 				.right-config {
 					width: 300px;
-					background: #15182b;
-					border-radius: 20px;
+					background: #eceeef;
+					border-radius: 10px;
 					box-shadow: none;
 				}
 			}

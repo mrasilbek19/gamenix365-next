@@ -24,9 +24,9 @@
 						width: 333px;
 						height: 50px;
 						border-radius: 40px;
-						border: 1px solid #292c46;
-						background: #15182b;
-						color: #ffffff;
+						border: 1px solid #d4d7da;
+						background: #eceeef;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -41,7 +41,7 @@
 					align-items: center;
 					button {
 						margin-left: 10px;
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -69,7 +69,7 @@
 				align-items: center;
 				span {
 					margin-top: 20px;
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -85,7 +85,7 @@
 #mobile-wrap {
 	.shop-list-page {
 		padding: 48px 0 64px;
-		background: #080b16;
+		background: #ffffff;
 		.container {
 			gap: 32px;
 			.filter {
@@ -105,14 +105,14 @@
 				width: 100%;
 				height: auto;
 				padding: 24px;
-				border-radius: 20px;
-				background: #15182b;
+				border-radius: 10px;
+				background: #eceeef;
 			}
 			.review-box {
 				width: 100%;
 				padding: 24px;
-				border-radius: 20px;
-				background: #15182b;
+				border-radius: 10px;
+				background: #eceeef;
 			}
 		}
 	}

@@ -14,7 +14,7 @@
 			.right-box {
 				width: 315px;
 				.main-title {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -37,10 +37,10 @@
 				flex-wrap: wrap;
 				padding: 18px 34px 18px 33px;
 				border-radius: 12px;
-				background: #15182b;
+				background: #eceeef;
 				justify-content: space-between;
 				.title-text {
-					color: #ffffff;
+					color: #202124;
 					font-family: $font;
 					font-size: 15px;
 					font-style: normal;
@@ -56,7 +56,7 @@
 				flex-direction: row;
 				align-items: center;
 				gap: 10px;
-				border-bottom: 1px solid #292c46;
+				border-bottom: 1px solid #d4d7da;
 				.info {
 					width: 300px;
 					display: flex;
@@ -80,7 +80,7 @@
 						height: auto;
 						padding: 5px 0px;
 						.name {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;
@@ -107,7 +107,7 @@
 							cursor: pointer;
 						}
 						p {
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -116,7 +116,7 @@
 						}
 						span {
 							margin-left: 4px;
-							color: #ffffff;
+							color: #202124;
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;
@@ -134,7 +134,7 @@
 					gap: 20px;
 					button {
 						border: 1px solid #b9b9b9;
-						color: #ffffff;
+						color: #202124;
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -160,7 +160,7 @@
 			margin-top: 30px;
 			.total-result {
 				p {
-					color: #ffffff;
+					color: #202124;
 					text-align: center;
 					font-family: $font;
 					font-size: 14px;
@@ -179,9 +179,9 @@
 		padding: 24px;
 		flex-wrap: wrap;
 		gap: 24px;
-		border: 1px solid #292c46;
-		border-radius: 20px;
-		background: #15182b;
+		border: 1px solid #d4d7da;
+		border-radius: 10px;
+		background: #eceeef;
 
 		.info,
 		.details-box,

@@ -186,7 +186,7 @@ const Chat = () => {
 						onKeyDown={getKeyHandler}
 					/>
 					<button className={'send-msg-btn'} onClick={onClickHandler}>
-						<SendIcon style={{ color: '#fff' }} />
+						<SendIcon style={{ color: '#202124' }} />
 					</button>
 				</Box>
 			</Stack>

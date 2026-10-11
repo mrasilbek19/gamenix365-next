@@ -6,21 +6,21 @@
 
 	.table-wrap {
 		overflow: hidden;
-		border: 1px solid #292c46;
-		border-radius: 20px;
-		background: #101426;
+		border: 1px solid #d4d7da;
+		border-radius: 10px;
+		background: #f7f7f8;
 	}
 
 	.search-area {
 		padding: 20px;
 		border-radius: 14px;
-		background: #15182b;
+		background: #eceeef;
 		gap: 16px;
 		flex-wrap: wrap;
 	}
 
 	.MuiTableHead-root .MuiTableCell-root {
-		color: #ffffff;
+		color: #202124;
 	}
 
 	.MuiTableRow-root:hover {
