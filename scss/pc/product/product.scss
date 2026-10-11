@@ -7,11 +7,21 @@
 		position: relative;
 		flex-direction: column;
 		padding-top: 140px;
+		.results-toolbar {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+			flex-wrap: wrap;
+			gap: 12px;
+			margin-bottom: 24px;
+		}
 		.right {
 			display: flex;
 			flex-direction: row;
 			align-items: center;
 			gap: 12px;
+			margin-left: auto;
+			font-size: 12px;
 			button {
 				min-height: 44px;
 				padding: 10px 22px;
@@ -21,21 +31,12 @@
 				font-size: 12px;
 				font-weight: 600;
 			}
-			.all-filters-button {
-				background: #202020;
-				border-color: #202020;
-				color: #fff;
-			}
-			.all-filters-button:hover {
-				background: #383838;
-			}
 			.sort-button {
 				min-width: 140px;
 				justify-content: space-between;
 			}
 		}
 		.catalog-count {
-			margin: 20px 0 24px;
 			color: #62666b;
 			font-size: 12px;
 		}
@@ -45,12 +46,15 @@
 		flex-direction: row;
 		align-items: flex-start;
 		gap: 24px;
-		.filter-config,
-		.filter-main {
-			display: contents;
+		.filter-config {
+			width: 260px;
+			flex-shrink: 0;
 		}
-		.filter-main > :not(:first-child) {
-			display: none;
+		.filter-main {
+			width: 100%;
+			padding: 24px 18px;
+			border-radius: 8px;
+			background: #f7f7f8;
 		}
 		.filter-main > .find-your-home:first-child {
 			position: absolute;
@@ -89,26 +93,6 @@
 			}
 			.MuiIconButton-root {
 				color: #62666b;
-			}
-		}
-		&.filters-open {
-			.filter-config {
-				display: flex;
-				width: 260px;
-				flex-shrink: 0;
-			}
-			.filter-main {
-				display: flex;
-				width: 100%;
-				padding: 24px 18px;
-				border-radius: 8px;
-				background: #f7f7f8;
-			}
-			.filter-main > :not(:first-child) {
-				display: flex;
-			}
-			.list-config {
-				grid-template-columns: repeat(3, minmax(0, 1fr));
 			}
 		}
 		.filter-main {
@@ -150,6 +134,10 @@
 			}
 		}
 		.product-category-sidebar {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			min-width: 0;
 			margin: 0 0 24px;
 			padding-bottom: 20px;
 			border-bottom: 1px solid #d4d7da;
@@ -160,6 +148,7 @@
 				font-weight: 600;
 			}
 			.category-section {
+				width: 100%;
 				margin-top: 4px;
 			}
 			.category-option,
@@ -187,12 +176,14 @@
 			.category-toggle {
 				box-sizing: border-box;
 				margin: 0;
-				justify-content: space-between;
+				flex-direction: row;
+				justify-content: flex-start;
 				gap: 8px;
 				.MuiFormControlLabel-label {
 					font: inherit;
 				}
 				.MuiCheckbox-root {
+					flex-shrink: 0;
 					padding: 2px;
 					color: #62666b;
 				}
@@ -227,7 +218,7 @@
 		.list-config {
 			display: grid;
 			width: 100%;
-			grid-template-columns: repeat(4, minmax(0, 1fr));
+			grid-template-columns: repeat(3, minmax(0, 1fr));
 			align-items: stretch;
 			gap: 24px;
 		}
@@ -399,9 +390,6 @@
 	#pc-wrap #product-list-page,
 	#mobile-wrap #product-list-page {
 		.product-page .list-config {
-			grid-template-columns: repeat(3, minmax(0, 1fr));
-		}
-		.product-page.filters-open .list-config {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 		}
 	}
@@ -413,7 +401,7 @@
 		.product-page {
 			flex-direction: column;
 		}
-		.product-page.filters-open .filter-config {
+		.product-page .filter-config {
 			width: 100%;
 		}
 		.product-page .list-config {

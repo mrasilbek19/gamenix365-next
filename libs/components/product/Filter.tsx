@@ -22,23 +22,26 @@ const Filter = (props: FilterType) => {
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		if (updateUrl && searchFilter?.search?.typeList?.length == 0) {
-			delete searchFilter.search.typeList;
-			router.push(
-				`/product?input=${JSON.stringify({
-					...searchFilter,
-					search: { ...searchFilter.search },
-				})}`,
-				`/product?input=${JSON.stringify({
-					...searchFilter,
-					search: { ...searchFilter.search },
-				})}`,
-				{ scroll: false },
-			).then();
-		}
-	}, [searchFilter]);
+		if (updateUrl) setSearchText(searchFilter?.search?.text ?? '');
+	}, [searchFilter.search.text, updateUrl]);
 
 	/** HANDLERS **/
+	const searchHandler = async (text: string) => {
+		const inputObj = {
+			...searchFilter,
+			page: updateUrl ? 1 : searchFilter.page,
+			search: { ...searchFilter.search, text },
+		};
+		setSearchText(text);
+		setSearchFilter(inputObj);
+		if (!updateUrl) return;
+		await router.push(
+			`/product?input=${JSON.stringify(inputObj)}`,
+			`/product?input=${JSON.stringify(inputObj)}`,
+			{ scroll: false },
+		);
+	};
+
 	const productTypeSelectHandler = useCallback(
 		async (e: any) => {
 			try {
@@ -57,19 +60,20 @@ const Filter = (props: FilterType) => {
 						{ scroll: false },
 					);
 				} else if (searchFilter?.search?.typeList?.includes(value)) {
+					const typeList = searchFilter.search.typeList.filter((item: string) => item !== value);
 					await router.push(
 						`/product?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								typeList: searchFilter?.search?.typeList?.filter((item: string) => item !== value),
+								typeList: typeList.length ? typeList : undefined,
 							},
 						})}`,
 						`/product?input=${JSON.stringify({
 							...searchFilter,
 							search: {
 								...searchFilter.search,
-								typeList: searchFilter?.search?.typeList?.filter((item: string) => item !== value),
+								typeList: typeList.length ? typeList : undefined,
 							},
 						})}`,
 						{ scroll: false },
@@ -86,11 +90,11 @@ const Filter = (props: FilterType) => {
 		await router.push(
 			`/product?input=${JSON.stringify({
 				...searchFilter,
-				search: { ...searchFilter.search, typeList: types },
+				search: { ...searchFilter.search, typeList: types.length ? types : undefined },
 			})}`,
 			`/product?input=${JSON.stringify({
 				...searchFilter,
-				search: { ...searchFilter.search, typeList: types },
+				search: { ...searchFilter.search, typeList: types.length ? types : undefined },
 			})}`,
 			{ scroll: false },
 		);
@@ -183,17 +187,16 @@ const Filter = (props: FilterType) => {
 						startAdornment={
 							updateUrl ? (
 								<InputAdornment position="start">
-									<SearchRoundedIcon />
+									<IconButton size="small" aria-label="Search products" onClick={() => searchHandler(searchText)}>
+										<SearchRoundedIcon />
+									</IconButton>
 								</InputAdornment>
 							) : undefined
 						}
 						onChange={(e: any) => setSearchText(e.target.value)}
 						onKeyDown={(event: any) => {
 							if (event.key == 'Enter') {
-								setSearchFilter({
-									...searchFilter,
-									search: { ...searchFilter.search, text: searchText },
-								});
+								searchHandler(searchText);
 							}
 						}}
 						endAdornment={
@@ -201,13 +204,7 @@ const Filter = (props: FilterType) => {
 								<IconButton
 									size="small"
 									aria-label="Clear product search"
-									onClick={() => {
-										setSearchText('');
-										setSearchFilter({
-											...searchFilter,
-											search: { ...searchFilter.search, text: '' },
-										});
-									}}
+									onClick={() => searchHandler('')}
 								>
 									<CancelRoundedIcon fontSize="small" />
 								</IconButton>
