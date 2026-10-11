@@ -337,10 +337,25 @@ const EventBoard = ({
 					</Stack>
 				</Stack>
 			)}
-			<Stack direction="row" spacing={2} justifyContent="flex-end">
+			<Stack
+				className={'event-list-toolbar'}
+				direction="row"
+				spacing={mode === 'shop' ? 0 : 2}
+				justifyContent="flex-end"
+				role={mode === 'shop' ? 'group' : undefined}
+				aria-label={mode === 'shop' ? 'Event list filters' : undefined}
+			>
+				{mode === 'shop' && (
+					<Stack className={'event-list-title'}>
+						<Typography component="h2">Your events</Typography>
+						<Typography>Filter the list by type or status.</Typography>
+					</Stack>
+				)}
 				<TextField
+					className={'event-list-filter'}
 					select
-					label="Type"
+					label={mode === 'shop' ? 'Filter by type' : 'Type'}
+					size={mode === 'shop' ? 'small' : undefined}
 					value={type}
 					onChange={(e) => {
 						setType(e.target.value);
@@ -357,8 +372,10 @@ const EventBoard = ({
 				</TextField>
 				{mode !== 'public' && (
 					<TextField
+						className={'event-list-filter'}
 						select
-						label="Status"
+						label={mode === 'shop' ? 'Filter by status' : 'Status'}
+						size={mode === 'shop' ? 'small' : undefined}
 						value={status}
 						onChange={(e) => {
 							setStatus(e.target.value);
@@ -378,29 +395,67 @@ const EventBoard = ({
 			{loading && <Typography>Loading events...</Typography>}
 			{error && <Alert severity="error">{error.message}</Alert>}
 			{!loading && !error && !events.length && <Typography>No events found.</Typography>}
-			<div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 24 }}>
+			<div
+				className={'event-list'}
+				style={
+					mode === 'shop'
+						? undefined
+						: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 24 }
+				}
+			>
 				{events.map((event) => (
 					<Card className={'event-card'} key={event._id} sx={{ p: 2 }}>
-						<Stack spacing={2}>
+						<Stack className={'event-card-content'} spacing={mode === 'shop' ? 0 : 2}>
 							<img
+								className={'event-image'}
 								src={imageUrl(event.eventImage)}
 								alt={event.eventTitle}
-								style={{ width: '100%', height: 180, objectFit: 'cover' }}
+								style={mode === 'shop' ? undefined : { width: '100%', height: 180, objectFit: 'cover' }}
 							/>
+							{mode === 'shop' && (
+								<Stack className={'event-card-heading'} direction="row">
+									<Typography className={'event-type'}>{event.eventType}</Typography>
+									<Typography className={'event-status'}>{event.eventStatus}</Typography>
+								</Stack>
+							)}
 							{event.eventStatus === EventStatus.PROCESS ? (
 								<Link href={`/events/detail?id=${event._id}`}>
-									<Typography variant="h6">{event.eventTitle}</Typography>
+									<Typography className={'event-title'} variant="h6">
+										{event.eventTitle}
+									</Typography>
 								</Link>
 							) : (
-								<Typography variant="h6">{event.eventTitle}</Typography>
+								<Typography className={'event-title'} variant="h6">
+									{event.eventTitle}
+								</Typography>
 							)}
-							<Typography>
-								{event.eventType} · {event.eventGame} · {event.eventStatus}
-							</Typography>
-							<Typography>{new Date(event.eventStart).toLocaleString()}</Typography>
-							<Typography>Prize: {event.eventPrize}</Typography>
+							{mode === 'shop' ? (
+								<>
+									<Typography className={'event-game'}>{event.eventGame}</Typography>
+									<Stack className={'event-card-details'}>
+										{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
+											<Typography className={'event-info-row'} key={key}>
+												<span>{{ eventDate: 'Scheduled', eventStart: 'Start', eventEnd: 'End' }[key]}</span>
+												<time dateTime={event[key]}>{new Date(event[key]).toLocaleString()}</time>
+											</Typography>
+										))}
+										<Typography className={'event-info-row'}>
+											<span>Participant limit</span>
+											<strong>{event.eventMaxParticipants}</strong>
+										</Typography>
+									</Stack>
+								</>
+							) : (
+								<>
+									<Typography>
+										{event.eventType} · {event.eventGame} · {event.eventStatus}
+									</Typography>
+									<Typography>{new Date(event.eventStart).toLocaleString()}</Typography>
+								</>
+							)}
+							<Typography className={'event-prize'}>Prize: {event.eventPrize}</Typography>
 							{mode !== 'public' && (
-								<Stack direction="row" flexWrap="wrap">
+								<Stack className={'event-actions'} direction="row" flexWrap="wrap">
 									{event.eventStatus !== EventStatus.FINISHED && (
 										<>
 											<Button disabled={busy} onClick={() => editEventHandler(event)}>
