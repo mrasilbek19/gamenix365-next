@@ -23,10 +23,10 @@ import Basket from './basket/Basket';
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
-	const { t, i18n } = useTranslation('common');
+	const { t } = useTranslation('common');
 	const router = useRouter();
 	const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
-	const [lang, setLang] = useState<string | null>('en');
+	const [lang, setLang] = useState(router.locale ?? 'en');
 	const drop = Boolean(anchorEl2);
 	const [colorChange, setColorChange] = useState(false);
 	const [anchorEl, setAnchorEl] = React.useState<any | HTMLElement>(null);
@@ -37,13 +37,10 @@ const Top = () => {
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		if (localStorage.getItem('locale') === null) {
-			localStorage.setItem('locale', 'en');
-			setLang('en');
-		} else {
-			setLang(localStorage.getItem('locale'));
-		}
-	}, [router]);
+		const locale = router.locale ?? 'en';
+		localStorage.setItem('locale', locale);
+		setLang(locale);
+	}, [router.locale]);
 
 	useEffect(() => {
 		switch (router.pathname) {
@@ -71,10 +68,11 @@ const Top = () => {
 
 	const langChoice = useCallback(
 		async (e: any) => {
-			setLang(e.target.id);
-			localStorage.setItem('locale', e.target.id);
+			const locale = e.currentTarget.id;
+			setLang(locale);
+			localStorage.setItem('locale', locale);
 			setAnchorEl2(null);
-			await router.push(router.asPath, router.asPath, { locale: e.target.id });
+			await router.push(router.asPath, router.asPath, { locale });
 		},
 		[router],
 	);
@@ -144,11 +142,14 @@ const Top = () => {
 	if (device == 'mobile') {
 		return (
 			<Stack className={'mobile-header'}>
-				<div className={'announcement-bar'}>Your setup. Your community. Gamenix365.</div>
+				<div className={'announcement-bar'}>{t('Your setup. Your community. Gamenix365.')}</div>
 				<Box component={'div'} className={'mobile-brand'}>
 					<Link href={'/'} className={'brand-name'}>GAMENIX<span>365</span></Link>
 					<Stack className={'mobile-actions'}>
-						<Link href={user?._id ? '/mypage' : '/account/join'} aria-label={user?._id ? 'My account' : 'Login / Register'}>
+						<Link
+							href={user?._id ? '/mypage' : '/account/join'}
+							aria-label={user?._id ? t('My account') : t('Login/Signup')}
+						>
 							<AccountCircleOutlinedIcon />
 						</Link>
 						<Basket light />
@@ -184,7 +185,7 @@ const Top = () => {
 	} else {
 		return (
 			<Stack className={'navbar'}>
-				<div className={'announcement-bar'}>Your setup. Your community. Gamenix365.</div>
+				<div className={'announcement-bar'}>{t('Your setup. Your community. Gamenix365.')}</div>
 				<Stack className={`navbar-main ${colorChange ? 'transparent' : ''} ${bgColor ? 'transparent' : ''}`}>
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
@@ -246,7 +247,7 @@ const Top = () => {
 									>
 										<MenuItem onClick={() => logOut()}>
 											<Logout fontSize="small" style={{ color: 'blue', marginRight: '10px' }} />
-											Logout
+											{t('Logout')}
 										</MenuItem>
 									</Menu>
 								</>
@@ -266,15 +267,15 @@ const Top = () => {
 								<Button
 									disableRipple
 									className="btn-lang"
+									aria-label={t('Change language')}
 									onClick={langClick}
 									endIcon={<CaretDown size={14} color="#616161" weight="fill" />}
 								>
 									<Box component={'div'} className={'flag'}>
-										{lang !== null ? (
-											<img src={`/img/flag/lang${lang}.png`} alt={'usaFlag'} />
-										) : (
-											<img src={`/img/flag/langen.png`} alt={'usaFlag'} />
-										)}
+										<img
+											src={`/img/flag/lang${lang}.png`}
+											alt={t(lang === 'kr' ? 'Korean' : lang === 'ru' ? 'Russian' : 'English')}
+										/>
 									</Box>
 								</Button>
 
@@ -283,9 +284,7 @@ const Top = () => {
 										<img
 											className="img-flag"
 											src={'/img/flag/langen.png'}
-											onClick={langChoice}
-											id="en"
-											alt={'usaFlag'}
+											alt={t('English')}
 										/>
 										{t('English')}
 									</MenuItem>
@@ -293,9 +292,7 @@ const Top = () => {
 										<img
 											className="img-flag"
 											src={'/img/flag/langkr.png'}
-											onClick={langChoice}
-											id="uz"
-											alt={'koreanFlag'}
+											alt={t('Korean')}
 										/>
 										{t('Korean')}
 									</MenuItem>
@@ -303,9 +300,7 @@ const Top = () => {
 										<img
 											className="img-flag"
 											src={'/img/flag/langru.png'}
-											onClick={langChoice}
-											id="ru"
-											alt={'russiaFlag'}
+											alt={t('Russian')}
 										/>
 										{t('Russian')}
 									</MenuItem>
