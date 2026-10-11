@@ -6,7 +6,6 @@ import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import Filter from '../../libs/components/product/Filter';
 import { useRouter } from 'next/router';
 import { ProductsInquiry } from '../../libs/types/product/product';
-import { PRODUCT_GROUPS } from '../../libs/productCategories';
 import { Product } from '../../libs/types/product/product';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -174,7 +173,9 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 								</div>
 							) : (
 								products.map((product: Product) => {
-									return <ProductCard product={product} likeProductHandler={likeProductHandler} key={product?._id} />;
+									return (
+										<ProductCard product={product} likeProductHandler={likeProductHandler} productPage={true} key={product?._id} />
+									);
 								})
 							)}
 						</Stack>
@@ -213,7 +214,6 @@ ProductList.defaultProps = {
 		sort: 'createdAt',
 		direction: 'DESC',
 		search: {
-			typeList: [...PRODUCT_GROUPS[0].types],
 			pricesRange: {
 				start: 0,
 				end: 2000000,

@@ -10,6 +10,7 @@ import { useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import IconButton from '@mui/material/IconButton';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
+import { MemberType } from '../../enums/member.enum';
 
 import AddToBasket from '../basket/AddToBasket';
 
@@ -18,15 +19,78 @@ interface ProductCardType {
 	likeProductHandler?: any;
 	myFavorites?: boolean;
 	recentlyVisited?: boolean;
+	productPage?: boolean;
 }
 
 const ProductCard = (props: ProductCardType) => {
-	const { product, likeProductHandler, myFavorites, recentlyVisited } = props;
+	const { product, likeProductHandler, myFavorites, recentlyVisited, productPage } = props;
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
 	const imagePath: string = product?.productImages[0]
 		? `${REACT_APP_API_URL}/${product?.productImages[0]}`
 		: '/img/banner/header1.svg';
+
+	if (productPage) {
+		return (
+			<Stack className="card-config product-card">
+				<Stack className="top">
+					<Link
+						href={{
+							pathname: '/product/detail',
+							query: { id: product?._id },
+						}}
+					>
+						<img src={imagePath} alt={product.productName} />
+					</Link>
+				</Stack>
+				<Stack className="bottom">
+					<Stack className="name-address">
+						<Stack className="name">
+							<Link
+								href={{
+									pathname: '/product/detail',
+									query: { id: product?._id },
+								}}
+							>
+								<Typography title={product.productName}>{product.productName}</Typography>
+							</Link>
+						</Stack>
+						<Typography className="shop-name">
+							{product?.memberData?.memberType === MemberType.SHOP
+								? product.memberData.memberFullName || product.memberData.memberNick
+								: ''}
+						</Typography>
+					</Stack>
+					<Typography className="product-price">
+						${(product?.productPrice ?? 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+					</Typography>
+					<Stack className="type-buttons">
+						<Stack className="buttons">
+							<IconButton color={'default'} aria-label="Product views">
+								<RemoveRedEyeIcon />
+							</IconButton>
+							<Typography className="view-cnt">{product?.productViews}</Typography>
+							<IconButton
+								color={'default'}
+								aria-label="Like product"
+								onClick={() => likeProductHandler(user, product?._id)}
+							>
+								{product?.meLiked && product?.meLiked[0]?.myFavorite ? (
+									<FavoriteIcon color="primary" />
+								) : (
+									<FavoriteBorderIcon />
+								)}
+							</IconButton>
+							<Typography className="view-cnt">{product?.productLikes}</Typography>
+						</Stack>
+					</Stack>
+					<Stack className="cart-button">
+						<AddToBasket product={product} label={'Add to Cart'} />
+					</Stack>
+				</Stack>
+			</Stack>
+		);
+	}
 
 	return (
 		<Stack className="card-config" style={{ height: 'auto', minHeight: 413 }}>

@@ -152,6 +152,7 @@ export const GET_PRODUCTS = gql`
 					memberType
 					memberStatus
 					memberNick
+					memberFullName
 					memberImage
 					memberPhone
 				}

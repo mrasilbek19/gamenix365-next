@@ -5,6 +5,8 @@ import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import ProductCategories from './ProductCategories';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
+import { ProductType } from '../../enums/product.enum';
 
 interface FilterType {
 	searchFilter: ProductsInquiry;
@@ -80,15 +82,15 @@ const Filter = (props: FilterType) => {
 		[searchFilter],
 	);
 
-	const allProductsHandler = async () => {
+	const productTypesChangeHandler = async (types: ProductType[]) => {
 		await router.push(
 			`/product?input=${JSON.stringify({
 				...searchFilter,
-				search: { ...searchFilter.search, typeList: [] },
+				search: { ...searchFilter.search, typeList: types },
 			})}`,
 			`/product?input=${JSON.stringify({
 				...searchFilter,
-				search: { ...searchFilter.search, typeList: [] },
+				search: { ...searchFilter.search, typeList: types },
 			})}`,
 			{ scroll: false },
 		);
@@ -177,10 +179,11 @@ const Filter = (props: FilterType) => {
 						type={'text'}
 						className={'search-input'}
 						placeholder={'What are you looking for?'}
+						inputProps={{ 'aria-label': 'Search products' }}
 						startAdornment={
 							updateUrl ? (
 								<InputAdornment position="start">
-									<img src="/img/icons/search_icon.png" alt="" />
+									<SearchRoundedIcon />
 								</InputAdornment>
 							) : undefined
 						}
@@ -225,7 +228,7 @@ const Filter = (props: FilterType) => {
 				<ProductCategories
 					layout="sidebar"
 					types={searchFilter.search.typeList}
-					onChange={allProductsHandler}
+					onChange={productTypesChangeHandler}
 					onTypeSelect={productTypeSelectHandler}
 				/>
 			)}

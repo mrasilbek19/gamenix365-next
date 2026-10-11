@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Button, Checkbox, FormControlLabel, Stack, Tab, Tabs } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { Button, Checkbox, Collapse, FormControlLabel, Stack, Tab, Tabs } from '@mui/material';
 import KeyboardOutlined from '@mui/icons-material/KeyboardOutlined';
 import MonitorOutlined from '@mui/icons-material/MonitorOutlined';
 import MouseOutlined from '@mui/icons-material/MouseOutlined';
@@ -43,14 +43,29 @@ export default function ProductCategories({
 	onTypeSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	layout?: 'horizontal' | 'sidebar';
 }) {
-	const [expandedCategories, setExpandedCategories] = useState<string[]>(['pc']);
+	const [expandedCategories, setExpandedCategories] = useState<string[]>([]);
 	const group = getProductGroup(types);
 	const displayedTypes = group?.types ?? PRODUCT_GROUPS.flatMap((item) => item.types);
+
+	/** LIFECYCLES **/
+	useEffect(() => {
+		if (layout === 'sidebar' && types.length) {
+			const categories = PRODUCT_GROUPS.filter((item) => item.types.some((type) => types.includes(type)));
+			setExpandedCategories((prev) => [
+				...prev,
+				...categories.filter((item) => !prev.includes(item.id)).map((item) => item.id),
+			]);
+		}
+	}, [types]);
 
 	/** HANDLERS **/
 	const categoryExpandHandler = (id: string) => {
 		if (expandedCategories.includes(id)) {
 			setExpandedCategories(expandedCategories.filter((category) => category !== id));
+			const category = PRODUCT_GROUPS.find((item) => item.id === id);
+			if (category && category.types.some((type) => types.includes(type))) {
+				onChange(types.filter((type) => !category.types.includes(type)));
+			}
 		} else {
 			setExpandedCategories([...expandedCategories, id]);
 		}
@@ -68,9 +83,6 @@ export default function ProductCategories({
 		return (
 			<nav className="product-category-sidebar" aria-label="Product categories">
 				<h2>Categories</h2>
-				<Button className="category-option" aria-pressed={types.length === 0} onClick={() => onChange([])}>
-					All products
-				</Button>
 				{PRODUCT_GROUPS.map((item) => {
 					const expanded = expandedCategories.includes(item.id);
 					return (
@@ -87,7 +99,7 @@ export default function ProductCategories({
 									/>
 								}
 							/>
-							{expanded && (
+							<Collapse in={expanded} timeout={300} easing={'ease-in-out'} unmountOnExit>
 								<div className="subcategory-list" role="group" aria-label={`${item.label} subcategories`}>
 									{item.types.map((type) => (
 										<FormControlLabel
@@ -105,7 +117,7 @@ export default function ProductCategories({
 										/>
 									))}
 								</div>
-							)}
+							</Collapse>
 						</div>
 					);
 				})}

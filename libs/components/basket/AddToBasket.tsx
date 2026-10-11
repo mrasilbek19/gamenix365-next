@@ -4,7 +4,7 @@ import AddShoppingCartIcon from '@mui/icons-material/AddShoppingCart';
 import { Product } from '../../types/product/product';
 import { addToCart } from '../../cart';
 
-export default function AddToBasket({ product }: { product: Product }) {
+export default function AddToBasket({ product, label = 'Add to basket' }: { product: Product; label?: string }) {
 	const [message, setMessage] = useState('');
 	const [error, setError] = useState(false);
 	const available = product.productStatus === 'PROCESS' && !product.deletedAt && product.productLeftCount > 0;
@@ -25,7 +25,7 @@ export default function AddToBasket({ product }: { product: Product }) {
 					}
 				}}
 			>
-				{available ? 'Add to basket' : 'Unavailable'}
+				{available ? label : 'Unavailable'}
 			</Button>
 			{message && (
 				<Alert severity={error ? 'error' : 'success'} onClose={() => setMessage('')}>
