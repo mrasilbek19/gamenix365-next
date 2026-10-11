@@ -378,3 +378,140 @@
 		}
 	}
 }
+
+#pc-wrap,
+#mobile-wrap {
+	#my-page.shop-account #my-profile-page {
+		gap: 24px;
+		.main-title-box .right-box {
+			width: 100%;
+			.main-title {
+				font-size: 26px;
+				letter-spacing: 0;
+			}
+			.sub-title {
+				margin-top: 4px;
+				color: #62666b;
+				font-size: 13px;
+			}
+		}
+		.top-box {
+			padding: 28px;
+			gap: 24px;
+			border: 1px solid #e0e3e5;
+			border-radius: 8px;
+			background: #f7f7f8;
+			.photo-box {
+				gap: 16px;
+				.title {
+					font-size: 13px;
+				}
+				.image-big-box {
+					flex-direction: row;
+					align-items: center;
+					gap: 24px;
+					.image-box {
+						width: 96px;
+						height: 96px;
+						flex-shrink: 0;
+						img {
+							border-radius: 8px;
+						}
+					}
+					.upload-big-box {
+						align-self: center;
+						gap: 8px;
+						.labeler {
+							width: auto;
+							min-height: 44px;
+							padding: 10px 16px;
+							align-self: flex-start;
+							border: 1px solid #c8ccd0;
+							border-radius: 5px;
+							background: #fff;
+							p {
+								font-size: 12px;
+							}
+							&:hover {
+								border-color: #007e9e;
+							}
+						}
+						.upload-text {
+							color: #62666b;
+							font-size: 11px;
+							line-height: 20px;
+						}
+					}
+				}
+			}
+			.small-input-box {
+				display: grid;
+				grid-template-columns: repeat(2, minmax(0, 1fr));
+				gap: 20px;
+				.input-box {
+					width: 100%;
+				}
+			}
+			.small-input-box .input-box,
+			.address-box {
+				gap: 8px;
+				input {
+					width: 100%;
+					height: 44px;
+					border-radius: 5px;
+					background: #fff;
+					font: 13px $font;
+					&:focus {
+						border-color: #007e9e;
+					}
+				}
+			}
+			.about-me-box {
+				padding-top: 20px;
+				border-top: 1px solid #e0e3e5;
+				.update-button {
+					width: 170px;
+					height: 44px;
+					margin-top: 0;
+					border-radius: 5px;
+					background: #00b8ee;
+					color: #202124;
+					p {
+						font-size: 12px;
+						color: inherit;
+					}
+					svg path {
+						fill: currentColor;
+					}
+					&:hover {
+						background: #32c8f3;
+					}
+					&:disabled {
+						background: #dfe3e6;
+						color: #737a80;
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (max-width: 600px) {
+	#pc-wrap,
+	#mobile-wrap {
+		#my-page.shop-account #my-profile-page .top-box {
+			padding: 20px;
+			.photo-box .image-big-box {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 16px;
+				.upload-big-box {
+					align-self: flex-start;
+				}
+			}
+			.small-input-box {
+				grid-template-columns: 1fr;
+			}
+		}
+	}
+}

@@ -112,7 +112,7 @@ const MyPage: NextPage = () => {
 	};
 
 	return (
-		<div id="my-page" style={{ position: 'relative' }}>
+		<div id="my-page" className={user.memberType === 'SHOP' ? 'shop-account' : undefined} style={{ position: 'relative' }}>
 			<div className="container">
 				<Stack className={'my-page'}>
 					<Stack className={'back-frame'}>

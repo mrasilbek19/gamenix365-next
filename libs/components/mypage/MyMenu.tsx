@@ -11,6 +11,18 @@ import { REACT_APP_API_URL } from '../../config';
 import { logOut } from '../../auth';
 import { sweetConfirmAlert, sweetMixinErrorAlert } from '../../sweetAlert';
 
+import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
+import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
+import EventAvailableOutlinedIcon from '@mui/icons-material/EventAvailableOutlined';
+import EventNoteOutlinedIcon from '@mui/icons-material/EventNoteOutlined';
+import FavoriteBorderOutlinedIcon from '@mui/icons-material/FavoriteBorderOutlined';
+import HistoryOutlinedIcon from '@mui/icons-material/HistoryOutlined';
+import PeopleOutlineIcon from '@mui/icons-material/PeopleOutline';
+import ArticleOutlinedIcon from '@mui/icons-material/ArticleOutlined';
+import EditNoteOutlinedIcon from '@mui/icons-material/EditNoteOutlined';
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined';
+
 const MyMenu = () => {
 	const device = useDeviceDetect();
 	const router = useRouter();
@@ -26,6 +38,182 @@ const MyMenu = () => {
 			console.log('ERROR, logoutHandler:', err.message);
 		}
 	};
+
+	if (user.memberType === 'SHOP') {
+		return (
+			<Stack className={'shop-menu'}>
+				<Stack className={'shop-identity'}>
+					<img
+						src={user?.memberImage ? `${REACT_APP_API_URL}/${user?.memberImage}` : '/img/profile/defaultUser.svg'}
+						alt={'Shop profile'}
+					/>
+					<Stack className={'shop-info'}>
+						<Typography className={'shop-label'}>Seller account</Typography>
+						<Typography className={'shop-name'}>{user?.memberNick}</Typography>
+						<Typography className={'shop-phone'}>{user?.memberPhone}</Typography>
+					</Stack>
+				</Stack>
+				<Stack className={'shop-sections'}>
+					<Stack className={'shop-section'}>
+						<Typography className={'shop-section-title'}>SHOP MANAGEMENT</Typography>
+						<List className={'shop-nav'}>
+							<ListItem className={pathname === 'addProduct' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'addProduct' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'addProduct' ? 'page' : undefined}
+								>
+									<AddBoxOutlinedIcon />
+									<Typography>Add Product</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'myProducts' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'myProducts' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'myProducts' ? 'page' : undefined}
+								>
+									<Inventory2OutlinedIcon />
+									<Typography>My Products</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'createEvent' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/events/manage',
+										query: { category: 'createEvent' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'createEvent' ? 'page' : undefined}
+								>
+									<EventAvailableOutlinedIcon />
+									<Typography>Create Event</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'myEvents' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/events/manage',
+										query: { category: 'myEvents' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'myEvents' ? 'page' : undefined}
+								>
+									<EventNoteOutlinedIcon />
+									<Typography>My Events</Typography>
+								</Link>
+							</ListItem>
+						</List>
+					</Stack>
+					<Stack className={'shop-section'}>
+						<Typography className={'shop-section-title'}>ACTIVITY</Typography>
+						<List className={'shop-nav'}>
+							<ListItem className={pathname === 'myFavorites' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'myFavorites' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'myFavorites' ? 'page' : undefined}
+								>
+									<FavoriteBorderOutlinedIcon />
+									<Typography>My Favorites</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'recentlyVisited' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'recentlyVisited' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'recentlyVisited' ? 'page' : undefined}
+								>
+									<HistoryOutlinedIcon />
+									<Typography>Recently Visited</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'followers' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'followers' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'followers' ? 'page' : undefined}
+								>
+									<PeopleOutlineIcon />
+									<Typography>My Followers</Typography>
+								</Link>
+							</ListItem>
+						</List>
+					</Stack>
+					<Stack className={'shop-section'}>
+						<Typography className={'shop-section-title'}>COMMUNITY</Typography>
+						<List className={'shop-nav'}>
+							<ListItem className={pathname === 'myArticles' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'myArticles' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'myArticles' ? 'page' : undefined}
+								>
+									<ArticleOutlinedIcon />
+									<Typography>Articles</Typography>
+								</Link>
+							</ListItem>
+							<ListItem className={pathname === 'writeArticle' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'writeArticle' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'writeArticle' ? 'page' : undefined}
+								>
+									<EditNoteOutlinedIcon />
+									<Typography>Write Article</Typography>
+								</Link>
+							</ListItem>
+						</List>
+					</Stack>
+					<Stack className={'shop-section'}>
+						<Typography className={'shop-section-title'}>ACCOUNT</Typography>
+						<List className={'shop-nav'}>
+							<ListItem className={pathname === 'myProfile' ? 'focus' : ''}>
+								<Link
+									href={{
+										pathname: '/mypage',
+										query: { category: 'myProfile' },
+									}}
+									scroll={false}
+									aria-current={pathname === 'myProfile' ? 'page' : undefined}
+								>
+									<PersonOutlineIcon />
+									<Typography>My Profile</Typography>
+								</Link>
+							</ListItem>
+							<ListItem>
+								<button type={'button'} onClick={logoutHandler}>
+									<LogoutOutlinedIcon />
+									<Typography>Logout</Typography>
+								</button>
+							</ListItem>
+						</List>
+					</Stack>
+				</Stack>
+			</Stack>
+		);
+	}
 
 	return (
 		<Stack width={'100%'}>

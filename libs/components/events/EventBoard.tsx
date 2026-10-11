@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Alert, Button, Card, MenuItem, Pagination, Stack, TextField, Typography } from '@mui/material';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
@@ -26,7 +26,7 @@ const initialValues: EventInput = {
 	eventMaxParticipants: 1,
 };
 
-const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' }) => {
+const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'public' | 'shop' | 'admin'; showCreateForm?: boolean }) => {
 	const user = useReactiveVar(userVar);
 	const [page, setPage] = useState(1);
 	const [type, setType] = useState('');
@@ -62,6 +62,15 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 	const [removeEvent, { loading: removing }] = useMutation(mode === 'admin' ? REMOVE_EVENT_BY_ADMIN : REMOVE_EVENT);
 	const busy = creating || updating || finishing || removing || uploading;
 	const events: GamingEvent[] = data?.[field]?.list ?? [];
+
+	/** LIFECYCLES **/
+	useEffect(() => {
+		if (mode === 'shop') {
+			setForm(initialValues);
+			setEditing(null);
+			setShowForm(showCreateForm);
+		}
+	}, [showCreateForm]);
 
 	/** HANDLERS **/
 	const editEventHandler = (event: GamingEvent) => {
@@ -189,18 +198,20 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 							</MenuItem>
 						))}
 					</TextField>
-					<TextField
-						select
-						label="Status"
-						value={form.eventStatus}
-						onChange={(e) => setForm({ ...form, eventStatus: e.target.value as EventStatus })}
-					>
-						{[EventStatus.PAUSED, EventStatus.PROCESS].map((value) => (
-							<MenuItem key={value} value={value}>
-								{value}
-							</MenuItem>
-						))}
-					</TextField>
+					{(mode !== 'shop' || (editing && [EventStatus.PAUSED, EventStatus.PROCESS].includes(editing.eventStatus))) && (
+						<TextField
+							select
+							label="Status"
+							value={form.eventStatus}
+							onChange={(e) => setForm({ ...form, eventStatus: e.target.value as EventStatus })}
+						>
+							{[EventStatus.PAUSED, EventStatus.PROCESS].map((value) => (
+								<MenuItem key={value} value={value}>
+									{value}
+								</MenuItem>
+							))}
+						</TextField>
+					)}
 					{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
 						<TextField
 							key={key}
@@ -324,21 +335,25 @@ const EventBoard = ({ mode = 'public' }: { mode?: 'public' | 'shop' | 'admin' })
 											<Button disabled={busy} onClick={() => editEventHandler(event)}>
 												Edit
 											</Button>
-											<Button
-												disabled={
-													busy ||
-													(event.eventStatus === EventStatus.PAUSED &&
-														new Date(event.eventStart).getTime() <= Date.now())
-												}
-												onClick={() =>
-													changeEventHandler(event, event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate')
-												}
-											>
-												{event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate'}
-											</Button>
-											<Button disabled={busy} onClick={() => changeEventHandler(event, 'Finish')}>
-												Finish
-											</Button>
+											{(mode === 'admin' || [EventStatus.PAUSED, EventStatus.PROCESS].includes(event.eventStatus)) && (
+												<>
+													<Button
+														disabled={
+															busy ||
+															(event.eventStatus === EventStatus.PAUSED &&
+																new Date(event.eventStart).getTime() <= Date.now())
+														}
+														onClick={() =>
+															changeEventHandler(event, event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate')
+														}
+													>
+														{event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate'}
+													</Button>
+													<Button disabled={busy} onClick={() => changeEventHandler(event, 'Finish')}>
+														Finish
+													</Button>
+												</>
+											)}
 										</>
 									)}
 									<Button disabled={busy} onClick={() => changeEventHandler(event, 'Remove')}>
