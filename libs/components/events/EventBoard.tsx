@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { Alert, Button, Card, MenuItem, Pagination, Stack, TextField, Typography } from '@mui/material';
+import { DateTimePicker, LocalizationProvider } from '@mui/x-date-pickers-pro';
+import { AdapterDateFns } from '@mui/x-date-pickers-pro/AdapterDateFns';
 import { useMutation, useQuery, useReactiveVar } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { GET_EVENTS, GET_MY_EVENTS } from '../../../apollo/user/query';
@@ -19,14 +21,20 @@ const initialValues: EventInput = {
 	eventImage: '',
 	eventPrize: '',
 	eventType: EventType.TOURNAMENT,
-	eventStatus: EventStatus.PAUSED,
+	eventStatus: EventStatus.PENDING,
 	eventDate: '',
 	eventStart: '',
 	eventEnd: '',
 	eventMaxParticipants: 1,
 };
 
-const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'public' | 'shop' | 'admin'; showCreateForm?: boolean }) => {
+const EventBoard = ({
+	mode = 'public',
+	showCreateForm = false,
+}: {
+	mode?: 'public' | 'shop' | 'admin';
+	showCreateForm?: boolean;
+}) => {
 	const user = useReactiveVar(userVar);
 	const [page, setPage] = useState(1);
 	const [type, setType] = useState('');
@@ -62,6 +70,11 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 	const [removeEvent, { loading: removing }] = useMutation(mode === 'admin' ? REMOVE_EVENT_BY_ADMIN : REMOVE_EVENT);
 	const busy = creating || updating || finishing || removing || uploading;
 	const events: GamingEvent[] = data?.[field]?.list ?? [];
+	const startDate = new Date(form.eventStart);
+	const requireFutureStart =
+		!editing ||
+		startDate.getTime() !== new Date(editing.eventStart).getTime() ||
+		(form.eventStatus === EventStatus.PROCESS && editing.eventStatus !== EventStatus.PROCESS);
 
 	/** LIFECYCLES **/
 	useEffect(() => {
@@ -78,10 +91,6 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 		for (const key of Object.keys(values) as (keyof EventInput)[]) {
 			Object.assign(values, { [key]: event[key] });
 		}
-		for (const key of ['eventDate', 'eventStart', 'eventEnd'] as const) {
-			const date = new Date(event[key]);
-			values[key] = new Date(date.getTime() - date.getTimezoneOffset() * 60000).toISOString().slice(0, -1);
-		}
 		setForm(values);
 		setEditing(event);
 		setShowForm(true);
@@ -92,10 +101,15 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 		e.preventDefault();
 		try {
 			setMessage('');
+			if (
+				(['eventDate', 'eventStart', 'eventEnd'] as const).some(
+					(key) => !form[key] || Number.isNaN(new Date(form[key]).getTime()),
+				)
+			)
+				throw new Error('Choose a valid scheduled date, start and end time.');
 			const start = new Date(form.eventStart);
 			if (start >= new Date(form.eventEnd)) throw new Error('Start must be before end.');
-			if ((!editing || start.getTime() !== new Date(editing.eventStart).getTime()) && start.getTime() <= Date.now())
-				throw new Error('Start must be in the future.');
+			if (requireFutureStart && start.getTime() <= Date.now()) throw new Error('Start must be in the future.');
 			const input: Partial<EventInput> = {
 				...form,
 				eventDate: new Date(form.eventDate).toISOString(),
@@ -150,7 +164,11 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 		);
 
 	return (
-		<Stack className={'event-board'} spacing={3} sx={{ p: { xs: 2, md: 4 }, width: '100%', maxWidth: 1200, mx: 'auto' }}>
+		<Stack
+			className={'event-board'}
+			spacing={3}
+			sx={{ p: { xs: 2, md: 4 }, width: '100%', maxWidth: 1200, mx: 'auto' }}
+		>
 			<Typography variant="h4">
 				{mode === 'public' ? 'Gaming Events' : mode === 'shop' ? 'My Events' : 'Manage Events'}
 			</Typography>
@@ -176,6 +194,9 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 			{showForm && (
 				<Stack component="form" spacing={2} onSubmit={saveEventHandler}>
 					<Typography variant="h6">{editing ? 'Edit event' : 'Create event'}</Typography>
+					{mode === 'shop' && form.eventStatus === EventStatus.PENDING && (
+						<Alert severity="info">Your event will be visible after an admin approves it.</Alert>
+					)}
 					{(['eventTitle', 'eventGame', 'eventPrize', 'eventDesc'] as const).map((key) => (
 						<TextField
 							key={key}
@@ -198,32 +219,78 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 							</MenuItem>
 						))}
 					</TextField>
-					{(mode !== 'shop' || (editing && [EventStatus.PAUSED, EventStatus.PROCESS].includes(editing.eventStatus))) && (
+					{(mode !== 'shop' ||
+						(editing && [EventStatus.PAUSED, EventStatus.PROCESS].includes(editing.eventStatus))) && (
 						<TextField
 							select
 							label="Status"
 							value={form.eventStatus}
 							onChange={(e) => setForm({ ...form, eventStatus: e.target.value as EventStatus })}
 						>
-							{[EventStatus.PAUSED, EventStatus.PROCESS].map((value) => (
+							{(mode === 'admin'
+								? [EventStatus.PENDING, EventStatus.PAUSED, EventStatus.PROCESS]
+								: [EventStatus.PAUSED, EventStatus.PROCESS]
+							).map((value) => (
 								<MenuItem key={value} value={value}>
 									{value}
 								</MenuItem>
 							))}
 						</TextField>
 					)}
-					{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
-						<TextField
-							key={key}
-							required
-							type="datetime-local"
-							inputProps={{ step: 'any' }}
-							label={{ eventDate: 'Scheduled date', eventStart: 'Start', eventEnd: 'End' }[key]}
-							InputLabelProps={{ shrink: true }}
-							value={form[key]}
-							onChange={(e) => setForm({ ...form, [key]: e.target.value })}
-						/>
-					))}
+					<LocalizationProvider dateAdapter={AdapterDateFns}>
+						<Typography variant="subtitle1">Event schedule</Typography>
+						<Typography variant="body2" color="text.secondary">
+							Times use your local time zone ({Intl.DateTimeFormat().resolvedOptions().timeZone}). Use 24-hour time.
+						</Typography>
+						<Stack
+							sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(3, minmax(0, 1fr))' }, gap: 2 }}
+						>
+							{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
+								<DateTimePicker
+									key={key}
+									label={{ eventDate: 'Scheduled date', eventStart: 'Start', eventEnd: 'End' }[key]}
+									value={form[key] ? new Date(form[key]) : null}
+									inputFormat="yyyy-MM-dd HH:mm"
+									ampm={false}
+									showToolbar
+									hideTabs={false}
+									desktopModeMediaQuery="(min-width: 700px)"
+									minDateTime={
+										key === 'eventStart' && requireFutureStart
+											? new Date()
+											: key === 'eventEnd' && !Number.isNaN(startDate.getTime())
+											? new Date(startDate.getTime() + 1)
+											: undefined
+									}
+									onChange={(date: Date | null) => {
+										const value = date && !Number.isNaN(date.getTime()) ? date.toISOString() : date?.toString() || '';
+										setForm({ ...form, [key]: value });
+									}}
+									componentsProps={{ actionBar: { actions: ['cancel', 'accept'] } }}
+									renderInput={(params) => (
+										<TextField
+											{...params}
+											required
+											fullWidth
+											helperText={
+												params.error
+													? {
+															eventDate: 'Choose a valid scheduled date and time.',
+															eventStart: 'Choose a valid start time in the future.',
+															eventEnd: 'Choose a valid end time after the start.',
+													  }[key]
+													: {
+															eventDate: 'The scheduled date of your event.',
+															eventStart: 'The event begins and applications close.',
+															eventEnd: 'The event ends. Must be after the start.',
+													  }[key]
+											}
+										/>
+									)}
+								/>
+							))}
+						</Stack>
+					</LocalizationProvider>
 					<TextField
 						required
 						type="number"
@@ -320,9 +387,13 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 								alt={event.eventTitle}
 								style={{ width: '100%', height: 180, objectFit: 'cover' }}
 							/>
-							<Link href={`/events/detail?id=${event._id}`}>
+							{event.eventStatus === EventStatus.PROCESS ? (
+								<Link href={`/events/detail?id=${event._id}`}>
+									<Typography variant="h6">{event.eventTitle}</Typography>
+								</Link>
+							) : (
 								<Typography variant="h6">{event.eventTitle}</Typography>
-							</Link>
+							)}
 							<Typography>
 								{event.eventType} · {event.eventGame} · {event.eventStatus}
 							</Typography>
@@ -340,18 +411,31 @@ const EventBoard = ({ mode = 'public', showCreateForm = false }: { mode?: 'publi
 													<Button
 														disabled={
 															busy ||
-															(event.eventStatus === EventStatus.PAUSED &&
+															(event.eventStatus !== EventStatus.PROCESS &&
 																new Date(event.eventStart).getTime() <= Date.now())
 														}
 														onClick={() =>
-															changeEventHandler(event, event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate')
+															changeEventHandler(
+																event,
+																event.eventStatus === EventStatus.PENDING
+																	? 'Approve'
+																	: event.eventStatus === EventStatus.PROCESS
+																	? 'Pause'
+																	: 'Activate',
+															)
 														}
 													>
-														{event.eventStatus === EventStatus.PROCESS ? 'Pause' : 'Activate'}
+														{event.eventStatus === EventStatus.PENDING
+															? 'Approve'
+															: event.eventStatus === EventStatus.PROCESS
+															? 'Pause'
+															: 'Activate'}
 													</Button>
-													<Button disabled={busy} onClick={() => changeEventHandler(event, 'Finish')}>
-														Finish
-													</Button>
+													{event.eventStatus !== EventStatus.PENDING && (
+														<Button disabled={busy} onClick={() => changeEventHandler(event, 'Finish')}>
+															Finish
+														</Button>
+													)}
 												</>
 											)}
 										</>

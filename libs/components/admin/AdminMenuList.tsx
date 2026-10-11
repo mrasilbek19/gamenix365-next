@@ -6,7 +6,7 @@ import Collapse from '@mui/material/Collapse';
 import Typography from '@mui/material/Typography';
 import ExpandLess from '@mui/icons-material/ExpandLess';
 import ExpandMore from '@mui/icons-material/ExpandMore';
-import { ChatsCircle, Headset, User, UserCircleGear } from 'phosphor-react';
+import { CalendarBlank, ChatsCircle, Headset, User, UserCircleGear } from 'phosphor-react';
 import cookies from 'js-cookie';
 import useDeviceDetect from '../../hooks/useDeviceDetect';
 
@@ -32,6 +32,9 @@ const AdminMenuList = (props: any) => {
 		switch (pathnames[1]) {
 			case 'products':
 				setClickMenu(['Products']);
+				break;
+			case 'events':
+				setClickMenu(['Events']);
 				break;
 			case 'community':
 				setClickMenu(['Community']);
@@ -64,7 +67,7 @@ const AdminMenuList = (props: any) => {
 				setClickSubMenu('List');
 				break;
 		}
-	}, []);
+	}, [pathname, device]);
 
 	/** HANDLERS **/
 	const subMenuChangeHandler = (target: string) => {
@@ -89,6 +92,11 @@ const AdminMenuList = (props: any) => {
 			on_click: () => subMenuChangeHandler('Products'),
 		},
 		{
+			title: 'Events',
+			icon: <CalendarBlank size={20} color="#bdbdbd" weight="fill" />,
+			on_click: () => subMenuChangeHandler('Events'),
+		},
+		{
 			title: 'Community',
 			icon: <ChatsCircle size={20} color="#bdbdbd" weight="fill" />,
 			on_click: () => subMenuChangeHandler('Community'),
@@ -103,6 +111,7 @@ const AdminMenuList = (props: any) => {
 	const sub_menu_set: any = {
 		Users: [{ title: 'List', url: '/_admin/users' }],
 		Products: [{ title: 'List', url: '/_admin/products' }],
+		Events: [{ title: 'List', url: '/_admin/events' }],
 		Community: [{ title: 'List', url: '/_admin/community' }],
 		Cs: [
 			{ title: 'FAQ', url: '/_admin/cs/faq' },
