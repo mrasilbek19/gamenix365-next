@@ -35,10 +35,12 @@ const ICONS = {
 export default function ProductCategories({
 	types = [],
 	onChange,
+	onTypeSelect,
 	layout = 'horizontal',
 }: {
 	types?: ProductType[];
 	onChange: (types: ProductType[]) => void;
+	onTypeSelect?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 	layout?: 'horizontal' | 'sidebar';
 }) {
 	const [expandedCategories, setExpandedCategories] = useState<string[]>(['pc']);
@@ -94,7 +96,11 @@ export default function ProductCategories({
 											labelPlacement="start"
 											className={`subcategory-option category-toggle ${types.includes(type) ? 'selected' : ''}`}
 											control={
-												<Checkbox checked={types.includes(type)} onChange={() => productTypeSelectHandler(type)} />
+												<Checkbox
+													value={type}
+													checked={types.includes(type)}
+													onChange={onTypeSelect || (() => productTypeSelectHandler(type))}
+												/>
 											}
 										/>
 									))}

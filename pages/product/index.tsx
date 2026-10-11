@@ -6,8 +6,6 @@ import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
 import Filter from '../../libs/components/product/Filter';
 import { useRouter } from 'next/router';
 import { ProductsInquiry } from '../../libs/types/product/product';
-import ProductCategories from '../../libs/components/product/ProductCategories';
-import { ProductType } from '../../libs/enums/product.enum';
 import { PRODUCT_GROUPS } from '../../libs/productCategories';
 import { Product } from '../../libs/types/product/product';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
@@ -27,17 +25,15 @@ export const getStaticProps = async ({ locale }: any) => ({
 
 const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	const router = useRouter();
-	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>(initialInput);
+	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>(
+		router?.query?.input ? JSON.parse(router?.query?.input as string) : initialInput,
+	);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [total, setTotal] = useState<number>(0);
-	const currentPage = searchFilter.page;
+	const [currentPage, setCurrentPage] = useState<number>(1);
 	const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 	const [sortingOpen, setSortingOpen] = useState(false);
-	let filterSortName = 'New';
-	if (searchFilter.sort === 'productPrice') {
-		if (searchFilter.direction === Direction.ASC) filterSortName = 'Lowest Price';
-		else filterSortName = 'Highest Price';
-	}
+	const [filterSortName, setFilterSortName] = useState('New');
 
 	/** APOLLO REQUESTS **/
 	const [likeTargetProduct] = useMutation(LIKE_TARGET_PRODUCT);
@@ -50,7 +46,6 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	} = useQuery(GET_PRODUCTS, {
 		fetchPolicy: 'network-only',
 		variables: { input: searchFilter },
-		skip: !router.isReady,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setProducts(data?.getProducts?.list ?? []);
@@ -60,36 +55,26 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 
 	/** LIFECYCLES **/
 	useEffect(() => {
-		if (!router.isReady) return;
-		if (typeof router.query.input === 'string') {
-			try {
-				const inputObj = JSON.parse(router.query.input);
-				setSearchFilter({
-					...initialInput,
-					...inputObj,
-					search: { ...initialInput.search, ...inputObj.search },
-				});
-			} catch (err) {
-				setSearchFilter(initialInput);
-			}
-		} else {
-			setSearchFilter(initialInput);
+		if (router.query.input) {
+			const inputObj = JSON.parse(router?.query?.input as string);
+			setSearchFilter(inputObj);
 		}
-	}, [router.isReady, router.query.input, initialInput]);
+
+		setCurrentPage(searchFilter.page === undefined ? 1 : searchFilter.page);
+	}, [router]);
 
 	/** HANDLERS **/
 	const handlePaginationChange = async (event: ChangeEvent<unknown>, value: number) => {
-		const input = { ...searchFilter, page: value };
-		await router.push(`/product?input=${encodeURIComponent(JSON.stringify(input))}`, undefined, { scroll: false });
-	};
-
-	const productTypeSelectHandler = async (types: ProductType[]) => {
-		const input = {
-			...searchFilter,
-			page: 1,
-			search: { ...searchFilter.search, typeList: types },
-		};
-		await router.push(`/product?input=${encodeURIComponent(JSON.stringify(input))}`, undefined, { scroll: false });
+		searchFilter.page = value;
+		await router.push(
+			`/product?input=${JSON.stringify(searchFilter)}`,
+			`/product?input=${JSON.stringify(searchFilter)}`,
+			{
+				scroll: false,
+			},
+		);
+		setCurrentPage(value);
+		await getProductsRefetch({ input: searchFilter });
 	};
 
 	const sortingClickHandler = (e: MouseEvent<HTMLElement>) => {
@@ -102,25 +87,22 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 		setAnchorEl(null);
 	};
 
-	const sortingHandler = async (e: React.MouseEvent<HTMLLIElement>) => {
-		const input = { ...searchFilter, page: 1 };
+	const sortingHandler = (e: React.MouseEvent<HTMLLIElement>) => {
 		switch (e.currentTarget.id) {
 			case 'new':
-				input.sort = 'createdAt';
-				input.direction = Direction.DESC;
+				setSearchFilter({ ...searchFilter, sort: 'createdAt', direction: Direction.DESC });
+				setFilterSortName('New');
 				break;
 			case 'lowest':
-				input.sort = 'productPrice';
-				input.direction = Direction.ASC;
+				setSearchFilter({ ...searchFilter, sort: 'productPrice', direction: Direction.ASC });
+				setFilterSortName('Lowest Price');
 				break;
 			case 'highest':
-				input.sort = 'productPrice';
-				input.direction = Direction.DESC;
-				break;
+				setSearchFilter({ ...searchFilter, sort: 'productPrice', direction: Direction.DESC });
+				setFilterSortName('Highest Price');
 		}
 		setSortingOpen(false);
 		setAnchorEl(null);
-		await router.push(`/product?input=${encodeURIComponent(JSON.stringify(input))}`, undefined, { scroll: false });
 	};
 
 	const likeProductHandler = async (user: T, id: string) => {
@@ -181,13 +163,7 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 				</Box>
 				<Stack className={'product-page'}>
 					<Stack className={'filter-config'}>
-						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput}>
-							<ProductCategories
-								layout="sidebar"
-								types={searchFilter.search.typeList}
-								onChange={productTypeSelectHandler}
-							/>
-						</Filter>
+						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} />
 					</Stack>
 					<Stack className="main-config" mb={'76px'}>
 						<Stack className={'list-config'}>
