@@ -9,7 +9,6 @@ import { useRouter } from 'next/router';
 import { ProductsInquiry } from '../../libs/types/product/product';
 import ProductCategories from '../../libs/components/product/ProductCategories';
 import useProductBrowse from '../../libs/hooks/useProductBrowse';
-import { selectProductTypes } from '../../libs/productCategories';
 import { Product } from '../../libs/types/product/product';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
@@ -29,7 +28,7 @@ export const getStaticProps = async ({ locale }: any) => ({
 const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
-	const [searchFilter, setSearchFilter] = useProductBrowse(initialInput);
+	const [searchFilter, setSearchFilter, categorySelection, setCategorySelection] = useProductBrowse(initialInput);
 	const [products, setProducts] = useState<Product[]>([]);
 	const [total, setTotal] = useState<number>(0);
 	const currentPage = searchFilter.page;
@@ -145,7 +144,9 @@ const ProductList: NextPage = ({ initialInput, ...props }: any) => {
 					<Stack className={'filter-config'}>
 						{/* @ts-ignore */}
 						<Filter searchFilter={searchFilter} setSearchFilter={setSearchFilter} initialInput={initialInput} updateUrl={false}>
-							<ProductCategories layout="sidebar" types={searchFilter.search.typeList} onChange={types => setSearchFilter(selectProductTypes(searchFilter, types))} />
+							<ProductCategories layout="sidebar" types={searchFilter.search.typeList}
+								selection={categorySelection} onSelectionChange={setCategorySelection}
+								onChange={types => setSearchFilter({ ...searchFilter, page: 1, search: { ...searchFilter.search, typeList: types } })} />
 						</Filter>
 					</Stack>
 					<Stack className="main-config" mb={'76px'}>

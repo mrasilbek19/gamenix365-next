@@ -21,6 +21,9 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { CREATE_COMMENT, LIKE_TARGET_PRODUCT, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
 import { GET_COMMENTS, GET_MEMBER, GET_PRODUCTS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
+import ProductCategories from '../../libs/components/product/ProductCategories';
+import useProductBrowse from '../../libs/hooks/useProductBrowse';
+import { selectProductTypes } from '../../libs/productCategories';
 
 export const getStaticProps = async ({ locale }: any) => ({
 	props: {
@@ -34,7 +37,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 	const user = useReactiveVar(userVar);
 	const [shopId, setShopId] = useState<string | null>(null);
 	const [shop, setShop] = useState<Member | null>(null);
-	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>(initialInput);
+	const [searchFilter, setSearchFilter] = useProductBrowse(initialInput, shopId ?? undefined);
 	const [shopProducts, setShopProducts] = useState<Product[]>([]);
 	const [productTotal, setProductTotal] = useState<number>(0);
 	const [commentInquiry, setCommentInquiry] = useState<CommentsInquiry>(initialComment);
@@ -65,12 +68,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 			setShop(data?.getMember);
 			if (data?.getMember?.memberType !== 'SHOP') return;
 
-			setSearchFilter({
-				...searchFilter,
-				search: {
-					memberId: data?.getMember?._id,
-				},
-			});
+
 
 			setCommentInquiry({
 				...commentInquiry,
@@ -94,7 +92,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 	} = useQuery(GET_PRODUCTS, {
 		fetchPolicy: 'network-only',
 		variables: { input: searchFilter },
-		skip: !searchFilter.search.memberId,
+		skip: !shopId || !searchFilter.search.memberId,
 		notifyOnNetworkStatusChange: true,
 		onCompleted: (data: T) => {
 			setShopProducts(data?.getProducts?.list ?? []);
@@ -151,8 +149,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 	};
 
 	const productPaginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
-		searchFilter.page = value;
-		setSearchFilter({ ...searchFilter });
+		setSearchFilter({ ...searchFilter, page: value });
 	};
 
 	const commentPaginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
@@ -223,6 +220,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 					</Box>
 				</Stack>
 				<Stack className={'shop-home-list'}>
+					<ProductCategories types={searchFilter.search.typeList} onChange={types => setSearchFilter(selectProductTypes(searchFilter, types))} />
 					<Stack className={'card-wrap'}>
 						{shopProducts.map((product: Product) => {
 							return (

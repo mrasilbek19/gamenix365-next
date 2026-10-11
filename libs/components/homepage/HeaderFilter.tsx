@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Stack, Modal, Divider, Button } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CloseIcon from '@mui/icons-material/Close';
-import { ProductType } from '../../enums/product.enum';
+import ProductCategories from '../product/ProductCategories';
+import { PRODUCT_GROUPS, PRODUCT_TYPE_LABELS, getProductGroup, selectProductTypes } from '../../productCategories';
 import { ProductsInquiry } from '../../types/product/product';
 import { useRouter } from 'next/router';
 import { useTranslation } from 'next-i18next';
@@ -28,20 +29,15 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 	const { t } = useTranslation('common');
 	const router = useRouter();
 	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>({
-		...initialInput, search: {},
+		...initialInput, search: { ...initialInput.search, typeList: [...PRODUCT_GROUPS[0].types] },
 	});
 	const [openAdvancedFilter, setOpenAdvancedFilter] = useState(false);
 	const [openType, setOpenType] = useState(false);
-	const productType = Object.values(ProductType);
 
 	/** HANDLERS **/
-	const productTypeSelectHandler = (value: ProductType) => {
-		setSearchFilter({ ...searchFilter, page: 1, search: { ...searchFilter.search, typeList: [value] } });
-		setOpenType(false);
-	};
 
 	const resetFilterHandler = () => {
-		setSearchFilter({ ...initialInput, page: 1, search: {} });
+		setSearchFilter({ ...initialInput, page: 1, search: { typeList: [...PRODUCT_GROUPS[0].types] } });
 	};
 
 	const pushSearchHandler = async () => {
@@ -52,8 +48,8 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 		<>
 			<Stack className={'search-box'}>
 				<Stack className={'select-box'}>
-					<div className={`box ${openType ? 'on' : ''}`} onClick={() => setOpenType(!openType)}>
-						<span>{searchFilter.search.typeList?.[0] ?? t('Category')}</span>
+					<div className={`box ${openType ? 'on' : ''}`} role="button" tabIndex={0} aria-expanded={openType} aria-label="Choose product category" onKeyDown={e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setOpenType(!openType); } if (e.key === 'Escape') setOpenType(false); }} onClick={() => setOpenType(!openType)}>
+						<span>{searchFilter.search.typeList?.length === 1 ? PRODUCT_TYPE_LABELS[searchFilter.search.typeList[0]] : getProductGroup(searchFilter.search.typeList)?.label ?? 'All products'}</span>
 						<ExpandMoreIcon />
 					</div>
 				</Stack>
@@ -71,10 +67,9 @@ const HeaderFilter = (props: HeaderFilterProps) => {
 						<img src="/img/icons/search_white.svg" alt="Search" />
 					</div>
 				</Stack>
-				<div className={`filter-type ${openType ? 'on' : ''}`}>
-					{productType.map(type => (
-						<div onClick={() => productTypeSelectHandler(type)} key={type}><span>{type}</span></div>
-					))}
+				<div className={`filter-type ${openType ? 'on' : ''}`} style={{ width: 'min(720px, calc(100vw - 48px))', padding: 0 }}>
+					<ProductCategories types={searchFilter.search.typeList}
+						onChange={types => setSearchFilter(selectProductTypes(searchFilter, types))} />
 				</div>
 			</Stack>
 			<Modal open={openAdvancedFilter} onClose={() => setOpenAdvancedFilter(false)}>

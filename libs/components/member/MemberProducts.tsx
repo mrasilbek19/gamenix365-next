@@ -9,12 +9,15 @@ import { T } from '../../types/common';
 import { useRouter } from 'next/router';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCTS } from '../../../apollo/user/query';
+import ProductCategories from '../product/ProductCategories';
+import useProductBrowse from '../../hooks/useProductBrowse';
+import { selectProductTypes } from '../../productCategories';
 
 const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const { memberId } = router.query;
-	const [searchFilter, setSearchFilter] = useState<ProductsInquiry>({ ...initialInput });
+	const [searchFilter, setSearchFilter] = useProductBrowse(initialInput, typeof memberId === 'string' ? memberId : undefined);
 	const [shopProducts, setShopProducts] = useState<Product[]>([]);
 	const [total, setTotal] = useState<number>(0);
 
@@ -40,10 +43,6 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 		getProductsRefetch().then();
 	}, [searchFilter]);
 
-	useEffect(() => {
-		if (memberId)
-			setSearchFilter({ ...initialInput, search: { ...initialInput.search, memberId: memberId as string } });
-	}, [memberId]);
 
 	/** HANDLERS **/
 	const paginationHandler = (e: T, value: number) => {
@@ -58,6 +57,7 @@ const MyProducts: NextPage = ({ initialInput, ...props }: any) => {
 				</Stack>
 			</Stack>
 			<Stack className="products-list-box">
+				<ProductCategories types={searchFilter.search.typeList} onChange={types => setSearchFilter(selectProductTypes(searchFilter, types))} />
 				<Stack className="list-box">
 					{shopProducts?.length > 0 && (
 						<Stack className="listing-title-box">

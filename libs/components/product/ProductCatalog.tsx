@@ -10,12 +10,14 @@ import { LIKE_TARGET_PRODUCT } from '../../../apollo/user/mutation';
 import { ProductsInquiry } from '../../types/product/product';
 import { Direction } from '../../enums/common.enum';
 import { sweetMixinErrorAlert } from '../../sweetAlert';
+import ProductCategories from './ProductCategories';
+import { normalizeCatalogInput, selectProductTypes } from '../../productCategories';
 
 export default function ProductCatalog({ mode = 'public', memberId, initialSearch = {} }: { mode?: 'public' | 'favorites' | 'visited'; memberId?: string; initialSearch?: any }) {
 	const user = useReactiveVar(userVar);
 	const [page, setPage] = useState(1);
 	const initialInput: ProductsInquiry = { page: 1, limit: 12, search: initialSearch };
-	const [filter, setFilter] = useState<ProductsInquiry>(initialInput);
+	const [filter, setFilter] = useState<ProductsInquiry>(() => normalizeCatalogInput(initialInput));
 	const [sorting, setSorting] = useState('createdAt:DESC');
 	const [sort, direction] = sorting.split(':');
 	const input = mode === 'public' ? { ...filter, page, sort, direction: direction as Direction, search: {
@@ -38,7 +40,7 @@ export default function ProductCatalog({ mode = 'public', memberId, initialSearc
 	const result = data?.[field];
 	return <Stack spacing={3} sx={{ p: { xs: 2, md: 4 }, width: '100%' }}>
 		<Typography variant="h4">{mode === 'public' ? 'Gaming equipment' : mode === 'favorites' ? 'Favorite products' : 'Recently viewed products'}</Typography>
-		{mode === 'public' && <><Filter searchFilter={filter} setSearchFilter={value => { setFilter(value); setPage(1); }} initialInput={initialInput} updateUrl={false} />
+		{mode === 'public' && <><ProductCategories types={filter.search.typeList} onChange={types => { setFilter(selectProductTypes(filter, types)); setPage(1); }} /><Filter searchFilter={filter} setSearchFilter={value => { setFilter(value); setPage(1); }} initialInput={initialInput} updateUrl={false} />
 			<TextField select label="Sort" value={sorting} onChange={e => { setSorting(e.target.value); setPage(1); }} sx={{ maxWidth: 260 }}>
 				{[['createdAt:DESC','Newest'],['productPrice:ASC','Price: low to high'],['productPrice:DESC','Price: high to low'],['productLikes:DESC','Most liked'],['productViews:DESC','Most viewed']].map(([value,label]) => <MenuItem key={value} value={value}>{label}</MenuItem>)}
 			</TextField></>}

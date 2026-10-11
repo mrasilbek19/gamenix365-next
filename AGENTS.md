@@ -1,56 +1,40 @@
-# Gamenix Backend Agent Instruction
+Go outside of this project and read gamenix365/docs/ai first!
 
-Gamenix is a NestJS GraphQL monorepo migrated from a real estate platform into a multi-shop gaming equipment marketplace and community platform.
+# Gamenix Frontend Modification Instructions
 
-## Read First
+This client project is being migrated from nestar-next to gamenix365-next
 
-Before changing code, read the current AI handoff docs:
+## Rules
 
-- `docs/ai/BACKEND_MIGRATION.md`
-- `docs/ai/DECISIONS.md`
-- `docs/ai/COMPLETED_TASKS.md`
-- `docs/ai/NEXT_STEPS.md`
+- Preserve current project architecture
+- Keep GraphQL/Apollo integration
+- Do not rewrite the whole app
+- Improve UI incrementally
 
-Use those files as the source of truth for AI Agent related migration history, accepted decisions, remaining work and validation status.
+## Backend Context
 
-## Project Shape
+Before making any changes, read:
 
-- Backend apps are `gamenix-api` and `gamenix-batch`.
-- Keep the existing NestJS resolver/service/module pattern based on MVC and DI.
-- Keep DTOs, enums, schemas under `apps/gamenix-api/src/libs`.
-- Keep shared modules reusable: auth, member, like, view, comment, follow, board article, socket.
-
-## Domain Rules
-
-- Use Gamenix/product terminology for the main catalog entity.
-- Do not reintroduce property or real-estate fields.
-- Use `MemberType.USER`, `MemberType.SHOP` and `MemberType.ADMIN`.
-- Product ownership belongs to `MemberType.SHOP`.
-- Product enum values are:
-  - `productType`: `KEYBOARD`, `MOUSE`, `MONITOR`, `AUDIO`, `CHAIR`, `DESK`, `CONTROLLER`, `ACCESSORY`, `GPU`, `GAMING_PHONE`
-- Support multiple independent shops selling gaming equipment.
-- Each order can contain multiple products, but all products must belong to the same shop.
-- Shops can organize tournaments and giveaways.
-- Users can register for events, interact with shops, and participate in the gaming community.
-- Preserve existing community functionality including articles, comments, likes, views, and follows.
-- Use NestJS WebSockets for real-time communication.
+- docs/ai/BACKEND_MIGRATION.md
+- docs/ai/DECIONS.md
+- docs/ai/FRONTEND_MIGRATION.md
+  and etc inside of gamenix/docs/ai
 
 ## Workflow
 
 1. Analyze before editing.
-2. Keep changes small and consistent with existing project patterns.
-3. Do not remove working logic unless it is replaced safely.
-4. Update `docs/ai/COMPLETED_TASKS.md` after major completed work.
-5. Add or update focused tests when behavior changes.
+2. Backend is running on port http://localhost:3007/graphql now.
+3. Make small incremental changes.
+4. Run typecheck after each phase.
+5. Do not remove working logic unless replaced safely.
+6. Update gamenix365/docs/ai/COMPLETED_TASKS.md after major changes.
 
-## Validation
+## Package Manager
 
-Use these checks for backend work:
+- Use Yarn for all frontend commands.
+- Do not use npm or pnpm.
+- Install dependencies with:
 
 ```bash
-npx tsc -p apps/gamenix-api/tsconfig.app.json --noEmit
-npx tsc -p apps/gamenix-batch/tsconfig.app.json --noEmit
-npm run build
+yarn install
 ```
-
-`npm run lint` runs ESLint with `--fix`, so use it only when file rewriting is acceptable!

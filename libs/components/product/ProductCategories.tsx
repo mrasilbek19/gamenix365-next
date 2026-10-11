@@ -14,7 +14,7 @@ import ViewArrayOutlined from '@mui/icons-material/ViewArrayOutlined';
 import ChairOutlined from '@mui/icons-material/ChairOutlined';
 import TableRestaurantOutlined from '@mui/icons-material/TableRestaurantOutlined';
 import { ProductType } from '../../enums/product.enum';
-import { PRODUCT_GROUPS, PRODUCT_TYPE_LABELS, getProductGroup } from '../../productCategories';
+import { PRODUCT_GROUPS, PRODUCT_TYPE_LABELS, ProductCategorySelection, getProductGroup } from '../../productCategories';
 
 const ICONS = {
     [ProductType.KEYBOARD]: KeyboardOutlined, [ProductType.MONITOR]: MonitorOutlined,
@@ -25,8 +25,9 @@ const ICONS = {
     [ProductType.RAM]: ViewArrayOutlined, [ProductType.CHAIR]: ChairOutlined, [ProductType.DESK]: TableRestaurantOutlined,
 };
 
-export default function ProductCategories({ types = [], onChange, layout = 'horizontal' }: {
+export default function ProductCategories({ types = [], onChange, layout = 'horizontal', selection, onSelectionChange }: {
     types?: ProductType[]; onChange: (types: ProductType[]) => void; layout?: 'horizontal' | 'sidebar';
+    selection?: ProductCategorySelection; onSelectionChange?: (selection: ProductCategorySelection) => void;
 }) {
     const group = getProductGroup(types);
     const displayedTypes = group?.types ?? PRODUCT_GROUPS.flatMap(item => item.types);
@@ -35,19 +36,33 @@ export default function ProductCategories({ types = [], onChange, layout = 'hori
     };
     if (layout === 'sidebar') return <nav className="product-category-sidebar" aria-label="Product categories">
         <h2>Categories</h2>
-        <Button className="category-option" aria-pressed={types.length === 0} onClick={() => onChange([])}>All products</Button>
+        <Button className="category-option" aria-pressed={selection ? selection.categories.length === 0 : types.length === 0}
+            onClick={() => onSelectionChange ? onSelectionChange({ categories: [], subcategories: [] }) : onChange([])}>All products</Button>
         {PRODUCT_GROUPS.map(item => {
-            const checked = item.types.every(type => types.includes(type));
-            const partiallyChecked = !checked && item.types.some(type => types.includes(type));
+            const checked = selection ? selection.categories.includes(item.id) : item.types.every(type => types.includes(type));
+            const partiallyChecked = !selection && !checked && item.types.some(type => types.includes(type));
             return <div className="category-section" key={item.id}>
                 <FormControlLabel label={item.label} labelPlacement="start"
                     className={`category-option category-toggle ${checked || partiallyChecked ? 'selected' : ''}`}
                     control={<Checkbox checked={checked} indeterminate={partiallyChecked}
-                        onChange={(_, selected) => toggleTypes(item.types, selected)} />} />
+                        onChange={(_, selected) => {
+                            if (selection && onSelectionChange) {
+                                onSelectionChange({
+                                    categories: selected ? [...selection.categories, item.id] : selection.categories.filter(id => id !== item.id),
+                                    subcategories: selection.subcategories.filter(type => !item.types.includes(type)),
+                                });
+                            } else toggleTypes(item.types, selected);
+                        }} />} />
                 {(checked || partiallyChecked) && <div className="subcategory-list" role="group" aria-label={`${item.label} subcategories`}>
                     {item.types.map(type => <FormControlLabel key={type} label={PRODUCT_TYPE_LABELS[type]} labelPlacement="start"
-                        className={`subcategory-option category-toggle ${types.includes(type) ? 'selected' : ''}`}
-                        control={<Checkbox checked={types.includes(type)} onChange={(_, selected) => toggleTypes([type], selected)} />} />)}
+                        className={`subcategory-option category-toggle ${(selection ? selection.subcategories.includes(type) : types.includes(type)) ? 'selected' : ''}`}
+                        control={<Checkbox checked={selection ? selection.subcategories.includes(type) : types.includes(type)}
+                            onChange={(_, selected) => {
+                                if (selection && onSelectionChange) {
+                                    onSelectionChange({ ...selection, subcategories: selected
+                                        ? [...selection.subcategories, type] : selection.subcategories.filter(value => value !== type) });
+                                } else toggleTypes([type], selected);
+                            }} />} />)}
                 </div>}
             </div>;
         })}

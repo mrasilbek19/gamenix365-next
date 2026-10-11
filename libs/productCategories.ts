@@ -33,3 +33,24 @@ export function normalizeCatalogInput(input: ProductsInquiry): ProductsInquiry {
 export function selectProductTypes(input: ProductsInquiry, types: ProductType[]): ProductsInquiry {
     return { ...input, page: 1, search: { ...input.search, typeList: [...types] } };
 }
+
+export interface ProductCategorySelection {
+    categories: string[];
+    subcategories: ProductType[];
+}
+
+export function categorySelectionFromTypes(types: ProductType[] = []): ProductCategorySelection {
+    const groups = PRODUCT_GROUPS.filter(group => group.types.some(type => types.includes(type)));
+    return {
+        categories: groups.map(group => group.id),
+        subcategories: groups.flatMap(group => group.types.every(type => types.includes(type))
+            ? [] : group.types.filter(type => types.includes(type))),
+    };
+}
+
+export function categorySelectionTypes(selection: ProductCategorySelection): ProductType[] {
+    return PRODUCT_GROUPS.filter(group => selection.categories.includes(group.id)).flatMap(group => {
+        const selected = group.types.filter(type => selection.subcategories.includes(type));
+        return selected.length ? selected : group.types;
+    });
+}

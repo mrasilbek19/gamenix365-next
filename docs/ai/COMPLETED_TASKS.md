@@ -1,5 +1,17 @@
 # Completed tasks and evidence ledger
 
+## Five product category tabs — 2026-10-11
+
+Implemented the approved PC / Mobile / Console / PC Components / Furniture browsing order. libs/productCategories.ts contains the mapping and readable labels; ProductCategories provides scrollable tabs and labeled icon buttons. Added CPU, RAM and PLAYSTATION while keeping all existing ProductType values. Categories use existing search.typeList; no persisted group or GraphQL operation change.
+
+Public catalog, shop profile/member catalog, reusable public catalog and homepage selector share the mapping. Replaced the flat checklist while retaining search/price controls, product cards and compact sorting. useProductBrowse preserves existing input URLs, combined filters and shop scope; group/type changes reset page 1, refresh/back restores selections, and mixed-group legacy links remain accessible through All products. Shop create/edit forms narrow types by group and restore the group from the loaded product type; only productType is submitted. Favorites, visited history and admin tables are unchanged.
+
+The frontend AGENTS.md still references unavailable Petoria docs. Applied its existing architecture/Apollo/Yarn rules using the available local Gamenix handoff docs and sibling gamenix365 backend docs as authorized by this task; did not edit AGENTS.md or the user's skill files.
+
+Validation: yarn tsc --noEmit --incremental false PASS; yarn node scripts/test-product-categories.cjs PASS (five exact mappings, all 13 types, filter preservation, reset/default behavior, URL round trips, legacy mixed links and All products). yarn build PASS using Node 20.19.0 in /private/tmp/gamenix-categories-preview (92 static pages; source development server/cache preserved). Existing Browserslist/i18next diagnostics remain.
+
+Isolated Chrome production-preview checks with intercepted GraphQL fixtures PASS: all tab/type requests, All in this category/All products, refresh/back, legacy mixed links, retained text/price/sort, shop ownership scope, homepage category navigation, keyboard tab activation, 390px viewport overflow, create-form choices and RAM edit-group restoration. Desktop/mobile screenshots inspected. Backend both TypeScript checks/build and 34 tests PASS, including input/schema validation for CPU/RAM/PLAYSTATION and prior product types. No live database products were created/updated, no migration ran and no deployment was performed. Deploy backend enum support first.
+
 ## Frontend redesign through existing layouts — 2026-10-10
 
 Completed the user's full Gamenix365 frontend redesign with the latest pasted brief's dark gaming palette: #080B16/#101426 backgrounds, #15182B cards, #090D19 navigation, #9747FF/#29B6F6 accents, white primary text and #A5A8BD secondary text. This revised brief supersedes the earlier white NZXT palette. The supplied NZXT screenshots informed spacing, card hierarchy and shared navigation structure.

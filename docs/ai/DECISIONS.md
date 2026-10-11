@@ -1,5 +1,9 @@
 # Architectural decisions
 
+## Approved product navigation groups — 2026-10-11
+
+Use these frontend groups, in order: PC (KEYBOARD, MONITOR, MOUSE, HEADPHONES, ACCESSORY), Mobile (GAMING_PHONE), Console (PLAYSTATION, CONTROLLER), PC Components (CPU, GPU, RAM), Furniture (CHAIR, DESK). CPU/RAM/PLAYSTATION are new matching ProductType values in both repositories; preserve all older values. No stored group field or new GraphQL enum. Tabs expand to existing typeList values, icons select one subtype, and All in this category restores the group. New visits default to PC; mixed-group legacy links and explicit All products keep their results. Retain sorting, text/price/shop filters and URL navigation. Shop forms choose group then type and persist only productType. Deploy backend enum support before the frontend.
+
 ## Frontend shop terminology — 2026-10-10
 
 The user explicitly authorized renaming marketplace Agent references to Shop throughout this frontend. Use GET_SHOPS, GetShops, ShopsInquiry and getShops in frontend code. The current backend still requires getAgents/AgentsInquiry, so retain those wire names in the GraphQL document and alias the response to getShops. Keep old /agent redirects and agentId fallback for existing links. This supersedes earlier instructions to preserve agent names within frontend identifiers; backend operation renaming remains a separate compatibility change.

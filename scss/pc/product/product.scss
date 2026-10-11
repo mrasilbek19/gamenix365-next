@@ -83,12 +83,13 @@
 								}
 								.search-input {
 									width: 100%;
-									height: 53px;
+									height: 46px;
 									border-radius: 8px;
 									border: 1px solid #292c46;
 									background: #15182b;
 									outline: none;
-									padding-left: 43px;
+									padding: 0 10px;
+									box-sizing: border-box;
 									color: #a5a8bd;
 									font-family: $font;
 									font-size: 14px;
@@ -96,7 +97,7 @@
 									font-weight: 400;
 									line-height: 26px;
 								}
-								img {
+								> img {
 									position: absolute;
 									width: 18px;
 									height: 17px;
@@ -523,8 +524,16 @@
 #mobile-wrap #product-list-page {
 	.filter-main {
 		> .find-your-home:first-child { margin-bottom: 24px; }
-		.input-box .search-input { min-width: 0; }
-		.search-input input { padding: 12px 10px; font-size: 13px; }
+		.find-your-home .input-box {
+			min-width: 0;
+			.search-input { width: 100%; min-width: 0; height: 46px; padding: 0 10px; box-sizing: border-box; }
+			.search-input input { min-width: 0; padding: 12px 0; font-size: 13px; text-overflow: ellipsis; }
+			.MuiInputAdornment-root { flex-shrink: 0; }
+			.MuiInputAdornment-positionStart { margin-right: 8px; }
+			.MuiInputAdornment-positionEnd { margin-left: 6px; }
+			.MuiInputAdornment-root img { position: static; width: 16px; height: 16px; }
+			.MuiIconButton-root { padding: 4px; color: #a5a8bd; }
+		}
 		.square-year-input { gap: 8px; }
 		.square-year-input input { min-width: 0; width: calc(50% - 12px); padding: 10px; }
 		.reset-product-filters { margin-top: 22px; padding: 10px; color: #c8b5f8; border: 1px solid #443260; border-radius: 8px; text-transform: none; }
@@ -551,6 +560,16 @@
 			color: #a5a8bd;
 			&:hover { background: #201b32; color: #fff; }
 			&.Mui-focusVisible { outline: 2px solid #aa7bea; outline-offset: 2px; }
+		}
+		.category-toggle {
+			box-sizing: border-box;
+			margin: 0;
+			justify-content: space-between;
+			gap: 8px;
+			.MuiFormControlLabel-label { font: inherit; }
+			.MuiCheckbox-root { padding: 2px; color: #666b84; }
+			.Mui-checked, .MuiCheckbox-indeterminate { color: #aa7bea; }
+			&:focus-within { outline: 2px solid #aa7bea; outline-offset: 2px; }
 		}
 		.category-option.selected { background: #251b3b; border-color: #493267; color: #eee5ff; font-weight: 600; }
 		.subcategory-list { margin: 6px 0 12px 12px; padding-left: 8px; border-left: 1px solid #3b2d53; }

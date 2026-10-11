@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Stack, Typography, OutlinedInput, Tooltip, IconButton, Button } from '@mui/material';
+import { Stack, Typography, OutlinedInput, InputAdornment, Tooltip, IconButton, Button } from '@mui/material';
 import { ProductsInquiry } from '../../types/product/product';
 import { useRouter } from 'next/router';
 import CancelRoundedIcon from '@mui/icons-material/CancelRounded';
@@ -52,6 +52,7 @@ const Filter = (props: FilterType) => {
 							type={'text'}
 							className={'search-input'}
 							placeholder={'What are you looking for?'}
+							startAdornment={children ? <InputAdornment position="start"><img src="/img/icons/search_icon.png" alt="" /></InputAdornment> : undefined}
 							onChange={(e: any) => setSearchText(e.target.value)}
 							onKeyDown={(event: any) => {
 								if (event.key == 'Enter') {
@@ -59,17 +60,17 @@ const Filter = (props: FilterType) => {
 								}
 							}}
 							endAdornment={
-								<>
-									<CancelRoundedIcon
+								<InputAdornment position="end">
+									<IconButton size="small" aria-label="Clear product search"
 										onClick={() => {
 											setSearchText('');
 											changeFilterHandler({ ...searchFilter, page: 1, search: { ...searchFilter.search, text: '' } });
 										}}
-									/>
-								</>
+									><CancelRoundedIcon fontSize="small" /></IconButton>
+								</InputAdornment>
 							}
 						/>
-						<img src={'/img/icons/search_icon.png'} alt={''} />
+						{!children && <img src={'/img/icons/search_icon.png'} alt={''} />}
 						{!children && <Tooltip title="Reset">
 							<IconButton onClick={refreshHandler}>
 								<RefreshIcon />

@@ -11,13 +11,15 @@ import { useMutation, useReactiveVar, useQuery } from '@apollo/client';
 import { userVar } from '../../../apollo/store';
 import { CREATE_PRODUCT, UPDATE_PRODUCT } from '../../../apollo/user/mutation';
 import { GET_SHOP_PRODUCTS } from '../../../apollo/user/query';
+import { PRODUCT_GROUPS, PRODUCT_TYPE_LABELS, getProductGroup } from '../../productCategories';
 
 const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 	const device = useDeviceDetect();
 	const router = useRouter();
 	const inputRef = useRef<HTMLInputElement>(null);
 	const [insertProductData, setInsertProductData] = useState<ProductInput>(initialValues);
-	const productTypes = Object.values(ProductType);
+	const productGroup = getProductGroup([insertProductData.productType]) ?? PRODUCT_GROUPS[0];
+	const productTypes = productGroup.types;
 	const [uploading, setUploading] = useState(false);
 	const busyRef = useRef(false);
 	const user = useReactiveVar(userVar);
@@ -163,9 +165,16 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 								/>
 							</Stack>
 							<Stack className="price-year-after-price">
+								<Typography className="title">Category</Typography>
+								<select className="select-description" aria-label="Product category" value={productGroup.id}
+									onChange={e => setInsertProductData({ ...insertProductData, productType: PRODUCT_GROUPS.find(group => group.id === e.target.value)!.types[0] })}>
+									{PRODUCT_GROUPS.map(group => <option key={group.id} value={group.id}>{group.label}</option>)}
+								</select>
+							</Stack>
+							<Stack className="price-year-after-price">
 								<Typography className="title">Select Type</Typography>
 								<select
-									className={'select-description'}
+									className={'select-description'} aria-label="Product type"
 									value={insertProductData.productType || 'select'}
 									onChange={({ target: { value } }) =>
 										setInsertProductData({ ...insertProductData, productType: value as ProductType })
@@ -177,7 +186,7 @@ const AddProduct = ({ initialValues }: { initialValues: ProductInput }) => {
 										</option>
 										{productTypes.map((type) => (
 											<option value={`${type}`} key={type}>
-												{type}
+												{PRODUCT_TYPE_LABELS[type]}
 											</option>
 										))}
 									</>

@@ -258,7 +258,7 @@
 						display: flex;
 					}
 
-					div {
+					> div:not(.product-categories) {
 						padding: 12px 16px;
 						border-radius: 8px;
 						background: #15182b;
