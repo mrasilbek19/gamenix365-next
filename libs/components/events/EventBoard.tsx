@@ -13,6 +13,10 @@ import { EventInput, GamingEvent } from '../../types/event/event';
 import { EventStatus, EventType } from '../../enums/event.enum';
 import { imageUrl, uploadImages } from '../../uploads';
 import { sweetConfirmAlert } from '../../sweetAlert';
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined';
+import PeopleOutlineRoundedIcon from '@mui/icons-material/PeopleOutlineRounded';
+import EmojiEventsOutlinedIcon from '@mui/icons-material/EmojiEventsOutlined';
+import ArrowForwardRoundedIcon from '@mui/icons-material/ArrowForwardRounded';
 
 const initialValues: EventInput = {
 	eventTitle: '',
@@ -165,15 +169,15 @@ const EventBoard = ({
 
 	return (
 		<Stack
-			className={'event-board'}
+			className={`event-board ${mode === 'public' ? 'event-board-public' : ''}`}
 			spacing={3}
 			sx={{ p: { xs: 2, md: 4 }, width: '100%', maxWidth: 1200, mx: 'auto' }}
 		>
-			<Typography variant="h4">
-				{mode === 'public' ? 'Gaming Events' : mode === 'shop' ? 'My Events' : 'Manage Events'}
-			</Typography>
-			<Stack direction="row" spacing={2} flexWrap="wrap">
-				<Link href="/events">All events</Link>
+			{mode !== 'public' && <Typography variant="h4">{mode === 'shop' ? 'My Events' : 'Manage Events'}</Typography>}
+			<Stack className={'event-navigation'} direction="row" spacing={2} flexWrap="wrap">
+				<Link href="/events" aria-current={mode === 'public' ? 'page' : undefined}>
+					All events
+				</Link>
 				{user.memberType === 'SHOP' && <Link href="/events/manage">My events</Link>}
 				{user.memberType === 'USER' && <Link href="/events/registrations">My registrations</Link>}
 				{user.memberType === 'ADMIN' && <Link href="/_admin/events">Manage events</Link>}
@@ -354,8 +358,8 @@ const EventBoard = ({
 				<TextField
 					className={'event-list-filter'}
 					select
-					label={mode === 'shop' ? 'Filter by type' : 'Type'}
-					size={mode === 'shop' ? 'small' : undefined}
+					label={mode === 'shop' ? 'Filter by type' : mode === 'public' ? 'Event type' : 'Type'}
+					size={mode !== 'admin' ? 'small' : undefined}
 					value={type}
 					onChange={(e) => {
 						setType(e.target.value);
@@ -366,7 +370,7 @@ const EventBoard = ({
 					<MenuItem value="">All types</MenuItem>
 					{Object.values(EventType).map((value) => (
 						<MenuItem key={value} value={value}>
-							{value}
+							{mode === 'public' ? { TOURNAMENT: 'Tournament', GIVEAWAY: 'Giveaway' }[value] : value}
 						</MenuItem>
 					))}
 				</TextField>
@@ -392,69 +396,161 @@ const EventBoard = ({
 					</TextField>
 				)}
 			</Stack>
-			{loading && <Typography>Loading events...</Typography>}
+			{loading && (
+				<Typography className={'event-list-message'} role={'status'}>
+					Loading events...
+				</Typography>
+			)}
 			{error && <Alert severity="error">{error.message}</Alert>}
-			{!loading && !error && !events.length && <Typography>No events found.</Typography>}
+			{!loading &&
+				!error &&
+				!events.length &&
+				(mode === 'public' ? (
+					<Stack className={'event-empty-state'}>
+						<CalendarTodayOutlinedIcon />
+						<Typography variant={'h6'}>No events found</Typography>
+						<Typography>Try another event type or check back for upcoming community events.</Typography>
+					</Stack>
+				) : (
+					<Typography>No events found.</Typography>
+				))}
 			<div
 				className={'event-list'}
 				style={
-					mode === 'shop'
-						? undefined
-						: { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 24 }
+					mode === 'admin'
+						? { display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 280px), 1fr))', gap: 24 }
+						: undefined
 				}
 			>
 				{events.map((event) => (
 					<Card className={'event-card'} key={event._id} sx={{ p: 2 }}>
-						<Stack className={'event-card-content'} spacing={mode === 'shop' ? 0 : 2}>
-							<img
-								className={'event-image'}
-								src={imageUrl(event.eventImage)}
-								alt={event.eventTitle}
-								style={mode === 'shop' ? undefined : { width: '100%', height: 180, objectFit: 'cover' }}
-							/>
-							{mode === 'shop' && (
-								<Stack className={'event-card-heading'} direction="row">
-									<Typography className={'event-type'}>{event.eventType}</Typography>
-									<Typography className={'event-status'}>{event.eventStatus}</Typography>
+						{mode === 'public' ? (
+							<Link className={'event-card-link'} href={`/events/detail?id=${event._id}`}>
+								<div className={'event-image-wrap'}>
+									<img
+										className={'event-image'}
+										src={imageUrl(event.eventImage)}
+										alt={event.eventTitle}
+										loading="lazy"
+									/>
+								</div>
+								<Stack className={'event-card-body'}>
+									<Stack className={'event-card-heading'} direction={'row'}>
+										<Typography className={'event-type'}>
+											{{ TOURNAMENT: 'Tournament', GIVEAWAY: 'Giveaway' }[event.eventType]}
+										</Typography>
+										<Typography className={'event-status'}>
+											{
+												{ PENDING: 'Pending approval', PAUSED: 'Paused', PROCESS: 'Active', FINISHED: 'Finished' }[
+													event.eventStatus
+												]
+											}
+										</Typography>
+									</Stack>
+									<Typography className={'event-title'} component={'h2'}>
+										{event.eventTitle}
+									</Typography>
+									<Typography className={'event-game'}>{event.eventGame}</Typography>
+									<Stack className={'event-card-details'}>
+										<Stack className={'event-meta-row'} direction={'row'}>
+											<CalendarTodayOutlinedIcon />
+											<Stack>
+												<Typography component={'time'} dateTime={event.eventDate}>
+													{new Date(event.eventDate).toLocaleDateString(undefined, {
+														month: 'short',
+														day: 'numeric',
+														year: 'numeric',
+													})}
+												</Typography>
+												<Typography className={'event-time'}>
+													<time dateTime={event.eventStart}>
+														{new Date(event.eventStart).toLocaleString(undefined, {
+															month: 'short',
+															day: 'numeric',
+															hour: 'numeric',
+															minute: '2-digit',
+														})}
+													</time>
+													{' – '}
+													<time dateTime={event.eventEnd}>
+														{new Date(event.eventEnd).toLocaleString(undefined, {
+															month: 'short',
+															day: 'numeric',
+															hour: 'numeric',
+															minute: '2-digit',
+														})}
+													</time>
+												</Typography>
+											</Stack>
+										</Stack>
+										<Stack className={'event-meta-row'} direction={'row'}>
+											<PeopleOutlineRoundedIcon />
+											<Typography>Capacity: {event.eventMaxParticipants} participants</Typography>
+										</Stack>
+									</Stack>
+									<Stack className={'event-card-footer'} direction={'row'}>
+										{event.eventPrize && (
+											<Typography className={'event-prize'}>
+												<EmojiEventsOutlinedIcon />
+												Prize: {event.eventPrize}
+											</Typography>
+										)}
+										<span className={'view-event'}>
+											View Event <ArrowForwardRoundedIcon />
+										</span>
+									</Stack>
 								</Stack>
-							)}
-							{event.eventStatus === EventStatus.PROCESS ? (
-								<Link href={`/events/detail?id=${event._id}`}>
+							</Link>
+						) : (
+							<Stack className={'event-card-content'} spacing={mode === 'shop' ? 0 : 2}>
+								<img
+									className={'event-image'}
+									src={imageUrl(event.eventImage)}
+									alt={event.eventTitle}
+									style={mode === 'shop' ? undefined : { width: '100%', height: 180, objectFit: 'cover' }}
+								/>
+								{mode === 'shop' && (
+									<Stack className={'event-card-heading'} direction="row">
+										<Typography className={'event-type'}>{event.eventType}</Typography>
+										<Typography className={'event-status'}>{event.eventStatus}</Typography>
+									</Stack>
+								)}
+								{event.eventStatus === EventStatus.PROCESS ? (
+									<Link href={`/events/detail?id=${event._id}`}>
+										<Typography className={'event-title'} variant="h6">
+											{event.eventTitle}
+										</Typography>
+									</Link>
+								) : (
 									<Typography className={'event-title'} variant="h6">
 										{event.eventTitle}
 									</Typography>
-								</Link>
-							) : (
-								<Typography className={'event-title'} variant="h6">
-									{event.eventTitle}
-								</Typography>
-							)}
-							{mode === 'shop' ? (
-								<>
-									<Typography className={'event-game'}>{event.eventGame}</Typography>
-									<Stack className={'event-card-details'}>
-										{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
-											<Typography className={'event-info-row'} key={key}>
-												<span>{{ eventDate: 'Scheduled', eventStart: 'Start', eventEnd: 'End' }[key]}</span>
-												<time dateTime={event[key]}>{new Date(event[key]).toLocaleString()}</time>
+								)}
+								{mode === 'shop' ? (
+									<>
+										<Typography className={'event-game'}>{event.eventGame}</Typography>
+										<Stack className={'event-card-details'}>
+											{(['eventDate', 'eventStart', 'eventEnd'] as const).map((key) => (
+												<Typography className={'event-info-row'} key={key}>
+													<span>{{ eventDate: 'Scheduled', eventStart: 'Start', eventEnd: 'End' }[key]}</span>
+													<time dateTime={event[key]}>{new Date(event[key]).toLocaleString()}</time>
+												</Typography>
+											))}
+											<Typography className={'event-info-row'}>
+												<span>Participant limit</span>
+												<strong>{event.eventMaxParticipants}</strong>
 											</Typography>
-										))}
-										<Typography className={'event-info-row'}>
-											<span>Participant limit</span>
-											<strong>{event.eventMaxParticipants}</strong>
+										</Stack>
+									</>
+								) : (
+									<>
+										<Typography>
+											{event.eventType} · {event.eventGame} · {event.eventStatus}
 										</Typography>
-									</Stack>
-								</>
-							) : (
-								<>
-									<Typography>
-										{event.eventType} · {event.eventGame} · {event.eventStatus}
-									</Typography>
-									<Typography>{new Date(event.eventStart).toLocaleString()}</Typography>
-								</>
-							)}
-							<Typography className={'event-prize'}>Prize: {event.eventPrize}</Typography>
-							{mode !== 'public' && (
+										<Typography>{new Date(event.eventStart).toLocaleString()}</Typography>
+									</>
+								)}
+								<Typography className={'event-prize'}>Prize: {event.eventPrize}</Typography>
 								<Stack className={'event-actions'} direction="row" flexWrap="wrap">
 									{event.eventStatus !== EventStatus.FINISHED && (
 										<>
@@ -499,8 +595,8 @@ const EventBoard = ({
 										Remove
 									</Button>
 								</Stack>
-							)}
-						</Stack>
+							</Stack>
+						)}
 					</Card>
 				))}
 			</div>
