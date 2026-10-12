@@ -1,5 +1,4 @@
 import React from 'react';
-import useDeviceDetect from '../../hooks/useDeviceDetect';
 import { Stack, Box, Typography } from '@mui/material';
 import Link from 'next/link';
 import { REACT_APP_API_URL } from '../../config';
@@ -18,62 +17,53 @@ interface ShopCardProps {
 
 const ShopCard = (props: ShopCardProps) => {
 	const { shop, likeMemberHandler } = props;
-	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
+	const shopName = shop.memberFullName || shop.memberNick;
+	const shopLink = { pathname: '/shop/detail', query: { shopId: shop._id } };
 	const imagePath: string = shop?.memberImage
 		? `${REACT_APP_API_URL}/${shop?.memberImage}`
 		: '/img/profile/defaultUser.svg';
 
 	return (
 		<Stack className="shop-general-card">
-			<Link
-				href={{
-					pathname: '/shop/detail',
-					query: { shopId: shop?._id },
-				}}
-			>
-				<Box
-					component={'div'}
-					className={'shop-img'}
-					style={{
-						backgroundImage: `url(${imagePath})`,
-						backgroundSize: 'cover',
-						backgroundPosition: 'center',
-						backgroundRepeat: 'no-repeat',
-					}}
-				>
-					<div>{shop?.memberProducts} products</div>
-				</Box>
-			</Link>
-
+			<Link className={'shop-profile-link'} href={shopLink} aria-label={`View ${shopName}`} />
+			<Box component={'div'} className={'shop-img'}>
+				<img src={imagePath} alt={shopName} loading="lazy" />
+			</Box>
 			<Stack className={'shop-desc'}>
-				<Box component={'div'} className={'shop-info'}>
-					<Link
-						href={{
-							pathname: '/shop/detail',
-							query: { shopId: shop?._id },
-						}}
-					>
-						<strong>{shop?.memberFullName ?? shop?.memberNick}</strong>
-					</Link>
-					<span>Shop</span>
-					{shop?.memberDesc && <Typography variant="body2" sx={{ maxWidth: 160, overflowWrap: 'anywhere' }}>{shop.memberDesc}</Typography>}
-					<Typography variant="body2">{shop?.memberFollowers ?? 0} followers</Typography>
-				</Box>
+				<Typography component={'h2'} className={'shop-name'}>
+					{shopName}
+				</Typography>
+				{shop.memberDesc && <Typography className={'shop-description'}>{shop.memberDesc}</Typography>}
+				<Typography className={'shop-product-count'}>
+					{shop.memberProducts ?? 0} product{shop.memberProducts === 1 ? '' : 's'}
+				</Typography>
+			</Stack>
+			<Stack className={'shop-card-footer'} direction={'row'}>
 				<Box component={'div'} className={'buttons'}>
-					<IconButton color={'default'}>
-						<RemoveRedEyeIcon />
-					</IconButton>
-					<Typography className="view-cnt">{shop?.memberViews}</Typography>
-					<IconButton color={'default'} onClick={() => likeMemberHandler(user, shop?._id)}>
+					<RemoveRedEyeIcon fontSize={'small'} />
+					<Typography className="view-cnt" aria-label={`${shop.memberViews ?? 0} views`}>
+						{shop.memberViews ?? 0}
+					</Typography>
+					<IconButton
+						className={'shop-like'}
+						aria-label={`Like ${shopName}`}
+						aria-pressed={Boolean(shop.meLiked?.[0]?.myFavorite)}
+						onClick={() => likeMemberHandler(user, shop._id)}
+					>
 						{shop?.meLiked && shop?.meLiked[0]?.myFavorite ? (
 							<FavoriteIcon color={'primary'} />
 						) : (
 							<FavoriteBorderIcon />
 						)}
 					</IconButton>
-					<Typography className="view-cnt">{shop?.memberLikes}</Typography>
+					<Typography className="view-cnt" aria-label={`${shop.memberLikes ?? 0} likes`}>
+						{shop.memberLikes ?? 0}
+					</Typography>
 				</Box>
+				<Link href={shopLink} className={'view-shop'}>
+					View Shop
+				</Link>
 			</Stack>
 		</Stack>
 	);

@@ -2,7 +2,8 @@ import React, { ChangeEvent, MouseEvent, useEffect, useState } from 'react';
 import { NextPage } from 'next';
 import useDeviceDetect from '../../libs/hooks/useDeviceDetect';
 import withLayoutBasic from '../../libs/components/layout/LayoutBasic';
-import { Stack, Box, Button, Pagination } from '@mui/material';
+import { Stack, Box, Button, Pagination, Alert, Typography } from '@mui/material';
+import SearchRoundedIcon from '@mui/icons-material/SearchRounded';
 import { Menu, MenuItem } from '@mui/material';
 import KeyboardArrowDownRoundedIcon from '@mui/icons-material/KeyboardArrowDownRounded';
 import ShopCard from '../../libs/components/common/ShopCard';
@@ -132,9 +133,11 @@ const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 			<Stack className={'container'}>
 				<Stack className={'filter'}>
 					<Box component={'div'} className={'left'}>
+						<SearchRoundedIcon />
 						<input
 							type="text"
-							placeholder={'Search for an shop'}
+							placeholder={'Search shops...'}
+							aria-label={'Search shops'}
 							value={searchText}
 							onChange={(e: any) => setSearchText(e.target.value)}
 							onKeyDown={(event: any) => {
@@ -172,11 +175,17 @@ const ShopList: NextPage = ({ initialInput, ...props }: any) => {
 						</div>
 					</Box>
 				</Stack>
-				<Stack className={'card-wrap'}>
-					{shops?.length === 0 ? (
+				{getShopsError && <Alert severity={'error'}>{getShopsError.message}</Alert>}
+				<Stack className={'card-wrap'} aria-busy={getShopsLoading}>
+					{getShopsLoading && !shops.length ? (
+						<Typography className={'shop-list-message'} role={'status'}>
+							Loading shops...
+						</Typography>
+					) : !getShopsError && shops?.length === 0 ? (
 						<div className={'no-data'}>
 							<img src="/img/icons/icoAlert.svg" alt="" />
-							<p>No Shops found!</p>
+							<Typography component={'h2'}>No shops found</Typography>
+							<Typography>Try another search to find a gaming shop.</Typography>
 						</div>
 					) : (
 						shops.map((shop: Member) => {

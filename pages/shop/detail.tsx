@@ -18,7 +18,7 @@ import { Comment } from '../../libs/types/comment/comment';
 import { CommentGroup } from '../../libs/enums/comment.enum';
 import { Messages, REACT_APP_API_URL } from '../../libs/config';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import { CREATE_COMMENT, LIKE_TARGET_PRODUCT, SUBSCRIBE, UNSUBSCRIBE } from '../../apollo/user/mutation';
+import { CREATE_COMMENT, LIKE_TARGET_PRODUCT } from '../../apollo/user/mutation';
 import { GET_COMMENTS, GET_MEMBER, GET_PRODUCTS } from '../../apollo/user/query';
 import { T } from '../../libs/types/common';
 import ProductCategories from '../../libs/components/product/ProductCategories';
@@ -52,8 +52,6 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 	/** APOLLO REQUESTS **/
 	const [createComment] = useMutation(CREATE_COMMENT);
 	const [likeTargetProduct] = useMutation(LIKE_TARGET_PRODUCT);
-	const [subscribe, { loading: subscribeLoading }] = useMutation(SUBSCRIBE);
-	const [unsubscribe, { loading: unsubscribeLoading }] = useMutation(UNSUBSCRIBE);
 
 	const {
 		loading: getMemberLoading,
@@ -136,18 +134,6 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 	}, [commentInquiry]);
 
 	/** HANDLERS **/
-	const followShopHandler = async () => {
-		try {
-			if (user.memberType !== 'USER' || !shop || user._id === shop._id) return;
-			if (shop.meFollowed?.[0]?.myFollowing) await unsubscribe({ variables: { input: shop._id } });
-			else await subscribe({ variables: { input: shop._id } });
-			const { data } = await getMemberRefetch();
-			setShop(data.getMember);
-		} catch (err: any) {
-			sweetErrorHandling(err).then();
-		}
-	};
-
 	const productPaginationChangeHandler = async (event: ChangeEvent<unknown>, value: number) => {
 		setSearchFilter({ ...searchFilter, page: value });
 	};
@@ -207,16 +193,7 @@ const ShopDetail: NextPage = ({ initialInput, initialComment, ...props }: any) =
 					<Box component={'div'} className={'info'}>
 						<strong>{shop?.memberFullName ?? shop?.memberNick}</strong>
 						<Typography sx={{ whiteSpace: 'pre-wrap', maxWidth: 750 }}>{shop?.memberDesc}</Typography>
-						<Typography>{shop?.memberFollowers ?? 0} followers</Typography>
-						{user.memberType === 'USER' && shop && user._id !== shop._id && (
-							<Button variant="outlined" disabled={subscribeLoading || unsubscribeLoading} onClick={followShopHandler}>
-								{shop.meFollowed?.[0]?.myFollowing ? 'Unfollow' : 'Follow'}
-							</Button>
-						)}
-						<div>
-							<img src="/img/icons/call.svg" alt="" />
-							<span>{shop?.memberPhone}</span>
-						</div>
+						<Typography>{shop?.memberProducts ?? 0} products</Typography>
 					</Box>
 				</Stack>
 				<Stack className={'shop-home-list'}>
