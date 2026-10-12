@@ -4,6 +4,7 @@ import { userVar } from '../../apollo/store';
 import { CustomJwtPayload } from '../types/customJwtPayload';
 import { sweetMixinErrorAlert } from '../sweetAlert';
 import { LOGIN, SIGN_UP } from '../../apollo/user/mutation';
+import { clearCart, restoreCart } from '../cart';
 
 export function getJwtToken(): any {
 	if (typeof window !== 'undefined') {
@@ -128,6 +129,10 @@ export const updateUserInfo = (jwtToken: any) => {
 	if (!jwtToken) return false;
 
 	const claims = decodeJWT<CustomJwtPayload>(jwtToken);
+	if (claims._id !== userVar()._id) {
+		if (userVar()._id) clearCart();
+		restoreCart(claims._id ?? '', !userVar()._id);
+	}
 	userVar({
 		_id: claims._id ?? '',
 		memberType: claims.memberType ?? '',
@@ -154,6 +159,7 @@ export const updateUserInfo = (jwtToken: any) => {
 };
 
 export const logOut = () => {
+	if (userVar()._id) clearCart();
 	deleteStorage();
 	deleteUserInfo();
 	window.location.reload();

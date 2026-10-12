@@ -6,7 +6,7 @@ import { Alert, Button, MenuItem, Stack, TextField, Typography } from '@mui/mate
 import { userVar } from '../../apollo/store';
 import { GET_MY_ORDERS, GET_MEMBER } from '../../apollo/user/query';
 import { CREATE_ORDER, UPDATE_ORDER } from '../../apollo/user/mutation';
-import { cartVar } from '../../libs/cart';
+import { cartVar, clearCart, clearPurchasedCart, saveCart } from '../../libs/cart';
 import { OrderDeliveryType, OrderStatus } from '../../libs/enums/order.enum';
 import { Order } from '../../libs/types/order/order';
 import { imageUrl } from '../../libs/uploads';
@@ -131,21 +131,38 @@ const Orders: NextPage = () => {
 							<Stack component="form" spacing={2} onSubmit={async (e: React.FormEvent) => {
 								e.preventDefault(); setMessage(''); setSuccess('');
 								try {
-									const { data: result } = await createOrder({ variables: { input: { orderDeliveryType: delivery, ...(delivery === 'DELIVERY' ? { orderAddress: address.trim() } : {}), orderItems: cart.map(item => ({ productId: item.product._id, itemQuantity: item.itemQuantity })) } } });
-									cartVar([]); setSuccess(`Order created. Total: $${result.createOrder.orderTotal.toFixed(2)}.`); setPage(1); setStatus(OrderStatus.PAUSE); await refetch({ input: { page: 1, limit: 10, orderStatus: OrderStatus.PAUSE } });
+									const orderedItems = [...cart];
+									const memberId = user._id;
+									const { data: result } = await createOrder({
+										variables: {
+											input: {
+												orderDeliveryType: delivery,
+												...(delivery === 'DELIVERY' ? { orderAddress: address.trim() } : {}),
+												orderItems: orderedItems.map((item) => ({ productId: item.product._id, itemQuantity: item.itemQuantity })),
+											},
+										},
+									});
+									clearPurchasedCart(orderedItems, memberId);
+									setSuccess(`Order created. Total: $${result.createOrder.orderTotal.toFixed(2)}.`);
+									setPage(1);
+									setStatus(OrderStatus.PAUSE);
+									await refetch({ input: { page: 1, limit: 10, orderStatus: OrderStatus.PAUSE } });
 								} catch (err: any) { setMessage(err.message); }
 							}}>
 								{cart.map(item => <Stack key={item.product._id} spacing={1}>
 									<Typography>{item.product.productName} · ${item.product.productPrice.toFixed(2)}</Typography>
 									<TextField required label="Quantity" type="number" inputProps={{ min: 1, max: item.product.productLeftCount, step: 1 }} value={item.itemQuantity} onChange={e => {
-										const count = Number(e.target.value); if (Number.isInteger(count) && count >= 1 && count <= item.product.productLeftCount) cartVar(cart.map(line => line.product._id === item.product._id ? { ...line, itemQuantity: count } : line));
-									}} /><Button onClick={() => cartVar(cart.filter(line => line.product._id !== item.product._id))}>Remove</Button>
+										const count = Number(e.target.value);
+										if (Number.isInteger(count) && count >= 1 && count <= item.product.productLeftCount) {
+											saveCart(cart.map((line) => line.product._id === item.product._id ? { ...line, itemQuantity: count } : line));
+										}
+									}} /><Button onClick={() => saveCart(cart.filter(line => line.product._id !== item.product._id))}>Remove</Button>
 								</Stack>)}
 								<TextField select label="Fulfillment" value={delivery} onChange={e => setDelivery(e.target.value as OrderDeliveryType)}><MenuItem value="DELIVERY">Delivery</MenuItem><MenuItem value="PICKUP">Pickup</MenuItem></TextField>
 								{delivery === 'DELIVERY' && <TextField required label="Delivery address" value={address} onChange={e => setAddress(e.target.value)} />}
 								<Typography>Subtotal: ${subtotal.toFixed(2)} · Delivery: ${fee.toFixed(2)} · Estimated total: ${(subtotal + fee).toFixed(2)}</Typography>
 								<Button variant="contained" type="submit" disabled={creating || user.memberStatus !== 'ACTIVE' || (delivery === 'DELIVERY' && !address.trim())}>Place order</Button>
-								<Button onClick={() => cartVar([])} disabled={creating}>Clear cart</Button>
+								<Button onClick={() => clearCart()} disabled={creating}>Clear cart</Button>
 							</Stack>
 						</details>
 					)}

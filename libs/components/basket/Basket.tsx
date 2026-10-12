@@ -12,6 +12,7 @@ import { CREATE_ORDER } from '../../../apollo/user/mutation';
 import useBasket from '../../hooks/useBasket';
 import { imageUrl } from '../../uploads';
 import { OrderDeliveryType } from '../../enums/order.enum';
+import { clearPurchasedCart } from '../../cart';
 
 export default function Basket({ light = false }: { light?: boolean }) {
 	const { cartItems, onAdd, onRemove, onDelete, onDeleteAll } = useBasket();
@@ -52,13 +53,15 @@ export default function Basket({ light = false }: { light?: boolean }) {
 		}
 		ordering.current = true;
 		setMessage('');
+		const orderedItems = [...cartItems];
+		const memberId = user._id;
 		try {
 			await createOrder({
 				variables: {
 					input: {
 						orderDeliveryType: delivery,
 						...(delivery === OrderDeliveryType.DELIVERY ? { orderAddress: address.trim() } : {}),
-						orderItems: cartItems.map((item) => ({ productId: item.product._id, itemQuantity: item.itemQuantity })),
+						orderItems: orderedItems.map((item) => ({ productId: item.product._id, itemQuantity: item.itemQuantity })),
 					},
 				},
 				update(cache) {
@@ -66,7 +69,7 @@ export default function Basket({ light = false }: { light?: boolean }) {
 					cache.gc();
 				},
 			});
-			onDeleteAll();
+			clearPurchasedCart(orderedItems, memberId);
 			setAnchor(null);
 			await router.push('/orders');
 		} catch (err: any) {
