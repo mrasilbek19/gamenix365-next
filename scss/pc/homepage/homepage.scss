@@ -12,7 +12,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 34px;
 					font-style: normal;
@@ -21,18 +21,18 @@
 					letter-spacing: -0.646px;
 					text-transform: capitalize;
 					&.white {
-						color: #202124;
+						color: var(--color-text, #202124);
 					}
 				}
 				p {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
 					font-weight: 400;
 					line-height: 26px;
 					&.white {
-						color: #202124;
+						color: var(--color-text, #202124);
 					}
 				}
 			}
@@ -45,7 +45,7 @@
 					flex-direction: row;
 					align-items: center;
 					.swiper-pagination-bullet.swiper-pagination-bullet-active {
-						background: #f4f5f6;
+						background: var(--color-surface, #f4f5f6);
 					}
 					.swiper-trend-next {
 						margin-left: 20px;
@@ -70,7 +70,7 @@
 					cursor: pointer;
 					align-items: center;
 					span {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -90,7 +90,7 @@
 					button {
 						border-radius: 6px;
 						background: rgba(255, 255, 255, 0.07);
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -101,9 +101,9 @@
 							margin-right: 20px;
 						}
 						&.active {
-							border: 1px solid #181a20;
-							background: #eceeef;
-							color: #202124;
+							border: 1px solid var(--color-border, #181a20);
+							background: var(--color-surface, #eceeef);
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 14px;
 							font-style: normal;
@@ -122,7 +122,7 @@
 			height: 722px;
 			display: flex;
 			flex-direction: row;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			.container {
 				position: relative;
 				flex-direction: column;
@@ -141,7 +141,7 @@
 						align-items: center;
 						justify-content: center;
 						border-radius: 50%;
-						background: #eceeef;
+						background: var(--color-surface, #eceeef);
 						filter: drop-shadow(0px 10px 35px rgba(5, 16, 54, 0.1));
 						cursor: pointer;
 						svg {
@@ -182,7 +182,7 @@
 							}
 							strong {
 								margin-top: 20px;
-								color: #202124;
+								color: var(--color-text, #202124);
 								text-align: center;
 								font-family: $font;
 								font-size: 15px;
@@ -193,7 +193,7 @@
 								cursor: pointer;
 							}
 							span {
-								color: #202124;
+								color: var(--color-text, #202124);
 								text-align: center;
 								font-family: $font;
 								font-size: 15px;
@@ -213,7 +213,7 @@
 			height: 810px;
 			display: flex;
 			flex-direction: row;
-			background: #f4f5f6;
+			background: var(--color-surface, #f4f5f6);
 			.container {
 				flex-direction: column;
 				align-items: center;
@@ -279,8 +279,8 @@
 							span {
 								padding: 0px 5px;
 								border-radius: 5px;
-								background: #eceeef;
-								color: #007e9e;
+								background: var(--color-surface, #eceeef);
+								color: var(--color-accent-text, #007e9e);
 								font-family: $font;
 								font-size: 16px;
 								font-style: normal;
@@ -328,7 +328,7 @@
 							font-weight: 500;
 							font-size: 16px;
 							line-height: 36px;
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 							cursor: pointer;
 						}
 						img {
@@ -373,7 +373,7 @@
 										font-size: 19px;
 										line-height: 36px;
 										letter-spacing: -0.015em;
-										color: #62666b;
+										color: var(--color-muted, #62666b);
 									}
 								}
 								strong {
@@ -384,7 +384,7 @@
 									font-size: 18px;
 									line-height: 36px;
 									letter-spacing: 0.105em;
-									color: #202124;
+									color: var(--color-text, #202124);
 								}
 								span {
 									font-family: $font;
@@ -424,7 +424,7 @@
 									font-weight: 500;
 									font-size: 13px;
 									letter-spacing: 0.105em;
-									color: #202124;
+									color: var(--color-text, #202124);
 								}
 								span {
 									font-family: $font;
@@ -433,7 +433,7 @@
 									font-size: 13px;
 									line-height: 36px;
 									letter-spacing: 0.105em;
-									color: #62666b;
+									color: var(--color-muted, #62666b);
 								}
 							}
 						}
@@ -445,14 +445,14 @@
 }
 
 #pc-wrap .home-page {
-	background: #eceeef;
+	background: var(--color-surface, #eceeef);
 
 	> .trend-products,
 	> .popular-products,
 	> .top-products {
 		padding: 64px 0 24px;
 		height: auto;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 
 		> .container {
 			width: calc(100% - 120px);
@@ -469,7 +469,7 @@
 				display: flex;
 				flex-direction: column;
 				span {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-size: clamp(30px, 3.3vw, 48px);
 					font-weight: 800;
 					line-height: 1.15;
@@ -478,7 +478,7 @@
 
 				.section-label {
 					margin-bottom: 14px;
-					color: #007e9e;
+					color: var(--color-accent-text, #007e9e);
 					font-size: 11px;
 					font-weight: 700;
 					letter-spacing: 2px;
@@ -486,7 +486,7 @@
 
 				p {
 					margin-top: 12px;
-					color: #62666b;
+					color: var(--color-muted, #62666b);
 				}
 			}
 
@@ -498,7 +498,7 @@
 
 			.view-all,
 			.more-box span {
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-size: 14px;
 				font-weight: 700;
 			}
@@ -533,7 +533,7 @@
 				min-height: 480px;
 				border-radius: 10px;
 				overflow: hidden;
-				background: #eceeef;
+				background: var(--color-surface, #eceeef);
 				box-shadow: none;
 				transition: transform 0.2s ease;
 
@@ -548,7 +548,7 @@
 					height: 280px;
 					flex-shrink: 0;
 					border-radius: 0;
-					background-color: #eceeef;
+					background-color: var(--color-surface, #eceeef);
 					background-size: contain;
 					background-position: center;
 					background-repeat: no-repeat;
@@ -562,11 +562,11 @@
 						top: 16px;
 						left: 16px;
 						border-radius: 30px;
-						background: #dff6fc;
-						color: #007e9e;
+						background: var(--color-accent-soft, #dff6fc);
+						color: var(--color-accent-text, #007e9e);
 
 						span {
-							color: #007e9e;
+							color: var(--color-accent-text, #007e9e);
 						}
 					}
 				}
@@ -578,13 +578,13 @@
 					padding: 24px;
 					border: 0;
 					border-radius: 0;
-					background: #eceeef;
+					background: var(--color-surface, #eceeef);
 					box-shadow: none;
 
 					.title {
 						cursor: pointer;
 						order: -2;
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-size: 23px;
 						font-weight: 800;
 						line-height: 1.25;
@@ -594,7 +594,7 @@
 
 					.product-price {
 						margin-top: 20px;
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-size: 21px;
 						font-weight: 800;
 					}
@@ -602,7 +602,7 @@
 					.desc {
 						order: -1;
 						margin-top: 10px;
-						color: #62666b;
+						color: var(--color-muted, #62666b);
 						font-size: 14px;
 						line-height: 1.6;
 					}
@@ -611,7 +611,7 @@
 						margin-top: 14px;
 
 						span {
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 							font-size: 12px;
 						}
 					}
@@ -627,7 +627,7 @@
 						}
 
 						.view-cnt {
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 							font-size: 12px;
 						}
 					}
@@ -661,7 +661,7 @@
 	.top-shops,
 	.events,
 	.community-board {
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 
 		.container {
 			width: calc(100% - 120px);
@@ -724,7 +724,7 @@
 }
 
 #pc-wrap .home-page {
-	background: #ffffff;
+	background: var(--color-paper, #ffffff);
 	> .trend-products,
 	> .popular-products,
 	> .top-products {
@@ -774,7 +774,7 @@
 			padding: 12px 0;
 			background: transparent;
 			border: 0;
-			color: #202124;
+			color: var(--color-text, #202124);
 			font: inherit;
 		}
 	}
@@ -785,8 +785,8 @@
 	max-width: 662px;
 	max-height: calc(100vh - 48px);
 	overflow-y: auto;
-	border: 1px solid #d4d7da;
-	color: #202124;
+	border: 1px solid var(--color-border, #d4d7da);
+	color: var(--color-text, #202124);
 	.advanced-filter-modal {
 		width: 100%;
 		padding: 32px 24px;
@@ -799,10 +799,10 @@
 		.top span,
 		.middle .row-box .box span,
 		.bottom div span {
-			color: #202124;
+			color: var(--color-text, #202124);
 		}
 		.close {
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 		}
 		.middle .row-box .box .inside {
 			flex-wrap: wrap;
@@ -810,9 +810,9 @@
 			input {
 				width: calc(50% - 8px);
 				min-width: 0;
-				background: #eceeef;
-				color: #202124;
-				border-color: #d4d7da;
+				background: var(--color-surface, #eceeef);
+				color: var(--color-text, #202124);
+				border-color: var(--color-border, #d4d7da);
 			}
 		}
 		.bottom {

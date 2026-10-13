@@ -16,7 +16,7 @@
           flex-direction: column;
           align-items: center;
           span {
-            color: #202124;
+            color: var(--color-text, #202124);
             font-family: $font;
             font-size: 35px;
             font-style: normal;
@@ -25,7 +25,7 @@
             letter-spacing: 0.525px;
           }
           p {
-            color: #62666b;
+            color: var(--color-muted, #62666b);
             font-family: $font;
             font-size: 16px;
             font-style: normal;
@@ -50,9 +50,9 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            border: 1px solid #d4d7da;
+            border: 1px solid var(--color-border, #d4d7da);
             cursor: pointer;
-            color: #62666b;
+            color: var(--color-muted, #62666b);
             font-family: $font;
             font-size: 14px;
             font-style: normal;
@@ -73,7 +73,7 @@
         flex-direction: column;
         .title {
           margin-bottom: 25px;
-          color: #202124;
+          color: var(--color-text, #202124);
           font-family: $font;
           font-size: 27px;
           font-style: normal;
@@ -89,14 +89,14 @@
         }
         .notice-content {
           .main {
-            border: 1px solid #d4d7da;
+            border: 1px solid var(--color-border, #d4d7da);
             .top {
               padding: 25px 33px;
               display: flex;
               flex-direction: row;
               justify-content: space-between;
               span {
-                color: #202124;
+                color: var(--color-text, #202124);
                 font-family: $font;
                 font-size: 14px;
                 font-style: normal;
@@ -113,15 +113,15 @@
                 display: flex;
                 flex-direction: row;
                 justify-content: space-between;
-                border: 1px solid #d4d7da;
+                border: 1px solid var(--color-border, #d4d7da);
                 &.event {
-                  background: #F6D79A;
+                  background: var(--color-notice-highlight, #F6D79A);
                 }
                 div {
                   padding: 6px 9px;
                   border-radius: 12px;
                   border: 1px solid #00b8ee;
-                  color: #007e9e;
+                  color: var(--color-accent-text, #007e9e);
                   font-family: $font;
                   font-size: 12px;
                   font-style: normal;
@@ -130,7 +130,7 @@
                 .notice-number {
                   margin-left: 18px;
                   width: 39px;
-                  color: #62666b;
+                  color: var(--color-muted, #62666b);
                   font-family: $font;
                   font-size: 14px;
                   font-style: normal;
@@ -140,7 +140,7 @@
                 .notice-title {
                   flex: 1;
                   min-width: 0;
-                  color: #202124;
+                  color: var(--color-text, #202124);
                   font-family: $font;
                   font-size: 16px;
                   font-style: normal;
@@ -148,7 +148,7 @@
                   line-height: normal;
                 }
                 .notice-date {
-                  color: #62666b;
+                  color: var(--color-muted, #62666b);
                   font-family: $font;
                   font-size: 14px;
                   font-style: normal;
@@ -175,7 +175,7 @@
               display: flex;
               justify-content: center;
               align-items: center;
-              color: #62666b;
+              color: var(--color-muted, #62666b);
               text-align: center;
               font-family: $font;
               font-size: 15px;
@@ -186,7 +186,7 @@
               cursor: pointer;
               &.active {
                 border-bottom: 1px solid #00b8ee;
-                color: #007e9e;
+                color: var(--color-accent-text, #007e9e);
               }
             }
           }
@@ -194,7 +194,7 @@
             margin-top: 50px;
             .MuiAccordionDetails-root {
               padding: 30px 20px;
-              background: #eceeef;
+              background: var(--color-surface, #eceeef);
             }
             .badge {
               margin: 0 24px;
@@ -202,12 +202,12 @@
               padding: 4px 10px;
               border: 1px solid #00b8ee;
               border-radius: 7px;
-              color: #007e9e;
+              color: var(--color-accent-text, #007e9e);
             }
             .question {
               .badge {
                 background: #e92C28;
-                color: #202124;
+                color: var(--color-text, #202124);
               }
             }
             .answer {
@@ -217,7 +217,7 @@
               align-items: center;
               flex-direction: row;
               .badge {
-                color: #007e9e;
+                color: var(--color-accent-text, #007e9e);
                 border: 1px solid #00b8ee;
               }
             }
@@ -246,8 +246,8 @@
             width: auto;
             min-width: 140px;
             padding: 0 24px;
-            color: #62666b;
-            background: #eceeef;
+            color: var(--color-muted, #62666b);
+            background: var(--color-surface, #eceeef);
             border-radius: 10px;
             &.active {
               border-radius: 10px;
@@ -262,7 +262,7 @@
         min-width: 0;
         .MuiAccordion-root,
         .inquiry-form {
-          background: #eceeef;
+          background: var(--color-surface, #eceeef);
           border-radius: 16px;
           box-shadow: none;
         }

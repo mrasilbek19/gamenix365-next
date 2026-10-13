@@ -6,7 +6,7 @@
     flex-direction: row;
     justify-content: center;
     span {
-      color: #202124;
+      color: var(--color-text, #202124);
       font-family: $font;
       font-size: 34px;
       font-style: normal;
@@ -15,7 +15,7 @@
       letter-spacing: -0.646px;
       text-transform: capitalize;
       &.white {
-        color: #202124;
+        color: var(--color-text, #202124);
       }
     }
 
@@ -28,7 +28,7 @@
     height: auto;
     display: flex;
     flex-direction: row;
-    background: #eceeef;
+    background: var(--color-surface, #eceeef);
     .container {
       position: relative;
       width: 100%;
@@ -64,7 +64,7 @@
               }
               strong {
                 margin-top: 10px;
-                color: #202124;
+                color: var(--color-text, #202124);
                 text-align: center;
                 font-family: $font;
                 font-size: 24px;
@@ -75,7 +75,7 @@
                 cursor: pointer;
               }
               span {
-                color: #202124;
+                color: var(--color-text, #202124);
                 text-align: center;
                 font-family: $font;
                 font-size: 15px;
@@ -93,14 +93,14 @@
 }
 
 #mobile-wrap .home-page {
-  background: #eceeef;
+  background: var(--color-surface, #eceeef);
 
   > .trend-products,
   > .popular-products,
   > .top-products {
     padding: 32px 16px 16px;
     height: auto;
-    background: #eceeef;
+    background: var(--color-surface, #eceeef);
 
     > .container {
       width: 100%;
@@ -118,7 +118,7 @@
         display: flex;
         flex-direction: column;
         span {
-          color: #202124;
+          color: var(--color-text, #202124);
           font-size: 30px;
           font-weight: 800;
           line-height: 1.15;
@@ -127,7 +127,7 @@
 
         .section-label {
           margin-bottom: 14px;
-          color: #007e9e;
+          color: var(--color-accent-text, #007e9e);
           font-size: 11px;
           font-weight: 700;
           letter-spacing: 2px;
@@ -135,7 +135,7 @@
 
         p {
           margin-top: 12px;
-          color: #62666b;
+          color: var(--color-muted, #62666b);
         }
       }
 
@@ -147,7 +147,7 @@
 
       .view-all,
       .more-box span {
-        color: #202124;
+        color: var(--color-text, #202124);
         font-size: 14px;
         font-weight: 700;
       }
@@ -182,7 +182,7 @@
         min-height: 480px;
         border-radius: 10px;
         overflow: hidden;
-        background: #eceeef;
+        background: var(--color-surface, #eceeef);
         box-shadow: none;
         transition: transform 0.2s ease;
 
@@ -197,7 +197,7 @@
           height: 280px;
           flex-shrink: 0;
           border-radius: 0;
-          background-color: #eceeef;
+          background-color: var(--color-surface, #eceeef);
           background-size: contain;
           background-position: center;
           background-repeat: no-repeat;
@@ -211,11 +211,11 @@
             top: 16px;
             left: 16px;
             border-radius: 30px;
-            background: #dff6fc;
-            color: #007e9e;
+            background: var(--color-accent-soft, #dff6fc);
+            color: var(--color-accent-text, #007e9e);
 
             span {
-              color: #007e9e;
+              color: var(--color-accent-text, #007e9e);
             }
           }
         }
@@ -227,13 +227,13 @@
           padding: 24px;
           border: 0;
           border-radius: 0;
-          background: #eceeef;
+          background: var(--color-surface, #eceeef);
           box-shadow: none;
 
           .title {
             cursor: pointer;
             order: -2;
-            color: #202124;
+            color: var(--color-text, #202124);
             font-size: 23px;
             font-weight: 800;
             line-height: 1.25;
@@ -243,7 +243,7 @@
 
           .product-price {
             margin-top: 20px;
-            color: #202124;
+            color: var(--color-text, #202124);
             font-size: 21px;
             font-weight: 800;
           }
@@ -251,7 +251,7 @@
           .desc {
             order: -1;
             margin-top: 10px;
-            color: #62666b;
+            color: var(--color-muted, #62666b);
             font-size: 14px;
             line-height: 1.6;
           }
@@ -260,7 +260,7 @@
             margin-top: 14px;
 
             span {
-              color: #62666b;
+              color: var(--color-muted, #62666b);
               font-size: 12px;
             }
           }
@@ -276,7 +276,7 @@
             }
 
             .view-cnt {
-              color: #62666b;
+              color: var(--color-muted, #62666b);
               font-size: 12px;
             }
           }
@@ -310,7 +310,7 @@
   .top-shops,
   .events,
   .community-board {
-    background: #eceeef;
+    background: var(--color-surface, #eceeef);
 
     .container {
       width: 100%;
@@ -320,7 +320,7 @@
 }
 
 #mobile-wrap .home-page {
-  background: #ffffff;
+  background: var(--color-paper, #ffffff);
   .trend-products,
   .popular-products,
   .top-products,

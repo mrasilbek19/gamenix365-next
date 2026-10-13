@@ -18,7 +18,7 @@
 					margin-bottom: 50px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #eceeef;
+					background: var(--color-surface, #eceeef);
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.image-info {
 						width: 100%;
@@ -33,7 +33,7 @@
 						.community-name {
 							.name {
 								margin-top: 15px;
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -49,9 +49,9 @@
 						justify-content: center;
 						align-items: center;
 						border-radius: 6px;
-						border: 1px solid #181a20;
+						border: 1px solid var(--color-border, #181a20);
 						margin-bottom: 10px;
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -65,8 +65,8 @@
 						padding: 0;
 						justify-content: center;
 						align-items: center;
-						background-color: #f4f5f6;
-						color: #202124;
+						background-color: var(--color-surface, #f4f5f6);
+						color: var(--color-text, #202124);
 						border-radius: 6px;
 						margin-bottom: 10px;
 						font-family: $font;
@@ -94,7 +94,7 @@
 								width: 60%;
 								height: auto;
 								.title {
-									color: #202124;
+									color: var(--color-text, #202124);
 									font-family: $font;
 									font-size: 24px;
 									font-style: normal;
@@ -103,7 +103,7 @@
 									letter-spacing: 0.24px;
 								}
 								.sub-title {
-									color: #62666b;
+									color: var(--color-muted, #62666b);
 									font-family: $font;
 									font-size: 13px;
 									font-style: normal;
@@ -142,10 +142,10 @@
 				gap: 75px;
 				padding: 30px 9px 28px 9px;
 				border-radius: 10px;
-				border: 1px solid #d4d7da;
+				border: 1px solid var(--color-border, #d4d7da);
 				.similar-articles-title {
 					padding-left: 56px;
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -172,7 +172,7 @@
 				}
 				.total-result {
 					p {
-						color: #202124;
+						color: var(--color-text, #202124);
 						text-align: center;
 						font-family: $font;
 						font-size: 14px;
@@ -199,7 +199,7 @@
 					flex-shrink: 0;
 					margin: 0;
 					padding: 24px;
-					background: #eceeef;
+					background: var(--color-surface, #eceeef);
 					border: 0;
 					border-radius: 10px;
 					box-shadow: none;

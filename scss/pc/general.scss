@@ -44,8 +44,8 @@
 			left: 20px;
 			bottom: 20px;
 			border-radius: 6px;
-			background: #eceeef;
-			color: #202124;
+			background: var(--color-surface, #eceeef);
+			color: var(--color-text, #202124);
 			font-family: $font;
 			font-size: 15px;
 			font-style: normal;
@@ -59,12 +59,12 @@
 		flex-direction: column;
 		box-sizing: border-box;
 		border-radius: 0px 0px 12px 12px;
-		border: 1px solid #d4d7da;
+		border: 1px solid var(--color-border, #d4d7da);
 		border-top: none;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 		.title {
 			overflow: hidden;
-			color: #202124;
+			color: var(--color-text, #202124);
 			text-overflow: ellipsis;
 			white-space: nowrap;
 			font-family: $font;
@@ -78,7 +78,7 @@
 		.desc {
 			margin-top: 5px;
 			overflow: hidden;
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			font-family: $font;
 			font-size: 13px;
 			font-style: normal;
@@ -101,7 +101,7 @@
 					height: 17px;
 				}
 				span {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 13px;
 					font-style: normal;
@@ -123,7 +123,7 @@
 				justify-content: space-between;
 			}
 			p {
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-family: $font;
 				font-size: 13px;
 				font-style: normal;
@@ -195,7 +195,7 @@
 			display: flex;
 			flex-direction: column;
 			strong {
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-family: $font;
 				font-size: 15px;
 				font-style: normal;
@@ -204,7 +204,7 @@
 				cursor: pointer;
 			}
 			span {
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-family: $font;
 				font-size: 15px;
 				font-style: normal;
@@ -252,7 +252,7 @@
 		width: 100%;
 		height: 80px;
 		.title {
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			font-family: $font;
 			font-size: 13px;
 			font-style: normal;
@@ -260,7 +260,7 @@
 			line-height: normal;
 		}
 		.desc {
-			color: #202124;
+			color: var(--color-text, #202124);
 			font-family: $font;
 			font-size: 15px;
 			font-style: normal;
@@ -293,10 +293,10 @@
 		top: 235px;
 		right: 20px;
 		border-radius: 12px;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 		box-shadow: 0px 6px 15px 0px rgba(64, 79, 104, 0.05);
 		.month {
-			color: #202124;
+			color: var(--color-text, #202124);
 			text-align: center;
 			font-family: $font;
 			font-size: 13px;
@@ -305,7 +305,7 @@
 			line-height: normal;
 		}
 		.day {
-			color: #202124;
+			color: var(--color-text, #202124);
 			font-family: $font;
 			font-size: 20px;
 			font-style: normal;
@@ -318,8 +318,8 @@
 #pc-wrap.public-layout,
 #mobile-wrap.public-layout {
 	min-height: 100vh;
-	background: #ffffff;
-	color: #202124;
+	background: var(--color-paper, #ffffff);
+	color: var(--color-text, #202124);
 
 	> #main {
 		flex: 1;
@@ -335,7 +335,7 @@
 		textarea,
 		select {
 			max-width: 100%;
-			border-color: #d4d7da;
+			border-color: var(--color-border, #d4d7da);
 			border-radius: 10px;
 		}
 
@@ -367,7 +367,7 @@
 
 	.header-basic {
 		padding: 48px 0 38px;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 		border-bottom: 0;
 
 		.container {
@@ -378,7 +378,7 @@
 		}
 
 		strong {
-			color: #202124;
+			color: var(--color-text, #202124);
 			font-size: clamp(28px, 3.3vw, 44px);
 			font-weight: 700;
 			line-height: 1.1;
@@ -387,7 +387,7 @@
 		}
 
 		span {
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			font-size: 15px;
 			line-height: 1.6;
 		}
@@ -415,7 +415,7 @@
 	margin: 0;
 	padding: 20px;
 	border-radius: 10px;
-	background: #eceeef;
+	background: var(--color-surface, #eceeef);
 
 	.shop-img {
 		width: 100%;
@@ -449,7 +449,7 @@
 	margin: 0;
 	border-radius: 10px;
 	overflow: hidden;
-	background: #eceeef;
+	background: var(--color-surface, #eceeef);
 
 	.card-img {
 		background-size: contain;
@@ -459,7 +459,7 @@
 
 	.info {
 		border: 0;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 
 		.title {
 			font-size: 20px;
@@ -471,7 +471,7 @@
 .public-layout .community-general-card-config {
 	padding: 20px;
 	border-radius: 10px;
-	background: #eceeef;
+	background: var(--color-surface, #eceeef);
 
 	.image-box .card-img {
 		object-fit: cover;
@@ -507,15 +507,15 @@
 	input:not([type='checkbox']):not([type='radio']):not([type='file']):not(.MuiInputBase-input),
 	textarea:not(.MuiInputBase-input),
 	select {
-		background-color: #f7f7f8;
-		border-color: #d4d7da;
-		color: #202124;
+		background-color: var(--color-surface-soft, #f7f7f8);
+		border-color: var(--color-border, #d4d7da);
+		color: var(--color-text, #202124);
 	}
 }
 
 .swal2-popup {
-	border: 1px solid #d4d7da;
+	border: 1px solid var(--color-border, #d4d7da);
 	border-radius: 10px;
-	background: #eceeef;
-	color: #202124;
+	background: var(--color-surface, #eceeef);
+	color: var(--color-text, #202124);
 }

@@ -15,7 +15,7 @@
 				.right-box {
 					width: 315px;
 					.main-title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -25,7 +25,7 @@
 						text-transform: capitalize;
 					}
 					.sub-title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -40,13 +40,13 @@
 				margin-top: 35px;
 				gap: 25px;
 				border-radius: 12px;
-				border: 1px solid #d4d7da;
-				background: #eceeef;
+				border: 1px solid var(--color-border, #d4d7da);
+				background: var(--color-surface, #eceeef);
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.photo-box {
 					gap: 23px;
 					.title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 17px;
 						font-style: normal;
@@ -73,7 +73,7 @@
 								left: 10px;
 								width: 36px;
 								height: 32px;
-								background-color: #eceeef;
+								background-color: var(--color-surface, #eceeef);
 								align-items: center;
 								justify-content: center;
 								border-radius: 12px;
@@ -90,9 +90,9 @@
 								align-items: center;
 								cursor: pointer;
 								border-radius: 12px;
-								border: 1px solid #181a20;
+								border: 1px solid var(--color-border, #181a20);
 								p {
-									color: #202124;
+									color: var(--color-text, #202124);
 									font-family: $font;
 									font-size: 13px;
 									font-style: normal;
@@ -101,7 +101,7 @@
 								}
 							}
 							.upload-text {
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -121,7 +121,7 @@
 						width: 48%;
 						gap: 10px;
 						.title {
-							color: #202124;
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -133,9 +133,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #d4d7da;
+							border: 1px solid var(--color-border, #d4d7da);
 							::placeholder {
-								color: #62666b;
+								color: var(--color-muted, #62666b);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -148,7 +148,7 @@
 				.address-box {
 					gap: 10px;
 					.title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -160,9 +160,9 @@
 						outline: none;
 						padding: 0px 15px;
 						border-radius: 8px;
-						border: 1px solid #d4d7da;
+						border: 1px solid var(--color-border, #d4d7da);
 						::placeholder {
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -174,7 +174,7 @@
 				.about-me-box {
 					gap: 10px;
 					.title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -185,8 +185,8 @@
 						height: 170px;
 						padding: 20px 15px;
 						border-radius: 8px;
-						border: 1px solid #d4d7da;
-						color: #62666b;
+						border: 1px solid var(--color-border, #d4d7da);
+						color: var(--color-muted, #62666b);
 						font-family: $font;
 						font-size: 12px;
 						font-style: normal;
@@ -203,9 +203,9 @@
 						align-self: flex-end;
 						margin-top: 30px;
 						border-radius: 12px;
-						background-color: #f4f5f6;
+						background-color: var(--color-surface, #f4f5f6);
 						p {
-							color: #202124;
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 13px;
 							font-style: normal;
@@ -223,13 +223,13 @@
 				padding: 30px;
 				gap: 25px;
 				border-radius: 12px;
-				border: 1px solid #d4d7da;
-				background: #eceeef;
+				border: 1px solid var(--color-border, #d4d7da);
+				background: var(--color-surface, #eceeef);
 				box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 				.top-inner-box {
 					gap: 20px;
 					.title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 15px;
 						font-style: normal;
@@ -239,7 +239,7 @@
 					.old-password-box {
 						gap: 10px;
 						.title {
-							color: #202124;
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -252,9 +252,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #d4d7da;
+							border: 1px solid var(--color-border, #d4d7da);
 							::placeholder {
-								color: #62666b;
+								color: var(--color-muted, #62666b);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -272,7 +272,7 @@
 						width: 100%;
 						gap: 10px;
 						.title {
-							color: #202124;
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 12px;
 							font-style: normal;
@@ -284,9 +284,9 @@
 							outline: none;
 							padding: 0px 15px;
 							border-radius: 8px;
-							border: 1px solid #d4d7da;
+							border: 1px solid var(--color-border, #d4d7da);
 							::placeholder {
-								color: #62666b;
+								color: var(--color-muted, #62666b);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -306,9 +306,9 @@
 					align-self: flex-end;
 					margin-top: 18px;
 					border-radius: 12px;
-					background-color: #f4f5f6;
+					background-color: var(--color-surface, #f4f5f6);
 					p {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 13px;
 						font-style: normal;
@@ -327,7 +327,7 @@
 		.top-box,
 		.bottom-box {
 			margin-top: 0;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			border: 0;
 			border-radius: 10px;
 			box-shadow: none;
@@ -373,8 +373,8 @@
 	#my-page #my-profile-page {
 		input,
 		textarea {
-			background: #f7f7f8;
-			color: #202124;
+			background: var(--color-surface-soft, #f7f7f8);
+			color: var(--color-text, #202124);
 		}
 	}
 }
@@ -391,16 +391,16 @@
 			}
 			.sub-title {
 				margin-top: 4px;
-				color: #62666b;
+				color: var(--color-muted, #62666b);
 				font-size: 13px;
 			}
 		}
 		.top-box {
 			padding: 28px;
 			gap: 24px;
-			border: 1px solid #e0e3e5;
+			border: 1px solid var(--color-border, #e0e3e5);
 			border-radius: 8px;
-			background: #f7f7f8;
+			background: var(--color-surface-soft, #f7f7f8);
 			.photo-box {
 				gap: 16px;
 				.title {
@@ -426,9 +426,9 @@
 							min-height: 44px;
 							padding: 10px 16px;
 							align-self: flex-start;
-							border: 1px solid #c8ccd0;
+							border: 1px solid var(--color-border, #c8ccd0);
 							border-radius: 5px;
-							background: #fff;
+							background: var(--color-paper, #fff);
 							p {
 								font-size: 12px;
 							}
@@ -437,7 +437,7 @@
 							}
 						}
 						.upload-text {
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 							font-size: 11px;
 							line-height: 20px;
 						}
@@ -459,7 +459,7 @@
 					width: 100%;
 					height: 44px;
 					border-radius: 5px;
-					background: #fff;
+					background: var(--color-paper, #fff);
 					font: 13px $font;
 					&:focus {
 						border-color: #007e9e;
@@ -468,7 +468,7 @@
 			}
 			.about-me-box {
 				padding-top: 20px;
-				border-top: 1px solid #e0e3e5;
+				border-top: 1px solid var(--color-border, #e0e3e5);
 				.update-button {
 					width: 170px;
 					height: 44px;

@@ -11,9 +11,9 @@
 		form,
 		.event-card {
 			padding: 24px;
-			border: 1px solid #d4d7da;
+			border: 1px solid var(--color-border, #d4d7da);
 			border-radius: 10px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 		}
 
 		.event-card {
@@ -26,14 +26,14 @@
 		}
 
 		> .MuiTableContainer-root {
-			border: 1px solid #d4d7da;
+			border: 1px solid var(--color-border, #d4d7da);
 			border-radius: 16px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			overflow-x: auto;
 		}
 
 		.MuiTableHead-root {
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 		}
 	}
 }
@@ -66,7 +66,7 @@
 	.event-navigation {
 		align-items: center;
 		gap: 24px;
-		border-bottom: 1px solid #e2e5e7;
+		border-bottom: 1px solid var(--color-border, #e2e5e7);
 
 		> a {
 			position: relative;
@@ -74,7 +74,7 @@
 			padding: 14px 0;
 			font-size: 14px;
 			font-weight: 600;
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			transition: color 200ms ease;
 
 			&::after {
@@ -94,7 +94,7 @@
 			&[aria-current='page'],
 			&:hover,
 			&:focus-visible {
-				color: #202124;
+				color: var(--color-text, #202124);
 
 				&::after {
 					transform: scaleX(1);
@@ -110,7 +110,7 @@
 	.event-list-filter {
 		width: 240px;
 		max-width: 100%;
-		background: #ffffff;
+		background: var(--color-paper, #ffffff);
 	}
 
 	.event-list {
@@ -123,8 +123,8 @@
 	.event-empty-state {
 		padding: 32px 20px;
 		border-radius: 10px;
-		background: #f7f7f8;
-		color: #62666b;
+		background: var(--color-surface-soft, #f7f7f8);
+		color: var(--color-muted, #62666b);
 		text-align: center;
 	}
 
@@ -135,22 +135,22 @@
 		> svg {
 			margin-bottom: 4px;
 			font-size: 32px;
-			color: #0087af;
+			color: var(--color-accent-text, #0087af);
 		}
 
 		h6 {
 			font-size: 18px;
 			font-weight: 600;
-			color: #202124;
+			color: var(--color-text, #202124);
 		}
 	}
 
 	.event-card {
 		min-width: 0;
 		padding: 0;
-		border: 1px solid #e2e5e7;
+		border: 1px solid var(--color-border, #e2e5e7);
 		border-radius: 10px;
-		background: #ffffff;
+		background: var(--color-paper, #ffffff);
 		box-shadow: none;
 		animation: gamenix-event-enter 300ms ease-out;
 		transition: transform 200ms ease, box-shadow 200ms ease, border-color 200ms ease;
@@ -164,7 +164,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		color: #202124;
+		color: var(--color-text, #202124);
 		white-space: normal;
 
 		&:focus-visible {
@@ -176,7 +176,7 @@
 	.event-image-wrap {
 		aspect-ratio: 16 / 9;
 		overflow: hidden;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 
 		.event-image {
 			display: block;
@@ -203,16 +203,16 @@
 	.event-type {
 		font-size: 12px;
 		font-weight: 600;
-		color: #62666b;
+		color: var(--color-muted, #62666b);
 	}
 
 	.event-status {
 		padding: 3px 8px;
 		border-radius: 4px;
-		background: #e6f8fd;
+		background: var(--color-accent-soft, #e6f8fd);
 		font-size: 11px;
 		font-weight: 600;
-		color: #006987;
+		color: var(--color-accent-text, #006987);
 	}
 
 	.event-title {
@@ -225,7 +225,7 @@
 
 	.event-game {
 		font-size: 13px;
-		color: #62666b;
+		color: var(--color-muted, #62666b);
 	}
 
 	.event-card-details {
@@ -241,7 +241,7 @@
 			flex-shrink: 0;
 			margin-top: 2px;
 			font-size: 18px;
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 		}
 
 		p,
@@ -252,7 +252,7 @@
 
 		.event-time {
 			margin-top: 2px;
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 		}
 	}
 
@@ -262,7 +262,7 @@
 		gap: 12px;
 		margin-top: auto;
 		padding-top: 14px;
-		border-top: 1px solid #eceeef;
+		border-top: 1px solid var(--color-border, #eceeef);
 	}
 
 	.event-prize {
@@ -272,7 +272,7 @@
 		gap: 6px;
 		min-width: 0;
 		font-size: 13px;
-		color: #62666b;
+		color: var(--color-muted, #62666b);
 		overflow-wrap: anywhere;
 
 		svg {

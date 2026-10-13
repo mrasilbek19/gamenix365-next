@@ -11,7 +11,7 @@
 				.right-box {
 					width: 315px;
 					.main-title {
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 30px;
 						font-style: normal;
@@ -32,9 +32,9 @@
 						gap: 110px;
 						padding: 18px 15px 18px 33px;
 						border-radius: 12px;
-						background: #eceeef;
+						background: var(--color-surface, #eceeef);
 						.title-text {
-							color: #202124;
+							color: var(--color-text, #202124);
 							font-family: $font;
 							font-size: 15px;
 							font-style: normal;
@@ -52,7 +52,7 @@
 						align-items: center;
 						margin-top: 30px;
 						padding-bottom: 30px;
-						border-bottom: 1px solid #d4d7da;
+						border-bottom: 1px solid var(--color-border, #d4d7da);
 						.image-box {
 							width: 115px;
 							height: 90px;
@@ -74,7 +74,7 @@
 							cursor: pointer;
 							.name {
 								margin-bottom: 8px;
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -83,7 +83,7 @@
 							}
 							.address {
 								margin-bottom: 13px;
-								color: #62666b;
+								color: var(--color-muted, #62666b);
 								font-family: $font;
 								font-size: 11px;
 								font-style: normal;
@@ -91,7 +91,7 @@
 								line-height: normal;
 							}
 							.price {
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -106,7 +106,7 @@
 							justify-content: center;
 							margin-right: 77px;
 							.date {
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -142,7 +142,7 @@
 							justify-content: center;
 							margin-right: 75px;
 							.views {
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 12px;
 								font-style: normal;
@@ -159,7 +159,7 @@
 						margin-top: 30px;
 						.total-result {
 							p {
-								color: #202124;
+								color: var(--color-text, #202124);
 								text-align: center;
 								font-family: $font;
 								font-size: 14px;
@@ -185,7 +185,7 @@
 			width: 100%;
 			overflow-x: auto;
 			border-radius: 10px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			.listing-title-box,
 			.product-card-box {
 				min-width: 800px;

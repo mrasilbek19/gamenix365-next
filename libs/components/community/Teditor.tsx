@@ -120,7 +120,7 @@ const TuiEditor = () => {
 		<Stack className={'article-editor'}>
 			<Stack className={'article-fields'}>
 				<Box component={'div'} className={'form_row'}>
-					<Typography style={{ color: '#62666b', margin: '10px' }} variant="h3">
+					<Typography style={{ color: 'var(--color-muted, #62666b)', margin: '10px' }} variant="h3">
 						Category
 					</Typography>
 					<FormControl sx={{ width: '100%' }}>
@@ -140,7 +140,7 @@ const TuiEditor = () => {
 					</FormControl>
 				</Box>
 				<Box component={'div'} className={'form_row'}>
-					<Typography style={{ color: '#62666b', margin: '10px' }} variant="h3">
+					<Typography style={{ color: 'var(--color-muted, #62666b)', margin: '10px' }} variant="h3">
 						Title
 					</Typography>
 					<TextField

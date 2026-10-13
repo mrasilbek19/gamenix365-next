@@ -51,7 +51,7 @@ export const light = {
 		MuiLink: {
 			styleOverrides: {
 				root: {
-					color: '#202124',
+					color: 'var(--color-text, #202124)',
 					textDecoration: 'none',
 				},
 			},
@@ -59,7 +59,7 @@ export const light = {
 		MuiDivider: {
 			styleOverrides: {
 				root: {
-					borderColor: '#d4d7da',
+					borderColor: 'var(--color-border, #d4d7da)',
 				},
 			},
 		},
@@ -95,7 +95,7 @@ export const light = {
 		MuiCssBaseline: {
 			styleOverrides: {
 				html: { height: '100%' },
-				body: { background: '#ffffff', height: '100%', minHeight: '100%' },
+				body: { background: 'var(--color-paper, #ffffff)', height: '100%', minHeight: '100%' },
 				p: {
 					margin: '0',
 				},
@@ -111,7 +111,7 @@ export const light = {
 		MuiButton: {
 			styleOverrides: {
 				root: {
-					color: '#202124',
+					color: 'var(--color-text, #202124)',
 					minWidth: 'auto',
 					lineHeight: '1.4',
 					borderRadius: '4px',
@@ -124,7 +124,7 @@ export const light = {
 						backgroundImage: 'none',
 					},
 					ButtonText: {
-						color: '#202124',
+						color: 'var(--color-text, #202124)',
 					},
 				},
 			},
@@ -152,7 +152,7 @@ export const light = {
 			styleOverrides: {
 				root: {
 					MuiSelect: {
-						backgroundColor: '#ffffff',
+						backgroundColor: 'var(--color-paper, #ffffff)',
 					},
 					padding: '0',
 				},
@@ -192,13 +192,13 @@ export const light = {
 				root: {
 					height: '48px',
 					width: '100%',
-					backgroundColor: '#ffffff',
+					backgroundColor: 'var(--color-paper, #ffffff)',
 					input: {},
 				},
 				notchedOutline: {
 					padding: '8px',
 					top: '-9px',
-					border: '1px solid #d4d7da',
+					border: '1px solid var(--color-border, #d4d7da)',
 				},
 			},
 		},
@@ -232,9 +232,9 @@ export const light = {
 		MuiStepIcon: {
 			styleOverrides: {
 				root: {
-					color: '#202124',
+					color: 'var(--color-text, #202124)',
 					borderRadius: '50%',
-					border: '1px solid #d4d7da',
+					border: '1px solid var(--color-border, #d4d7da)',
 				},
 				text: {
 					fill: '#bdbdbd',
@@ -244,7 +244,7 @@ export const light = {
 		MuiStepConnector: {
 			styleOverrides: {
 				line: {
-					borderColor: '#d4d7da',
+					borderColor: 'var(--color-border, #d4d7da)',
 				},
 			},
 		},
@@ -259,7 +259,7 @@ export const light = {
 			styleOverrides: {
 				root: {
 					'&.Mui-checked': {
-						color: 'black',
+						color: 'var(--color-text, black)',
 					},
 				},
 			},
@@ -269,11 +269,11 @@ export const light = {
 				root: {
 					width: '40px',
 					height: '40px',
-					background: '#ffffff',
-					color: '#202124',
+					background: 'var(--color-paper, #ffffff)',
+					color: 'var(--color-text, #202124)',
 				},
 				hover: {
-					background: '#ffffff',
+					background: 'var(--color-paper, #ffffff)',
 				},
 			},
 		},
@@ -303,12 +303,24 @@ export const light = {
 		MuiChip: {
 			styleOverrides: {
 				root: {
-					border: '1px solid #d4d7da',
-					color: '#202124',
+					border: '1px solid var(--color-border, #d4d7da)',
+					color: 'var(--color-text, #202124)',
 				},
 			},
 		},
 	},
 	shadow,
 	typography,
+};
+
+export const dark = {
+	...light,
+	palette: {
+		...light.palette,
+		mode: 'dark',
+		background: { default: '#101418', paper: '#1a2027' },
+		primary: { main: '#00b8ee', contrastText: '#202124' },
+		secondary: { main: '#00b8ee' },
+		text: { primary: '#edf2f5', secondary: '#abb5bf', dark: '#edf2f5' },
+	},
 };

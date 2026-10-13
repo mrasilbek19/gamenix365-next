@@ -15,7 +15,7 @@
         .left {
           width: 40%;
           strong {
-            color: #202124;
+            color: var(--color-text, #202124);
             font-family: $font;
             font-size: 30px;
             font-style: normal;
@@ -30,7 +30,7 @@
           display: flex;
           flex-direction: column;
           p {
-            color: #202124;
+            color: var(--color-text, #202124);
             font-family: $font;
             font-size: 14px;
             font-style: normal;
@@ -54,7 +54,7 @@
                 display: flex;
                 justify-content: center;
                 align-items: center;
-                background: #eceeef;
+                background: var(--color-surface, #eceeef);
                 img {
                   width: 36px;
                   height: 36px;
@@ -62,7 +62,7 @@
               }
               span {
                 margin: 20px 0px 10px;
-                color: #202124;
+                color: var(--color-text, #202124);
                 font-family: $font;
                 font-size: 20px;
                 font-style: normal;
@@ -70,7 +70,7 @@
                 line-height: normal;
               }
               p {
-                color: #202124;
+                color: var(--color-text, #202124);
                 font-family: $font;
                 font-size: 14px;
                 font-style: normal;
@@ -107,7 +107,7 @@
             flex-direction: column;
             align-items: center;
             strong {
-              color: #202124;
+              color: var(--color-text, #202124);
               font-family: $font;
               font-size: 42px;
               font-style: normal;
@@ -116,7 +116,7 @@
             }
             p {
               margin-top: 4px;
-              color: #202124;
+              color: var(--color-text, #202124);
               font-family: $font;
               font-size: 14px;
               font-style: normal;
@@ -135,7 +135,7 @@
       .container {
         flex-direction: column;
         .title {
-          color: #202124;
+          color: var(--color-text, #202124);
           text-align: center;
           font-family: $font;
           font-size: 30px;
@@ -146,7 +146,7 @@
           text-transform: capitalize;
         }
         .desc {
-          color: #202124;
+          color: var(--color-text, #202124);
           text-align: center;
           font-family: $font;
           font-size: 14px;
@@ -171,7 +171,7 @@
       justify-content: center;
       align-items: center;
       border-radius: 10px;
-      background: #eceeef;
+      background: var(--color-surface, #eceeef);
       .about-banner {
         position: absolute;
         right: 0%;
@@ -183,7 +183,7 @@
         flex-direction: column;
         strong {
           width: 445px;
-          color: #202124;
+          color: var(--color-text, #202124);
           font-family: $font;
           font-size: 30px;
           font-style: normal;
@@ -204,14 +204,14 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: #eceeef;
+            background: var(--color-surface, #eceeef);
           }
           .text-box {
             margin-left: 24px;
             display: flex;
             flex-direction: column;
             span {
-              color: #202124;
+              color: var(--color-text, #202124);
               font-family: $font;
               font-size: 15px;
               font-style: normal;
@@ -221,7 +221,7 @@
             p {
               width: 445px;
               margin-top: 5px;
-              color: #202124;
+              color: var(--color-text, #202124);
               font-family: $font;
               font-size: 14px;
               font-style: normal;
@@ -240,9 +240,9 @@
           align-items: center;
           border-radius: 12px;
           box-sizing: border-box;
-          background: #f4f5f6;
+          background: var(--color-surface, #f4f5f6);
           justify-content: center;
-          color: #202124;
+          color: var(--color-text, #202124);
           font-family: $font;
           font-size: 15px;
           font-style: normal;
@@ -266,7 +266,7 @@
       .container {
         flex-direction: column;
         span {
-          color: #202124;
+          color: var(--color-text, #202124);
           text-align: center;
           font-family: $font;
           font-size: 15px;
@@ -292,12 +292,12 @@
         flex-direction: row;
         justify-content: space-between;
         border-radius: 12px;
-        background:  #eceeef;
+        background:  var(--color-surface, #eceeef);
         .left {
           display: flex;
           flex-direction: column;
           strong {
-            color: #202124;
+            color: var(--color-text, #202124);
             font-family: $font;
             font-size: 30px;
             font-style: normal;
@@ -308,7 +308,7 @@
           }
           p {
             margin-top: 10px;
-            color: #202124;
+            color: var(--color-text, #202124);
             font-family: $font;
             font-size: 15px;
             font-style: normal;
@@ -338,16 +338,16 @@
               height: 16px;
             }
             &.white {
-              color: #202124;
-              border: 1px solid  #181A20;
+              color: var(--color-text, #202124);
+              border: 1px solid  var(--color-border, #181A20);
               img {
                 margin-left: 10px;
               }
             }
             &.black {
               margin-left: 30px;
-              color: #202124;
-              background:  #f4f5f6;
+              color: var(--color-text, #202124);
+              background:  var(--color-surface, #f4f5f6);
               img {
                 margin-right: 10px;
                 filter: brightness(0);
@@ -378,7 +378,7 @@
           margin: 0;
           padding: 20px;
           width: 50%;
-          background: #eceeef;
+          background: var(--color-surface, #eceeef);
           border-radius: 10px;
         }
       }
@@ -404,14 +404,14 @@
         gap: 24px;
         flex-wrap: wrap;
         strong {
-          color: #007e9e;
+          color: var(--color-accent-text, #007e9e);
         }
       }
     }
     .options {
       height: auto;
       padding: 48px 0;
-      background: #eceeef;
+      background: var(--color-surface, #eceeef);
       .about-banner {
         position: static;
         width: 45%;
@@ -443,7 +443,7 @@
       padding: 40px;
       gap: 32px;
       border-radius: 10px;
-      background: #eceeef;
+      background: var(--color-surface, #eceeef);
       .right {
         flex-wrap: wrap;
         gap: 12px;

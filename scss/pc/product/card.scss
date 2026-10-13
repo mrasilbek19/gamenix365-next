@@ -3,7 +3,7 @@
 	.popular-card-box,
 	.top-card-box,
 	.product-big-card-box {
-		border: 1px solid #d4d7da;
+		border: 1px solid var(--color-border, #d4d7da);
 		transition: border-color 180ms ease, box-shadow 180ms ease;
 
 		&:hover {
@@ -13,6 +13,6 @@
 	}
 
 	.product-big-card-box .info {
-		color: #202124;
+		color: var(--color-text, #202124);
 	}
 }

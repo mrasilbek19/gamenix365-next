@@ -14,7 +14,7 @@
 			.right-box {
 				width: 315px;
 				.main-title {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -44,7 +44,7 @@
 			margin-top: 30px;
 			.total-result {
 				p {
-					color: #202124;
+					color: var(--color-text, #202124);
 					text-align: center;
 					font-family: $font;
 					font-size: 14px;

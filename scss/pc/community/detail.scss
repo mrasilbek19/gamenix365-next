@@ -18,7 +18,7 @@
 					margin-top: 100px;
 					border-radius: 12px;
 					border: 1px solid rgba(196, 196, 196, 0.79);
-					background: #eceeef;
+					background: var(--color-surface, #eceeef);
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.image-info {
 						width: 100%;
@@ -33,7 +33,7 @@
 						.community-name {
 							.name {
 								margin-top: 15px;
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 15px;
 								font-style: normal;
@@ -49,9 +49,9 @@
 						justify-content: center;
 						align-items: center;
 						border-radius: 6px;
-						border: 1px solid #181a20;
+						border: 1px solid var(--color-border, #181a20);
 						margin-bottom: 10px;
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-family: $font;
 						font-size: 14px;
 						font-style: normal;
@@ -65,8 +65,8 @@
 						padding: 0;
 						justify-content: center;
 						align-items: center;
-						background-color: #f4f5f6;
-						color: #202124;
+						background-color: var(--color-surface, #f4f5f6);
+						color: var(--color-text, #202124);
 						border-radius: 6px;
 						margin-bottom: 10px;
 						font-family: $font;
@@ -89,7 +89,7 @@
 							width: 60%;
 							height: auto;
 							.title {
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 24px;
 								font-style: normal;
@@ -98,7 +98,7 @@
 								letter-spacing: 0.24px;
 							}
 							.sub-title {
-								color: #62666b;
+								color: var(--color-muted, #62666b);
 								font-family: $font;
 								font-size: 13px;
 								font-style: normal;
@@ -126,7 +126,7 @@
 							width: 100%;
 							min-height: 500px;
 							border-radius: 8px 8px 0px 0px;
-							border: 1px solid #d4d7da;
+							border: 1px solid var(--color-border, #d4d7da);
 							box-shadow: none;
 							.content-and-info {
 								width: 100%;
@@ -134,11 +134,11 @@
 								padding: 35px 25px;
 								flex-direction: row;
 								justify-content: space-between;
-								border-bottom: 1px solid #d4d7da;
+								border-bottom: 1px solid var(--color-border, #d4d7da);
 								.content {
 									gap: 12px;
 									.content-data {
-										color: #202124;
+										color: var(--color-text, #202124);
 										font-family: $font;
 										font-size: 18px;
 										font-style: normal;
@@ -157,7 +157,7 @@
 											cursor: pointer;
 										}
 										.member-nick {
-											color: #202124;
+											color: var(--color-text, #202124);
 											font-family: $font;
 											font-size: 13px;
 											font-style: normal;
@@ -172,7 +172,7 @@
 											background: #d4d7da;
 										}
 										.time-added {
-											color: #62666b;
+											color: var(--color-muted, #62666b);
 											font-family: $font;
 											font-size: 12px;
 											font-style: normal;
@@ -199,7 +199,7 @@
 										}
 										.text {
 											padding-top: 2 px;
-											color: #202124;
+											color: var(--color-text, #202124);
 											font-family: $font;
 											font-size: 11px;
 											font-style: normal;
@@ -234,7 +234,7 @@
 										height: 45px;
 										gap: 5px;
 										border-radius: 2px;
-										border: 1px solid #d4d7da;
+										border: 1px solid var(--color-border, #d4d7da);
 										background: #00b8ee;
 										p {
 											color: #202124;
@@ -256,7 +256,7 @@
 							gap: 11px;
 							.title-text {
 								align-self: flex-start;
-								color: #202124;
+								color: var(--color-text, #202124);
 								text-align: center;
 								font-family: $font;
 								font-size: 17px;
@@ -271,7 +271,7 @@
 									height: 61px;
 									outline: none;
 									padding: 22px 17px;
-									border: 1px solid #d4d7da;
+									border: 1px solid var(--color-border, #d4d7da);
 									::placeholder {
 										color: #c0c0c0;
 										font-family: $font;
@@ -289,10 +289,10 @@
 									justify-content: space-between;
 									align-items: center;
 									padding-left: 17px;
-									border: 1px solid #d4d7da;
+									border: 1px solid var(--color-border, #d4d7da);
 									border-top: none;
 									p {
-										color: #202124;
+										color: var(--color-text, #202124);
 										font-family: $font;
 										font-size: 14px;
 										font-style: normal;
@@ -328,7 +328,7 @@
 								justify-content: center;
 								padding: 16px 15px;
 								border-bottom: 2px solid #00b8ee;
-								color: #007e9e;
+								color: var(--color-accent-text, #007e9e);
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -372,7 +372,7 @@
 										}
 										.name-date-column {
 											.name {
-												color: #202124;
+												color: var(--color-text, #202124);
 												font-family: $font;
 												font-size: 16px;
 												font-style: normal;
@@ -381,7 +381,7 @@
 												cursor: pointer;
 											}
 											.date {
-												color: #62666b;
+												color: var(--color-muted, #62666b);
 												font-family: $font;
 												font-size: 13px;
 												font-style: normal;
@@ -400,7 +400,7 @@
 									width: 100%;
 									height: auto;
 									p {
-										color: #202124;
+										color: var(--color-text, #202124);
 										font-family: $font;
 										font-size: 16px;
 										font-style: normal;
@@ -420,10 +420,10 @@
 				gap: 75px;
 				padding: 30px 9px 28px 9px;
 				border-radius: 10px;
-				border: 1px solid #d4d7da;
+				border: 1px solid var(--color-border, #d4d7da);
 				.similar-articles-title {
 					padding-left: 56px;
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -454,7 +454,7 @@
 					flex-shrink: 0;
 					margin: 0;
 					padding: 24px;
-					background: #eceeef;
+					background: var(--color-surface, #eceeef);
 					border: 0;
 					border-radius: 10px;
 					box-shadow: none;
@@ -521,7 +521,7 @@
 #pc-wrap,
 #mobile-wrap {
 	#community-detail-page .toastui-editor-contents {
-		color: #62666b;
+		color: var(--color-muted, #62666b);
 
 		p,
 		li,
@@ -532,7 +532,7 @@
 		}
 
 		a {
-			color: #007e9e;
+			color: var(--color-accent-text, #007e9e);
 		}
 	}
 }

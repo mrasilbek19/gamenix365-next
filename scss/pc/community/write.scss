@@ -10,7 +10,7 @@
 			margin-bottom: 24px;
 			padding: 24px;
 			border-radius: 10px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			.form_row {
 				flex: 1;
 				min-width: 0;
@@ -35,20 +35,20 @@
 #pc-wrap,
 #mobile-wrap {
 	.article-editor .toastui-editor-dark {
-		border-color: #d4d7da;
-		background: #f7f7f8;
+		border-color: var(--color-border, #d4d7da);
+		background: var(--color-surface-soft, #f7f7f8);
 
 		.toastui-editor-defaultUI-toolbar,
 		.toastui-editor-md-tab-container,
 		.toastui-editor-mode-switch {
-			background: #eceeef;
-			border-color: #d4d7da;
+			background: var(--color-surface, #eceeef);
+			border-color: var(--color-border, #d4d7da);
 		}
 
 		.toastui-editor-main-container,
 		.toastui-editor-ww-container,
 		.toastui-editor-md-container {
-			background: #f7f7f8;
+			background: var(--color-surface-soft, #f7f7f8);
 		}
 	}
 }

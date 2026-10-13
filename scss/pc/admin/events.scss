@@ -7,11 +7,11 @@
 
 	.event-board > h4 {
 		padding-bottom: 24px;
-		border-bottom: 1px solid #d4d7da;
+		border-bottom: 1px solid var(--color-border, #d4d7da);
 	}
 
 	.event-card {
-		background: #f7f7f8;
+		background: var(--color-surface-soft, #f7f7f8);
 		transition: border-color 160ms ease;
 
 		&:hover {

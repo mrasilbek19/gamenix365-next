@@ -1,7 +1,7 @@
 #pc-wrap,
 #mobile-wrap {
 	#member-page {
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 		.container {
 			.member-page {
 				position: relative;
@@ -16,8 +16,8 @@
 					flex-direction: row;
 					margin: 100px 0 200px 0;
 					border-radius: 12px;
-					border: 1px solid #d4d7da;
-					background: #eceeef;
+					border: 1px solid var(--color-border, #d4d7da);
+					background: var(--color-surface, #eceeef);
 					box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 					.left-config {
 						position: relative;
@@ -25,7 +25,7 @@
 						width: 266px;
 						height: 700px;
 						border-radius: 12px;
-						background: #eceeef;
+						background: var(--color-surface, #eceeef);
 						border: 1px solid rgba(196, 196, 196, 0.79);
 						box-shadow: 0px 1px 4px 0px rgba(24, 26, 32, 0.07);
 						margin: 180px 20px 40px 20px;
@@ -49,7 +49,7 @@
 								display: flex;
 								flex-direction: column;
 								.user-name {
-									color: #202124;
+									color: var(--color-text, #202124);
 									font-family: $font;
 									font-size: 15px;
 									font-style: normal;
@@ -82,7 +82,7 @@
 							margin-top: 15px;
 							button {
 								border: 1px solid #b9b9b9;
-								color: #202124;
+								color: var(--color-text, #202124);
 								font-family: $font;
 								font-size: 14px;
 								font-style: normal;
@@ -159,7 +159,7 @@
 								}
 								.sub-title {
 									margin-left: 12px;
-									color: #202124;
+									color: var(--color-text, #202124);
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -170,7 +170,7 @@
 									display: flex;
 									justify-content: flex-end;
 									padding-right: 10px;
-									color: #202124;
+									color: var(--color-text, #202124);
 									font-family: $font;
 									font-size: 14px;
 									font-style: normal;
@@ -211,7 +211,7 @@
 			gap: 32px;
 			border: 0;
 			box-shadow: none;
-			background: #ffffff;
+			background: var(--color-paper, #ffffff);
 			align-items: flex-start;
 			.left-config {
 				width: 240px;
@@ -219,7 +219,7 @@
 				height: auto;
 				margin: 0;
 				padding: 24px 20px;
-				background: #eceeef;
+				background: var(--color-surface, #eceeef);
 				border-radius: 10px;
 				border: 0;
 				.profile {
@@ -256,7 +256,7 @@
 					.card-config {
 						width: 100%;
 						height: auto;
-						background: #eceeef;
+						background: var(--color-surface, #eceeef);
 						border-radius: 10px;
 						box-shadow: none;
 						.bottom {

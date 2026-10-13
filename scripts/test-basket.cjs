@@ -153,6 +153,9 @@ let states,
 	failLogin = false;
 const hooks = {
 	...React,
+	useMemo(callback) {
+		return callback();
+	},
 	useState(initial) {
 		const i = cursor++;
 		if (!(i in states)) states[i] = typeof initial === 'function' ? initial() : initial;

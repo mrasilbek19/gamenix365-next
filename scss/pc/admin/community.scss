@@ -5,20 +5,20 @@
 	}
 
 	.table-wrap {
-		border: 1px solid #d4d7da;
+		border: 1px solid var(--color-border, #d4d7da);
 		border-radius: 10px;
-		background: #f7f7f8;
+		background: var(--color-surface-soft, #f7f7f8);
 		overflow: hidden;
 	}
 
 	.search-area {
 		padding: 20px;
 		border-radius: 14px;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 	}
 
 	.MuiTableHead-root .MuiTableCell-root {
-		color: #202124;
+		color: var(--color-text, #202124);
 	}
 
 	.MuiTableRow-root:hover {

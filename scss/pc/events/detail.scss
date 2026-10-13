@@ -1,6 +1,6 @@
 .public-layout #main .event-detail {
 	padding: 48px 24px;
-	color: #202124;
+	color: var(--color-text, #202124);
 
 	> h4 {
 		font-size: clamp(28px, 3vw, 40px);
@@ -9,24 +9,24 @@
 
 	> img {
 		padding: 16px;
-		border: 1px solid #d4d7da;
+		border: 1px solid var(--color-border, #d4d7da);
 		border-radius: 10px;
-		background: #eceeef;
+		background: var(--color-surface, #eceeef);
 	}
 
 	> p {
 		line-height: 1.7;
-		color: #62666b;
+		color: var(--color-muted, #62666b);
 	}
 
 	.event-participants {
 		padding: 24px;
-		border: 1px solid #d4d7da;
+		border: 1px solid var(--color-border, #d4d7da);
 		border-radius: 10px;
-		background: #f7f7f8;
+		background: var(--color-surface-soft, #f7f7f8);
 
 		.MuiTableHead-root {
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 		}
 	}
 }

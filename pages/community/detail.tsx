@@ -440,7 +440,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																width: '1000px',
 																height: 'fit-content',
 																borderRadius: '10px',
-																color: '#202124',
+																color: 'var(--color-text, #202124)',
 																zIndex: 999,
 															}}
 															open={openBackdrop}
@@ -457,7 +457,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																	boxShadow: 'rgba(99, 99, 99, 0.2) 0px 2px 8px 0px',
 																}}
 															>
-																<Typography variant="h4" color={'#62666b'}>
+																<Typography variant="h4" color={'var(--color-muted, #62666b)'}>
 																	Update comment
 																</Typography>
 																<Stack gap={'20px'}>
@@ -475,7 +475,7 @@ const CommunityDetail: NextPage = ({ initialInput, ...props }: T) => {
 																		}}
 																	/>
 																	<Stack width={'100%'} flexDirection={'row'} justifyContent={'space-between'}>
-																		<Typography variant="subtitle1" color={'#62666b'}>
+																		<Typography variant="subtitle1" color={'var(--color-muted, #62666b)'}>
 																			{updatedCommentWordsCnt}/100
 																		</Typography>
 																		<Stack sx={{ flexDirection: 'row', alignSelf: 'flex-end', gap: '10px' }}>

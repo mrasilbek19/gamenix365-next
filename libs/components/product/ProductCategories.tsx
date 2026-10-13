@@ -133,7 +133,7 @@ export default function ProductCategories({
 				boxSizing: 'border-box',
 				marginBottom: 24,
 				padding: 16,
-				background: '#f7f7f8',
+				background: 'var(--color-surface-soft, #f7f7f8)',
 				border: '1px solid #d4d7da',
 				borderRadius: 12,
 			}}
@@ -146,8 +146,8 @@ export default function ProductCategories({
 				aria-label="Product categories"
 				onChange={(_, id) => onChange(PRODUCT_GROUPS.find((item) => item.id === id)!.types)}
 				sx={{
-					'& .MuiTab-root': { color: '#62666b', textTransform: 'none', fontWeight: 600, minWidth: 90 },
-					'& .Mui-selected': { color: '#202124 !important' },
+					'& .MuiTab-root': { color: 'var(--color-muted, #62666b)', textTransform: 'none', fontWeight: 600, minWidth: 90 },
+					'& .Mui-selected': { color: 'var(--color-text, #202124) !important' },
 					'& .MuiTabs-indicator': { bgcolor: '#00b8ee' },
 				}}
 			>
@@ -160,12 +160,12 @@ export default function ProductCategories({
 					size="small"
 					onClick={() => onChange(group?.types ?? [])}
 					aria-pressed={group ? types.length === group.types.length : types.length === 0}
-					sx={{ color: '#202124', textTransform: 'none' }}
+					sx={{ color: 'var(--color-text, #202124)', textTransform: 'none' }}
 				>
 					{group ? 'All in this category' : 'All products'}
 				</Button>
 				{group && (
-					<Button size="small" onClick={() => onChange([])} sx={{ color: '#62666b', textTransform: 'none' }}>
+					<Button size="small" onClick={() => onChange([])} sx={{ color: 'var(--color-muted, #62666b)', textTransform: 'none' }}>
 						All products
 					</Button>
 				)}
@@ -187,10 +187,10 @@ export default function ProductCategories({
 								border: '1px solid',
 								borderColor: selected ? '#00b8ee' : '#c8ccd0',
 								borderRadius: 2,
-								bgcolor: selected ? '#dff6fc' : '#eceeef',
-								color: selected ? '#202124' : '#62666b',
+								bgcolor: selected ? 'var(--color-accent-soft, #dff6fc)' : '#eceeef',
+								color: selected ? 'var(--color-text, #202124)' : 'var(--color-muted, #62666b)',
 								textTransform: 'none',
-								'&:hover': { bgcolor: '#dff6fc', borderColor: '#00b8ee' },
+								'&:hover': { bgcolor: 'var(--color-accent-soft, #dff6fc)', borderColor: '#00b8ee' },
 								'&.Mui-focusVisible': { outline: '2px solid #00b8ee', outlineOffset: 2 },
 							}}
 						>

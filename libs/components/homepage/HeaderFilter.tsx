@@ -14,7 +14,7 @@ const style = {
 	left: '50%',
 	transform: 'translate(-50%, -50%)',
 	width: 'min(662px, calc(100vw - 32px))',
-	backgroundColor: '#f7f7f8',
+	backgroundColor: 'var(--color-surface-soft, #f7f7f8)',
 	borderRadius: '12px',
 	outline: 'none',
 	boxShadow: '0 8px 24px rgba(0, 0, 0, 0.2)',

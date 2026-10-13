@@ -4,6 +4,12 @@ export default function Document() {
 	return (
 		<Html lang="en">
 			<Head>
+				<script
+					dangerouslySetInnerHTML={{
+						__html:
+							"try{document.documentElement.dataset.theme=localStorage.getItem('gamenix365.theme')==='dark'?'dark':'light'}catch(e){}",
+					}}
+				/>
 				<meta name="robots" content="index,follow" />
 				<link rel="icon" type="image/png" href="/img/logo/favicon.svg" />
 

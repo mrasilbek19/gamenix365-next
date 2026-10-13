@@ -1,0 +1,82 @@
+:root {
+	color-scheme: light;
+}
+
+html[data-theme='dark'] {
+	color-scheme: dark;
+	--color-text: #edf2f5;
+	--color-muted: #abb5bf;
+	--color-paper: #161c23;
+	--color-surface: #1f2730;
+	--color-surface-soft: #1a222b;
+	--color-border: #35414d;
+	--color-accent-text: #59d5f8;
+	--color-accent-soft: #173743;
+	--color-hero: #1f2730;
+	--color-hero-fade: rgba(31, 39, 48, 0.92);
+	--color-notice-highlight: #3b3020;
+
+	#pc-wrap .header-main > .container .search-box {
+		.search-input-box img,
+		.search-box-other .advanced-filter img {
+			filter: brightness(0) invert(1);
+		}
+	}
+}
+
+#pc-wrap,
+#mobile-wrap {
+	#top .lan-box {
+		display: flex;
+		align-items: center;
+		gap: 4px;
+
+		.theme-toggle {
+			width: 36px;
+			height: 36px;
+			color: #ffffff;
+
+			&:hover {
+				background: rgba(255, 255, 255, 0.12);
+			}
+
+			&:focus-visible {
+				outline: 2px solid #00b8ee;
+				outline-offset: 2px;
+			}
+
+			svg {
+				font-size: 21px;
+			}
+		}
+
+		.btn-lang {
+			min-width: 36px;
+			color: #ffffff;
+
+			img {
+				width: 22px;
+				height: 16px;
+				object-fit: cover;
+			}
+		}
+
+		.notification-icon {
+			color: #ffffff;
+			font-size: 23px;
+		}
+	}
+
+	.view-event {
+		color: #202124;
+	}
+}
+
+#mobile-wrap #top .mobile-brand {
+	flex-wrap: wrap;
+	gap: 8px;
+
+	.mobile-actions {
+		margin-left: auto;
+	}
+}

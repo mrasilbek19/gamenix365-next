@@ -11,7 +11,7 @@
 			.right-box {
 				width: 315px;
 				.main-title {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 30px;
 					font-style: normal;
@@ -21,7 +21,7 @@
 					text-transform: capitalize;
 				}
 				.sub-title {
-					color: #202124;
+					color: var(--color-text, #202124);
 					font-family: $font;
 					font-size: 14px;
 					font-style: normal;
@@ -43,7 +43,7 @@
 			.flex-space {
 				.btn-next {
 					background: #87cdf9;
-					color: #202124;
+					color: var(--color-text, #202124);
 				}
 			}
 			.select {
@@ -55,7 +55,7 @@
 				font-size: 14px;
 				padding: 0 16px;
 				margin-top: 16px;
-				border: 1px solid #d4d7da;
+				border: 1px solid var(--color-border, #d4d7da);
 				border-radius: 4px;
 			}
 			.btn-flex { margin-top: 40px; }
@@ -69,7 +69,7 @@
 		.toastui-editor-popup-body { padding: 20px; }
 		.youtube-input {
 			padding: 8px 16px;
-			border: 1px solid #d4d7da;
+			border: 1px solid var(--color-border, #d4d7da);
 		}
 		.youtube-div {
 			display:flex;
@@ -90,7 +90,7 @@
 		}
 		.list-box {
 			border-radius: 10px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			overflow-x: auto;
 		}
 	}

@@ -1,8 +1,8 @@
 .basket-content {
 	> [role='dialog'] {
 		padding: 24px;
-		background: #eceeef;
-		color: #202124;
+		background: var(--color-surface, #eceeef);
+		color: var(--color-text, #202124);
 
 		> .MuiStack-root:first-child .MuiTypography-root {
 			font-size: 24px;

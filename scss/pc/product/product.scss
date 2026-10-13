@@ -1,7 +1,7 @@
 #pc-wrap #product-list-page,
 #mobile-wrap #product-list-page {
 	padding: 0 0 72px;
-	background: linear-gradient(#eceeef 0 112px, #fff 112px);
+	background: linear-gradient(var(--color-surface, #eceeef) 0 112px, var(--color-paper, #fff) 112px);
 
 	> .container {
 		position: relative;
@@ -25,9 +25,9 @@
 			button {
 				min-height: 44px;
 				padding: 10px 22px;
-				border: 1px solid #c8ccd0;
+				border: 1px solid var(--color-border, #c8ccd0);
 				border-radius: 3px;
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-size: 12px;
 				font-weight: 600;
 			}
@@ -37,7 +37,7 @@
 			}
 		}
 		.catalog-count {
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			font-size: 12px;
 		}
 	}
@@ -54,7 +54,7 @@
 			width: 100%;
 			padding: 24px 18px;
 			border-radius: 8px;
-			background: #f7f7f8;
+			background: var(--color-surface-soft, #f7f7f8);
 		}
 		.filter-main > .find-your-home:first-child {
 			position: absolute;
@@ -74,25 +74,25 @@
 				height: 58px;
 				padding: 0 20px;
 				border-radius: 32px;
-				background: #fff;
+				background: var(--color-paper, #fff);
 				input {
 					min-width: 0;
 					font-size: 15px;
 					padding: 16px 0;
 				}
 				.MuiOutlinedInput-notchedOutline {
-					border-color: #d4d7da;
+					border-color: var(--color-border, #d4d7da);
 				}
 			}
 			.MuiInputAdornment-root {
 				flex-shrink: 0;
-				color: #202124;
+				color: var(--color-text, #202124);
 				svg {
 					font-size: 20px;
 				}
 			}
 			.MuiIconButton-root {
-				color: #62666b;
+				color: var(--color-muted, #62666b);
 			}
 		}
 		.filter-main {
@@ -100,7 +100,7 @@
 				gap: 12px;
 			}
 			.title {
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-size: 13px;
 				font-weight: 600;
 			}
@@ -113,11 +113,11 @@
 					width: calc(50% - 10px);
 					padding: 10px;
 					height: 44px;
-					background: #fff;
-					border: 1px solid #d4d7da;
+					background: var(--color-paper, #fff);
+					border: 1px solid var(--color-border, #d4d7da);
 					border-radius: 4px;
 					font: 12px $font;
-					color: #202124;
+					color: var(--color-text, #202124);
 				}
 				.central-divider {
 					width: 12px;
@@ -127,9 +127,9 @@
 			.reset-product-filters {
 				margin-top: 24px;
 				padding: 10px;
-				border: 1px solid #c8ccd0;
+				border: 1px solid var(--color-border, #c8ccd0);
 				border-radius: 4px;
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-size: 12px;
 			}
 		}
@@ -140,10 +140,10 @@
 			min-width: 0;
 			margin: 0 0 24px;
 			padding-bottom: 20px;
-			border-bottom: 1px solid #d4d7da;
+			border-bottom: 1px solid var(--color-border, #d4d7da);
 			h2 {
 				margin: 0 0 12px;
-				color: #202124;
+				color: var(--color-text, #202124);
 				font-size: 13px;
 				font-weight: 600;
 			}
@@ -159,7 +159,7 @@
 				padding: 8px 10px;
 				border: 1px solid transparent;
 				border-radius: 4px;
-				color: #202124;
+				color: var(--color-text, #202124);
 				text-align: left;
 				text-transform: none;
 				font-size: 13px;
@@ -185,27 +185,27 @@
 				.MuiCheckbox-root {
 					flex-shrink: 0;
 					padding: 2px;
-					color: #62666b;
+					color: var(--color-muted, #62666b);
 				}
 				.Mui-checked {
-					color: #202124;
+					color: var(--color-text, #202124);
 				}
 			}
 			.category-option.selected {
-				background: #dff6fc;
+				background: var(--color-accent-soft, #dff6fc);
 				font-weight: 600;
 			}
 			.subcategory-list {
 				margin: 6px 0 12px 12px;
 				padding-left: 8px;
-				border-left: 1px solid #c8ccd0;
+				border-left: 1px solid var(--color-border, #c8ccd0);
 			}
 			.subcategory-option {
 				min-height: 34px;
 				font-size: 12px;
 			}
 			.subcategory-option.selected {
-				background: #dff6fc;
+				background: var(--color-accent-soft, #dff6fc);
 				color: #006d85;
 			}
 		}
@@ -237,7 +237,7 @@
 			min-height: 440px;
 			border: 0;
 			border-radius: 10px;
-			background: #eceeef;
+			background: var(--color-surface, #eceeef);
 			box-shadow: none;
 			overflow: hidden;
 			.top {
@@ -281,13 +281,13 @@
 						font-size: 15px;
 						line-height: 21px;
 						font-weight: 600;
-						color: #202124;
+						color: var(--color-text, #202124);
 					}
 					.shop-name {
 						min-height: 18px;
 						font-size: 12px;
 						line-height: 18px;
-						color: #62666b;
+						color: var(--color-muted, #62666b);
 						white-space: nowrap;
 						overflow: hidden;
 						text-overflow: ellipsis;
@@ -299,7 +299,7 @@
 					padding-bottom: 4px;
 					font-size: 16px;
 					font-weight: 600;
-					color: #202124;
+					color: var(--color-text, #202124);
 				}
 				.type-buttons {
 					grid-area: stats;
@@ -309,21 +309,21 @@
 						gap: 4px;
 						button {
 							padding: 3px;
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 						}
 						button:nth-of-type(2) {
 							position: absolute;
 							top: 16px;
 							right: 16px;
 							padding: 6px;
-							color: #202124;
+							color: var(--color-text, #202124);
 						}
 						svg {
 							font-size: 18px;
 						}
 						.view-cnt {
 							font-size: 11px;
-							color: #62666b;
+							color: var(--color-muted, #62666b);
 						}
 						.view-cnt:last-child {
 							position: absolute;
@@ -344,7 +344,7 @@
 						padding: 4px 0;
 						border: 0;
 						border-radius: 0;
-						color: #202124;
+						color: var(--color-text, #202124);
 						font-size: 10px;
 						font-weight: 600;
 						line-height: 22px;
@@ -380,7 +380,7 @@
 			gap: 18px;
 		}
 		.total-result p {
-			color: #62666b;
+			color: var(--color-muted, #62666b);
 			font-size: 12px;
 		}
 	}

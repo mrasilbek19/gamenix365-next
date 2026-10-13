@@ -5,7 +5,7 @@
 a {
 	white-space: nowrap;
 	text-decoration: none;
-	color: #212121;
+	color: var(--color-text, #212121);
 }
 button {
 	text-transform: none;
@@ -16,7 +16,7 @@ button.outline {
 	border: 1px solid #eee;
 }
 button.contain {
-	color: #202124;
+	color: var(--color-text, #202124);
 }
 span,
 p {

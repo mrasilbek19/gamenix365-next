@@ -13,8 +13,12 @@ import { CaretDown } from 'phosphor-react';
 import useDeviceDetect from '../hooks/useDeviceDetect';
 import Link from 'next/link';
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined';
+import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
+import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
+import IconButton from '@mui/material/IconButton';
+import Tooltip from '@mui/material/Tooltip';
 import { useReactiveVar } from '@apollo/client';
-import { userVar } from '../../apollo/store';
+import { themeVar, userVar } from '../../apollo/store';
 import { Logout } from '@mui/icons-material';
 import { REACT_APP_API_URL } from '../config';
 
@@ -23,6 +27,7 @@ import Basket from './basket/Basket';
 const Top = () => {
 	const device = useDeviceDetect();
 	const user = useReactiveVar(userVar);
+	const mode = useReactiveVar(themeVar);
 	const { t } = useTranslation('common');
 	const router = useRouter();
 	const [anchorEl2, setAnchorEl2] = useState<null | HTMLElement>(null);
@@ -58,6 +63,15 @@ const Top = () => {
 	}, []);
 
 	/** HANDLERS **/
+	const themeChangeHandler = () => {
+		const nextMode = mode === 'light' ? 'dark' : 'light';
+		themeVar(nextMode);
+		document.documentElement.dataset.theme = nextMode;
+		try {
+			localStorage.setItem('gamenix365.theme', nextMode);
+		} catch {}
+	};
+
 	const langClick = (e: any) => {
 		setAnchorEl2(e.currentTarget);
 	};
@@ -139,12 +153,59 @@ const Top = () => {
 		window.addEventListener('scroll', changeNavbarColor);
 	}
 
+	const languageControls = (
+		<div className={'lan-box'}>
+			{user?._id && <NotificationsOutlinedIcon className={'notification-icon'} />}
+			<Tooltip title={t(mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode')}>
+				<IconButton
+					className={'theme-toggle'}
+					aria-label={t(mode === 'light' ? 'Switch to dark mode' : 'Switch to light mode')}
+					aria-pressed={mode === 'dark'}
+					onClick={themeChangeHandler}
+				>
+					{mode === 'light' ? <DarkModeOutlinedIcon /> : <LightModeOutlinedIcon />}
+				</IconButton>
+			</Tooltip>
+			<Button
+				disableRipple
+				className="btn-lang"
+				aria-label={t('Change language')}
+				onClick={langClick}
+				endIcon={<CaretDown size={14} color="#616161" weight="fill" />}
+			>
+				<Box component={'div'} className={'flag'}>
+					<img
+						src={`/img/flag/lang${lang}.png`}
+						alt={t(lang === 'kr' ? 'Korean' : lang === 'ru' ? 'Russian' : 'English')}
+					/>
+				</Box>
+			</Button>
+
+			<StyledMenu anchorEl={anchorEl2} open={drop} onClose={langClose} sx={{ position: 'absolute' }}>
+				<MenuItem disableRipple onClick={langChoice} id="en">
+					<img className="img-flag" src={'/img/flag/langen.png'} alt={t('English')} />
+					{t('English')}
+				</MenuItem>
+				<MenuItem disableRipple onClick={langChoice} id="kr">
+					<img className="img-flag" src={'/img/flag/langkr.png'} alt={t('Korean')} />
+					{t('Korean')}
+				</MenuItem>
+				<MenuItem disableRipple onClick={langChoice} id="ru">
+					<img className="img-flag" src={'/img/flag/langru.png'} alt={t('Russian')} />
+					{t('Russian')}
+				</MenuItem>
+			</StyledMenu>
+		</div>
+	);
+
 	if (device == 'mobile') {
 		return (
 			<Stack className={'mobile-header'}>
 				<div className={'announcement-bar'}>{t('Your setup. Your community. Gamenix365.')}</div>
 				<Box component={'div'} className={'mobile-brand'}>
-					<Link href={'/'} className={'brand-name'}>GAMENIX<span>365</span></Link>
+					<Link href={'/'} className={'brand-name'}>
+						GAMENIX<span>365</span>
+					</Link>
 					<Stack className={'mobile-actions'}>
 						<Link
 							href={user?._id ? '/mypage' : '/account/join'}
@@ -153,6 +214,7 @@ const Top = () => {
 							<AccountCircleOutlinedIcon />
 						</Link>
 						<Basket light />
+						{languageControls}
 					</Stack>
 				</Box>
 				<Stack className={'top'}>
@@ -173,7 +235,10 @@ const Top = () => {
 					<Link href={'/events'} aria-current={router.pathname === '/events' ? 'page' : undefined}>
 						<div>{t('Events')}</div>
 					</Link>
-					<Link href={'/community?articleCategory=FREE'} aria-current={router.pathname === '/community' ? 'page' : undefined}>
+					<Link
+						href={'/community?articleCategory=FREE'}
+						aria-current={router.pathname === '/community' ? 'page' : undefined}
+					>
 						<div> {t('Community')} </div>
 					</Link>
 					<Link href={'/cs'} aria-current={router.pathname === '/cs' ? 'page' : undefined}>
@@ -190,7 +255,9 @@ const Top = () => {
 					<Stack className={'container'}>
 						<Box component={'div'} className={'logo-box'}>
 							<Link href={'/'} aria-current={router.pathname === '/' ? 'page' : undefined}>
-								<span className={'brand-name'}>GAMENIX<span>365</span></span>
+								<span className={'brand-name'}>
+									GAMENIX<span>365</span>
+								</span>
 							</Link>
 						</Box>
 						<Box component={'div'} className={'router-box'}>
@@ -211,7 +278,10 @@ const Top = () => {
 							<Link href={'/events'} aria-current={router.pathname === '/events' ? 'page' : undefined}>
 								<div>{t('Events')}</div>
 							</Link>
-							<Link href={'/community?articleCategory=FREE'} aria-current={router.pathname === '/community' ? 'page' : undefined}>
+							<Link
+								href={'/community?articleCategory=FREE'}
+								aria-current={router.pathname === '/community' ? 'page' : undefined}
+							>
 								<div> {t('Community')} </div>
 							</Link>
 							{user?._id && (
@@ -262,50 +332,7 @@ const Top = () => {
 								</Link>
 							)}
 
-							<div className={'lan-box'}>
-								{user?._id && <NotificationsOutlinedIcon className={'notification-icon'} />}
-								<Button
-									disableRipple
-									className="btn-lang"
-									aria-label={t('Change language')}
-									onClick={langClick}
-									endIcon={<CaretDown size={14} color="#616161" weight="fill" />}
-								>
-									<Box component={'div'} className={'flag'}>
-										<img
-											src={`/img/flag/lang${lang}.png`}
-											alt={t(lang === 'kr' ? 'Korean' : lang === 'ru' ? 'Russian' : 'English')}
-										/>
-									</Box>
-								</Button>
-
-								<StyledMenu anchorEl={anchorEl2} open={drop} onClose={langClose} sx={{ position: 'absolute' }}>
-									<MenuItem disableRipple onClick={langChoice} id="en">
-										<img
-											className="img-flag"
-											src={'/img/flag/langen.png'}
-											alt={t('English')}
-										/>
-										{t('English')}
-									</MenuItem>
-									<MenuItem disableRipple onClick={langChoice} id="kr">
-										<img
-											className="img-flag"
-											src={'/img/flag/langkr.png'}
-											alt={t('Korean')}
-										/>
-										{t('Korean')}
-									</MenuItem>
-									<MenuItem disableRipple onClick={langChoice} id="ru">
-										<img
-											className="img-flag"
-											src={'/img/flag/langru.png'}
-											alt={t('Russian')}
-										/>
-										{t('Russian')}
-									</MenuItem>
-								</StyledMenu>
-							</div>
+							{languageControls}
 						</Box>
 					</Stack>
 				</Stack>
